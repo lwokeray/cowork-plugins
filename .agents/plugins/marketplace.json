@@ -1,0 +1,20 @@
+{
+  "name": "raymond-local",
+  "interface": {
+    "displayName": "Raymond Local Plugins"
+  },
+  "plugins": [
+    {
+      "name": "microsoft-ai-solution-accelerator",
+      "source": {
+        "source": "local",
+        "path": "./plugins/microsoft-ai-solution-accelerator"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}
