@@ -1,4 +1,4 @@
-# Dynamics 365 IT Help Desk Cowork Plugin
+# IT Help Desk Cowork Plugin
 
 This is a **skills-only Microsoft 365 Copilot Cowork plugin package** for a focused IT Help Desk workflow on Dynamics 365 Customer Service.
 
@@ -27,11 +27,11 @@ From the repository root:
 
 ```bash
 python3 scripts/create_icons.py
-python3 scripts/validate_plugin.py d365-it-helpdesk-cowork
+python3 scripts/validate_plugin.py it-helpdesk-cowork
 python3 -m unittest discover -s tests -v
 mkdir -p dist
-(cd d365-it-helpdesk-cowork && zip -qr ../dist/d365-it-helpdesk-cowork.zip manifest.json color.png outline.png skills README.md)
-unzip -t dist/d365-it-helpdesk-cowork.zip
+(cd it-helpdesk-cowork && zip -qr ../dist/it-helpdesk-cowork.zip manifest.json color.png outline.png skills README.md)
+unzip -t dist/it-helpdesk-cowork.zip
 ```
 
 The package must have `manifest.json`, `color.png`, `outline.png`, and `skills/` at the ZIP root. The `manifestVersion` is `1.28`; do not add unsupported root properties to the manifest.

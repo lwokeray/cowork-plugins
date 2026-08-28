@@ -20,17 +20,17 @@ The plugin will teach Cowork four narrow, composable workflows: case briefing, k
 
 | File | Responsibility |
 |---|---|
-| `d365-it-helpdesk-cowork/manifest.json` | Microsoft 365 Unified App Manifest v1.28 |
-| `d365-it-helpdesk-cowork/color.png` | 192×192 full-color package icon |
-| `d365-it-helpdesk-cowork/outline.png` | 32×32 outline package icon |
-| `d365-it-helpdesk-cowork/skills/case-brief/SKILL.md` | One-screen case context workflow |
-| `d365-it-helpdesk-cowork/skills/knowledge-grounded-reply/SKILL.md` | Approved-knowledge response draft workflow |
-| `d365-it-helpdesk-cowork/skills/escalation-handoff/SKILL.md` | Evidence-based resolver handoff workflow |
-| `d365-it-helpdesk-cowork/skills/supervisor-case-review/SKILL.md` | Open-case review and re-engagement draft workflow |
+| `it-helpdesk-cowork/manifest.json` | Microsoft 365 Unified App Manifest v1.28 |
+| `it-helpdesk-cowork/color.png` | 192×192 full-color package icon |
+| `it-helpdesk-cowork/outline.png` | 32×32 outline package icon |
+| `it-helpdesk-cowork/skills/case-brief/SKILL.md` | One-screen case context workflow |
+| `it-helpdesk-cowork/skills/knowledge-grounded-reply/SKILL.md` | Approved-knowledge response draft workflow |
+| `it-helpdesk-cowork/skills/escalation-handoff/SKILL.md` | Evidence-based resolver handoff workflow |
+| `it-helpdesk-cowork/skills/supervisor-case-review/SKILL.md` | Open-case review and re-engagement draft workflow |
 | `scripts/validate_plugin.py` | Deterministic package validation |
 | `tests/test_validate_plugin.py` | Validator behavior tests |
-| `d365-it-helpdesk-cowork/README.md` | Package usage and tenant verification guide |
-| `dist/d365-it-helpdesk-cowork.zip` | Root-level uploadable package |
+| `it-helpdesk-cowork/README.md` | Package usage and tenant verification guide |
+| `dist/it-helpdesk-cowork.zip` | Root-level uploadable package |
 
 ## Tasks
 
@@ -39,7 +39,7 @@ The plugin will teach Cowork four narrow, composable workflows: case briefing, k
 - [ ] Write `manifest.json` with only schema-supported fields.
 - [ ] Add deterministic icons at the required dimensions.
 - [ ] Verify the package shell parses as JSON.
-- [ ] Commit point: `Add D365 Cowork plugin package shell`.
+- [ ] Commit point: `Add Cowork plugin package shell`.
 
 ### Task 2: Add focused skills
 
@@ -48,7 +48,7 @@ The plugin will teach Cowork four narrow, composable workflows: case briefing, k
 - [ ] Add escalation handoff skill.
 - [ ] Add supervisor case review skill.
 - [ ] Verify each skill has valid frontmatter and folder/name agreement.
-- [ ] Commit point: `Add D365 IT Help Desk Cowork skills`.
+- [ ] Commit point: `Add IT Help Desk Cowork skills`.
 
 ### Task 3: Add deterministic validation
 
@@ -64,7 +64,7 @@ The plugin will teach Cowork four narrow, composable workflows: case briefing, k
 - [ ] Document the sandbox-only write-back checkpoint.
 - [ ] Document the official Microsoft source links and version caveats.
 - [ ] Run a clean checkout validation.
-- [ ] Commit point: `Document D365 Cowork plugin usage`.
+- [ ] Commit point: `Document Customer Service Cowork plugin usage`.
 
 ## Explicit Non-Goals
 

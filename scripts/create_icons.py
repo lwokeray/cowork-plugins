@@ -1,7 +1,7 @@
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
-ROOT = Path(__file__).resolve().parent.parent / "d365-it-helpdesk-cowork"
+ROOT = Path(__file__).resolve().parent.parent / "it-helpdesk-cowork"
 ROOT.mkdir(parents=True, exist_ok=True)
 
 NAVY = (19, 44, 82, 255)

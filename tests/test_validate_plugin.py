@@ -7,7 +7,7 @@ from scripts.validate_plugin import validate_package
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PACKAGE = ROOT / "d365-it-helpdesk-cowork"
+PACKAGE = ROOT / "it-helpdesk-cowork"
 
 
 class PluginValidationTests(unittest.TestCase):
@@ -41,7 +41,7 @@ class PluginValidationTests(unittest.TestCase):
             bad_file.parent.rmdir()
 
     def test_zip_contents_are_rooted_at_package_root(self):
-        zip_path = ROOT / "dist" / "d365-it-helpdesk-cowork.zip"
+        zip_path = ROOT / "dist" / "it-helpdesk-cowork.zip"
         if not zip_path.exists():
             self.skipTest("package zip is created by the packaging step")
         with zipfile.ZipFile(zip_path) as archive:

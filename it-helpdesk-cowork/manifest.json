@@ -6,12 +6,12 @@
   "developer": {
     "name": "lwokeray",
     "websiteUrl": "https://github.com/lwokeray/cowork-plugins",
-    "privacyUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/d365-it-helpdesk-cowork/README.md#privacy",
-    "termsOfUseUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/d365-it-helpdesk-cowork/README.md#terms"
+    "privacyUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/it-helpdesk-cowork/README.md#privacy",
+    "termsOfUseUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/it-helpdesk-cowork/README.md#terms"
   },
   "name": {
-    "short": "D365 IT Help Desk",
-    "full": "Dynamics 365 IT Help Desk Cowork"
+    "short": "IT Help Desk Cowork",
+    "full": "IT Help Desk Cowork"
   },
   "description": {
     "short": "Case briefing, knowledge replies, escalation handoffs, and supervisor review for Dynamics 365 Customer Service.",
