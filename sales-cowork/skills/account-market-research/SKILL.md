@@ -1,7 +1,7 @@
 ---
 name: account-market-research
 description: >-
-  Answers one defined account or market research question while separating permitted internal evidence from explicitly requested public research.
+  Answers one defined account or market research question from supplied internal and public evidence.
   Use when the user asks for a customer's strategy, market change, account hypothesis, competitor context,
   or research needed for a sales conversation. Do not use for an undefined company profile or automatic public-web research.
 metadata:
@@ -13,7 +13,7 @@ metadata:
 
 ## Purpose
 
-Answer a precise research question relevant to one account, market, or sales hypothesis. Start with approved internal sources available to the signed-in user. Public research is used only when the user explicitly asks for it.
+Answer a precise research question relevant to one account, market, or sales hypothesis from source material supplied in the session. This skills-only package has no browsing or enterprise-data connector; it does not retrieve internal sources or public-web results on its own.
 
 ## Guardrails
 
@@ -24,9 +24,9 @@ Answer a precise research question relevant to one account, market, or sales hyp
 
 ## Workflow
 
-1. Confirm the target account or market, research question, intended sales use, and whether public research is explicitly requested.
-2. Read approved internal sources in the user's available Microsoft 365 context.
-3. If authorized, gather public research relevant to the question and keep it in a separate evidence section.
+1. Confirm the target account or market, research question, intended sales use, and supplied source scope.
+2. Use supplied internal evidence and record its source date or timestamp.
+3. Use public evidence only when the user has supplied it or Cowork has already surfaced it in the session. Otherwise write `Source unavailable — user input needed`; do not browse autonomously.
 4. Answer only what the sources support, then list implications as labeled hypotheses or questions.
 5. State gaps that require customer confirmation.
 

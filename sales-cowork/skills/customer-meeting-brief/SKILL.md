@@ -1,7 +1,7 @@
 ---
 name: customer-meeting-brief
 description: >-
-  Prepares an evidence-led brief for one customer meeting using the user's available Microsoft 365 context.
+  Prepares an evidence-led brief for one customer meeting from supplied meeting and account evidence.
   Use when the user asks to prepare for a named customer meeting, identify attendees and commitments,
   create discovery questions, or summarize recent account changes before a meeting. Do not use for
   post-meeting follow-up, deal rescue, forecast review, or general account research.
@@ -14,7 +14,7 @@ metadata:
 
 ## Purpose
 
-Prepare one meeting, not an account dossier. Use the available calendar item, prior email or Teams context, approved account material, and connected Sales context only when it is actually available to the user.
+Prepare one meeting, not an account dossier. Use meeting metadata, prior communications, account material, and Sales context only when they are attached to the session, supplied in the workspace or conversation, or already surfaced by Cowork. The package does not directly retrieve Outlook, Teams, or CRM records.
 
 ## Guardrails
 
@@ -25,8 +25,8 @@ Prepare one meeting, not an account dossier. Use the available calendar item, pr
 
 ## Workflow
 
-1. Identify the meeting and read its purpose, participants, time, and available agenda.
-2. Read recent customer-facing communications, meeting recaps, approved account plan or playbook context, and connected Sales data only if available.
+1. Identify the meeting from supplied material and extract its purpose, participants, time, and agenda. If no material identifies one meeting, return `Source unavailable — user input needed`.
+2. Use supplied recent communications, recaps, account plan or playbook material, and Sales evidence when available.
 3. Extract explicit commitments, material changes, open questions, and unresolved objections with their sources.
 4. Draft discovery questions and a single recommended next step; label recommendations as inference.
 5. Stop before sending, posting, creating a task, or modifying CRM data.

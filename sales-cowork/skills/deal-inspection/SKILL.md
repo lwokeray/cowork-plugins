@@ -13,7 +13,7 @@ metadata:
 
 ## Purpose
 
-Inspect one named deal, or a user-confirmed set of up to five priority deals, using only accessible buyer evidence, activity, commitments, and approved account material. The result is decision support, never an automatic CRM or forecast update.
+Inspect one named deal, or a user-confirmed set of up to five priority deals, using buyer evidence, activity, commitments, and account material supplied in the session. The result is decision support, never an automatic CRM or forecast update. This package does not directly retrieve CRM, email, or Teams data.
 
 ## Guardrails
 
@@ -25,7 +25,7 @@ Inspect one named deal, or a user-confirmed set of up to five priority deals, us
 ## Workflow
 
 1. Resolve the deal and its permitted source scope.
-2. Read available buyer communications, commitments, recent activity, approved account material, and connected Sales context when available.
+2. Use supplied buyer communications, commitments, recent activity, account material, and Sales context. If the evidence is absent, return `Source unavailable — user input needed`.
 3. Identify the latest evidence for customer need, stakeholder, decision process, commercial path, and next commitment.
 4. State the blocker only to the extent supported by evidence; otherwise name the missing evidence.
 5. Recommend one next safe action and identify whether manager support is needed.

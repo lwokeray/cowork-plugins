@@ -15,7 +15,9 @@ Sales Cowork is a **skills-only Microsoft 365 Copilot Cowork plugin** for B2B se
 
 ## Design boundary
 
-This package has no connector, credential, or remote runtime. It uses only context that Copilot Cowork makes available to the signed-in user. It does not create Planner tasks, save SharePoint files, update Dynamics 365 Sales, post Teams messages, or send email. Instead, it produces reviewable drafts and structured handoff proposals.
+This package has no connector, credential, or remote runtime. It is a prompt-and-document workflow: it can use material attached to the current Cowork session, supplied in the conversation or workspace, and any source already made available by Cowork in that session. It does **not** introduce direct access to Outlook, Teams, Planner, SharePoint, or Dynamics 365 Sales. When required evidence is not available, the skill returns `Source unavailable — user input needed` instead of implying that it read a system of record.
+
+It does not create Planner tasks, save SharePoint files, update Dynamics 365 Sales, post Teams messages, or send email. Instead, it produces reviewable drafts and structured handoff proposals. Add a remote MCP connector only when a tenant-owned service, OAuth registration, tool-description file, and explicit data-governance decision are available.
 
 Every skill distinguishes fact, inference, and unknown. Material claims require an accessible source record, message, document, or timestamp. Email remains a draft; commercial terms, deal stage, probability, close date, and forecast values are not changed by the plugin.
 
@@ -26,17 +28,16 @@ Dynamics 365 Sales is optional context only. When it is unavailable, the skills 
 From the repository root:
 
 ```bash
-python3 sales-cowork/tests/validate_package.py sales-cowork
 mkdir -p dist
 (cd sales-cowork && zip -qr ../dist/sales-cowork.zip manifest.json color.png outline.png skills)
-unzip -t dist/sales-cowork.zip
+python3 sales-cowork/tests/validate_package.py sales-cowork dist/sales-cowork.zip
 ```
 
 The upload ZIP must contain `manifest.json`, `color.png`, `outline.png`, and `skills/` at its root. `docs/`, `tests/`, and this README are repository materials and are deliberately excluded from the deployment ZIP.
 
 ## Tenant test
 
-Upload `dist/sales-cowork.zip` in a non-production Microsoft 365 tenant following the Copilot Cowork plugin deployment process. Test first with synthetic meetings, opportunities, and forecast snapshots. Confirm that each skill returns only data visible to the signed-in test user, labels unknowns, cites its evidence, and does not perform a write or external send.
+Upload `dist/sales-cowork.zip` in a non-production Microsoft 365 tenant following the Copilot Cowork plugin deployment process. Test first with synthetic meeting exports, opportunity evidence, and forecast snapshots attached to the session. Confirm that each skill labels unknowns, cites supplied evidence, requests missing material, and does not perform a write or external send.
 
 ## Official references
 

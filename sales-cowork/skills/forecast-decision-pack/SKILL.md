@@ -13,7 +13,7 @@ metadata:
 
 ## Purpose
 
-Prepare a manager-facing decision pack for a defined team scope, forecast period, and as-of date. Compare only approved current and previous snapshots; the skill does not fabricate movement or alter forecast values.
+Prepare a manager-facing decision pack for a defined team scope, forecast period, and as-of date. Compare only approved current and previous snapshots supplied in the session. The skill does not retrieve a forecast system, fabricate movement, or alter forecast values.
 
 ## Guardrails
 
@@ -24,7 +24,7 @@ Prepare a manager-facing decision pack for a defined team scope, forecast period
 
 ## Workflow
 
-1. Confirm scope, period, as-of date, and source snapshots.
+1. Confirm scope, period, as-of date, and supplied source snapshots. If either required snapshot is absent, return `Source unavailable — user input needed`.
 2. Validate whether each snapshot is approved and comparable; stop movement analysis if either condition is not met.
 3. Compare material changes and inspect the buyer evidence behind each relevant item.
 4. Flag high-risk items and evidence gaps without assigning a new forecast value.

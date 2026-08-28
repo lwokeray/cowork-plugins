@@ -11,3 +11,7 @@ The deployable package in this directory converts the design into a Microsoft 36
 - no connector or hidden write capability.
 
 The source design's approval and evidence rules are retained. Requested Microsoft 365 write actions are represented as draft or handoff output because a skills-only package cannot execute them.
+
+## Runtime optimization after package review
+
+The original conversion also implied that a skills-only package could read Outlook, Teams, Planner, SharePoint, and Dynamics 365 Sales data. Microsoft documents skills-only packages for prompt and document workflows; API or enterprise-system access requires an `agentConnectors` entry backed by a deployed remote MCP server. The package therefore now treats direct retrieval as unavailable unless evidence is attached to the session or already surfaced by Cowork. A future connector-enabled edition must add a tenant-owned MCP service, OAuth configuration, a tool-description JSON file, and explicit source/RBAC/DLP decisions.

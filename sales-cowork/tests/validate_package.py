@@ -7,7 +7,10 @@ import json
 import re
 import struct
 import sys
+import zipfile
 from pathlib import Path
+
+import yaml
 
 
 def fail(message: str) -> None:
@@ -15,9 +18,19 @@ def fail(message: str) -> None:
     raise SystemExit(1)
 
 
-def frontmatter_value(text: str, field: str) -> str | None:
-    match = re.search(rf"^{re.escape(field)}:\s*([^\n]+)$", text, re.MULTILINE)
-    return match.group(1).strip().strip('"') if match else None
+def frontmatter(text: str, path: Path) -> dict[str, object]:
+    if not text.startswith("---\n"):
+        fail(f"{path} has no YAML frontmatter")
+    match = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
+    if not match:
+        fail(f"{path} has unclosed YAML frontmatter")
+    try:
+        parsed = yaml.safe_load(match.group(1))
+    except yaml.YAMLError as error:
+        fail(f"{path} has invalid YAML frontmatter: {error}")
+    if not isinstance(parsed, dict):
+        fail(f"{path} frontmatter must be a mapping")
+    return parsed
 
 
 def png_size(path: Path) -> tuple[int, int]:
@@ -28,8 +41,35 @@ def png_size(path: Path) -> tuple[int, int]:
     return struct.unpack(">II", header[16:24])
 
 
+def validate_deployment_zip(package: Path, archive_path: Path, expected_skills: set[str]) -> None:
+    if not archive_path.is_file():
+        fail(f"deployment archive is missing: {archive_path}")
+    with zipfile.ZipFile(archive_path) as archive:
+        names = set(archive.namelist())
+        required = {"manifest.json", "color.png", "outline.png"}
+        missing = required - names
+        if missing:
+            fail(f"deployment archive is missing root entries: {', '.join(sorted(missing))}")
+        if any(name.startswith("sales-cowork/") for name in names):
+            fail("deployment archive must not contain an enclosing sales-cowork directory")
+        expected = {f"skills/{skill}/SKILL.md" for skill in expected_skills}
+        if not expected.issubset(names):
+            fail("deployment archive does not contain every manifest skill")
+        allowed = required | {"skills/"} | expected | {f"skills/{skill}/" for skill in expected_skills}
+        unexpected = names - allowed
+        if unexpected:
+            fail(f"deployment archive has unexpected entries: {', '.join(sorted(unexpected))}")
+        expected_files = {"manifest.json", "color.png", "outline.png"} | expected
+        for entry in expected_files:
+            source_path = package / entry
+            if archive.read(entry) != source_path.read_bytes():
+                fail(f"deployment archive content is stale or mismatched: {entry}")
+
+
 def main() -> None:
-    package = Path(sys.argv[1] if len(sys.argv) == 2 else "sales-cowork")
+    if len(sys.argv) not in (1, 2, 3):
+        fail("usage: validate_package.py [package-directory] [deployment-zip]")
+    package = Path(sys.argv[1] if len(sys.argv) >= 2 else "sales-cowork")
     manifest_path = package / "manifest.json"
     if not manifest_path.is_file():
         fail("manifest.json is missing")
@@ -60,24 +100,39 @@ def main() -> None:
     skills = manifest["agentSkills"]
     if not skills:
         fail("agentSkills must not be empty")
+    if len(skills) > 20:
+        fail("agentSkills can contain at most 20 entries")
+    folders: set[str] = set()
+    skill_names: set[str] = set()
     for entry in skills:
+        if set(entry) != {"folder"}:
+            fail("each agentSkills entry must contain only folder")
         folder = entry.get("folder", "")
-        if not folder.startswith("./skills/"):
+        if not isinstance(folder, str) or not folder.startswith("./skills/") or len(folder) > 256:
             fail(f"invalid skill folder: {folder}")
+        if folder in folders:
+            fail(f"duplicate skill folder: {folder}")
+        folders.add(folder)
         skill_dir = package / folder.removeprefix("./")
         skill_path = skill_dir / "SKILL.md"
         if not skill_path.is_file():
             fail(f"missing {skill_path}")
         body = skill_path.read_text(encoding="utf-8")
-        if not body.startswith("---\n"):
-            fail(f"{skill_path} has no YAML frontmatter")
-        skill_name = frontmatter_value(body, "name")
+        metadata = frontmatter(body, skill_path)
+        skill_name = metadata.get("name")
+        description = metadata.get("description")
         if skill_name != skill_dir.name:
             fail(f"{skill_path} name must equal folder name")
         if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", skill_name or ""):
             fail(f"{skill_path} has invalid kebab-case skill name")
-        if not frontmatter_value(body, "description"):
+        if not isinstance(description, str) or not description.strip():
             fail(f"{skill_path} has no description")
+        if skill_name in skill_names:
+            fail(f"duplicate skill name: {skill_name}")
+        skill_names.add(skill_name)
+
+    if len(sys.argv) == 3:
+        validate_deployment_zip(package, Path(sys.argv[2]), skill_names)
 
     print(f"PASS: {package} has {len(skills)} valid skill entries and required package files")
 
