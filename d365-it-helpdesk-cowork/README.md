@@ -52,3 +52,11 @@ Run the skills against synthetic training cases first. Verify every proposed wri
 - [Use Copilot-generated case summaries](https://learn.microsoft.com/en-us/dynamics365/customer-service/use/copilot-use-summary)
 - [Use Copilot to generate knowledge drafts from cases](https://learn.microsoft.com/en-us/dynamics365/customer-service/use/use-copilot-knowledge-from-cases)
 - [Resolve, Cancel, and Reassign Cases](https://learn.microsoft.com/en-us/dynamics365/customer-service/use/customer-service-hub-user-guide-resolve-cancel-reassign-a-case)
+
+## Privacy
+
+This package contains no remote connector and no credential. It operates through the signed-in user's Copilot and Dynamics 365 Customer Service permissions. Tenant administrators remain responsible for Microsoft 365 and Dynamics 365 audit, retention, and data-governance settings.
+
+## Terms
+
+This sample plugin is provided as-is for tenant-controlled evaluation. Validate licensing, permissions, data handling, and the available Dynamics 365 Customer Service features in the target environment before production use.
