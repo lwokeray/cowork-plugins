@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "1.0.0",
+  "id": "6b18b8b9-7d4a-4f5c-83c7-2b7d79e1f06a",
+  "developer": {
+    "name": "lwokeray",
+    "websiteUrl": "https://github.com/lwokeray/cowork-plugins",
+    "privacyUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/d365-it-helpdesk-cowork/README.md#privacy",
+    "termsOfUseUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/d365-it-helpdesk-cowork/README.md#terms"
+  },
+  "name": {
+    "short": "D365 IT Help Desk",
+    "full": "Dynamics 365 IT Help Desk Cowork"
+  },
+  "description": {
+    "short": "Case briefing, knowledge replies, escalation handoffs, and supervisor review for Dynamics 365 Customer Service.",
+    "full": "Focused IT Help Desk workflows for Microsoft 365 Copilot Cowork using the Dynamics 365 Customer Service plugin. Create case briefs, draft knowledge-grounded responses, prepare escalation handoffs, and review open cases without external systems or autonomous remediation."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#2B579A",
+  "agentSkills": [
+    {
+      "folder": "./skills/case-brief"
+    },
+    {
+      "folder": "./skills/knowledge-grounded-reply"
+    },
+    {
+      "folder": "./skills/escalation-handoff"
+    },
+    {
+      "folder": "./skills/supervisor-case-review"
+    }
+  ]
+}
