@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Requirement Extraction
@@ -30,7 +30,7 @@ Require a `pursuit_id`, a completed document inventory, and the authoritative or
 
 ## Output contract
 
-Return a `Requirement Register` with `requirement_id`, `verbatim_text`, `type`, `category`, `mandatory_status`, `response_format`, `source_document`, `source_version`, `source_location`, `cross_references`, and `extraction_confidence`. Add `Deadlines`, `Submission rules`, and `Extraction gaps` only when evidenced.
+Return a `Requirement Register` with `pursuit_id`, `artifact_version`, `document_inventory_version`, `requirement_id`, `verbatim_text`, `type`, `category`, `mandatory_status`, `response_format`, `source_document`, `source_version`, `source_location`, `cross_references`, and `extraction_confidence`. Add `Deadlines`, `Submission rules`, and `Extraction gaps` only when evidenced.
 
 ## Stop conditions
 

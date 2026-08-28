@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Win Strategy Brief
@@ -29,7 +29,7 @@ Require a Pursuit Brief and at least one source of customer context, such as sta
 
 ## Output contract
 
-Return a `Win Strategy Brief` with `customer_outcomes`, `evaluation_factors`, `stakeholder_needs`, `win_themes`, `differentiator_hypotheses`, `proof_needed`, `requirement_mapping`, `risks`, and `validation_questions`.
+Return a `Win Strategy Brief` with `pursuit_id`, `artifact_version`, `customer_outcomes`, `evaluation_factors`, `stakeholder_needs`, `win_themes`, `differentiator_hypotheses`, `proof_needed`, `requirement_mapping`, `risks`, and `validation_questions`.
 
 ## Stop conditions
 

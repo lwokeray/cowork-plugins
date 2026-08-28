@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Document Inventory
@@ -30,7 +30,7 @@ Use the files, links, filenames, metadata, and user-provided version information
 
 ## Output contract
 
-Return a `Document Inventory` table with `document_id`, `filename`, `type`, `version/date`, `language`, `source`, `access`, `pages`, `readability`, `extraction_notes`, and `authority_status`. Add `Missing referenced files`, `Version conflicts`, and `Next action` sections.
+Return a `Document Inventory` table with `pursuit_id`, `artifact_version`, `document_id`, `filename`, `type`, `version/date`, `language`, `source`, `access`, `pages`, `readability`, `extraction_notes`, and `authority_status`. Add `Missing referenced files`, `Version conflicts`, and `Next action` sections.
 
 ## Stop conditions
 

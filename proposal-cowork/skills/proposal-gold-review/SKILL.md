@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Gold Review
@@ -29,7 +29,7 @@ Require the final artifact/version, Red Review output, Green Review output, unre
 
 ## Output contract
 
-Return a `Gold Decision Record` with `pursuit_id`, `final_artifact_version`, `decision_maker`, `decision_options`, `evidence_summary`, `residual_risks`, `required_confirmations`, `conditions`, `decision`, `decision_timestamp`, and `next_action`. Before a human response, `decision` must be `Pending human decision`.
+Return a `Gold Decision Record` with `pursuit_id`, `artifact_version`, `final_artifact_version`, `decision_maker`, `decision_options`, `evidence_summary`, `residual_risks`, `required_confirmations`, `conditions`, `decision`, `decision_timestamp`, and `next_action`. Before a human response, `decision` must be `Pending human decision`.
 
 ## Stop conditions
 

@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Green Review
@@ -29,7 +29,7 @@ Require a near-final solution outline, assumptions, staffing plan, timeline, ser
 
 ## Output contract
 
-Return a `Green Review Brief` with `scope_reconciliation`, `commercial_checks`, `delivery_checks`, `staffing_checks`, `timeline_checks`, `service_level_checks`, `assumptions`, `risks`, `required_approvals`, `owners`, and `gate_state`.
+Return a `Green Review Brief` with `pursuit_id`, `artifact_version`, `scope_reconciliation`, `commercial_checks`, `delivery_checks`, `staffing_checks`, `timeline_checks`, `service_level_checks`, `assumptions`, `risks`, `required_approvals`, `owners`, and `gate_state`.
 
 ## Stop conditions
 

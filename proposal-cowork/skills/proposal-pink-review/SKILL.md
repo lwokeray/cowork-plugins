@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Pink Review
@@ -29,7 +29,7 @@ Require a Pursuit Brief, Requirement Register or Compliance Matrix, Win Strategy
 
 ## Output contract
 
-Return a `Pink Review Brief` with `storyboard_status`, `requirement_coverage`, `solution_alignment`, `evidence_plan`, `content_owners`, `dependencies`, `gaps`, `decisions_needed`, `actions`, and `gate_state`.
+Return a `Pink Review Brief` with `pursuit_id`, `artifact_version`, `storyboard_status`, `requirement_coverage`, `solution_alignment`, `evidence_plan`, `content_owners`, `dependencies`, `gaps`, `decisions_needed`, `actions`, and `gate_state`.
 
 ## Stop conditions
 

@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Final Submission Readiness
@@ -29,7 +29,7 @@ Require the final artifact and version, submission rules, attachment register, G
 
 ## Output contract
 
-Return a `Submission Readiness Checklist` with `artifact_version`, `rule`, `evidence`, `status`, `owner`, `deadline`, `blocker`, and `next_action`. Include `approval_verification`, `attachment_check`, `format_check`, `risk_disposition`, `submission_owner`, and `readiness_state`.
+Return a `Submission Readiness Checklist` with `pursuit_id`, `artifact_version`, `gold_decision_record_version`, `rule`, `evidence`, `status`, `owner`, `deadline`, `blocker`, and `next_action`. Include `approval_verification`, `attachment_check`, `format_check`, `risk_disposition`, `submission_owner`, and `readiness_state`.
 
 ## Stop conditions
 

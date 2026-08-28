@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Red Review
@@ -29,7 +29,7 @@ Require a near-final response artifact, its version, the Compliance Matrix, Clai
 
 ## Output contract
 
-Return a `Red Review Scorecard` with `requirement_id`, `evaluator_question`, `response_location`, `strength`, `gap`, `evidence`, `severity`, `owner`, `fix`, and `gate_state`. Include `scoreability_summary`, `unresolved_high_risks`, `missing_attachments`, and `next_review`.
+Return a `Red Review Scorecard` with `pursuit_id`, `artifact_version`, `reviewed_artifact_version`, `requirement_id`, `evaluator_question`, `response_location`, `strength`, `gap`, `evidence`, `severity`, `owner`, `fix`, and `gate_state`. Include `scoreability_summary`, `unresolved_high_risks`, `missing_attachments`, and `next_review`.
 
 ## Stop conditions
 

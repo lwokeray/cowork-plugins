@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Win/Loss Learning
@@ -29,7 +29,7 @@ Require one `pursuit_id`, outcome (`won`, `lost`, `no-decision`, or `withdrawn`)
 
 ## Output contract
 
-Return a `Win/Loss Learning Backlog` with `outcome`, `feedback_source`, `observed_fact`, `hypothesis`, `learning_category`, `impact`, `evidence`, `recommended_experiment`, `owner`, `priority`, `due_date`, and `status`. Include `What to preserve`, `What to validate`, and `Content requiring re-approval`.
+Return a `Win/Loss Learning Backlog` with `pursuit_id`, `artifact_version`, `final_artifact_version`, `outcome`, `feedback_source`, `observed_fact`, `hypothesis`, `learning_category`, `impact`, `evidence`, `recommended_experiment`, `owner`, `priority`, `due_date`, and `status`. Include `What to preserve`, `What to validate`, and `Content requiring re-approval`.
 
 ## Stop conditions
 

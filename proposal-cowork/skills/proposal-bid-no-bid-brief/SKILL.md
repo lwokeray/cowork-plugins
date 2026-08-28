@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Bid/No-bid Brief
@@ -29,7 +29,7 @@ Require a Pursuit Brief plus the Compliance Matrix or equivalent evidence. Use s
 
 ## Output contract
 
-Return a `Bid/No-bid Brief` with `decision_date`, `decision_makers`, `criteria`, `evidence`, `assumptions`, `blockers`, `questions`, `options`, `required_approvals`, and `decision_record`. Label every missing data item explicitly.
+Return a `Bid/No-bid Brief` with `pursuit_id`, `artifact_version`, `decision_date`, `decision_makers`, `criteria`, `evidence`, `assumptions`, `blockers`, `questions`, `options`, `required_approvals`, and `decision_record`. Label every missing data item explicitly.
 
 ## Stop conditions
 

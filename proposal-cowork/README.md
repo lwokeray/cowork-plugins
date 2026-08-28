@@ -59,7 +59,16 @@ Pursuit Brief
 
 ## Validation evidence
 
-已執行 18 個 skill 的自動安全 audit；結果皆為 `CLEAN — no risky patterns detected`。亦已驗證 `manifestVersion: 1.28`、18 個 `agentSkills`、folder/name 完全一致、每個 skill 具備 YAML frontmatter，並確認 `color.png` 為 192×192、`outline.png` 為 32×32。ZIP root 只含官方 package 必要項目。
+`tests/validate_package.py` 會驗證 source package 與 deployment ZIP：`manifestVersion: 1.28`、80 字元以內的 short description、18 個唯一 `agentSkills`、folder/name 對應、YAML frontmatter、必要的 workflow sections、跨 skill 的 `pursuit_id` / `artifact_version` handoff，以及 192×192 / 32×32 PNG icons。
+
+```bash
+python3 proposal-cowork/tests/validate_package.py proposal-cowork
+mkdir -p dist
+(cd proposal-cowork && zip -qr -FS ../dist/proposal-cowork-plugin-granular.zip manifest.json color.png outline.png skills)
+python3 proposal-cowork/tests/validate_package.py dist/proposal-cowork-plugin-granular.zip
+```
+
+`tests/acceptance-scenarios.md` 定義 routing、evidence boundary、artifact version traceability 與 human approval 的 tenant acceptance cases。ZIP root 僅包含官方 package 必要項目。
 
 ## Official references
 

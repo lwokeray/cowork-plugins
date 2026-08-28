@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Compliance Matrix
@@ -29,7 +29,7 @@ Require one `pursuit_id` and a `Requirement Register`. Use only its IDs, source 
 
 ## Output contract
 
-Return a `Compliance Matrix` with `requirement_id`, `requirement_summary`, `mandatory_status`, `source_location`, `response_owner`, `planned_section`, `evidence_status`, `response_status`, `review_gate`, `due_date`, and `open_question`. Add a coverage summary by category, but never present the summary as bid/no-bid advice.
+Return a `Compliance Matrix` with `pursuit_id`, `artifact_version`, `requirement_register_version`, `requirement_id`, `requirement_summary`, `mandatory_status`, `source_location`, `response_owner`, `planned_section`, `evidence_status`, `response_status`, `review_gate`, `due_date`, and `open_question`. Add a coverage summary by category, but never present the summary as bid/no-bid advice.
 
 ## Stop conditions
 

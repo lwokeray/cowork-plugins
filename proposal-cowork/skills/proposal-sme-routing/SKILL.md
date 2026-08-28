@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal SME Routing
@@ -29,7 +29,7 @@ Require one `pursuit_id` and a list of open items with requirement ID or finding
 
 ## Output contract
 
-Return a `Routing Queue` with `item_id`, `requirement_or_finding_id`, `question`, `category`, `risk`, `source_location`, `accountable_role`, `owner`, `contributors`, `due_date`, `status`, and `handoff_note`.
+Return a `Routing Queue` with `pursuit_id`, `artifact_version`, `item_id`, `requirement_or_finding_id`, `question`, `category`, `risk`, `source_location`, `accountable_role`, `owner`, `contributors`, `due_date`, `status`, and `handoff_note`.
 
 ## Stop conditions
 

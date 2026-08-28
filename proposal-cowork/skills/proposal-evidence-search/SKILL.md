@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Evidence Search
@@ -29,7 +29,7 @@ Require `pursuit_id`, one `requirement_id` or one named proof point, applicabili
 
 ## Output contract
 
-Return an `Evidence Set` for one requirement with `requirement_id`, `claim_supported`, `source_id`, `source_title`, `source_version`, `source_location`, `evidence_excerpt`, `approval_status`, `effective_date`, `expiry_date`, `applicability`, `contradictions`, and `review_status`.
+Return an `Evidence Set` for one requirement with `pursuit_id`, `artifact_version`, `requirement_id`, `claim_supported`, `source_id`, `source_title`, `source_version`, `source_location`, `evidence_excerpt`, `approval_status`, `effective_date`, `expiry_date`, `applicability`, `contradictions`, and `review_status`.
 
 ## Stop conditions
 

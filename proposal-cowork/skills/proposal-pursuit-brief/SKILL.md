@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Pursuit Brief
@@ -21,14 +21,14 @@ Use only the current conversation and user-provided context. Capture customer, o
 
 ## Steps
 
-1. Confirm or assign a unique `pursuit_id` supplied by the user. If there are multiple opportunities, stop and ask which one is in scope.
+1. Use a user-supplied `pursuit_id` when present. Otherwise derive a stable, clearly labelled working ID from the customer and opportunity; it is not a system record. If there are multiple opportunities, stop and ask which one is in scope.
 2. Separate stated facts from assumptions. Label each assumption and name the person who must confirm it.
 3. Record the in-scope and explicitly out-of-scope work. Do not infer scope from a similar pursuit.
 4. Identify the next required artifact, such as document inventory or bid/no-bid evidence. Do not create that artifact in this skill.
 
 ## Output contract
 
-Return a `Pursuit Brief` with these fields: `pursuit_id`, `customer`, `opportunity`, `region`, `industry`, `solution_scope`, `procurement_route`, `deliverable`, `deadline`, `language`, `stakeholders`, `in_scope`, `out_of_scope`, `assumptions`, `unknowns`, and `next_artifact`.
+Return a `Pursuit Brief` with these fields: `pursuit_id`, `artifact_version`, `customer`, `opportunity`, `region`, `industry`, `solution_scope`, `procurement_route`, `deliverable`, `deadline`, `language`, `stakeholders`, `in_scope`, `out_of_scope`, `assumptions`, `unknowns`, and `next_artifact`.
 
 ## Stop conditions
 

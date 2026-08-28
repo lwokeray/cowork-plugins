@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Blue Review
@@ -29,7 +29,7 @@ Require a Pursuit Brief, customer context, known evaluation logic, and any exist
 
 ## Output contract
 
-Return a `Blue Review Brief` with `pursuit_id`, `decision_context`, `customer_understanding`, `evaluation_hypotheses`, `win_themes`, `assumptions`, `unknowns`, `bid_no_bid_inputs`, `questions`, `owners`, and `gate_state`.
+Return a `Blue Review Brief` with `pursuit_id`, `artifact_version`, `decision_context`, `customer_understanding`, `evaluation_hypotheses`, `win_themes`, `assumptions`, `unknowns`, `bid_no_bid_inputs`, `questions`, `owners`, and `gate_state`.
 
 ## Stop conditions
 

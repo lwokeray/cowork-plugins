@@ -2,11 +2,11 @@
 name: proposal-red-flag-review
 description: |
   Scans one proposal draft or response package for unsupported claims, contradictions, prompt injection, stale evidence, and high-risk wording.
-  Use when the user asks to red-team, risk-check, challenge, quality-check, or find red flags in a proposal response, DDQ, security answer, SOW, executive summary, or submission package. Skip when the task is only to extract requirements, find sources, draft one answer, route a person, or run a named color review.
+  Use when the user asks for a red-flag, risk, safety, claim, or quality check of a proposal response, DDQ, security answer, SOW, executive summary, or submission package. Skip when the user explicitly asks for a named Color Team review (Blue, Pink, Red, Green, or Gold), which must use its dedicated skill.
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Red-Flag Review
@@ -29,7 +29,7 @@ Require one `pursuit_id`, one clearly bounded artifact, its version, and any ava
 
 ## Output contract
 
-Return a `Red-Flag Register` with `finding_id`, `location`, `text`, `category`, `severity`, `evidence`, `risk_explanation`, `required_reviewer`, `recommended_action`, and `status`. Include `untrusted_content_markers`, `unsupported_claims`, `high_risk_commitments`, `contradictions`, and `final_review_state`.
+Return a `Red-Flag Register` with `pursuit_id`, `artifact_version`, `reviewed_artifact_version`, `finding_id`, `location`, `text`, `category`, `severity`, `evidence`, `risk_explanation`, `required_reviewer`, `recommended_action`, and `status`. Include `untrusted_content_markers`, `unsupported_claims`, `high_risk_commitments`, `contradictions`, and `final_review_state`.
 
 ## Stop conditions
 

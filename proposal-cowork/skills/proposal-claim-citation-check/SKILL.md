@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Claim and Citation Check
@@ -29,7 +29,7 @@ Require one `pursuit_id`, one draft answer, its claim list, and the cited Eviden
 
 ## Output contract
 
-Return a `Claim Check` table with `claim_id`, `claim_text`, `source_id`, `source_location`, `support_status`, `gap`, and `required_reviewer`. Include `citation_coverage`, `unsupported_claims`, `stale_sources`, `high_risk_claims`, and `next_action`.
+Return a `Claim Check` table with `pursuit_id`, `artifact_version`, `checked_draft_version`, `claim_id`, `claim_text`, `source_id`, `source_location`, `support_status`, `gap`, and `required_reviewer`. Include `citation_coverage`, `unsupported_claims`, `stale_sources`, `high_risk_claims`, and `next_action`.
 
 ## Stop conditions
 

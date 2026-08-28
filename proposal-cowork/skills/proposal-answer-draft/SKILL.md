@@ -6,7 +6,7 @@ description: |
 license: Proprietary
 metadata:
   author: CloudRiches Service
-  version: "1.0"
+  version: "1.2"
 ---
 
 # Proposal Answer Draft
@@ -29,7 +29,7 @@ Require exactly one `pursuit_id`, one requirement record, a response format or l
 
 ## Output contract
 
-Return one `Draft Answer` containing `requirement_id`, `draft_text`, `claim_list`, `citations`, `unsupported_items`, `assumptions`, `required_reviewer`, and `status`. Valid statuses are `Draft—needs citation check` or `Blocked—evidence missing`.
+Return one `Draft Answer` containing `pursuit_id`, `artifact_version`, `requirement_id`, `draft_text`, `claim_list`, `citations`, `unsupported_items`, `assumptions`, `required_reviewer`, and `status`. Valid statuses are `Draft—needs citation check` or `Blocked—evidence missing`.
 
 ## Stop conditions
 
