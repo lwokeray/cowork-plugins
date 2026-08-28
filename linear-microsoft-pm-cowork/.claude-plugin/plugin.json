@@ -1,0 +1,17 @@
+{
+  "name": "linear-microsoft-pm-cowork",
+  "version": "0.1.0",
+  "description": "An issue-centric, project-centric PM Cowork plugin modeled on Linear workflows and mapped to Microsoft 365 for intake, triage, planning, cycles, updates, customer signals, and outcomes.",
+  "author": {
+    "name": "Manus AI"
+  },
+  "displayName": "Microsoft Product Management Workspace",
+  "license": "Apache-2.0",
+  "keywords": [
+    "product-management",
+    "project-management",
+    "linear-like",
+    "microsoft-365",
+    "cowork"
+  ]
+}
