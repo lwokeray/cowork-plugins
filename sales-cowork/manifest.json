@@ -1,0 +1,33 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "1.0.0",
+  "id": "34614978-57a3-49f2-83f1-6546422571ec",
+  "developer": {
+    "name": "lwokeray",
+    "websiteUrl": "https://github.com/lwokeray/cowork-plugins",
+    "privacyUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/sales-cowork/README.md#privacy",
+    "termsOfUseUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/sales-cowork/README.md#terms"
+  },
+  "name": {
+    "short": "Sales Cowork",
+    "full": "Sales Cowork for Copilot Cowork"
+  },
+  "description": {
+    "short": "Evidence-led sales briefs, follow-up, deal review, and forecast support",
+    "full": "A skills-only Copilot Cowork plugin for B2B sellers, sales managers, and RevOps. It prepares focused sales outputs from the signed-in user's Microsoft 365 context while keeping source evidence, uncertainty, and human approval boundaries explicit."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#00378C",
+  "agentSkills": [
+    { "folder": "./skills/daily-sales-rhythm" },
+    { "folder": "./skills/customer-meeting-brief" },
+    { "folder": "./skills/meeting-follow-up" },
+    { "folder": "./skills/deal-inspection" },
+    { "folder": "./skills/forecast-decision-pack" },
+    { "folder": "./skills/account-market-research" }
+  ]
+}
