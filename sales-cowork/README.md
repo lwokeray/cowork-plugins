@@ -6,12 +6,12 @@ Sales Cowork is a **skills-only Microsoft 365 Copilot Cowork plugin** for B2B se
 
 | Skill | Use it for |
 |---|---|
-| `daily-sales-rhythm` | Choose up to three evidence-backed actions for today. |
-| `customer-meeting-brief` | Prepare one customer meeting from its available Microsoft 365 context. |
+| `daily-sales-rhythm` | Choose up to three actions from supplied calendar, task, and account evidence. |
+| `customer-meeting-brief` | Prepare one customer meeting from supplied meeting and account evidence. |
 | `meeting-follow-up` | Turn one completed meeting into an internal note, customer email draft, and proposed tasks. |
 | `deal-inspection` | Diagnose the blocker and next move for one selected deal. |
 | `forecast-decision-pack` | Prepare a manager decision pack from approved current and prior forecast snapshots. |
-| `account-market-research` | Answer a defined account or market question while separating internal evidence from requested public research. |
+| `account-market-research` | Answer a defined account or market question from supplied internal and public evidence. |
 
 ## Design boundary
 
@@ -21,7 +21,7 @@ It does not create Planner tasks, save SharePoint files, update Dynamics 365 Sal
 
 Every skill distinguishes fact, inference, and unknown. Material claims require an accessible source record, message, document, or timestamp. Email remains a draft; commercial terms, deal stage, probability, close date, and forecast values are not changed by the plugin.
 
-Dynamics 365 Sales is optional context only. When it is unavailable, the skills use approved Microsoft 365 sources that the user can access and do not imply a CRM record exists.
+Dynamics 365 Sales is optional evidence only when it is attached to the session or already surfaced by Cowork. The skills do not retrieve CRM records and never imply that a CRM record exists.
 
 ## Build and validate
 
