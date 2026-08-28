@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "1.1.0",
+  "id": "5b6f9ea0-9b0a-5f7d-9e6f-6ed2be5c5d3f",
+  "developer": {
+    "name": "CloudRiches Service",
+    "websiteUrl": "https://www.cloudriches.com/",
+    "privacyUrl": "https://www.cloudriches.com/privacy.php",
+    "termsOfUseUrl": "https://www.cloudriches.com/privacy.php"
+  },
+  "name": {
+    "short": "Proposal Cowork",
+    "full": "Proposal Cowork for Copilot Cowork"
+  },
+  "description": {
+    "short": "Fine-grained proposal skills for intake, evidence, drafting, review, and decision gates",
+    "full": "A skills-only Copilot Cowork plugin for proposal teams. Each skill has one responsibility and explicit boundaries for pursuit context, document inventory, requirements, evidence, drafting, claim checks, red flags, SME routing, Blue/Pink/Red/Green/Gold reviews, submission readiness, and win-loss learning. High-risk commitments remain human decisions."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#00378C",
+  "agentSkills": [
+    {"folder": "./skills/proposal-pursuit-brief"},
+    {"folder": "./skills/proposal-document-inventory"},
+    {"folder": "./skills/proposal-requirement-extraction"},
+    {"folder": "./skills/proposal-compliance-matrix"},
+    {"folder": "./skills/proposal-bid-no-bid-brief"},
+    {"folder": "./skills/proposal-win-strategy-brief"},
+    {"folder": "./skills/proposal-evidence-search"},
+    {"folder": "./skills/proposal-answer-draft"},
+    {"folder": "./skills/proposal-claim-citation-check"},
+    {"folder": "./skills/proposal-red-flag-review"},
+    {"folder": "./skills/proposal-sme-routing"},
+    {"folder": "./skills/proposal-blue-review"},
+    {"folder": "./skills/proposal-pink-review"},
+    {"folder": "./skills/proposal-red-review"},
+    {"folder": "./skills/proposal-green-review"},
+    {"folder": "./skills/proposal-gold-review"},
+    {"folder": "./skills/proposal-final-submission-readiness"},
+    {"folder": "./skills/proposal-win-loss-learning"}
+  ]
+}
