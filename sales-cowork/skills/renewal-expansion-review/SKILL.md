@@ -5,7 +5,7 @@ description: >-
   使用者要準備續約 Review、Customer Success 對話、風險處理或擴展機會探索時使用；沒有來源就推定流失、採用或購買意圖，或直接變更續約 Forecast 時不使用。
 metadata:
   author: lwokeray
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # 續約與擴展檢視
@@ -43,6 +43,27 @@ metadata:
 - Expansion 只以假設呈現，包含證據、客戶價值、需驗證問題與停止條件。
 - 續約保護行動優先於沒有基礎的 Upsell。
 - 沒有擅自修改 Forecast、建立 Opportunity 或寄送訊息。
+
+## 作業模式與必要輸入
+
+依客戶生命週期選擇模式：
+
+- Renewal readiness：評估正式日期、客戶價值、採用、問題、Stakeholder 與商務流程。
+- Risk recovery：聚焦一項可能影響續約的成果、服務、關係或商務風險。
+- Customer review prep：把共同成果、未達項、下一階段目標與行動轉成客戶會議材料。
+- Expansion discovery：在續約基礎穩定時，建立可驗證而非已承諾的擴展假設。
+- Combined review：先完成 Renewal readiness，再處理 Expansion，兩者分開評估與呈現。
+
+最少需要可識別合約／訂閱或客戶＋產品／服務。未指定時間時以正式 End date 與 Notice deadline 為基準倒排；若找不到正式日期，只能輸出 Unable to assess 與合約查證行動。
+
+## 證據規則
+
+- 簽署合約、Order、Amendment 與具名 Commercial Owner 確認，優先定義續約日期與條件。
+- 客戶確認的成果、驗收、採用行為與 Sponsor 回饋共同支持持續價值。
+- 使用量下降、工單增加、會議取消或 Sponsor 轉任都是訊號，不等於流失意圖。
+- 使用量上升、其他團隊詢問或容量接近上限只是 Expansion 線索，不等於購買意圖。
+- 工單 Closed 只證明作業狀態；需客戶接受或後續結果才能證明問題解除。
+- Renewal 與 Expansion 的證據、Owner、金額、時點與下一步不得混用。
 
 ## 合約與時間基準
 
@@ -191,6 +212,24 @@ Expansion 線索可來自：未涵蓋的客戶成果、新團隊／地區、相�
 - 不展示內部搜尋、資料位置或錯誤細節。
 - 客戶版與內部商務觀點分開。
 - 使用繁體中文；正式合約、產品與文件名稱保留原文。
+
+## 停止與交接條件
+
+- 合約版本、End date、Notice deadline 或自動續約條件衝突：停止倒排，先交由 Commercial／Legal Owner 確認。
+- 缺少客戶成果與近期互動：狀態為 Unable to assess，先設計價值確認，不直接判 At risk。
+- 核心服務問題尚未處理：優先 Risk recovery，暫停主動 Expansion 推進。
+- 客戶已明確表示不續約：保留原話、日期與原因，切換挽回或有序結束，不淡化。
+- Expansion 假設需要正式新 Opportunity：先取得客戶驗證與內部確認，不在本 Skill 自動建立。
+- 需要修改 Renewal Forecast、Amount 或日期：提供證據與差異，交由核准流程。
+
+## 交付前檢查
+
+- 合約、服務範圍、End date、Notice deadline 與 Owner 是否有正式來源。
+- 原始客戶成果、目前成果證據、採用趨勢與未達項是否可追溯。
+- Support／Delivery 問題是否區分作業關閉與客戶接受。
+- Readiness 狀態是否有一句理由、支持證據、最大缺口與最晚處理日。
+- Expansion 是否全部以假設呈現，包含客戶價值、驗證問題、必要條件與停止條件。
+- Next actions 是否先保護續約基礎，再處理擴展，且未修改 Forecast 或建立 Opportunity。
 
 ## 內部執行規則
 

@@ -21,7 +21,8 @@ INTERNAL_TOOLS = {
 
 REQUIRED_SECTIONS = {
     "## 角色與任務", "## 啟用條件", "## 完成定義", "## 執行流程",
-    "## 輸出契約", "## 互動規則", "## 內部執行規則", "## 範例", "## 例外處理",
+    "## 作業模式與必要輸入", "## 證據規則", "## 輸出契約", "## 互動規則",
+    "## 停止與交接條件", "## 交付前檢查", "## 內部執行規則", "## 範例", "## 例外處理",
 }
 
 USER_FACING_TECHNICAL_TERMS = {
@@ -230,8 +231,10 @@ def main() -> None:
             fail(f"{skill_path} version 必須與 manifest 相同")
         if missing_sections := REQUIRED_SECTIONS - set(re.findall(r"^## .+$", body, re.MULTILINE)):
             fail(f"{skill_path} 缺少完整章節：{', '.join(sorted(missing_sections))}")
-        if len(body.encode("utf-8")) < 8000:
+        if len(body.encode("utf-8")) < 10000:
             fail(f"{skill_path} 內容過短，未達完整 Skill 規格")
+        if re.search(r"(?:references|scripts)/", body):
+            fail(f"{skill_path} 核心流程必須採單檔平鋪，不得依賴 references 或 scripts")
         user_facing, internal = split_internal_section(body, skill_path)
         if technical := sorted(term for term in USER_FACING_TECHNICAL_TERMS if term in user_facing):
             fail(f"{skill_path} 使用者可見章節含內部技術名詞：{', '.join(technical)}")

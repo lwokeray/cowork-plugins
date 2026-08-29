@@ -5,7 +5,7 @@ description: >-
   使用者要制定成交策略、檢視如何推進一筆商機、準備 Deal review 或決定下一步資源投入時使用；單純找資料、批次 Deal 健檢、Forecast 彙整或直接變更商機欄位時不使用。
 metadata:
   author: lwokeray
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # 商機策略
@@ -43,6 +43,26 @@ metadata:
 - 策略明確指出最關鍵的三個缺口與最多三項優先行動。
 - 每項行動都能產生新的客戶證據、解除阻塞或促成決策。
 - 沒有自行修改任何商機或 Forecast 資料。
+
+## 作業模式與必要輸入
+
+依使用目的選擇模式：
+
+- Strategy build：建立完整客戶改變論點、Stakeholder、Decision path、競爭與行動。
+- Strategy refresh：以既有策略為基準，只更新新證據、風險、假設與行動。
+- Blocker resolution：只處理一個已知阻塞，定義解除條件與 Owner。
+- Deal review prep：轉成主管可快速質詢的策略論點、證據缺口與三項決定。
+
+最少需要可識別 Opportunity。未指定期間時使用最近九十天的客戶證據並回看形成商機的原始需求；未指定 Deadline 時不以內部 Close date 當客戶時點。若同一 Account 有多筆相似商機，先辨識產品、範圍、Owner 或金額。
+
+## 證據規則
+
+- 客戶明確成果、成功標準、具名決策者行為與承諾高於內部 Stage、Probability 或 Seller 觀感。
+- Proposal 寄出、Demo 完成與會議增加只算我方活動，直到客戶接受、回應或完成決策步驟。
+- Stakeholder 角色需由實際責任、決定或行為支持，不能由職稱推定。
+- 競爭包含具名廠商、自建、既有方案、延期與維持現狀；沒有客戶證據就標待驗證。
+- 商務、Security、Legal 與 Delivery 狀態使用具名 Owner 的最新確認，不以會議印象代替核准。
+- Strategy hypothesis 必須同時有支持證據、可能反證及可觀察的驗證結果。
 
 ## 商機識別與基準
 
@@ -190,6 +210,24 @@ metadata:
 - 不展示內部搜尋、資料位置或錯誤細節。
 - 不把內部敏感評論放入可對客戶分享的內容。
 - 使用繁體中文；正式名稱保留原文。
+
+## 停止與交接條件
+
+- Opportunity 無法唯一識別：停止跨 Deal 合併並要求確認。
+- 缺少客戶成果與近期客戶行為：先輸出證據取得計畫，不宣稱已有成交策略。
+- 主要問題是資料是否可信而非策略：交接 deal-inspection。
+- 需要完整 Proposal 或商務核准：交接 proposal-preparation 或 commercial-review-handoff。
+- 使用者要求修改 Stage、Amount、Close date 或 Forecast：先提供證據與差異，交由核准流程。
+- 三項策略行動都無法產生客戶證據或解除阻塞：停止並重新定義行動。
+
+## 交付前檢查
+
+- Strategy thesis 是否清楚連結改變理由、我方差異與待驗證假設。
+- 客戶成果、成功標準、Stakeholder、Decision path 與 Commercial path 是否各自有證據。
+- 主要競爭替代方案是否包含維持現狀，且沒有無來源 Battlecard 主張。
+- Top risks 是否有觸發證據、影響、Owner、緩解與最晚處理時間。
+- Next 3 Actions 是否會產生新客戶證據、解除阻塞或取得決定。
+- 是否明確保留未修改 Stage、Forecast、Amount 與 Close date 的邊界。
 
 ## 內部執行規則
 

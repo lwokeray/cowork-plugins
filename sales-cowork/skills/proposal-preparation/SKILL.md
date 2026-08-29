@@ -5,7 +5,7 @@ description: >-
   使用者要準備提案、回應客戶需求、更新提案版本或整理送審項目時使用；替代 Pricing、Legal、Security 核准、虛構能力或未經確認直接送交客戶時不使用。
 metadata:
   author: lwokeray
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Proposal 準備
@@ -43,6 +43,27 @@ Proposal 是決策文件，不是功能百科。應優先回答客戶要達成�
 - Pricing、Security、Legal、Privacy、Delivery 等內容標明核准狀態。
 - 版本變更可追溯，未核准或未知內容容易辨識。
 - 未經使用者確認不建立正式版本、不取代既有檔案、不對外送出。
+
+## 作業模式與必要輸入
+
+依 Deliverable 選擇模式：
+
+- Initial proposal：從已確認需求建立第一版提案與 Requirement traceability。
+- Version update：以具名核准／工作版本為基準，顯示實質變更與需重審區域。
+- RFP response：保留原始編號、逐項回答、證據與涵蓋狀態。
+- Executive proposal：聚焦客戶成果、商業影響、方案論點、風險與下一步。
+- Review pack：只整理送 Pricing、Legal、Security、Privacy、Delivery 審查的阻塞項。
+
+最少需要單一 Account／Opportunity、受眾與 Deliverable。未指定格式時建立可編輯的內容草稿；未指定版本時先找已核准基準，找不到則標為 Initial Draft。Deadline 缺失不阻止草擬，但不能自行創造對外交付日期。
+
+## 證據規則
+
+- 客戶原始需求、RFP、具名會議確認與正式文件高於 Seller 轉述。
+- 每個重要方案主張都要連到需求、成功標準或已核准能力來源。
+- 已核准、待核准、客戶提議、我方假設與 Unknown 必須分開。
+- 量化效益需保留輸入、基準、期間與假設；沒有客戶數據時只提供計算框架。
+- Roadmap、Preview、客製開發、Partner 交付與標準產品能力不可混寫。
+- 新版本的修改時間不代表已核准；需有具名 Reviewer、日期、範圍與條件。
 
 ## 提案範圍解析
 
@@ -176,6 +197,24 @@ Seller 筆記可提供脈絡，但與客戶原始要求衝突時，需列為待�
 - 不展示內部搜尋、資料位置或錯誤細節。
 - 使用者要短版時保留需求、方案、證據、條件與下一步。
 - 使用繁體中文；正式產品、公司、條款與文件名稱保留原文。
+
+## 停止與交接條件
+
+- Account、Opportunity、受眾或版本無法唯一確認：停止正式版本更新，只產生 Draft 或要求確認。
+- 基本客戶成果與需求都沒有來源：先交接 account-research 或 customer-meeting-brief 取得證據。
+- Pricing、Legal、Security、Privacy 或 Delivery 仍需專業決定：交接 commercial-review-handoff。
+- 客戶要求與我方能力有重大缺口：標為部分涵蓋／不在範圍，不用行銷語言掩蓋。
+- 必要審查未完成：只保存內部 Draft，不產生客戶 Final。
+- 使用者要求直接送出：先顯示版本、收件人、全文、附件、核准狀態與 Unknowns。
+
+## 交付前檢查
+
+- 每項需求是否保留來源、編號／描述、重要性、回應、證據與狀態。
+- Proposal 主線是否從客戶成果開始，而非公司介紹或功能清單。
+- In scope、Out of scope、Assumptions、Dependencies 與客戶責任是否分開。
+- Pricing、Legal、Security、Privacy、Delivery 內容是否都有正確核准狀態。
+- 版本變更是否顯示 Before／After、來源、影響及需重新審查區域。
+- 客戶版是否移除內部競爭評論、底價、人物評價與未核准承諾。
 
 ## 內部執行規則
 

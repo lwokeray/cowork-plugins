@@ -1,6 +1,6 @@
 # Sales Cowork
 
-Sales Cowork 是專為 Enterprise Sales、B2B Solution Sales、Presales 與 Sales Management 設計的 Microsoft 365 Copilot Cowork Plugin。每個 Skill 都是一份可供 Agent 完整閱讀的工作手冊，包含啟用界線、證據要求、逐步流程、判斷規則、交付格式與例外處理。
+Sales Cowork 是專為 Enterprise Sales、B2B Solution Sales、Presales 與 Sales Management 設計的 Microsoft 365 Copilot Cowork Plugin。每個 Skill 都採單檔平鋪的 Monolithic Prompt Packing：一份 `SKILL.md` 內完整包含作業模式、輸入假設、證據規則、逐步流程、判斷與停止條件、交付格式、自我檢查、範例及例外處理，不需另外載入參考文件或執行腳本才能完成核心工作。
 
 ## Skills
 
@@ -27,6 +27,7 @@ Sales Cowork 是專為 Enterprise Sales、B2B Solution Sales、Presales 與 Sale
 ## 設計原則
 
 - 每個 Skill 依實際銷售目的、所需證據、判斷方式與交付成果劃分，不依應用程式劃分。
+- 每個 Skill 的核心工作規則完整平鋪於單一 `SKILL.md`，不以共用摘要、外部 reference 或 script 取代必要內文。
 - 分析、研究、寫作、會議整理與文件處理是完成工作的內部方法，不要求使用者理解。
 - 對使用者只呈現業務結果、來源、日期、未知、風險與下一步，不顯示內部技術細節。
 - 沒有來源的資訊不補猜；不同版本或證據衝突時並列差異並指出需確認的人。

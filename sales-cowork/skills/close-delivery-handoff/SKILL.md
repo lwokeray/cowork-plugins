@@ -5,7 +5,7 @@ description: >-
   使用者要檢查 Close readiness、移交 Delivery、準備 Kickoff 或建立交付工作時使用；缺少成交證據時只能產出準備度檢查，不能宣稱已成交或啟動交付。
 metadata:
   author: lwokeray
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # 成交與交付移交
@@ -42,6 +42,27 @@ metadata:
 - 客戶與我方利害關係人、治理、里程碑、Owner 及升級路徑已建立。
 - 開放項目、條件式核准與未解風險沒有因成交而消失。
 - 建立工作、文件、會議或對外訊息前已預覽並取得確認。
+
+## 作業模式與必要輸入
+
+依成交狀態選擇模式：
+
+- Close-readiness：成交證據尚未完整時，列出正式移交前必須完成的關卡。
+- Full handoff：成交證據成立後，建立最終文件、成果、Scope、Stakeholder、治理與里程碑基準。
+- Kickoff prep：將核准移交內容轉為客戶可見議程、問題與準備工作。
+- Commitment reconciliation：專門比對銷售承諾與最終 Contract／SOW 的差異。
+- Task handoff：把已確認 Deliverables 與 Open items 轉成可審核的工作草案。
+
+最少需要可識別 Deal 與成交／核准狀態。未提供正式證據時預設 Close-readiness，不能因 Opportunity 顯示 Won 或客戶口頭承諾切換 Full handoff。
+
+## 證據規則
+
+- 雙方簽署文件、正式 PO、已核准 Order 或組織認可的等效證據才能通過成交關卡。
+- 最終 Contract、Order form、SOW、Amendment 與核准附件形成交付基準；Proposal 或 Seller 訊息只作差異檢查。
+- 客戶成果與合約驗收標準分開，避免商業願景被誤當法律義務。
+- 銷售承諾只有在最終文件或具名授權 Owner 確認後才能列為 Delivery commitment。
+- 里程碑日期需有生效條件、資源與依賴支持；否則只能標為建議或待確認。
+- 工單關閉、內部 Booking 與客戶接受都是不同證據，不得相互取代。
 
 ## 成交證據關卡
 
@@ -175,6 +196,24 @@ Kickoff 應包含共同可見的成果、Scope、角色、里程碑、依賴、�
 - 不展示內部搜尋、資料位置或錯誤細節。
 - 不把 Draft、口頭說法或內部 Stage 當成交事實。
 - 使用繁體中文；正式條款、產品與文件名稱保留原文。
+
+## 停止與交接條件
+
+- 找不到有效成交證據：停止 Full handoff，輸出 Not ready／Conditionally ready。
+- 法律實體、簽署人、版本、生效日或附件衝突：交由 Commercial／Legal／Operations Owner 確認。
+- 商務條件仍未核准：交回 commercial-review-handoff。
+- Sales 說法未納入最終 Scope：列 Commitment gap，不自行加入 Delivery plan。
+- Delivery Owner、客戶接受人或重大依賴未知：不可宣稱 Handoff complete。
+- 建立 Kickoff、工作或訊息前：先顯示對象、內容、日期、版本與未解條件。
+
+## 交付前檢查
+
+- Readiness 是否由正式成交證據支持，而非內部 Stage 或口頭預期。
+- 最終文件組的版本、日期、法律實體與適用順序是否清楚。
+- Business outcomes、Contractual deliverables、Acceptance criteria、Out of scope 與 Assumptions 是否分開。
+- Stakeholder、治理、里程碑、Open items 與持續 Sales 責任是否有具名 Owner。
+- 所有 Commitment gaps 是否有來源、影響與處理 Owner。
+- 客戶 Kickoff 版是否排除內部談判、Forecast、底價與人物評價。
 
 ## 內部執行規則
 

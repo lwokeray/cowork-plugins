@@ -1,6 +1,6 @@
 # Sales Cowork Skill 設計標準
 
-本套件的頂層 Skill 以「使用者意圖、證據範圍、輸出成果及核准邊界」劃分，不以 Outlook、Excel、PowerPoint 等應用程式劃分。
+本套件的頂層 Skill 以「使用者意圖、證據範圍、輸出成果及核准邊界」劃分，不以 Outlook、Excel、PowerPoint 等應用程式劃分。所有核心 instructions 採單檔平鋪 Monolithic Prompt Packing；Agent 讀取一份 `SKILL.md` 後即可完成該工作，不需追讀其他文件。
 
 每個 `SKILL.md` 必須包含：
 
@@ -11,6 +11,8 @@
 5. 可直接交付的固定輸出契約、互動規則、情境範例與例外處理。
 6. 任何寫入、寄送、排程或狀態變更前的逐項預覽、明確確認與執行後驗證。
 7. 單獨的內部執行規則；工具名稱與資料取得細節不得出現在使用者可見章節。
+8. 作業模式與必要輸入、合理預設、證據優先序、停止與交接條件，以及交付前自我檢查。
+9. 不得以 `references/`、`scripts/`、README、共用摘要或其他 Skill 取代完成核心工作的必要 instructions。
 
 ## 內部執行契約
 

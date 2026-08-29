@@ -5,7 +5,7 @@ description: >-
   使用者要準備週會、月會、季度 Forecast review、解釋變動或建立管理層問題清單時使用；直接修改 Forecast、只檢查單筆 Deal 或在缺少可比較基準時聲稱趨勢時不使用。
 metadata:
   author: lwokeray
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # Forecast 決策包
@@ -43,6 +43,26 @@ Forecast Pack 必須可重現。所有比較都要使用明確快照、相同範
 - 管理層摘要可對回 Deal 明細，合計與明細一致。
 - 已列出下行、上行、資料品質風險及具體決策問題。
 - 沒有修改任何 Forecast 或 Opportunity 資料。
+
+## 作業模式與必要輸入
+
+依資料與 Review 目的選擇模式：
+
+- Current-state pack：只有目前快照時，整理現況、風險與決策，不宣稱 movement。
+- Snapshot comparison：比較目前與前一個已核准快照的完整變動。
+- Commit challenge：聚焦 Commit Deal 的客戶證據、時間可信度與下行條件。
+- Executive review：壓縮為淨變化、重大 Deal、Upside／Downside 與需要主管決定事項。
+
+最少需要目前 Forecast 快照與明確期間。Movement 模式還需要前一個已核准或使用者指定的基準快照。未指定範圍時沿用目前快照的團隊、地區與 Deal 類型，但必須在輸出中列明，不能自行擴大。
+
+## 證據規則
+
+- 快照是數字基準；變動原因仍需回到客戶互動、核准、文件或作業修正來源。
+- Seller comment 是重要說明，但在沒有客戶來源時只能標為內部判斷。
+- Category、Amount、Close date 與 Owner 變化分別記錄，不能以單一 movement reason 包含所有改動。
+- 客戶日期、決策路徑與完成條件共同支持時間可信度；只有 Close date 欄位不足。
+- 匯率、範圍、組織調整與資料清理造成的變化，要與真實商業增減分開。
+- 不同幣別、期間或分類定義沒有對齊時，不合計、不比較。
 
 ## 快照與口徑
 
@@ -171,6 +191,24 @@ Seller 的自由文字說明是重要輸入，但不能自動升級為客戶證�
 - 不展示內部搜尋、資料位置或錯誤細節。
 - 不把 Seller 評價混入 Forecast 證據。
 - 使用繁體中文；正式分類與欄位名稱保留原文。
+
+## 停止與交接條件
+
+- 沒有核准前次快照：切換 Current-state pack，不產生 movement 數字。
+- 明細合計與摘要不平：停止正式結論，先列差異與可能來源。
+- 幣別、期間、團隊範圍或分類定義不可比：只提供共同範圍或分開呈現。
+- 單筆 Deal 需要根因診斷：交接 deal-inspection；Forecast Pack 只保留其數字影響。
+- 需要修改 Forecast 或 Opportunity：先提供建議、證據與 Before／After，交由核准流程。
+- 找不到重大 movement 原因：標為 Unknown，不以 Seller 活動或相似 Deal 補造。
+
+## 交付前檢查
+
+- 目前與基準快照的日期、版本、範圍、幣別及定義是否可比較。
+- Category 合計、總計、Deal count 與 movement ledger 是否相互一致。
+- 每個重大 movement 是否有變動類型、Before、After、原因類型與來源。
+- Upside／Downside 是否使用具名 Deal、Amount、條件、Owner 與決策時點。
+- Manager questions 是否真需主管決策，而非一般 Follow-up。
+- 是否列明資料限制並保留 Forecast 與 Opportunity 欄位未變更。
 
 ## 內部執行規則
 

@@ -5,7 +5,7 @@ description: >-
   使用者要送交 Pricing、Finance、Legal、Security、Privacy 或 Delivery 審查，或追蹤商務未決項時使用；代替正式核准、擅自接受客戶條款或未經確認送出承諾時不使用。
 metadata:
   author: lwokeray
-  version: "2.1.0"
+  version: "2.2.0"
 ---
 
 # 商務審查移交
@@ -42,6 +42,27 @@ metadata:
 - 依賴與審查順序清楚，不讓多個 Owner 在不同版本上作業。
 - 核准只在有具名核准人、日期、範圍與條件時標示 Approved。
 - 未經使用者確認不送出 Handoff、不建立工作、不對外回覆客戶。
+
+## 作業模式與必要輸入
+
+依審查需求選擇模式：
+
+- Review readiness：盤點所有商務項、Owner、狀態、依賴與阻塞。
+- Version／redline comparison：逐項比較客戶版本、我方基準與目前提議。
+- Owner handoff：為 Pricing、Finance、Legal、Security、Privacy 或 Delivery 產生最小充分決策包。
+- Approval consolidation：彙整具名核准、條件、適用版本與剩餘缺口。
+- Customer-safe status：只整理目前可以、條件式可以或不可對外承諾的內容。
+
+最少需要可識別 Opportunity 與具名 Proposal、Quote、SOW、Contract 或 Redline 版本。未指定 Review function 時依實際變更分派，不把所有文件預設送給全部 Owner；未指定 Deadline 時保留待確認並說明受影響的客戶節點。
+
+## 證據規則
+
+- 商務項的原文、頁面／條款、版本與日期優先於摘要或口頭轉述。
+- Approved 必須具備核准人、日期、適用版本、範圍與任何附帶條件。
+- 「看起來可以」「原則同意」或會議討論不自動等於正式核准。
+- 標準條件、客戶要求、我方提議與已核准例外必須四分開。
+- 新版 Redline 不自動取代舊版；需辨識是否為完整新基準或局部修改。
+- 內部底價、毛利、談判界線與風險評語只可出現在必要的內部 Owner 版本。
 
 ## 範圍與版本確認
 
@@ -177,6 +198,24 @@ Approved 必須有核准人、日期、適用版本與條件。聊天中的「�
 - 不展示內部搜尋、資料位置或錯誤細節。
 - 對內部敏感商務資料採最小揭露。
 - 使用繁體中文；正式條款、版本與文件名稱保留原文。
+
+## 停止與交接條件
+
+- 基準版本或客戶版本不唯一：停止整合，先確認檔名、日期、Owner 與交付紀錄。
+- 找不到正式標準條件：標示基準待確認，不沿用其他 Deal 慣例。
+- 需要改 Proposal 主線或 Scope：交回 proposal-preparation，完成後重新建立差異。
+- Reviewer 尚未決定：狀態維持 In review／More information required，不替其核准。
+- 審查期間出現實質新版本：停止舊版整合，重新判斷受影響 Owner 與核准。
+- 要求直接接受條款或折扣：只整理選項、影響與授權人，不代替決策。
+
+## 交付前檢查
+
+- Account、Opportunity、基準版本、客戶版本與 Deadline 是否唯一。
+- 每個決策項是否有原文／準確摘要、Before、After、來源、Owner、狀態與影響。
+- Approved／Approved with conditions 是否保留完整證據與條件。
+- 審查順序是否反映 Scope、Pricing、Delivery、Security／Privacy 與 Legal 依賴。
+- 每位 Owner 的 Handoff 是否只包含其決策所需的最少充分資訊。
+- Customer-safe status 是否排除所有內部敏感資料與未核准內容。
 
 ## 內部執行規則
 
