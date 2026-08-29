@@ -1,6 +1,6 @@
 # Sales Cowork
 
-Sales Cowork 是專為 Enterprise Sales、B2B Solution Sales、Presales 與 Sales Management 設計的 Microsoft 365 Copilot Cowork Plugin。套件僅包含 Agent Skills，由 Skills 直接協調 Cowork 內建 Unified Work IQ MCP，不另外封裝 MCP Server、OAuth 或 workload-specific connectors。
+Sales Cowork 是專為 Enterprise Sales、B2B Solution Sales、Presales 與 Sales Management 設計的 Microsoft 365 Copilot Cowork Plugin。每個 Skill 都是一份可供 Agent 完整閱讀的工作手冊，包含啟用界線、證據要求、逐步流程、判斷規則、交付格式與例外處理。
 
 ## Skills
 
@@ -26,12 +26,12 @@ Sales Cowork 是專為 Enterprise Sales、B2B Solution Sales、Presales 與 Sale
 
 ## 設計原則
 
-- 頂層 Skill 依業務意圖、證據範圍、輸出及 Approval boundary 劃分，不依應用程式劃分。
-- Email composition、Meeting extraction、Research、Scoring、XLSX 與 Slides 是 Skill 內部方法，不另註冊成 Agent Skill。
-- `ask` 用於跨工作負載 reasoning；精確事實以 `search_paths`、`get_schema`、`fetch` 驗證。
-- `create_entity`、`update_entity`、`do_action` 或 `delete_entity` 必須符合目前 Work IQ contract、逐項 preview 與使用者核准。
-- 權限不足標示 `無法存取`，證據不存在標示 `未知`，operation 未提供標示 `不支援`。
-- Tenant policy denial 是治理結果，不得改用其他工具或 Agent 重試。
+- 每個 Skill 依實際銷售目的、所需證據、判斷方式與交付成果劃分，不依應用程式劃分。
+- 分析、研究、寫作、會議整理與文件處理是完成工作的內部方法，不要求使用者理解。
+- 對使用者只呈現業務結果、來源、日期、未知、風險與下一步，不顯示內部技術細節。
+- 沒有來源的資訊不補猜；不同版本或證據衝突時並列差異並指出需確認的人。
+- 任何寄送、建立、更新或排程，都先提供完整預覽並取得明確確認。
+- 權限不足時說明對結果的影響，不嘗試繞過。
 
 詳細規則見 [Skill 設計標準](docs/skill-design-standard.md)。
 
