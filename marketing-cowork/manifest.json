@@ -1,0 +1,47 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "1.0.0",
+  "id": "8c266eae-b44c-4c9a-aad8-d19cc2a6c69e",
+  "developer": {
+    "name": "lwokeray",
+    "websiteUrl": "https://github.com/lwokeray/cowork-plugins",
+    "privacyUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/marketing-cowork/README.md#privacy",
+    "termsOfUseUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/marketing-cowork/README.md#terms"
+  },
+  "name": {
+    "short": "Marketing Cowork",
+    "full": "Enterprise Marketing Cowork"
+  },
+  "description": {
+    "short": "Evidence-grounded planning, content, campaigns, governance, and optimization.",
+    "full": "A skills-only Copilot Cowork plugin for enterprise marketing teams. It coordinates market and audience research, voice-of-customer evidence, competitive positioning, brand governance, campaign strategy, content planning and creation, channel adaptation, editorial review, email nurture, events, product launches, paid media, SEO, experiments, performance reporting, optimization, lead handoff, and Microsoft 365 work management."
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#5B2D90",
+  "agentSkills": [
+    { "folder": "./skills/marketing-operating-rhythm" },
+    { "folder": "./skills/market-audience-research" },
+    { "folder": "./skills/voice-of-customer-synthesis" },
+    { "folder": "./skills/competitive-positioning-brief" },
+    { "folder": "./skills/brand-strategy-governance" },
+    { "folder": "./skills/campaign-strategy-plan" },
+    { "folder": "./skills/content-strategy-calendar" },
+    { "folder": "./skills/marketing-content-creation" },
+    { "folder": "./skills/channel-content-adaptation" },
+    { "folder": "./skills/brand-content-review" },
+    { "folder": "./skills/email-nurture-campaign" },
+    { "folder": "./skills/event-webinar-marketing" },
+    { "folder": "./skills/product-launch-marketing" },
+    { "folder": "./skills/paid-media-creative-plan" },
+    { "folder": "./skills/seo-content-optimization" },
+    { "folder": "./skills/marketing-experiment-design" },
+    { "folder": "./skills/marketing-performance-report" },
+    { "folder": "./skills/campaign-optimization-review" },
+    { "folder": "./skills/lead-lifecycle-handoff" },
+    { "folder": "./skills/marketing-work-management" }
+  ]
+}

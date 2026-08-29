@@ -5,6 +5,7 @@ Copilot Cowork plugin packages and associated implementation research.
 ## Packages
 
 - [`finance-cowork`](./finance-cowork/) — enterprise Finance, Accounting, FP&A, Treasury, Audit, and Internal Control skills.
+- [`marketing-cowork`](./marketing-cowork/) — enterprise Marketing lifecycle skills for research, brand, campaigns, content, launches, performance, optimization, lead handoff, and Microsoft 365 work management.
 - [`it-helpdesk-cowork`](./it-helpdesk-cowork/) — Dynamics 365 Customer Service help-desk workflows.
 - [`copilot-cowork-it`](./copilot-cowork-it/) — enterprise IT Operations across identity, endpoints, Microsoft 365, infrastructure, incidents, security, continuity, and governance; separate from Help Desk case handling.
 - [`proposal-cowork`](./proposal-cowork/) — fine-grained proposal skills and review gates.

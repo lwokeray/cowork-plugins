@@ -1,0 +1,107 @@
+{
+  "suite": "marketing-cowork-1.0.0",
+  "locale": "zh-TW",
+  "supported_app": "Copilot Cowork",
+  "evals": [
+    {
+      "id": "marketing-operating-rhythm",
+      "prompt": "整理我今天最重要的三項 Marketing 行動，並指出需要我決策的事項。",
+      "expected": ["最多三項 priority", "依業務影響排序", "附來源與時間", "不執行 mutation"]
+    },
+    {
+      "id": "market-audience-research",
+      "prompt": "研究台灣中型製造業的資安決策受眾，供下季 Campaign 使用。",
+      "expected": ["先界定決策與範圍", "內外部證據分離", "Persona 不虛構", "推論與未知明示"]
+    },
+    {
+      "id": "voice-of-customer-synthesis",
+      "prompt": "整理最近十場客戶訪談的主要主題與可以用於文案的客戶原話。",
+      "expected": ["逐字與 paraphrase 分開", "Quote 可回到來源", "保留 speaker context", "不虛構引言"]
+    },
+    {
+      "id": "competitive-positioning-brief",
+      "prompt": "比較我們與競爭者 X 的 AI 治理定位，找出可用於 Launch 的訊息空間。",
+      "expected": ["雙方 dossier 分開", "來源與日期可追溯", "事實與推論分離", "不使用不當情報"]
+    },
+    {
+      "id": "brand-strategy-governance",
+      "prompt": "把 SharePoint 內現有品牌資料整合成新的 Brand voice、Messaging 與 Claim library。",
+      "expected": ["先找 authoritative sources", "處理版本衝突", "未核准 Claim 分開", "包含治理與 review date"]
+    },
+    {
+      "id": "campaign-strategy-plan",
+      "prompt": "建立下季企業資安 Demand Generation Campaign 的完整計畫。",
+      "expected": ["Objective 與 Audience 明確", "Message 與 Proof 對齊", "Budget 與 KPI 有假設", "包含 Risk 與 Approval gates"]
+    },
+    {
+      "id": "content-strategy-calendar",
+      "prompt": "建立未來十二週的資安 Thought Leadership 內容策略與行事曆。",
+      "expected": ["Audience question 驅動", "Journey gap 與 asset inventory", "Repurposing map", "Owner、dependency 與 measurement"]
+    },
+    {
+      "id": "marketing-content-creation",
+      "prompt": "依核准 Campaign brief 寫出完整繁中 Landing page，不要只給大綱。",
+      "expected": ["交付完整可審稿文案", "Audience 與 CTA 對齊", "Claims 有證據邊界", "不輸出製作摘要"]
+    },
+    {
+      "id": "channel-content-adaptation",
+      "prompt": "把核准白皮書改成 LinkedIn 貼文、Email 與 60 秒短影片腳本。",
+      "expected": ["依 Channel 重新構圖", "保留 message invariants", "維持 Claim 與 Source fidelity", "列出核准與規格待驗證事項"]
+    },
+    {
+      "id": "brand-content-review",
+      "prompt": "審查這份產品廣告文案，修好所有問題並判斷是否可發布。",
+      "expected": ["逐項 findings 與嚴重度", "提供 Before／After 修正", "Claim 與 Legal 分開", "不取代正式發布核准"]
+    },
+    {
+      "id": "email-nurture-campaign",
+      "prompt": "建立 Webinar 註冊後到會後的五封繁中 Email sequence 與完整文案。",
+      "expected": ["每封 Email 有全文", "Timing 與 branch 明確", "Consent、suppression、exit 完整", "包含 measurement 與 approval"]
+    },
+    {
+      "id": "event-webinar-marketing",
+      "prompt": "規劃一場 500 人 AI 治理 Webinar，包含推廣、提醒、現場與會後跟進。",
+      "expected": ["完整 lifecycle plan", "Audience 與 capacity 控制", "Run-of-show 與 contingency", "Lead treatment 不越過 consent"]
+    },
+    {
+      "id": "product-launch-marketing",
+      "prompt": "為下個月的新 AI 功能建立 Launch plan，但目前 GA 日期還沒正式核准。",
+      "expected": ["Availability 保持未知", "Launch tier 與 readiness matrix", "Conditional Go／No-Go gate", "不自行宣稱 GA"]
+    },
+    {
+      "id": "paid-media-creative-plan",
+      "prompt": "設計 Google 與 LinkedIn 的 Paid campaign、Creative angles、完整廣告文案與測試計畫。",
+      "expected": ["Objective、Audience、Offer 對齊", "真正不同的 Creative angles", "完整 copy variants", "不直接提交或承諾 Spend"]
+    },
+    {
+      "id": "seo-content-optimization",
+      "prompt": "用這三份 Word 草稿做完整 SEO 優化，並告訴我目前排名與技術問題。",
+      "expected": ["完成 Content／On-page review", "Search intent 與 metadata", "無資料項標 Not measured", "不捏造 ranking 或 crawl 結果"]
+    },
+    {
+      "id": "marketing-experiment-design",
+      "prompt": "替兩個 Email Subject line 設計 A/B test，包含 sample、duration 與決策規則。",
+      "expected": ["Hypothesis 與 unit 明確", "MDE、alpha、power 與 sample", "SRM 與 stopping rule", "Effect size 與 CI 決策"]
+    },
+    {
+      "id": "marketing-performance-report",
+      "prompt": "整合 SharePoint 與 Excel 的資料，建立上月 Marketing performance report。",
+      "expected": ["先對齊 metric dictionary", "data quality 與 reconciliation", "Actual、Estimate、Inference 分開", "附 decisions 與 source"]
+    },
+    {
+      "id": "campaign-optimization-review",
+      "prompt": "Campaign CTR 下滑，請診斷問題並判斷哪些項目要 Scale、Iterate、Pause 或 Stop。",
+      "expected": ["先檢查 data maturity", "定位 funnel failure", "Hypotheses 有 evidence ranking", "建議含 rollback 與 approval"]
+    },
+    {
+      "id": "lead-lifecycle-handoff",
+      "prompt": "整理昨天 Webinar 名單並建立可交給 Sales 的 MQL handoff pack。",
+      "expected": ["Consent 與 identity 驗證", "Dedupe 與 qualification", "Engagement 不等於 intent", "Routing、SLA 與 feedback loop"]
+    },
+    {
+      "id": "marketing-work-management",
+      "prompt": "把核准的 Campaign 計畫建成 Planner 工作，設定 Owner、Due 與核准關卡。",
+      "expected": ["先做 schema discovery", "解析唯一 workspace 並查重", "完整 preview 後逐項核准", "mutation 後讀回驗證"]
+    }
+  ]
+}
