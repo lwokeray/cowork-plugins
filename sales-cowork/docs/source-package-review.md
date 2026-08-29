@@ -1,17 +1,15 @@
-# Source package review
+# 來源與重構說明
 
-The uploaded `microsoft_sales_cowork_single_plugin.zip` was a design package rather than a deployable Copilot Cowork plugin. It contained a non-schema `plugin-manifest.json`, Agent Builder instructions, and workflow design material, but no M365 unified `manifest.json`, required icons, or `skills/*/SKILL.md` files. Its README also referenced `testing/acceptance-tests.md` and `research/`, which were not included in the ZIP.
+最初上傳的 `microsoft_sales_cowork_single_plugin.zip` 是設計資料，缺少可部署的 Microsoft 365 `manifest.json`、Icons 與 `skills/*/SKILL.md`。後續版本已轉成可部署的 Copilot Cowork Skills-only app package。
 
-The deployable package in this directory converts the design into a Microsoft 365 Copilot Cowork skills-only app package:
+2.0.0 版再參考 `calendar-management.zip` 的 Skill 完整度，統一補齊：
 
-- thirteen bounded Agent Skills under `skills/`;
-- a schema-v1.28 M365 manifest with only documented root fields;
-- required 192×192 and 32×32 PNG icons;
-- a static validator and tenant acceptance scenarios; and
-- no connector or hidden write capability.
+- 明確的適用與不適用情境；
+- Quick start 與分階段 workflow；
+- Work IQ MCP tool contract 與 runtime discovery；
+- Evidence、Privacy、Permission、Approval 與 policy-denial handling；
+- 固定 Output contract、Examples、Guardrails 與 Common issues；
+- 十七個 Enterprise Sales lifecycle Skills；
+- 一對一的繁體中文 Prompt Card catalog。
 
-The source design's approval and evidence rules are retained. Microsoft 365 retrieval and actions use Cowork's built-in unified Work IQ MCP tools. Tasks and execution status are held in Planner; account, opportunity, pipeline, forecast, proposal, and renewal records are represented by approved Excel, SharePoint, OneDrive, Word, and PowerPoint artifacts.
-
-## Cowork runtime model
-
-Cowork is natively grounded in Microsoft 365 through Work IQ. Sales Cowork doesn't package another connector: its skills call the built-in unified Work IQ MCP tools. `ask` handles cross-workload reasoning; `fetch` retrieves exact entities; `search_paths` and `get_schema` discover current Microsoft Graph v1.0 support for fetch, create, and update. `do_action` or `delete_entity` is used only with an exact URL supported by the current Work IQ contract. If a Planner or other path isn't exposed, the skill reports that operation as unsupported.
+未沿用範例中的 Claude memory path、TaskCreate、固定 workload-specific MCP tools 或自動 mutation。Sales Cowork 只呼叫 Cowork 內建 Unified Work IQ MCP，並保留使用者及 Tenant governance 的核准邊界。

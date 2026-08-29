@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Static checks for the skills-only Copilot Cowork package."""
+"""Sales Cowork skills-only package 與 Prompt Card 靜態驗證。"""
 
 from __future__ import annotations
 
+import csv
 import json
 import re
 import struct
@@ -14,16 +15,23 @@ import yaml
 
 
 WORK_IQ_TOOLS = {
-    "ask",
-    "fetch",
-    "create_entity",
-    "update_entity",
-    "delete_entity",
-    "do_action",
-    "call_function",
-    "list_agents",
-    "get_schema",
-    "search_paths",
+    "ask", "fetch", "create_entity", "update_entity", "delete_entity",
+    "do_action", "call_function", "list_agents", "get_schema", "search_paths",
+}
+
+REQUIRED_SECTIONS = {
+    "## 概述", "## 適用情境", "## 不適用情境", "## 快速開始",
+    "## 核心流程", "## Work IQ 工具規則", "## 範例", "## Guardrails", "## 常見問題",
+}
+
+PROMPT_COLUMNS = [
+    "Title", "Description", "Display Prompt", "Prompt Text",
+    "Products", "Department", "Task Type", "Locale",
+]
+
+TASK_TYPES = {
+    "分析", "協助", "建立", "執行", "排程", "理解", "設計", "尋找",
+    "掌握近況", "程式碼", "準備", "詢問", "編輯", "學習",
 }
 
 
@@ -32,18 +40,16 @@ def fail(message: str) -> None:
     raise SystemExit(1)
 
 
-def frontmatter(text: str, path: Path) -> dict[str, object]:
-    if not text.startswith("---\n"):
-        fail(f"{path} has no YAML frontmatter")
+def parse_frontmatter(text: str, path: Path) -> dict[str, object]:
     match = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
     if not match:
-        fail(f"{path} has unclosed YAML frontmatter")
+        fail(f"{path} 缺少或未關閉 YAML frontmatter")
     try:
         parsed = yaml.safe_load(match.group(1))
     except yaml.YAMLError as error:
-        fail(f"{path} has invalid YAML frontmatter: {error}")
+        fail(f"{path} YAML frontmatter 無效：{error}")
     if not isinstance(parsed, dict):
-        fail(f"{path} frontmatter must be a mapping")
+        fail(f"{path} frontmatter 必須是 mapping")
     return parsed
 
 
@@ -51,116 +57,160 @@ def png_size(path: Path) -> tuple[int, int]:
     with path.open("rb") as image:
         header = image.read(24)
     if header[:8] != b"\x89PNG\r\n\x1a\n" or header[12:16] != b"IHDR":
-        fail(f"{path} is not a PNG with an IHDR header")
+        fail(f"{path} 不是有效 PNG")
     return struct.unpack(">II", header[16:24])
 
 
-def validate_deployment_zip(package: Path, archive_path: Path, expected_skills: set[str]) -> None:
+def validate_prompts(package: Path, expected_count: int) -> None:
+    path = package / "prompts" / "prompt-cards.csv"
+    if not path.is_file():
+        fail("prompts/prompt-cards.csv 不存在")
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        if reader.fieldnames != PROMPT_COLUMNS:
+            fail("Prompt Card CSV 欄位與官方欄位順序不符")
+        rows = list(reader)
+    if len(rows) != expected_count:
+        fail(f"Prompt Card 數量必須與 Skill 數量一致：{expected_count}")
+    titles: set[str] = set()
+    for index, row in enumerate(rows, start=2):
+        if not 1 <= len(row["Title"]) <= 35:
+            fail(f"Prompt Card 第 {index} 列 Title 超過 35 字元或為空")
+        if not 1 <= len(row["Display Prompt"]) <= 132:
+            fail(f"Prompt Card 第 {index} 列 Display Prompt 超過 132 字元或為空")
+        if not 1 <= len(row["Prompt Text"]) <= 8000:
+            fail(f"Prompt Card 第 {index} 列 Prompt Text 超過 8000 字元或為空")
+        if len(row["Description"]) > 200:
+            fail(f"Prompt Card 第 {index} 列 Description 超過 200 字元")
+        if row["Products"] != "Copilot Cowork":
+            fail(f"Prompt Card 第 {index} 列 Products 必須只包含 Copilot Cowork")
+        if row["Department"] != "銷售":
+            fail(f"Prompt Card 第 {index} 列 Department 必須為銷售")
+        if row["Task Type"] not in TASK_TYPES:
+            fail(f"Prompt Card 第 {index} 列 Task Type 不在允許清單")
+        if row["Locale"] != "zh-TW":
+            fail(f"Prompt Card 第 {index} 列 Locale 必須為 zh-TW")
+        if row["Title"] in titles:
+            fail(f"Prompt Card Title 重複：{row['Title']}")
+        titles.add(row["Title"])
+
+
+def validate_evals(package: Path, expected_skills: set[str]) -> None:
+    path = package / "tests" / "skill-evals.json"
+    if not path.is_file():
+        fail("tests/skill-evals.json 不存在")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("locale") != "zh-TW" or payload.get("supported_app") != "Copilot Cowork":
+        fail("Skill evals 必須限定 zh-TW 與 Copilot Cowork")
+    evals = payload.get("evals")
+    if not isinstance(evals, list):
+        fail("Skill evals 必須為 list")
+    eval_ids = {item.get("id") for item in evals if isinstance(item, dict)}
+    if eval_ids != expected_skills:
+        fail(f"Skill eval IDs 與 manifest 不一致：{sorted(eval_ids ^ expected_skills)}")
+    for item in evals:
+        if not isinstance(item.get("prompt"), str) or not item["prompt"].strip():
+            fail(f"Skill eval {item.get('id')} 缺少 prompt")
+        if not isinstance(item.get("expected"), list) or not item["expected"]:
+            fail(f"Skill eval {item.get('id')} 缺少 expected behaviors")
+
+
+def validate_zip(package: Path, archive_path: Path, expected_skills: set[str]) -> None:
     if not archive_path.is_file():
-        fail(f"deployment archive is missing: {archive_path}")
+        fail(f"部署 ZIP 不存在：{archive_path}")
     with zipfile.ZipFile(archive_path) as archive:
         names = set(archive.namelist())
         required = {"manifest.json", "color.png", "outline.png"}
-        missing = required - names
-        if missing:
-            fail(f"deployment archive is missing root entries: {', '.join(sorted(missing))}")
+        if missing := required - names:
+            fail(f"部署 ZIP 缺少根項目：{', '.join(sorted(missing))}")
         if any(name.startswith("sales-cowork/") for name in names):
-            fail("deployment archive must not contain an enclosing sales-cowork directory")
+            fail("部署 ZIP 不得包含外層 sales-cowork 目錄")
         expected = {f"skills/{skill}/SKILL.md" for skill in expected_skills}
         if not expected.issubset(names):
-            fail("deployment archive does not contain every manifest skill")
+            fail("部署 ZIP 未包含 manifest 中全部 Skills")
         allowed = required | {"skills/"} | expected | {f"skills/{skill}/" for skill in expected_skills}
-        unexpected = names - allowed
-        if unexpected:
-            fail(f"deployment archive has unexpected entries: {', '.join(sorted(unexpected))}")
-        expected_files = {"manifest.json", "color.png", "outline.png"} | expected
-        for entry in expected_files:
-            source_path = package / entry
-            if archive.read(entry) != source_path.read_bytes():
-                fail(f"deployment archive content is stale or mismatched: {entry}")
+        if unexpected := names - allowed:
+            fail(f"部署 ZIP 包含非預期項目：{', '.join(sorted(unexpected))}")
+        for entry in required | expected:
+            if archive.read(entry) != (package / entry).read_bytes():
+                fail(f"部署 ZIP 內容過期或不一致：{entry}")
 
 
 def main() -> None:
     if len(sys.argv) not in (1, 2, 3):
-        fail("usage: validate_package.py [package-directory] [deployment-zip]")
+        fail("用法：validate_package.py [package-directory] [deployment-zip]")
     package = Path(sys.argv[1] if len(sys.argv) >= 2 else "sales-cowork")
     manifest_path = package / "manifest.json"
     if not manifest_path.is_file():
-        fail("manifest.json is missing")
+        fail("manifest.json 不存在")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
 
-    required = {"$schema", "manifestVersion", "version", "id", "developer", "name", "description", "icons", "accentColor", "agentSkills"}
-    unknown = set(manifest) - required
-    if unknown:
-        fail(f"unsupported manifest root fields: {', '.join(sorted(unknown))}")
+    allowed_root = {"$schema", "manifestVersion", "version", "id", "developer", "name", "description", "icons", "accentColor", "agentSkills"}
+    if unknown := set(manifest) - allowed_root:
+        fail(f"manifest 包含不支援的根欄位：{', '.join(sorted(unknown))}")
     if manifest["manifestVersion"] != "1.28":
-        fail("manifestVersion must be 1.28")
+        fail("manifestVersion 必須為 1.28")
     if not re.fullmatch(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", manifest["id"]):
-        fail("manifest id must be a lowercase GUID")
+        fail("manifest id 必須為小寫 GUID")
     if not re.fullmatch(r"#[0-9A-Fa-f]{6}", manifest["accentColor"]):
-        fail("accentColor must be a hex color")
+        fail("accentColor 必須為 hex color")
     if len(manifest["name"]["short"]) > 30:
-        fail("short name must be 30 characters or fewer")
+        fail("short name 不得超過 30 字元")
     if len(manifest["description"]["short"]) > 80:
-        fail("short description must be 80 characters or fewer")
+        fail("short description 不得超過 80 字元")
 
-    for icon, expected_size in (("color.png", (192, 192)), ("outline.png", (32, 32))):
-        icon_path = package / icon
-        if not icon_path.is_file():
-            fail(f"{icon} is missing")
-        if png_size(icon_path) != expected_size:
-            fail(f"{icon} must be {expected_size[0]}×{expected_size[1]} pixels")
+    for icon, expected in (("color.png", (192, 192)), ("outline.png", (32, 32))):
+        path = package / icon
+        if not path.is_file() or png_size(path) != expected:
+            fail(f"{icon} 必須存在且尺寸為 {expected[0]}×{expected[1]}")
 
     skills = manifest["agentSkills"]
-    if not skills:
-        fail("agentSkills must not be empty")
-    if len(skills) > 20:
-        fail("agentSkills can contain at most 20 entries")
+    if not 1 <= len(skills) <= 20:
+        fail("agentSkills 必須包含 1 至 20 個項目")
     folders: set[str] = set()
-    skill_names: set[str] = set()
+    names: set[str] = set()
     for entry in skills:
         if set(entry) != {"folder"}:
-            fail("each agentSkills entry must contain only folder")
+            fail("每個 agentSkills 項目只能包含 folder")
         folder = entry.get("folder", "")
-        if not isinstance(folder, str) or not folder.startswith("./skills/") or len(folder) > 256:
-            fail(f"invalid skill folder: {folder}")
-        if folder in folders:
-            fail(f"duplicate skill folder: {folder}")
+        if not isinstance(folder, str) or not folder.startswith("./skills/") or folder in folders:
+            fail(f"Skill folder 無效或重複：{folder}")
         folders.add(folder)
         skill_dir = package / folder.removeprefix("./")
         skill_path = skill_dir / "SKILL.md"
         if not skill_path.is_file():
-            fail(f"missing {skill_path}")
+            fail(f"缺少 {skill_path}")
         body = skill_path.read_text(encoding="utf-8")
-        metadata = frontmatter(body, skill_path)
-        skill_name = metadata.get("name")
-        description = metadata.get("description")
-        skill_metadata = metadata.get("metadata")
-        if skill_name != skill_dir.name:
-            fail(f"{skill_path} name must equal folder name")
-        if not isinstance(skill_name, str) or not 1 <= len(skill_name) <= 64:
-            fail(f"{skill_path} name must contain 1 to 64 characters")
-        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", skill_name):
-            fail(f"{skill_path} has invalid kebab-case skill name")
-        if not isinstance(description, str) or not 1 <= len(description.strip()) <= 1024:
-            fail(f"{skill_path} description must contain 1 to 1024 characters")
-        if not isinstance(skill_metadata, dict):
-            fail(f"{skill_path} metadata must be a mapping")
-        if skill_metadata.get("version") != manifest["version"]:
-            fail(f"{skill_path} version must match manifest version")
-        referenced_tools = {
-            tool for tool in WORK_IQ_TOOLS if re.search(rf"`{re.escape(tool)}`", body)
-        }
-        if not referenced_tools:
-            fail(f"{skill_path} must explicitly reference at least one built-in Work IQ MCP tool")
-        if skill_name in skill_names:
-            fail(f"duplicate skill name: {skill_name}")
-        skill_names.add(skill_name)
+        frontmatter = parse_frontmatter(body, skill_path)
+        skill_name = frontmatter.get("name")
+        description = frontmatter.get("description")
+        metadata = frontmatter.get("metadata")
+        if skill_name != skill_dir.name or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", str(skill_name)):
+            fail(f"{skill_path} name 必須等於 kebab-case folder name")
+        if not isinstance(description, str) or not 1 <= len(description.strip()) <= 1024 or not re.search(r"[\u4e00-\u9fff]", description):
+            fail(f"{skill_path} description 必須是 1 至 1024 字元的繁體中文描述")
+        if not isinstance(metadata, dict) or metadata.get("version") != manifest["version"]:
+            fail(f"{skill_path} version 必須與 manifest 相同")
+        if missing_sections := REQUIRED_SECTIONS - set(re.findall(r"^## .+$", body, re.MULTILINE)):
+            fail(f"{skill_path} 缺少完整章節：{', '.join(sorted(missing_sections))}")
+        if len(body.encode("utf-8")) < 3000:
+            fail(f"{skill_path} 內容過短，未達完整 Skill 規格")
+        if not any(re.search(rf"`{re.escape(tool)}`", body) for tool in WORK_IQ_TOOLS):
+            fail(f"{skill_path} 必須明確引用 Cowork 內建 Work IQ MCP tool")
+        if skill_name in names:
+            fail(f"Skill name 重複：{skill_name}")
+        names.add(str(skill_name))
 
+    actual_skill_dirs = {path.name for path in (package / "skills").iterdir() if path.is_dir()}
+    if actual_skill_dirs != names:
+        fail(f"skills 目錄與 manifest 不一致：{sorted(actual_skill_dirs ^ names)}")
+
+    validate_prompts(package, len(skills))
+    validate_evals(package, names)
     if len(sys.argv) == 3:
-        validate_deployment_zip(package, Path(sys.argv[2]), skill_names)
+        validate_zip(package, Path(sys.argv[2]), names)
 
-    print(f"PASS: {package} has {len(skills)} valid skill entries and required package files")
+    print(f"PASS: {package} 包含 {len(skills)} 個完整繁中 Skills 與 {len(skills)} 張 Prompt Cards")
 
 
 if __name__ == "__main__":
