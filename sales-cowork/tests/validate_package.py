@@ -121,12 +121,19 @@ def main() -> None:
         metadata = frontmatter(body, skill_path)
         skill_name = metadata.get("name")
         description = metadata.get("description")
+        skill_metadata = metadata.get("metadata")
         if skill_name != skill_dir.name:
             fail(f"{skill_path} name must equal folder name")
-        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", skill_name or ""):
+        if not isinstance(skill_name, str) or not 1 <= len(skill_name) <= 64:
+            fail(f"{skill_path} name must contain 1 to 64 characters")
+        if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", skill_name):
             fail(f"{skill_path} has invalid kebab-case skill name")
-        if not isinstance(description, str) or not description.strip():
-            fail(f"{skill_path} has no description")
+        if not isinstance(description, str) or not 1 <= len(description.strip()) <= 1024:
+            fail(f"{skill_path} description must contain 1 to 1024 characters")
+        if not isinstance(skill_metadata, dict):
+            fail(f"{skill_path} metadata must be a mapping")
+        if skill_metadata.get("version") != manifest["version"]:
+            fail(f"{skill_path} version must match manifest version")
         if skill_name in skill_names:
             fail(f"duplicate skill name: {skill_name}")
         skill_names.add(skill_name)

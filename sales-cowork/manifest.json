@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
   "manifestVersion": "1.28",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "id": "34614978-57a3-49f2-83f1-6546422571ec",
   "developer": {
     "name": "lwokeray",
@@ -14,8 +14,8 @@
     "full": "Sales Cowork for Copilot Cowork"
   },
   "description": {
-    "short": "Evidence-led sales briefs, follow-up, deal review, and forecast support",
-    "full": "A skills-only Copilot Cowork plugin for B2B sellers, sales managers, and RevOps. It prepares focused sales outputs from the signed-in user's Microsoft 365 context while keeping source evidence, uncertainty, and human approval boundaries explicit."
+    "short": "Microsoft 365 sales research, meetings, outreach, pipeline, and handoffs",
+    "full": "A Microsoft 365-only Copilot Cowork plugin for B2B sellers and sales managers. It coordinates daily sales work across Work IQ, Outlook, Teams, Calendar, SharePoint, OneDrive, Word, Excel, PowerPoint, PDF, Enterprise Search, and Deep Research."
   },
   "icons": {
     "color": "color.png",
@@ -28,6 +28,12 @@
     { "folder": "./skills/meeting-follow-up" },
     { "folder": "./skills/deal-inspection" },
     { "folder": "./skills/forecast-decision-pack" },
-    { "folder": "./skills/account-market-research" }
+    { "folder": "./skills/account-market-research" },
+    { "folder": "./skills/lead-intake-qualification" },
+    { "folder": "./skills/account-opportunity-plan" },
+    { "folder": "./skills/sales-outreach-engagement" },
+    { "folder": "./skills/pipeline-workspace-hygiene" },
+    { "folder": "./skills/proposal-commercial-handoff" },
+    { "folder": "./skills/close-renewal-handoff" }
   ]
 }

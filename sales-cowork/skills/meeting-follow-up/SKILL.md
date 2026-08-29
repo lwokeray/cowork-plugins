@@ -3,10 +3,10 @@ name: meeting-follow-up
 description: >-
   Creates a reviewable post-meeting package for one customer meeting: internal note, customer follow-up email draft,
   and proposed tasks. Use when the user asks to close the loop after a meeting, extract customer commitments,
-  draft follow-up, or turn meeting actions into tasks. Do not use to send email, create Planner tasks, or update CRM records.
+  draft follow-up, or turn meeting actions into approved Microsoft 365 actions. Do not use for deal review or proposal authoring.
 metadata:
   author: lwokeray
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Meeting Follow-Up

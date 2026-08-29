@@ -1,20 +1,20 @@
 ---
 name: customer-meeting-brief
 description: >-
-  Prepares an evidence-led brief for one customer meeting using Work IQ and available Sales context.
+  Prepares an evidence-led brief for one customer meeting using Work IQ and Microsoft 365 context.
   Use when the user asks to prepare for a named customer meeting, identify attendees and commitments,
   create discovery questions, or summarize recent account changes before a meeting. Do not use for
   post-meeting follow-up, deal rescue, forecast review, or general account research.
 metadata:
   author: lwokeray
-  version: "1.1.0"
+  version: "1.2.0"
 ---
 
 # Customer Meeting Brief
 
 ## Purpose
 
-Prepare one meeting, not an account dossier. Use Work IQ, Calendar Management, Meetings, Enterprise Search, and the Dynamics 365 Sales plugin when available to retrieve permission-accessible meeting metadata, prior communications, account material, and Sales context.
+Prepare one meeting, not an account dossier. Use Work IQ, Calendar Management, Meetings, Enterprise Search, Outlook, Teams, SharePoint, OneDrive, and approved account files to retrieve permission-accessible meeting metadata, prior communications, and account context.
 
 ## Guardrails
 
@@ -26,10 +26,10 @@ Prepare one meeting, not an account dossier. Use Work IQ, Calendar Management, M
 ## Workflow
 
 1. Resolve one meeting through Work IQ and Calendar Management, then extract its purpose, participants, time, and agenda. Ask for selection only when multiple meetings match.
-2. Retrieve recent communications, meeting recaps, account plan or playbook material, and Sales evidence through permission-accessible sources. Label unavailable CRM fields without blocking the entire brief.
+2. Retrieve recent communications, meeting recaps, account plan or playbook material, and opportunity evidence from approved Microsoft 365 sources.
 3. Extract explicit commitments, material changes, open questions, and unresolved objections with their sources.
 4. Draft discovery questions and a single recommended next step; label recommendations as inference.
-5. Stop before sending, posting, creating a task, or modifying CRM data.
+5. Stop before sending, posting, scheduling, or changing a shared file or register.
 
 ## Output format
 
