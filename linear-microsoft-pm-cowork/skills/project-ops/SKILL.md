@@ -1,27 +1,139 @@
 ---
 name: project-ops
-description: Operate a bounded product or delivery project in a Linear-like PM workspace. Use for project setup, project brief, project lead, members, milestones, multi-team coordination, project dependencies, project views, health, progress, target windows, and weekly project operations.
+description: |
+  Create, inspect, and operate a bounded product or delivery project with outcome, scope,
+  lead, teams, milestones, dependencies, health, target window, and operating cadence.
+  Use for project setup, milestone management, multi-team coordination, project views, and
+  weekly operations. Do not use for portfolio strategy, cycle commitment, or a single issue.
 ---
 
-# Project operations
+# Project Operations
 
-Project 的核心是 shared outcome 或 planned completion window，不是任務清單。先確認 project、lead、member/team scope、outcome、target timeframe、milestones、related issues、dependencies、health、update cadence、source of truth 與 audience。
+## Overview
+
+Project operations creates and maintains the practical structure needed to deliver one bounded
+outcome. It keeps ownership, milestones, dependencies, current health, decisions, and next actions
+clear throughout the project. It should help the team act, not merely restate project metadata.
+
+## When to Use
+
+- A bounded outcome requires multiple issues, milestones, or teams.
+- A project needs setup, readiness review, dependency coordination, or health assessment.
+- The user asks for current project state, milestone status, or operating actions.
+
+## When NOT to Use
+
+- One trackable work item is sufficient → `issue-shaping`.
+- The object is a repeating iteration → `cycle-planning`.
+- The request is a strategic roll-up of projects → `initiative-roadmap`.
+- The request is only a recurring communication artifact → `project-update`.
+
+## Required Inputs
+
+`project_id`, `project_name`, `outcome`, `lead`, `members`, `teams`, `scope`, `non_goals`, `milestones`, `issues`, `dependencies`, `target_timeframe`, `health_rubric`, `update_cadence`, `source_of_truth`, `audience`, `decision_owner`.
+
+Use `unknown` for unsupported fields. A project without a bounded outcome, lead, or exit condition is `not_ready`.
 
 ## Workflow
 
-1. **Inspect current project.** 讀取 SharePoint/OneDrive project hub、Word/PPT brief、Excel issue/milestone register、Planner/Project context（若可用）、Outlook/Teams decisions 與 latest update。保留 last updated、lead、members、teams、target window 與 source。
-2. **Check project shape.** 確認 outcome、scope/non-goals、lead、participating teams、milestones with exit criteria、related issues、dependencies with owners/need-by dates、target timeframe 與 update cadence。沒有 clear outcome 或 lead 時標記 `not_ready`。
-3. **Operate milestones.** 只用 meaningful stages of completion；每個 milestone 必須有 exit criteria、issues、owner、target/need-by、status、evidence。不要用 milestone 當任意 bucket。
-4. **Coordinate multi-team work.** 分離 team-local workflow 與 cross-team project coordination。為 dependency 指定 owner、need-by date、impact、current status 與 contingency；沒有 owner 的 dependency 要成為 decision/ask。
-5. **Maintain views.** 以 filters/lenses 供 PM 看 active, blocked, stale, current-cycle, owner, milestone 或 customer-impact work，不改變底層 objects。
-6. **Assess health.** 用 project update、milestone progress、overdue items、dependency slips、scope changes 與 evidence 組成 `on_track`、`at_risk`、`off_track` 或 `no_current_update`。說明 changed because，不要憑感覺選色。
-7. **Prepare update.** 產出 project update：progress since last update、health、changes in target/lead/milestones、risks/challenges、next steps、decisions/asks。由 project lead review/publish。
-8. **Write preview.** 若要建立/更新 Microsoft Project/Planner/SharePoint/Excel artifact，列出 exact target、field changes、version、rollback/cancel 與 approval。沒有 confirmed write tool 就輸出 handoff payload with `not_written`。
+1. **Inspect** approved project sources and record version, last-updated date, lead, target, and scope.
+2. **Validate shape**: Confirm outcome, scope/non-goals, lead, participating teams, milestones, dependencies, target window, and cadence.
+3. **Operate milestones**: Each milestone needs an observable exit criterion, owner, contributing issues, dependency state, and target/need-by condition.
+4. **Coordinate dependencies**: Record provider, receiver, owner, need-by date, impact, status, evidence, and contingency.
+5. **Maintain views**: Build lenses for active, blocked, stale, current-cycle, owner, milestone, dependency, or customer-impact work without mutating underlying objects.
+6. **Assess health**: Apply the stated rubric to milestone evidence, target variance, dependency slips, scope changes, quality, and update freshness.
+7. **Identify decisions**: State the decision, options, owner, deadline, no-action consequence, and required evidence.
+8. **Prepare operations**: Return next actions, checkpoints, update inputs, and proposed mutations.
+9. **Preview writes**: Route project, milestone, owner, target, health, or scope changes through `governance`.
 
-## Project operating schema
+## Detailed Operating Instructions
 
-`project_id`、`project_name`、`outcome`、`lead`、`members`、`teams`、`status`、`health`、`target_timeframe`、`scope`、`non_goals`、`milestones`、`issues`、`dependencies`、`latest_update`、`update_cadence`、`views`、`sources`、`write_status`。
+### 1. Establish or repair the project definition
+
+Confirm the intended outcome, why the project exists, what is in and out of scope, accountable lead,
+participating teams, target window, and observable completion condition. If the project is an endless
+collection of related work, define a bounded outcome or use a team view instead.
+
+### 2. Design meaningful milestones
+
+Create milestones around observable stages of progress, not arbitrary percentages. Each milestone
+needs a purpose, exit condition, owner, supporting work, dependencies, target or need-by condition,
+and evidence used to confirm completion.
+
+### 3. Coordinate cross-team dependencies
+
+For every material dependency state what is needed, providing and receiving teams, responsible owner,
+need-by date or condition, current status, evidence, impact, warning trigger, and fallback. Do not call
+a related task a dependency unless it can prevent progress or completion.
+
+### 4. Run the operating cadence
+
+At each review, update milestone evidence, dependencies, decisions, scope changes, quality, risks, and
+next actions. Assign actions to the people doing them while keeping the project lead accountable for
+the whole outcome. Close stale actions or explain why they remain open.
+
+### 5. Assess health honestly
+
+Apply the documented rubric. Explain what changed since the prior review and what evidence supports
+the current state. Missing current evidence means no current update—not on track. If recovery requires
+an unapproved replan, use off track.
+
+### 6. Prepare decisions and recovery
+
+For each decision state the choice, options, recommended path, owner, deadline, evidence, and effect of
+inaction. For at-risk work, name recovery actions, owners, checkpoints, and the condition that would
+move the project back on track or confirm it is off track.
+
+## User-Facing Result
+
+Present the outcome and current health first, followed by milestone status, material changes,
+dependencies, risks, decisions, and next actions with owners. Include a setup section only when
+creating or repairing the project. Do not output an internal field schema.
+
+## Health Rules
+
+| State | Required evidence |
+|---|---|
+| `on_track` | Current evidence supports milestones and target with no unresolved material threat. |
+| `at_risk` | A material threat exists but recovery remains credible and owned. |
+| `off_track` | Current outcome, milestone, or target is not credible without an approved replan. |
+| `no_current_update` | Evidence is stale or missing; never substitute `on_track`. |
+
+State what changed and which evidence caused the health judgment.
+
+## Examples
+
+### Project has activity but no outcome
+
+Pause setup and define the user or business result and exit condition. Do not treat a populated issue
+list as proof that a project exists.
+
+### Milestone slipped
+
+Show the original condition, current evidence, dependency or scope change, downstream effect, recovery
+options, and decision owner. Keep the target as proposed until it is approved.
+
+## Quality Gate
+
+- Outcome and exit condition are bounded.
+- Every milestone has observable exit criteria.
+- Every material dependency has an owner and need-by condition.
+- Health is evidence-based and freshness is explicit.
+- Team-local work and cross-team coordination remain separate.
+
+## Common Issues
+
+| Issue | Required handling |
+|---|---|
+| Project is an ongoing bucket | Define an exit condition or use a team view instead. |
+| Lead is assigned every action | Keep project accountability separate from task ownership. |
+| Progress percentage lacks basis | Use milestone/issue evidence and state the calculation method. |
+| Target changed in a meeting | Record as proposed until the decision owner approves. |
+| Status is based on many completed tasks | Reassess against outcome, milestones, target, quality, and dependencies. |
+| Cross-team action has no accountable owner | Escalate ownership instead of hiding it in meeting notes. |
 
 ## Guardrails
 
-不要為 ongoing work 產生永久 project 而不問 exit condition。不要把 project lead 變成所有 task owner。不要以 activity graph 代替 outcome。不要對外發布 project update 或變更 target date，直到 lead/owner 明確批准。
+- Do not create a project solely to group unrelated work.
+- Do not infer project health from activity volume.
+- Do not publish or change lead, scope, target, milestone, or health without approval and confirmed execution.

@@ -1,26 +1,133 @@
 ---
 name: project-update
-description: Draft recurring project and initiative health updates in a Linear-like operating cadence using Microsoft 365 context. Use for weekly project updates, initiative roll-ups, project health, stale updates, leadership review, steering updates, and progress-change communication.
+description: |
+  Produce a recurring evidence-based project or initiative health update from approved Microsoft 365
+  sources, preserving baseline, period changes, risks, dependencies, decisions, asks, audience, and
+  publish state. Use for weekly updates, steering reviews, initiative roll-ups, and stale-update checks.
+  Do not use for a post-delivery outcome review or general work-summary prose.
 ---
 
-# Project and initiative update
+# Project and Initiative Update
 
-Update 是 recurring operating artifact，不是一次性的週報作文。先確認 update type、project/initiative、period、owner/lead、audience、cadence、last update、health rubric、source locations 與 decision/ask。
+## Overview
+
+A project update tells the audience what changed, whether the intended outcome and plan remain
+credible, what needs attention, and which decisions are required. It is not a generic activity recap.
+Every important statement should be current, evidence-based, and appropriate for the audience.
+
+## When to Use
+
+- A project or initiative needs its scheduled health update.
+- Leadership, engineering, or cross-functional audiences need a period-specific operating view.
+- Existing updates are stale, inconsistent, or unsupported by current evidence.
+
+## When NOT to Use
+
+- The user asks whether delivery achieved the intended outcome → `outcome-review`.
+- The project itself needs setup or repair → `project-ops`.
+- The user only wants meeting minutes or a personal work recap.
+
+## Required Inputs
+
+Resolve object ID/type, update period, owner, audience, cadence, last approved update, health rubric, baseline target/scope/milestones, source locations, known decisions, and publish target.
 
 ## Workflow
 
-1. **Reconstruct the baseline.** 讀取上一份 approved update、project/initiative properties、target timeframe、milestones、issues/cycles、dependencies、prior decisions 與 last update date。
-2. **Collect changes.** 搜尋 approved Microsoft 365 scope 中自上次 update 以來的 project files、Planner/Project context、Excel metrics、Outlook commitments、Teams signals、Calendar decisions 與 related artifacts。標記 changed/unchanged/stale/unknown。
-3. **Calculate health.** 根據 milestone progress、commitment variance、target-date/lead changes、dependency slips、scope changes、issue status、update freshness 與 evidence 判斷 `on_track`、`at_risk`、`off_track` 或 `no_current_update`。不要因缺少消息而判定 on track。
-4. **Write the narrative.** 依序寫 health、progress since last update、what changed、challenges/risks、next steps、decisions/asks、dependencies、links/evidence。用 specific ask：決定什麼、誰決定、何時需要、no-action consequence。
-5. **Roll up to initiative.** 對 initiative 將 contributing projects、health、active/stale projects、milestone/target change 與 objective signal 分開呈現。不要由一個 project 自動決定整個 initiative 狀態。
-6. **Tailor audience.** Executive 看 outcome/health/risks/decisions；engineering 看 shipped/in progress/blockers/priority changes；cross-functional 看 impact/dependencies/asks；external 只用 approved customer-safe language。
-7. **Review and publish gate.** 由 project lead/initiative owner 檢查內容並批准。需要寫入 SharePoint/OneDrive、Excel/PPT 或寄出 Outlook 時，先 preview exact target/change/recipients。Teams 只產生 draft，不直接發文。
+1. **Recover baseline**: Read the last approved update and current object properties, target, milestones, dependencies, and prior decisions.
+2. **Collect deltas**: Find approved evidence created or changed during the period. Mark each item `changed`, `unchanged`, `stale`, or `unknown`.
+3. **Validate measures**: Preserve metric definition, baseline, target, observed date, segment, and source.
+4. **Calculate health**: Apply the stated rubric to milestone evidence, target variance, dependency slips, scope/quality changes, and update freshness.
+5. **Write update content**: Health headline, progress since last update, material changes, risks/challenges, dependencies, next steps, decisions, and asks.
+6. **Tailor audience**: Executives receive outcomes/health/risks/decisions; delivery teams receive work/blockers/priority changes; external audiences receive only approved customer-safe statements.
+7. **Roll up initiatives**: Preserve individual project health and stale/missing updates; do not hide them in an average.
+8. **Review publish gate**: Show recipients/target, exact content, sensitivity, and approval owner before publishing or sending.
 
-## Update schema
+## Detailed Update Instructions
 
-`update_id`、`object_type`、`project_or_initiative`、`period`、`owner`、`health`、`headline`、`progress_since_last`、`changes`、`milestones`、`risks`、`dependencies`、`decisions_needed`、`asks`、`next_steps`、`staleness`、`evidence`、`audience`、`publish_status`。
+### 1. Establish the comparison point
+
+Confirm the reporting period, prior approved update, current scope, target, milestones, health rubric,
+and intended audience. Without a baseline, describe current state but do not claim that something
+improved or deteriorated.
+
+### 2. Collect only material changes
+
+Review source evidence created or changed during the period. Include milestone movement, completed
+user or delivery outcomes, scope and target changes, quality, risks, dependencies, decisions, and
+outcome signals. Exclude routine task noise unless it changes health or supports an important claim.
+
+### 3. Determine health before writing the headline
+
+Apply the agreed rubric to current evidence. Explain the strongest reason for the state and what
+changed since the last update. If evidence is stale, say no current update. Do not use optimistic prose
+to override an at-risk or off-track conclusion.
+
+### 4. Write for the audience
+
+Executives need outcome, health, material change, risk, trade-off, and decision. Delivery teams need
+milestones, blockers, dependency actions, and near-term changes. Customer-safe updates must omit
+internal debate, confidential details, and unapproved dates.
+
+### 5. Make asks actionable
+
+Every decision or ask should identify the owner, required date or condition, options, recommendation,
+and consequence of delay. “Leadership support needed” is not actionable.
+
+### 6. Review before publication
+
+Verify the audience, distribution target, sensitive content, links, health, dates, and approval. Drafting
+does not authorize sending. After publication, report the confirmed destination and result.
+
+## User-Facing Update Format
+
+1. Health and one-sentence headline
+2. Progress toward the outcome during this period
+3. Material changes to scope, target, milestone, quality, or ownership
+4. Risks and dependencies with actions
+5. Next-period priorities
+6. Decisions and help needed
+7. Stale or unknown information that affects confidence
+
+Use concise prose, but include enough evidence to make the conclusion trustworthy.
+
+## Health and Staleness Rules
+
+- Missing or stale information yields `no_current_update`, not `on_track`.
+- Completed issue count alone cannot establish project health.
+- A changed target, lead, milestone, scope, or dependency must be named explicitly.
+- Every decision ask must state decision owner, need-by date, options, and no-action consequence.
+
+## Examples
+
+### Work completed but target threatened
+
+Report the completed work, but set health from the missed dependency and target impact. Explain the
+recovery action and decision needed instead of using activity to claim on track.
+
+### No current project evidence
+
+Use no current update, list the last reliable observation date, and request the specific milestone or
+dependency evidence needed to reassess health.
+
+## Common Issues
+
+| Problem | Correct response |
+|---|---|
+| Update repeats every completed task | Keep only evidence that changes the operating picture |
+| Health differs from project facts | Apply the rubric and explain the evidence |
+| Ask has no owner or deadline | Rewrite it as a decision request |
+| Draft is assumed to be sent | Require publication approval and confirmation |
+
+## Quality Gate
+
+- The update covers a defined period and baseline.
+- Health follows the named rubric and current evidence.
+- Material changes and missing information are visible.
+- Audience language does not exceed the approved disclosure boundary.
+- Publishing is separated from drafting.
 
 ## Guardrails
 
-不要把 progress percentage 當成 outcome。不要以已完成的 issue 數量掩蓋 deadline/quality/customer impact。不要修改 health、target date、lead 或 publish update without human approval.
+- Do not use prose to conceal target, scope, quality, or dependency deterioration.
+- Do not turn proposed dates or decisions into commitments.
+- Do not publish, send, or change object health without explicit approval and confirmed execution.

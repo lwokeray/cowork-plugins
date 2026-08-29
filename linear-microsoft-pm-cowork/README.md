@@ -4,7 +4,7 @@ A role-level Cowork plugin for real enterprise PM work, modeled on Linear's prod
 
 ## Product model
 
-The plugin works with the following PM objects: workspace, team, issue, triage queue, project, milestone, initiative, cycle, customer request, project/initiative update, view, template, decision and outcome. It keeps these objects distinct because each has a different owner, cadence, workflow and decision boundary.
+The plugin works with the following PM objects: workspace, team, request, issue, PRD, story map, estimate, decision matrix, risk, project, milestone, initiative, cycle, customer request, project/initiative update, view, decision and outcome. It keeps these objects distinct because each has a different owner, cadence, workflow and decision boundary.
 
 ## Skills
 
@@ -12,6 +12,11 @@ The plugin works with the following PM objects: workspace, team, issue, triage q
 |---|---|
 | `issue-triage` | Review incoming work: accept, clarify, duplicate, decline, snooze, route or leave pending |
 | `issue-shaping` | Make an accepted issue delivery-ready with context, acceptance criteria and relations |
+| `product-spec-writer` | Create a controlled PRD with evidence, requirements, measures, scope, releases and traceability |
+| `story-map-builder` | Map user activities, capabilities and stories into coherent release slices and optional HTML |
+| `project-sizing-guide` | Produce evidence-based PERT, T-shirt or FPA effort estimates with uncertainty |
+| `weighted-scorer` | Compare feasible options using hard constraints, weighted criteria and sensitivity analysis |
+| `risk-heatmap` | Maintain an owned risk register and optional probability-impact HTML heatmap |
 | `project-ops` | Run a bounded project with lead, members, milestones, dependencies, health and updates |
 | `initiative-roadmap` | Roll projects up to objectives and review strategic priority and portfolio health |
 | `cycle-planning` | Make capacity-aware near-term commitments, cut scope and review carryover |
@@ -20,7 +25,7 @@ The plugin works with the following PM objects: workspace, team, issue, triage q
 | `outcome-review` | Compare intended outcomes to observed evidence and choose the next move |
 | `governance` | Review object identity, evidence, privacy, write/publish risk and approval |
 
-The shared `pm-operating-system` skill routes requests to the right object and preserves the operating loop `capture → triage → shape → relate → plan → execute → update → review → learn`.
+The shared `pm-operating-system` skill routes requests to the narrowest specialist skill and preserves the operating loop `capture → triage → specify → decide → estimate → plan → execute → update → review → learn`.
 
 ## Reviewer agent
 
@@ -34,7 +39,7 @@ If Planner/Project write is not available, produce a normalized handoff payload 
 
 ## What a normal run looks like
 
-A PM asks for a weekly project update. Cowork identifies the project and period, reads the last approved update and current project/milestone/issue/cycle evidence, detects changes and stale signals, drafts health/progress/risks/asks for the audience, invokes the reviewer, then shows an exact publication/write preview. The PM lead reviews and publishes; the plugin does not silently create or change work.
+A PM request is routed by object and decision. The selected skill reads only approved context, produces its controlled artifact, runs the relevant quality gates, and shows exact proposed mutations. The PM owner reviews and approves any system-of-record or communication change; the plugin does not silently create, assign, reprioritize, publish, or commit work.
 
 ## Installation
 

@@ -1,26 +1,137 @@
 ---
 name: initiative-roadmap
-description: Manage strategic initiatives and roadmap roll-ups in a Linear-like PM workspace. Use for objectives, initiatives containing projects, portfolio health, strategic priority, target windows, labels, cross-team alignment, roadmap changes, and executive review.
+description: |
+  Define strategic initiatives and maintain roadmap roll-ups across contributing projects,
+  objectives, priorities, target windows, dependencies, and health evidence. Use for portfolio
+  alignment, Now/Next/Later views, initiative reviews, and executive decisions. Do not use for
+  individual issues, detailed delivery plans, or an OKR-writing exercise without project relations.
 ---
 
-# Initiative and roadmap
+# Initiative and Roadmap
 
-Initiative 表達「為什麼」與 organizational/team objective；project 表達一個 bounded outcome；issue 表達可追蹤工作。不要用 initiative 取代 project，也不要用 roadmap 直接管理 task。
+## Overview
+
+This skill connects strategic objectives to the projects intended to achieve them. It creates a
+roadmap that explains choices, sequencing, capacity trade-offs, evidence, and uncertainty. The roadmap
+is a decision view over real work, not a wish list or a collection of attractive dates.
+
+## When to Use
+
+- Multiple projects contribute to one strategic objective.
+- The user needs initiative health, roadmap ordering, cross-team alignment, or an executive review.
+- Projects must be added, removed, reordered, paused, or challenged against strategy and capacity.
+
+## When NOT to Use
+
+- One bounded project is being operated → `project-ops`.
+- The request is cycle scope → `cycle-planning`.
+- The user only needs a release-oriented story map → `story-map-builder`.
+- The user needs a recurring written update only → `project-update`.
+
+## Required Inputs
+
+`initiative_id`, `objective`, `why_now`, `owner`, `lead_team`, `priority`, `strategy_theme`, `success_signals`, `target_timeframe`, contributing projects, project health/update freshness, capacity constraints, dependencies, audience, and decision owner.
 
 ## Workflow
 
-1. **Define the objective.** 確認 objective、why now、success signal、owner、lead team、priority、target timeframe、labels/strategy theme、audience 與 source locations。
-2. **Map contributing projects.** 列出 projects、project leads、teams、milestones、health、target windows、latest update、active issue signal、dependencies 與 missing updates。尊重 private team/project visibility。
-3. **Roll up health.** 顯示 initiative health 與 active project health；把 `no_current_update` 與 `on_track` 分開，不以沉默推定健康。
-4. **Review priority.** 對新增/移除/重排的 project 說明 what changed、evidence、trade-off、capacity/dependency impact、what moves、decision owner/deadline。
-5. **Create roadmap lens.** 產出 Now/Next/Later、quarter/theme 或 OKR-aligned view；將 precise execution details 保留在 project/cycle，不在高層 roadmap 偽造精準日期。
-6. **Prepare executive review.** 組織 objective progress、project roll-up、risks, decisions, capacity/dependency gaps, stale updates, next checkpoint 與 specific asks。
-7. **Handoff and approval.** 任何 roadmap/initiative status、priority、target、project relation 或 external communication change 必須先 preview、由 owner 批准，再交給確認可用的 Microsoft tool；否則輸出 `not_written`。
+1. **Define objective**: State the intended strategic change, why now, success signals, owner, target window, and decision boundary.
+2. **Map projects**: List contributing projects, leads, teams, outcomes, milestones, targets, health, latest updates, dependencies, and visibility restrictions.
+3. **Validate contribution**: Explain how each project contributes to the objective. A shared label or executive sponsor is not sufficient.
+4. **Roll up health**: Separate active project health, stale updates, missing evidence, dependency exposure, and objective-level signal.
+5. **Review priority**: For proposed ordering or membership changes, show evidence, trade-offs, capacity impact, displaced work, and reversibility.
+6. **Build roadmap lens**: Use Now/Next/Later, quarter, theme, or objective view as a lens over real projects. Preserve precise execution details within projects/cycles.
+7. **Prepare decision**: State options, recommendation, assumptions, no-action consequence, owner, and need-by date.
+8. **Preview mutation**: Route initiative status, health, priority, target, and project-membership changes through `governance`.
 
-## Initiative schema
+## Detailed Roadmap Instructions
 
-`initiative_id`、`objective`、`owner`、`lead_team`、`status`、`priority`、`labels`、`target_timeframe`、`projects`、`project_health_rollup`、`active_projects`、`stale_projects`、`dependencies`、`risks`、`latest_update`、`decision_needed`、`sources`、`write_status`。
+### 1. Define the strategic change
+
+Write the objective as a change in user, market, business, or operational results. Explain why now,
+the owner, success signals, target window, and which decisions belong at initiative level. Avoid
+generic labels such as “growth” without a defined result.
+
+### 2. Test project contribution
+
+For every candidate project explain which part of the objective it advances, what evidence supports
+that connection, and whether the project is necessary, enabling, experimental, or optional. Remove or
+challenge projects that share only a theme or sponsor.
+
+### 3. Build the portfolio evidence
+
+Collect project outcomes, leads, teams, milestones, target windows, current health, update freshness,
+dependencies, capacity needs, and expected outcome signals. Preserve restricted information and mark
+missing or stale evidence explicitly.
+
+### 4. Choose the roadmap lens
+
+Use Now/Next/Later for directional sequencing, quarters for reviewed planning windows, or themes for
+strategy communication. Explain the meaning of each lane. Do not translate a broad window into a
+precise commitment.
+
+### 5. Examine trade-offs
+
+When adding or moving work, identify capacity required, dependencies, displaced projects, delayed
+outcomes, sunk cost, reversibility, and the evidence behind the change. A roadmap decision is
+incomplete if it adds priority without saying what gives way.
+
+### 6. Roll up health
+
+Assess whether critical contributions and dependencies still support the objective. Keep individual
+project states visible and explain criticality. Do not average red and green projects into a vague
+portfolio color or treat stale updates as healthy.
+
+### 7. Prepare the executive decision
+
+Lead with objective progress, recommended sequencing, material changes, risks, trade-offs, and the
+few decisions leaders must make. Each ask needs an owner, need-by date, options, and consequence of no
+decision.
+
+## User-Facing Result
+
+Provide the objective, success signals, roadmap view, project contributions, current evidence,
+dependencies, capacity trade-offs, changes since the last review, and decisions required. Use target
+windows unless project-level evidence supports greater precision. Do not show an internal data block.
+
+## Roll-up Rules
+
+- `no_current_update` is not `on_track`.
+- One off-track project does not automatically make the initiative off track; explain contribution criticality and recovery path.
+- Objective progress cannot be calculated only from completed project count.
+- Precise dates require project-level evidence; high-level roadmap views may use target windows.
+- Project inclusion must be justified by contribution to the objective.
+
+## Examples
+
+### Adding a leadership request
+
+Show which objective it serves, supporting evidence, required capacity, displaced work, and the
+decision owner. Do not insert it into Now solely because the requester is senior.
+
+### Initiative has one off-track project
+
+Assess whether that project is critical to the objective and whether a credible recovery or alternate
+path exists. Explain the result instead of automatically copying the project's health.
+
+## Common Issues
+
+| Problem | Correct response |
+|---|---|
+| Roadmap contains unrelated projects | Require an explicit contribution to the objective |
+| Everything is Now | Apply capacity and trade-off review; move or stop work |
+| Exact dates lack project evidence | Use honest windows and expose the missing decision |
+| Completed-project count is called progress | Measure objective signals and contribution, not only activity |
+
+## Quality Gate
+
+- Objective, owner, and success signals are explicit.
+- Each project has a documented contribution to the initiative.
+- Freshness and missing evidence are visible in health roll-up.
+- Roadmap movement identifies what is displaced or delayed.
+- Decision and mutation ownership are explicit.
 
 ## Guardrails
 
-不要因為一個 project 延遲就自動判定 initiative off track；說明 roll-up 方法與 evidence。不要把 labels 當成 strategy。不要自行改 priority、target date 或 project membership。
+- Do not use initiative labels as a substitute for strategy.
+- Do not fabricate exact delivery dates at portfolio level.
+- Do not alter project membership, priority, health, or target without owner approval and confirmed execution.

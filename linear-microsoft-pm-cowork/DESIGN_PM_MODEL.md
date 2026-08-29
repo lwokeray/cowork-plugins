@@ -12,6 +12,12 @@ The plugin does not contain AI transformation language, adoption phases, use-cas
 
 | Rule | Meaning |
 |---|---|
+| Request ≠ issue | A request is evidence of a need; an issue is accepted, bounded, owned work |
+| Issue ≠ PRD | An issue is one delivery unit; a PRD controls a product problem and multiple requirements |
+| PRD ≠ story map | A PRD is the requirement baseline; a story map is a journey/release planning lens |
+| Estimate ≠ commitment | An estimate is a range with assumptions and uncertainty; commitment requires capacity and approval |
+| Decision matrix ≠ approval | Weighted scoring supports a named decision owner; it does not make the decision |
+| Risk ≠ issue | A risk is uncertain; an issue is already occurring |
 | Issue ≠ project | An issue is one trackable piece of work; a project coordinates a bounded outcome across issues |
 | Project ≠ initiative | A project has a delivery outcome/window; an initiative groups projects around a strategic objective |
 | Cycle ≠ release | A cycle is a repeating team planning period; release timing is a separate commitment |
@@ -24,7 +30,8 @@ The plugin does not contain AI transformation language, adoption phases, use-cas
 ## Component choices
 
 - Use `skills/*/SKILL.md` for PM object workflows and progressive-disclosure references.
-- Use one shared `pm-operating-system` skill for routing, common schema and approval behavior.
+- Use one shared `pm-operating-system` skill for object routing and common action boundaries.
+- Keep detailed schemas and calculation rules in skill-local `references/` and deterministic transformations in `scripts/`.
 - Use a no-write `pm-reviewer` agent after drafting and before mutation/publication.
 - Do not create legacy `commands/`; automatic skill discovery is sufficient for Cowork, and the plugin should not duplicate the same workflow in two invocation systems.
 - Do not create hooks; PM data is sensitive and no lifecycle event requires an automatic shell or network action.

@@ -1,26 +1,149 @@
 ---
 name: cycle-planning
-description: Plan and review repeating team cycles in a Linear-like PM workflow. Use for sprint/iteration planning, cycle commitment, capacity checks, issue selection, rollover/carryover, cooldown, dependency checks, and cycle review.
+description: |
+  Plan and review a repeating team cycle using capacity, historical throughput, issue readiness,
+  dependencies, carryover, buffer, and a clear cycle goal. Use for sprint or iteration scope,
+  commitment, rollover, cooldown, and review. Do not use for project estimation methodology,
+  release roadmaps, or target-date promises.
 ---
 
-# Cycle planning
+# Cycle Planning
 
-Cycle 是 team 的 repeating time-boxed commitment boundary，不是 release，也不是 project folder。先確認 team、cycle window、goal、capacity model、prior cycles/throughput、planned issues、estimates、PTO/support load、dependencies、cut/deferral policy 與 decision owner。
+## Overview
+
+Cycle planning creates a realistic short-term team commitment around one useful goal. It balances
+ready work with actual capacity, operational responsibilities, dependencies, uncertainty, and learning.
+It is not an exercise in filling every available hour.
+
+## When to Use
+
+- The team is selecting ready issues for an upcoming sprint or iteration.
+- Capacity, historical throughput, dependencies, carryover, or cut scope must be reviewed.
+- A completed cycle needs commitment-versus-result analysis.
+
+## When NOT to Use
+
+- Requirements need effort estimates before planning → `project-sizing-guide`.
+- Work needs issue readiness first → `issue-shaping`.
+- The user is planning releases around user journeys → `story-map-builder`.
+- The object is a one-time multi-milestone project → `project-ops`.
+
+## Required Inputs
+
+Resolve team, cycle window, goal, candidate issues, readiness, estimates, historical throughput/velocity, usable capacity, PTO, support/on-call load, meetings, technical-health allocation, dependencies, carryover, buffer policy, and commitment owner.
+
+Use ranges when inputs are incomplete. Nominal headcount is not usable capacity.
 
 ## Workflow
 
-1. **Read the cycle context.** 取得 current/upcoming cycle、prior completed cycle performance、open/carryover issues、team members、estimates、status、project/milestone/initiative relations、PTO/support/maintenance load 與 approved goal。
-2. **Check readiness.** 每個候選 issue 需要 title、team、status、owner、priority、acceptance criteria、estimate/confidence、project relation（如適用）與 dependency。
-3. **Calculate capacity honestly.** 只使用來源明確的 throughput/estimate/capacity。扣除 PTO、support/on-call、meetings、ramp、technical health 與 buffer。缺資料時給 range/unknown，不製造精準承諾。
-4. **Propose commitment.** 產出 goal、committed issues、stretch/optional items、cut/deferral list、dependencies/need-by dates、owner、acceptance criteria、risk、confidence 與 success signal。
-5. **Handle carryover.** 說明未完成原因、是否 rollover、是否回 backlog、需要 descoping 或重新估算；不要把 rollover 當作免費 capacity。
-6. **Run cycle review.** 比較 committed vs completed、carryover、unplanned work、blocked time、goal/outcome signal 與 learning。不要只看 issue count。
-7. **Handoff.** 若要寫入 Planner/Project/Excel/SharePoint，先 preview exact changes；沒有 confirmed write tool 則輸出 cycle payload with `write_status: not_written`。
+1. **Read context**: Current/upcoming cycle, prior completed cycles, candidate and carryover issues, estimates, dependencies, PTO, and non-feature load.
+2. **Check issue readiness**: Require owner/team, acceptance criteria, estimate status, dependency state, and validation path.
+3. **Calculate usable capacity**: Start from documented team capacity or historical throughput, then deduct known unavailable time and required buffer.
+4. **Define one cycle goal**: Express the outcome the team intends to advance, not a list of tasks.
+5. **Select commitment**: Build `committed`, `stretch`, and `cut_or_deferred` sets. Do not consume buffer with stretch work.
+6. **Validate dependencies**: Critical dependencies need owners, need-by conditions, and a fallback or explicit risk decision.
+7. **Handle carryover**: Record cause, remaining work, re-estimate need, and whether to roll, split, descoped, or return to backlog.
+8. **Run commitment check**: Confirm goal coverage, capacity fit, work mix, risk concentration, and decision owner.
+9. **Review completed cycle**: Compare goal, committed/completed work, carryover, unplanned work, blocked time, quality, and outcome signals.
+10. **Preview mutations**: Route cycle assignment, scope, estimate, or status changes through `governance`.
 
-## Output
+## Detailed Planning Instructions
 
-`cycle`、`goal`、`capacity_assumptions`、`capacity_range`、`committed`、`stretch`、`cut_or_deferred`、`dependencies`、`carryover`、`risks`、`owner`、`acceptance_criteria`、`confidence`、`review_metrics`、`decision_needed`、`write_status`。
+### 1. Review the starting position
+
+Read the previous cycle result, current carryover, unplanned work, incidents, support load, upcoming
+leave, known meetings, and candidate backlog. Look for recurring causes of missed commitments rather
+than treating the next cycle as a clean slate.
+
+### 2. Establish usable capacity
+
+Prefer recent throughput from comparable cycles or a team-maintained capacity view. Adjust for actual
+availability, on-call and support duties, holidays, onboarding, required maintenance, and expected
+interrupts. State the unit and calculation plainly. Keep a buffer based on observed variability.
+
+### 3. Set the cycle goal
+
+Write one outcome the team can evaluate at the end. The goal should explain why the selected work
+belongs together. If candidates support unrelated goals, make the trade-off visible rather than hiding
+it in a long task list.
+
+### 4. Check candidate readiness
+
+For every potential commitment confirm the problem, acceptance boundary, responsible team, estimate
+status, dependency state, and validation path. Return unclear work to `issue-shaping`. A high priority
+does not make an issue ready.
+
+### 5. Select commitment and stretch work
+
+Choose the smallest set that advances the goal within the usable capacity range. Reserve stretch work
+for optional pull-in after committed work and risk conditions are healthy. Identify what is deliberately
+cut and why.
+
+### 6. Resolve dependencies and carryover
+
+For each critical dependency name the owner, needed condition, timing, warning trigger, and fallback.
+For carryover, identify remaining work and the cause: scope growth, underestimated complexity, blocked
+time, interruptions, quality work, or changing priorities. Re-estimate or split when the remaining work
+no longer matches the original estimate.
+
+### 7. Confirm the commitment
+
+Review the goal, work mix, capacity, buffer, concentrated risks, and unresolved decisions with the
+commitment owner. Distinguish team commitment from external delivery promises.
+
+### 8. Review the completed cycle
+
+Compare the goal and committed work with what actually happened. Record completed value, carryover,
+unplanned work, blocked time, defects or quality signals, and outcome evidence. Identify one or two
+changes to improve future planning; do not judge success by issue count alone.
+
+## User-Facing Plan
+
+Present the cycle goal, capacity basis and buffer, committed work with goal contribution, stretch work,
+deferred work, carryover treatment, dependencies, risks, decisions required, and confidence. For a
+review, add planned versus observed results and concrete improvements for the next cycle.
+
+## Capacity Rules
+
+- Use one consistent unit within a calculation.
+- Historical throughput is descriptive, not a guarantee.
+- Carryover consumes capacity and must not be counted as free.
+- Include support, maintenance, interrupts, and technical health explicitly.
+- Preserve a buffer appropriate to observed uncertainty; state the value and basis.
+- Do not convert uncertain estimates into a fixed delivery commitment.
+
+## Examples
+
+### Too many candidates
+
+Rank work by contribution to the cycle goal, readiness, dependency timing, and capacity fit. Move the
+remainder to deferred or stretch; do not make the committed list equal the entire backlog.
+
+### Repeated carryover
+
+Investigate whether the item is too large, frequently interrupted, dependent on another team, or
+poorly shaped. Split or re-estimate it and address the cause instead of rolling it unchanged again.
+
+## Common Issues
+
+| Problem | Correct response |
+|---|---|
+| Nominal headcount is used as capacity | Use real availability and historical throughput |
+| Buffer is filled with stretch work | Preserve buffer for uncertainty and interrupts |
+| Cycle goal is a list of issues | Express the user or delivery outcome connecting them |
+| Membership is communicated as a release promise | Separate internal commitment from external dates |
+
+## Quality Gate
+
+- Every committed issue is ready or explicitly accepted as a risk.
+- Capacity source, deductions, buffer, and unit are visible.
+- Stretch work is distinguishable from commitment.
+- Carryover and unplanned work are represented honestly.
+- The cycle goal can be evaluated independently of issue count.
 
 ## Guardrails
 
-不要用 nominal headcount 代替 usable capacity。不要把所有候選 issue 塞進 cycle。不要把 cycle commitment 當成對客戶的固定日期承諾。
+- Do not maximize utilization at the expense of buffer or operational work.
+- Do not place every candidate item in the cycle.
+- Do not treat cycle membership as a customer or external date commitment.
+- Do not mutate cycle scope or assignments without approval and tool confirmation.
