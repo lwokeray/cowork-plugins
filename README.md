@@ -5,6 +5,7 @@ Copilot Cowork plugin packages and associated implementation research.
 ## Packages
 
 - [`it-helpdesk-cowork`](./it-helpdesk-cowork/) — Dynamics 365 Customer Service help-desk workflows.
+- [`copilot-cowork-it`](./copilot-cowork-it/) — enterprise IT Operations across identity, endpoints, Microsoft 365, infrastructure, incidents, security, continuity, and governance; separate from Help Desk case handling.
 - [`proposal-cowork`](./proposal-cowork/) — fine-grained proposal skills and review gates.
 - [`linear-microsoft-pm-cowork`](./linear-microsoft-pm-cowork/) — Linear and Microsoft project-management operating model.
 - [`power-automate-mcp-selfhosted`](./power-automate-mcp-selfhosted/) — self-hosted Power Automate MCP server.
