@@ -6,14 +6,14 @@ description: >-
   or decision questions for a defined period. Do not use to calculate or change forecast values without approved snapshots.
 metadata:
   author: lwokeray
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Forecast Decision Pack
 
 ## Purpose
 
-Prepare a manager-facing decision pack for a defined team scope, forecast period, and as-of date. Compare only approved current and previous snapshots supplied in the session. The skill does not retrieve a forecast system, fabricate movement, or alter forecast values.
+Prepare a manager-facing decision pack for a defined team scope, forecast period, and as-of date. Use approved snapshots from permission-accessible SharePoint, OneDrive, Excel, or Dynamics 365 Sales context when available. The skill doesn't fabricate movement or alter forecast values.
 
 ## Guardrails
 
@@ -24,7 +24,7 @@ Prepare a manager-facing decision pack for a defined team scope, forecast period
 
 ## Workflow
 
-1. Confirm scope, period, as-of date, and supplied source snapshots. If either required snapshot is absent, return `Source unavailable — user input needed`.
+1. Confirm scope, period, as-of date, and approved source snapshots. Use Work IQ, Excel, Enterprise Search, and available Dynamics 365 Sales context to retrieve them; if the previous snapshot is absent, stop only the movement comparison.
 2. Validate whether each snapshot is approved and comparable; stop movement analysis if either condition is not met.
 3. Compare material changes and inspect the buyer evidence behind each relevant item.
 4. Flag high-risk items and evidence gaps without assigning a new forecast value.

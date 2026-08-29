@@ -10,8 +10,8 @@ The deployable package in this directory converts the design into a Microsoft 36
 - a static validator and tenant acceptance scenarios; and
 - no connector or hidden write capability.
 
-The source design's approval and evidence rules are retained. Requested Microsoft 365 write actions are represented as draft or handoff output because a skills-only package cannot execute them.
+The source design's approval and evidence rules are retained. Microsoft 365 retrieval and actions are handled by Cowork's native Work IQ and built-in skills. Dynamics 365 Sales context is handled by the separately enabled Microsoft plugin and selected Power Platform environment.
 
-## Runtime optimization after package review
+## Cowork runtime model
 
-The original conversion also implied that a skills-only package could read Outlook, Teams, Planner, SharePoint, and Dynamics 365 Sales data. Microsoft documents skills-only packages for prompt and document workflows; API or enterprise-system access requires an `agentConnectors` entry backed by a deployed remote MCP server. The package therefore now treats direct retrieval as unavailable unless evidence is attached to the session or already surfaced by Cowork. A future connector-enabled edition must add a tenant-owned MCP service, OAuth configuration, a tool-description JSON file, and explicit source/RBAC/DLP decisions.
+Cowork is natively grounded in Microsoft 365 through Work IQ and includes built-in skills for Email, Scheduling, Calendar Management, Meetings, Daily Briefing, Enterprise Search, Communications, Deep Research, and Microsoft 365 files. Custom plugin skills can orchestrate those capabilities without embedding a duplicate connector. Microsoft Dynamics 365 Sales is an existing Cowork plugin that can query leads, opportunities, accounts, and pipeline data; it requires an associated Power Platform environment. A custom `agentConnectors` entry is reserved for another live system or service that isn't already available through Work IQ, built-in skills, or an enabled plugin.

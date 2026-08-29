@@ -6,22 +6,22 @@ Sales Cowork is a **skills-only Microsoft 365 Copilot Cowork plugin** for B2B se
 
 | Skill | Use it for |
 |---|---|
-| `daily-sales-rhythm` | Choose up to three actions from supplied calendar, task, and account evidence. |
-| `customer-meeting-brief` | Prepare one customer meeting from supplied meeting and account evidence. |
+| `daily-sales-rhythm` | Choose up to three actions from Work IQ, calendar, communications, and account evidence. |
+| `customer-meeting-brief` | Prepare one customer meeting from Work IQ and available Sales context. |
 | `meeting-follow-up` | Turn one completed meeting into an internal note, customer email draft, and proposed tasks. |
 | `deal-inspection` | Diagnose the blocker and next move for one selected deal. |
 | `forecast-decision-pack` | Prepare a manager decision pack from approved current and prior forecast snapshots. |
-| `account-market-research` | Answer a defined account or market question from supplied internal and public evidence. |
+| `account-market-research` | Answer a defined account or market question using Work IQ and Deep Research. |
 
 ## Design boundary
 
-This package has no connector, credential, or remote runtime. It is a prompt-and-document workflow: it can use material attached to the current Cowork session, supplied in the conversation or workspace, and any source already made available by Cowork in that session. It does **not** introduce direct access to Outlook, Teams, Planner, SharePoint, or Dynamics 365 Sales. When required evidence is not available, the skill returns `Source unavailable — user input needed` instead of implying that it read a system of record.
+This package adds Sales-specific orchestration skills to the Cowork runtime. It uses Work IQ and Cowork's built-in Email, Scheduling, Calendar Management, Meetings, Enterprise Search, Communications, Deep Research, Word, Excel, PowerPoint, PDF, and file skills when they are available in the session. These capabilities run with the signed-in user's Microsoft 365 permissions.
 
-It does not create Planner tasks, save SharePoint files, update Dynamics 365 Sales, post Teams messages, or send email. Instead, it produces reviewable drafts and structured handoff proposals. Add a remote MCP connector only when a tenant-owned service, OAuth registration, tool-description file, and explicit data-governance decision are available.
+For CRM context, the skills can use the separately enabled Dynamics 365 Sales plugin. Dynamics 365 Sales is enabled by default in Cowork but can be disabled by an administrator and requires the user to select an associated Power Platform environment. If that plugin or environment is unavailable, the workflow falls back to permission-accessible Microsoft 365 evidence and labels CRM-specific fields `unavailable`.
 
-Every skill distinguishes fact, inference, and unknown. Material claims require an accessible source record, message, document, or timestamp. Email remains a draft; commercial terms, deal stage, probability, close date, and forecast values are not changed by the plugin.
+The package doesn't embed a custom connector or credential because Microsoft 365 context and actions are native Cowork capabilities, while Dynamics 365 Sales is an existing Microsoft plugin. A custom `agentConnectors` entry is needed only for another live system or service that isn't already available through Work IQ, built-in skills, or an enabled plugin.
 
-Dynamics 365 Sales is optional evidence only when it is attached to the session or already surfaced by Cowork. The skills do not retrieve CRM records and never imply that a CRM record exists.
+Every skill distinguishes fact, inference, and unknown. Material claims require an accessible source record, message, document, or timestamp. Cowork must present its normal approval checkpoint before sending email, posting to Teams, scheduling a meeting, or making another consequential change. Commercial terms, deal stage, probability, close date, and forecast values remain human-controlled.
 
 ## Build and validate
 
@@ -37,12 +37,13 @@ The upload ZIP must contain `manifest.json`, `color.png`, `outline.png`, and `sk
 
 ## Tenant test
 
-Upload `dist/sales-cowork.zip` in a non-production Microsoft 365 tenant following the Copilot Cowork plugin deployment process. Test first with synthetic meeting exports, opportunity evidence, and forecast snapshots attached to the session. Confirm that each skill labels unknowns, cites supplied evidence, requests missing material, and does not perform a write or external send.
+Upload `dist/sales-cowork.zip` in a non-production Microsoft 365 tenant following the Copilot Cowork plugin deployment process. Test with synthetic Outlook, Teams, SharePoint, and meeting content that the signed-in test user can access. For CRM scenarios, enable the Dynamics 365 Sales plugin and select a non-production Power Platform environment. Confirm permission trimming, evidence citations, approval checkpoints, and safe fallback when Sales context is unavailable.
 
 ## Official references
 
 - [Build plugins for Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugin-development)
 - [Use plugins with Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugins)
+- [Available plugins for Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-available-plugins)
 - [Use Sales agent in Microsoft 365 Copilot](https://learn.microsoft.com/en-us/microsoft-sales-copilot/use-sales-chat)
 
 ## Privacy

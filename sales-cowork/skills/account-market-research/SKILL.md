@@ -1,19 +1,19 @@
 ---
 name: account-market-research
 description: >-
-  Answers one defined account or market research question from supplied internal and public evidence.
+  Answers one defined account or market research question using Work IQ and Deep Research.
   Use when the user asks for a customer's strategy, market change, account hypothesis, competitor context,
   or research needed for a sales conversation. Do not use for an undefined company profile or automatic public-web research.
 metadata:
   author: lwokeray
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Account and Market Research
 
 ## Purpose
 
-Answer a precise research question relevant to one account, market, or sales hypothesis from source material supplied in the session. This skills-only package has no browsing or enterprise-data connector; it does not retrieve internal sources or public-web results on its own.
+Answer a precise research question relevant to one account, market, or sales hypothesis. Use Work IQ and Enterprise Search for permission-accessible internal evidence. Use Deep Research for public research only when the user asks for external or public research.
 
 ## Guardrails
 
@@ -24,9 +24,9 @@ Answer a precise research question relevant to one account, market, or sales hyp
 
 ## Workflow
 
-1. Confirm the target account or market, research question, intended sales use, and supplied source scope.
-2. Use supplied internal evidence and record its source date or timestamp.
-3. Use public evidence only when the user has supplied it or Cowork has already surfaced it in the session. Otherwise write `Source unavailable — user input needed`; do not browse autonomously.
+1. Confirm the target account or market, research question, intended sales use, and whether public research is requested.
+2. Retrieve permission-accessible internal evidence through Work IQ, Enterprise Search, and the Dynamics 365 Sales plugin when available; record its source date or timestamp.
+3. If public research is requested, use Deep Research and keep public evidence separate from internal evidence.
 4. Answer only what the sources support, then list implications as labeled hypotheses or questions.
 5. State gaps that require customer confirmation.
 

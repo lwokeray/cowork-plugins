@@ -6,14 +6,14 @@ description: >-
   or whether manager help is needed. Do not use to change stage, probability, price, terms, close date, or forecast.
 metadata:
   author: lwokeray
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Deal Inspection
 
 ## Purpose
 
-Inspect one named deal, or a user-confirmed set of up to five priority deals, using buyer evidence, activity, commitments, and account material supplied in the session. The result is decision support, never an automatic CRM or forecast update. This package does not directly retrieve CRM, email, or Teams data.
+Inspect one named deal, or a user-confirmed set of up to five priority deals, using the Dynamics 365 Sales plugin plus permission-accessible buyer evidence, activity, commitments, and account material from Work IQ. The result is decision support, never an automatic commercial or forecast decision.
 
 ## Guardrails
 
@@ -25,7 +25,7 @@ Inspect one named deal, or a user-confirmed set of up to five priority deals, us
 ## Workflow
 
 1. Resolve the deal and its permitted source scope.
-2. Use supplied buyer communications, commitments, recent activity, account material, and Sales context. If the evidence is absent, return `Source unavailable — user input needed`.
+2. Query available Dynamics 365 Sales account, opportunity, activity, and pipeline context, then correlate it with permission-accessible buyer communications and documents from Work IQ. If the Sales plugin or selected environment is unavailable, label CRM fields `unavailable` and continue with Microsoft 365 evidence.
 3. Identify the latest evidence for customer need, stakeholder, decision process, commercial path, and next commitment.
 4. State the blocker only to the extent supported by evidence; otherwise name the missing evidence.
 5. Recommend one next safe action and identify whether manager support is needed.
