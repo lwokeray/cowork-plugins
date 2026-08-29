@@ -1,10 +1,10 @@
 # Sales Cowork Prompt Cards
 
-這些 Prompt Cards 採用 Microsoft 建議的 `Goal＋Context＋Source＋Expectations` 結構，並以中括號標示使用者可替換內容，例如 `[客戶名稱，例如：Contoso]`。不適用的欄位可以直接刪除；Work IQ、Permission、Approval 與 Guardrails 由對應 Skill 處理，不需要使用者寫進 Prompt。
+這些 Prompt Cards 採用 Microsoft 建議的 `Goal＋Context＋Source＋Expectations` 結構。供 Microsoft 365 Admin Center 匯入的 CSV 使用 `{{欄位，例如：範例}}` 標示使用者可替換內容；下方目錄以中括號呈現相同欄位，方便閱讀。不適用的欄位可以直接刪除；Work IQ、Permission、Approval 與 Guardrails 由對應 Skill 處理，不需要使用者寫進 Prompt。
 
 所有 Prompt Card 固定設定：
 
-- 支援的應用程式：`Copilot Cowork`
+- CSV 支援的應用程式識別值：`Copilot work`
 - 部門：`銷售`
 - 語言：`Chinese Traditional｜中文（繁體）`
 

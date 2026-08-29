@@ -30,8 +30,8 @@ PROMPT_COLUMNS = [
 ]
 
 TASK_TYPES = {
-    "分析", "協助", "建立", "執行", "排程", "理解", "設計", "尋找",
-    "掌握近況", "程式碼", "準備", "詢問", "編輯", "學習",
+    "Analyze", "Assist", "Create", "Execute", "Schedule", "Understand",
+    "Design", "Find", "Catch up", "Code", "Prepare", "Ask", "Edit", "Learn",
 }
 
 PROMPT_TECHNICAL_TERMS = {
@@ -70,6 +70,8 @@ def validate_prompts(package: Path, expected_count: int) -> None:
     path = package / "prompts" / "prompt-cards.csv"
     if not path.is_file():
         fail("prompts/prompt-cards.csv 不存在")
+    if not path.read_bytes().startswith(b"\xef\xbb\xbf"):
+        fail("Prompt Card CSV 必須使用與官方範本一致的 UTF-8 BOM 編碼")
     with path.open("r", encoding="utf-8-sig", newline="") as handle:
         reader = csv.DictReader(handle)
         if reader.fieldnames != PROMPT_COLUMNS:
@@ -87,16 +89,16 @@ def validate_prompts(package: Path, expected_count: int) -> None:
             fail(f"Prompt Card 第 {index} 列 Prompt Text 超過 8000 字元或為空")
         if len(row["Prompt Text"]) < 80:
             fail(f"Prompt Card 第 {index} 列 Prompt Text 過短，缺少完整使用情境")
-        if not re.search(r"\[[^\]]*例如：[^\]]+\]", row["Prompt Text"]):
-            fail(f"Prompt Card 第 {index} 列 Prompt Text 必須包含 [欄位，例如：範例] 格式")
-        if "[" not in row["Display Prompt"] or "]" not in row["Display Prompt"]:
-            fail(f"Prompt Card 第 {index} 列 Display Prompt 必須顯示可替換欄位")
+        if not re.search(r"\{\{[^{}]*例如：[^{}]+\}\}", row["Prompt Text"]):
+            fail(f"Prompt Card 第 {index} 列 Prompt Text 必須包含 {{{{欄位，例如：範例}}}} 格式")
+        if "{{" in row["Display Prompt"] or "}}" in row["Display Prompt"]:
+            fail(f"Prompt Card 第 {index} 列 Display Prompt 必須是固定短句，不得包含 Prompt Text 變數")
         if technical := sorted(term for term in PROMPT_TECHNICAL_TERMS if term in row["Prompt Text"]):
             fail(f"Prompt Card 第 {index} 列不得包含 Skill 內部工具名稱：{', '.join(technical)}")
         if len(row["Description"]) > 200:
             fail(f"Prompt Card 第 {index} 列 Description 超過 200 字元")
-        if row["Products"] != "Copilot Cowork":
-            fail(f"Prompt Card 第 {index} 列 Products 必須只包含 Copilot Cowork")
+        if row["Products"] != "Copilot work":
+            fail(f"Prompt Card 第 {index} 列 Products 必須使用官方匯入值 Copilot work")
         if row["Department"] != "銷售":
             fail(f"Prompt Card 第 {index} 列 Department 必須為銷售")
         if row["Task Type"] not in TASK_TYPES:
