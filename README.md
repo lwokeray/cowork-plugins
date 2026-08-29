@@ -8,13 +8,15 @@
 | Plugin | Version | Skills | Status | Responsibility |
 |---|---:|---:|---|---|
 | [`sales-cowork`](plugins/sales-cowork/) | 3.1.0 | 18 | candidate | 企業銷售、商機、提案、商務審查、成交交接與續約擴展 |
+| [`marketing-cowork`](plugins/marketing-cowork/) | 1.0.1 | 20 | candidate | 市場與受眾研究、品牌、Campaign、內容、Launch、成效與 Sales handoff |
+| [`finance-cowork`](plugins/finance-cowork/) | 1.0.1 | 15 | candidate | 企業結帳、會計、FP&A、Treasury、財務分析、稽核與內控 |
 | [`hr-cowork`](plugins/hr-cowork/) | 1.0.1 | 20 | candidate | 招募、員工生命週期、HR operations、人才發展與人力規劃 |
 | [`pm-cowork`](plugins/pm-cowork/) | 2.0.1 | 16 | candidate | 產品與專案 intake、規格、規劃、交付、風險、治理與成果檢視 |
 | [`it-operations-cowork`](plugins/it-operations-cowork/) | 1.0.1 | 17 | candidate | Identity、Endpoint、M365、Cloud、Network、Security、Change 與 IT Operations |
 | [`it-helpdesk-cowork`](plugins/it-helpdesk-cowork/) | 2.0.1 | 12 | candidate | Dynamics 365 Customer Service IT case intake、troubleshooting、communication 與 escalation |
 <!-- PLUGIN_CATALOG:END -->
 
-規劃中的 `finance-cowork` 與 `marketing-cowork` 必須完成 Skills、Prompt Cards、icons、evals 與 tenant acceptance 後才加入 Catalog，不建立空殼 package。
+Finance 與 Marketing 與其他職能 Plugin 使用相同的 Skills、Prompt Cards、icons、evals 與 tenant acceptance contract；Catalog 只收錄通過 repository validator 的完整 package。
 
 ## Repository Layout
 

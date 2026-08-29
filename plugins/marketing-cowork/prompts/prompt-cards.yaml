@@ -1,0 +1,221 @@
+cards:
+- id: brand-content-review
+  skill: brand-content-review
+  title: Brand Content Review
+  description: 依 canonical Brand guide、Messaging、Terminology、Approved claims、Legal／Privacy、Accessibility、Localization 與 Channel requirements，對 Marketing content 進行逐項審查、分級、Before／After 修正與 Release。
+  display_prompt: 執行 Brand Content Review，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Brand Content Review」。任務定義：依 canonical Brand guide、Messaging、Terminology、Approved claims、Legal／Privacy、Accessibility、Localization 與 Channel requirements，對 Marketing content 進行逐項審查、分級、Before／After 修正與 Release。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: brand-strategy-governance
+  skill: brand-strategy-governance
+  title: Brand Strategy Governance
+  description: 建立、整併或更新企業 Brand voice、Audience promise、Messaging pillars、Tone spectrum、Terminology、Product naming、Approved claims 與使用規則，並以 Microsoft 365 核准資料維持版本治理。 適用於 Brand system、Messaging。
+  display_prompt: 執行 Brand Strategy Governance，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Brand Strategy Governance」。任務定義：建立、整併或更新企業 Brand voice、Audience promise、Messaging pillars、Tone spectrum、Terminology、Product naming、Approved claims 與使用規則，並以 Microsoft 365 核准資料維持版本治理。 適用於 Brand system、Messaging。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: campaign-optimization-review
+  skill: campaign-optimization-review
+  title: Campaign Optimization Review
+  description: 診斷已執行 Campaign 的 Audience、Delivery、Creative、Message、Offer、Landing、Journey、Conversion、Lead quality、Budget、Attribution 與 Guardrail，建立 evidence-based Hypotheses、Prioritized tests 與。
+  display_prompt: 執行 Campaign Optimization Review，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Campaign Optimization Review」。任務定義：診斷已執行 Campaign 的 Audience、Delivery、Creative、Message、Offer、Landing、Journey、Conversion、Lead quality、Budget、Attribution 與 Guardrail，建立 evidence-based Hypotheses、Prioritized tests 與。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: campaign-strategy-plan
+  skill: campaign-strategy-plan
+  title: Campaign Strategy Plan
+  description: 將明確 Marketing objective 轉為完整 Campaign brief，涵蓋 Audience、Journey、Message、Offer、Channel、Content、Budget、KPI、Measurement、Timeline、Risk、Approval 與執行條件。 適用於 Awareness、Demand。
+  display_prompt: 執行 Campaign Strategy Plan，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Campaign Strategy Plan」。任務定義：將明確 Marketing objective 轉為完整 Campaign brief，涵蓋 Audience、Journey、Message、Offer、Channel、Content、Budget、KPI、Measurement、Timeline、Risk、Approval 與執行條件。 適用於 Awareness、Demand。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: channel-content-adaptation
+  skill: channel-content-adaptation
+  title: Channel Content Adaptation
+  description: 將一份已核准的核心 Marketing content 轉為 Website、LinkedIn、X、Instagram、YouTube、Email、Teams／community、PR 或地區語言版本，依 Channel 行為重新構圖，同時保持 Claim、Brand、Source、Consent 與 CTA fidelity。 適用於。
+  display_prompt: 執行 Channel Content Adaptation，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Channel Content Adaptation」。任務定義：將一份已核准的核心 Marketing content 轉為 Website、LinkedIn、X、Instagram、YouTube、Email、Teams／community、PR 或地區語言版本，依 Channel 行為重新構圖，同時保持 Claim、Brand、Source、Consent 與 CTA fidelity。 適用於。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: competitive-positioning-brief
+  skill: competitive-positioning-brief
+  title: Competitive Positioning Brief
+  description: 研究具名競爭者、替代方案或市場類別，建立以來源為基礎的 Positioning、Messaging、Audience、Proof、Content gap 與 Marketing battlecard。 適用於競爭簡報、Launch messaging、Category positioning 與 Campaign。
+  display_prompt: 執行 Competitive Positioning Brief，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Competitive Positioning Brief」。任務定義：研究具名競爭者、替代方案或市場類別，建立以來源為基礎的 Positioning、Messaging、Audience、Proof、Content gap 與 Marketing battlecard。 適用於競爭簡報、Launch messaging、Category positioning 與 Campaign。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: content-strategy-calendar
+  skill: content-strategy-calendar
+  title: Content Strategy Calendar
+  description: 依 Audience need、Journey、Brand、Campaign objective、Search／Customer evidence 與既有資產，建立 Content pillars、Topic architecture、Format mix、Repurposing map、Editorial calendar、Owner、Dependency 與。
+  display_prompt: 執行 Content Strategy Calendar，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Content Strategy Calendar」。任務定義：依 Audience need、Journey、Brand、Campaign objective、Search／Customer evidence 與既有資產，建立 Content pillars、Topic architecture、Format mix、Repurposing map、Editorial calendar、Owner、Dependency 與。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: email-nurture-campaign
+  skill: email-nurture-campaign
+  title: Email Nurture Campaign
+  description: 設計具完整文案、Audience eligibility、Consent、Timing、Narrative arc、Branch、Suppression、Exit、CTA、Measurement 與 Approval 的 Marketing Email sequence，適用於。
+  display_prompt: 執行 Email Nurture Campaign，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Email Nurture Campaign」。任務定義：設計具完整文案、Audience eligibility、Consent、Timing、Narrative arc、Branch、Suppression、Exit、CTA、Measurement 與 Approval 的 Marketing Email sequence，適用於。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: event-webinar-marketing
+  skill: event-webinar-marketing
+  title: Event Webinar Marketing
+  description: 規劃企業 Event、Webinar、Workshop、Conference 或 Roundtable 的 Audience、Value proposition、Registration、Promotion、Speaker／Content、Calendar、Reminder、Live engagement、Follow-up、Lead treatment 與。
+  display_prompt: 執行 Event Webinar Marketing，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Event Webinar Marketing」。任務定義：規劃企業 Event、Webinar、Workshop、Conference 或 Roundtable 的 Audience、Value proposition、Registration、Promotion、Speaker／Content、Calendar、Reminder、Live engagement、Follow-up、Lead treatment 與。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: lead-lifecycle-handoff
+  skill: lead-lifecycle-handoff
+  title: Lead Lifecycle Handoff
+  description: 將 Marketing response、Event／Content／Form engagement 或 approved lead export整理為具 Consent、Identity、Dedupe、Source、Attribution、Qualification、Score evidence、Routing、SLA、Sales。
+  display_prompt: 執行 Lead Lifecycle Handoff，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Lead Lifecycle Handoff」。任務定義：將 Marketing response、Event／Content／Form engagement 或 approved lead export整理為具 Consent、Identity、Dedupe、Source、Attribution、Qualification、Score evidence、Routing、SLA、Sales。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: market-audience-research
+  skill: market-audience-research
+  title: Market Audience Research
+  description: 針對明確的市場、受眾、需求、Segment、Persona 或 Journey 問題，整合 Microsoft 365 內部證據與使用者要求的 current public research，產出可追溯的 Market and Audience Evidence Brief。 適用於市場進入、Audience segmentation、Persona、需求探索與。
+  display_prompt: 執行 Market Audience Research，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Market Audience Research」。任務定義：針對明確的市場、受眾、需求、Segment、Persona 或 Journey 問題，整合 Microsoft 365 內部證據與使用者要求的 current public research，產出可追溯的 Market and Audience Evidence Brief。 適用於市場進入、Audience segmentation、Persona、需求探索與。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: marketing-content-creation
+  skill: marketing-content-creation
+  title: Marketing Content Creation
+  description: 依核准的 Audience、Brand、Messaging、Claim、Proof、Channel 與 CTA，研究並撰寫可直接審閱的完整 Marketing content，包括 Blog、Thought leadership、Landing page、Case study、Press release、Newsletter、Executive brief 與。
+  display_prompt: 執行 Marketing Content Creation，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Marketing Content Creation」。任務定義：依核准的 Audience、Brand、Messaging、Claim、Proof、Channel 與 CTA，研究並撰寫可直接審閱的完整 Marketing content，包括 Blog、Thought leadership、Landing page、Case study、Press release、Newsletter、Executive brief 與。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: marketing-experiment-design
+  skill: marketing-experiment-design
+  title: Marketing Experiment Design
+  description: 設計、檢查與分析 Marketing A/B 或 controlled experiment，涵蓋 Hypothesis、Unit、Randomization、Primary metric、Guardrail、MDE、Alpha、Power、Sample、Duration、SRM、Multiple testing、Confidence interval、Decision 與。
+  display_prompt: 執行 Marketing Experiment Design，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Marketing Experiment Design」。任務定義：設計、檢查與分析 Marketing A/B 或 controlled experiment，涵蓋 Hypothesis、Unit、Randomization、Primary metric、Guardrail、MDE、Alpha、Power、Sample、Duration、SRM、Multiple testing、Confidence interval、Decision 與。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: marketing-operating-rhythm
+  skill: marketing-operating-rhythm
+  title: Marketing Operating Rhythm
+  description: 從 Microsoft 365 中的 Campaign milestones、Calendar、承諾、Planner 工作、Approval、KPI snapshot 與風險，整理今日、每週或 Campaign control-room 的 Marketing priority brief。 適用於「今天先做什麼」「本週 Marketing 重點」「Campaign。
+  display_prompt: 執行 Marketing Operating Rhythm，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Marketing Operating Rhythm」。任務定義：從 Microsoft 365 中的 Campaign milestones、Calendar、承諾、Planner 工作、Approval、KPI snapshot 與風險，整理今日、每週或 Campaign control-room 的 Marketing priority brief。 適用於「今天先做什麼」「本週 Marketing 重點」「Campaign。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: marketing-performance-report
+  skill: marketing-performance-report
+  title: Marketing Performance Report
+  description: 整合 Excel、SharePoint、Campaign files、approved exports 與 Microsoft 365 context，建立具 KPI 定義、Data quality、Period／Target comparison、Funnel／Channel、Budget、Attribution、Trend、Insight、Decision 與來源的。
+  display_prompt: 執行 Marketing Performance Report，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Marketing Performance Report」。任務定義：整合 Excel、SharePoint、Campaign files、approved exports 與 Microsoft 365 context，建立具 KPI 定義、Data quality、Period／Target comparison、Funnel／Channel、Budget、Attribution、Trend、Insight、Decision 與來源的。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: marketing-work-management
+  skill: marketing-work-management
+  title: Marketing Work Management
+  description: 在 Microsoft 365 中檢視、建立、更新、指派、重新排程或有限刪除 Marketing work item、Planner task、Campaign／Content／Approval register、Calendar milestone與 internal handoff，具備 runtime schema discovery、identity。
+  display_prompt: 執行 Marketing Work Management，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Marketing Work Management」。任務定義：在 Microsoft 365 中檢視、建立、更新、指派、重新排程或有限刪除 Marketing work item、Planner task、Campaign／Content／Approval register、Calendar milestone與 internal handoff，具備 runtime schema discovery、identity。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: paid-media-creative-plan
+  skill: paid-media-creative-plan
+  title: Paid Media Creative Plan
+  description: 規劃 Paid search、Paid social、Display、Video、Sponsored content 與 Retargeting 的 Objective、Audience、Offer、Channel role、Budget scenario、Creative angles、完整 Copy variants、Visual。
+  display_prompt: 執行 Paid Media Creative Plan，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Paid Media Creative Plan」。任務定義：規劃 Paid search、Paid social、Display、Video、Sponsored content 與 Retargeting 的 Objective、Audience、Offer、Channel role、Budget scenario、Creative angles、完整 Copy variants、Visual。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: product-launch-marketing
+  skill: product-launch-marketing
+  title: Product Launch Marketing
+  description: 建立 Product、Feature、Service 或 Market launch 的 Launch tier、Audience、Positioning、Messaging、Proof、Availability、Asset、Channel、Readiness、Embargo、Enablement、Timeline、Risk、Measurement 與 Decision。
+  display_prompt: 執行 Product Launch Marketing，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Product Launch Marketing」。任務定義：建立 Product、Feature、Service 或 Market launch 的 Launch tier、Audience、Positioning、Messaging、Proof、Availability、Asset、Channel、Readiness、Embargo、Enablement、Timeline、Risk、Measurement 與 Decision。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: seo-content-optimization
+  skill: seo-content-optimization
+  title: SEO Content Optimization
+  description: 依 Website／Content、Search intent、Keyword／query evidence、Audience、Competitor content、Brand 與 Conversion goal，進行 SEO content audit、On-page review、Content gap、Topic cluster、Metadata、Internal。
+  display_prompt: 執行 SEO Content Optimization，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「SEO Content Optimization」。任務定義：依 Website／Content、Search intent、Keyword／query evidence、Audience、Competitor content、Brand 與 Conversion goal，進行 SEO content audit、On-page review、Content gap、Topic cluster、Metadata、Internal。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW
+- id: voice-of-customer-synthesis
+  skill: voice-of-customer-synthesis
+  title: Voice Of Customer Synthesis
+  description: 從會議逐字稿、訪談、Forms、Email、Customer notes 與使用者提供的材料中，提取可追溯的 Voice of Customer themes、逐字引言、需求、阻礙與語言模式。 適用於 Message validation、Persona、Content、Campaign 與 Product feedback；不適用於無逐字來源的虛構引言、個人。
+  display_prompt: 執行 Voice Of Customer Synthesis，整理證據、假設、風險與核准事項。
+  prompt: 請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Voice Of Customer Synthesis」。任務定義：從會議逐字稿、訪談、Forms、Email、Customer notes 與使用者提供的材料中，提取可追溯的 Voice of Customer themes、逐字引言、需求、阻礙與語言模式。 適用於 Message validation、Persona、Content、Campaign 與 Product feedback；不適用於無逐字來源的虛構引言、個人。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。
+  products:
+  - Copilot work
+  department: Marketing
+  task_type: Analysis and planning
+  locale: zh-TW

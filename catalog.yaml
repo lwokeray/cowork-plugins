@@ -3,6 +3,14 @@ plugins:
     path: plugins/sales-cowork
     status: candidate
     responsibility: 企業銷售、商機、提案、商務審查、成交交接與續約擴展
+  - id: marketing-cowork
+    path: plugins/marketing-cowork
+    status: candidate
+    responsibility: 市場與受眾研究、品牌、Campaign、內容、Launch、成效與 Sales handoff
+  - id: finance-cowork
+    path: plugins/finance-cowork
+    status: candidate
+    responsibility: 企業結帳、會計、FP&A、Treasury、財務分析、稽核與內控
   - id: hr-cowork
     path: plugins/hr-cowork
     status: candidate

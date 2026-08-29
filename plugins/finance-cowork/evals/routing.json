@@ -1,0 +1,98 @@
+{
+  "suite": "finance-cowork-1.0.1-routing",
+  "locale": "zh-TW",
+  "positive": [
+    {
+      "id": "account-reconciliation",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Account Reconciliation」。任務定義：將 GL balance 與 Bank statement、Subledger、Supporting schedule、Counterparty 或 Roll-forward 進行可追溯對帳，分類 Reconciling items、Aging、Adjustment 與未解差異。 適用於。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "account-reconciliation"
+    },
+    {
+      "id": "audit-evidence-support",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Audit Evidence Support」。任務定義：協助 Finance、Controllership、Internal Audit 與 External Audit 團隊建立、追蹤、驗證並交付 PBC／Audit evidence package，涵蓋 Evidence request、Source integrity、Completeness and。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "audit-evidence-support"
+    },
+    {
+      "id": "budget-forecast-planning",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Budget Forecast Planning」。任務定義：依受控 Actuals、Operational drivers、Headcount plan、Commitments 與核准 Assumptions 建立或更新 Budget、Rolling Forecast、Long-range Plan 與 Scenario model。 適用於 Revenue、Opex、Headcount、Capex、Working。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "budget-forecast-planning"
+    },
+    {
+      "id": "cash-liquidity-forecast",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Cash Liquidity Forecast」。任務定義：依 Bank／Cash balances、AR collections、AP due dates、Payroll、Tax、Debt、Capex 與核准 Funding assumptions 建立 13-week 或其他短期 Cash and Liquidity forecast。 適用於 Cash visibility、Liquidity headroom、Funding。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "cash-liquidity-forecast"
+    },
+    {
+      "id": "close-management",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Close Management」。任務定義：依據 Microsoft 365 中的 Close calendar、Checklist、工作底稿、訊息與核准證據，規劃及追蹤月結、季結或年結工作。 適用於建立 Close plan、依賴關係、Critical path、Blocker register、Daily close status 與結帳回顧；不適用於計算個別 Journal Entry、執行 Account。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "close-management"
+    },
+    {
+      "id": "dcf-valuation",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「DCF Valuation」。任務定義：依 Historical／Forecast financials、Unlevered free cash flow、WACC、Terminal value、Net debt、Other claims 與 Diluted shares 建立可稽核 DCF valuation、Enterprise-to-equity bridge、Scenario 與 Sensitivity。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "dcf-valuation"
+    },
+    {
+      "id": "financial-analysis",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Financial Analysis」。任務定義：依 Income Statement、Balance Sheet、Cash Flow 與營運資料計算 Profitability、Liquidity、Leverage、Efficiency、Growth、Cash conversion、DuPont、YoY／QoQ 趨勢與跨報表異常訊號。 適用於 Management financial review、Earnings。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "financial-analysis"
+    },
+    {
+      "id": "financial-model-building",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Financial Model Building」。任務定義：建立或更新可稽核的 Operating model、Three-statement model、Debt、Capex、Working capital、Scenario 與 Sensitivity schedules，並維持 Formula consistency、Source traceability 與 Model checks。 適用於 Integrated。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "financial-model-building"
+    },
+    {
+      "id": "financial-statement-preparation",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Financial Statement Preparation」。任務定義：依核准 Trial Balance、Account mapping、Adjustments、Eliminations 與 Reporting policy 產製或審查 Income Statement、Balance Sheet、Cash Flow 與相關附表。 適用於 Monthly／Quarterly／Annual management。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "financial-statement-preparation"
+    },
+    {
+      "id": "internal-control-testing",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Internal Control Testing」。任務定義：協助 Finance、Controllership、SOX／ICFR 與 Internal Audit 團隊規劃並執行Internal control walkthrough、Design effectiveness與Operating effectiveness testing，涵蓋Risk／Assertion、RCM、Population、Sample、IPE、Test。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "internal-control-testing"
+    },
+    {
+      "id": "invoice-expense-review",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Invoice Expense Review」。任務定義：依 Procurement、AP、Travel／Expense、Delegation 與 Accounting policy 審查 Vendor invoice 或 Employee expense 的完整性、Duplicate、PO／Receipt match、Coding、Cut-off、Tax fields、Exception 與核准證據。 適用於建立 Review。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "invoice-expense-review"
+    },
+    {
+      "id": "journal-entry-preparation",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Journal Entry Preparation」。任務定義：依核准的 Accounting policy、Chart of Accounts、來源文件與計算底稿準備或審查 Journal Entry 草案。 適用於 Accrual、Prepaid amortization、Depreciation、Payroll、Revenue recognition、FX。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "journal-entry-preparation"
+    },
+    {
+      "id": "management-reporting",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Management Reporting」。任務定義：將核准 Financial statements、Forecast、Variance、Cash、Working capital、KPIs、Risks 與 Actions 整合為 CFO、Leadership、Board 或 Monthly Business Review 可直接使用的 Finance decision pack。 適用於 Executive。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "management-reporting"
+    },
+    {
+      "id": "variance-analysis",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Variance Analysis」。任務定義：將 Actual、Budget、Forecast、Prior period 或 Prior year 的財務差異拆解為可驗證的 Price、Volume、Mix、Rate、Headcount、Timing、FX 與其他業務驅動因素。 適用於 P&L flux、Management commentary、Waterfall／Bridge、Forecast accuracy 與。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "variance-analysis"
+    },
+    {
+      "id": "working-capital-review",
+      "prompt": "請針對 {{業務範圍、期間、目標與已核准來源}} 執行「Working Capital Review」。任務定義：分析 Accounts Receivable、Inventory、Accounts Payable 與其他 Operating working capital 的 Aging、Turnover、DSO、DIO、DPO、Cash Conversion Cycle、Concentration 與可執行改善事項。 適用於 Working-capital。 請區分已確認事實、計算、假設、推論與未知，保留來源、版本與 as-of；交付可直接審閱的完整成果、風險、缺口、Owner 與下一步。任何寄送、發布、付款、過帳、預算承諾或系統寫入都先提供精確預覽並取得核准。",
+      "expected_skill": "working-capital-review"
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "替 Contoso 建立銷售提案與 Win strategy。",
+      "expected_plugin": "sales-cowork",
+      "must_not_route_to": "finance-cowork"
+    },
+    {
+      "prompt": "替候選人建立面試評分表與 Interview kit。",
+      "expected_plugin": "hr-cowork",
+      "must_not_route_to": "finance-cowork"
+    },
+    {
+      "prompt": "規劃新品 Campaign、內容與 Channel calendar。",
+      "expected_plugin": "marketing-cowork",
+      "must_not_route_to": "finance-cowork"
+    }
+  ]
+}
