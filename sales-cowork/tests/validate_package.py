@@ -39,6 +39,9 @@ PROMPT_TECHNICAL_TERMS = {
     "delete_entity", "do_action", "call_function", "list_agents",
 }
 
+PROMPT_PRODUCTS = {"Copilot work", "Copilot web"}
+WORK_ONLY_PROMPTS = {"安排 Planner 銷售工作"}
+
 
 def fail(message: str) -> None:
     print(f"FAIL: {message}")
@@ -97,8 +100,12 @@ def validate_prompts(package: Path, expected_count: int) -> None:
             fail(f"Prompt Card 第 {index} 列不得包含 Skill 內部工具名稱：{', '.join(technical)}")
         if len(row["Description"]) > 200:
             fail(f"Prompt Card 第 {index} 列 Description 超過 200 字元")
-        if row["Products"] != "Copilot work":
-            fail(f"Prompt Card 第 {index} 列 Products 必須使用官方匯入值 Copilot work")
+        products = {item.strip() for item in row["Products"].split(",") if item.strip()}
+        if not products or not products.issubset(PROMPT_PRODUCTS):
+            fail(f"Prompt Card 第 {index} 列 Products 包含不支援的匯入值")
+        expected_products = {"Copilot work"} if row["Title"] in WORK_ONLY_PROMPTS else PROMPT_PRODUCTS
+        if products != expected_products:
+            fail(f"Prompt Card 第 {index} 列 Products 與工作所需介面不符")
         if row["Department"] != "銷售":
             fail(f"Prompt Card 第 {index} 列 Department 必須為銷售")
         if row["Task Type"] not in TASK_TYPES:

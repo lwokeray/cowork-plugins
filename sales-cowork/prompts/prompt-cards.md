@@ -4,7 +4,7 @@
 
 所有 Prompt Card 固定設定：
 
-- CSV 支援的應用程式識別值：`Copilot work`
+- CSV 支援的應用程式識別值：16 張通用卡片為 `Copilot work, Copilot web`；Planner 執行卡片為 `Copilot work`
 - 部門：`銷售`
 - 語言：`Chinese Traditional｜中文（繁體）`
 

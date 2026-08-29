@@ -40,7 +40,7 @@ Sales Cowork 是專為 Enterprise Sales、B2B Solution Sales、Presales 與 Sale
 - [Prompt Card 欄位目錄](prompts/prompt-cards.md)
 - [Prompt Card CSV](prompts/prompt-cards.csv)
 
-每個 Skill 對應一張繁體中文 Prompt Card。CSV 完全遵循 Microsoft 365 Admin Center 的 Organizational Prompts 匯入欄位與 UTF-8 BOM 編碼：`Products` 使用官方識別值 `Copilot work`、`Task Type` 使用英文匯入枚舉、`Locale` 為 `zh-TW`、部門為 `銷售`。Prompt 採用 `Goal＋Context＋Source＋Expectations` 結構，並以 `{{欄位，例如：範例}}` 標示使用者可直接替換的內容；Work IQ 與治理規則保留在 Skill 內。
+每個 Skill 對應一張繁體中文 Prompt Card。CSV 完全遵循 Microsoft 365 Admin Center 的 Organizational Prompts 匯入欄位與 UTF-8 BOM 編碼：分析、摘要、研究、草稿及預覽型提示同時支援 `Copilot work` 與 `Copilot web`；需要 Planner 工作資料的提示只支援 `Copilot work`。Web 模式不會自行存取 M365 內部資料，使用者需貼上或附加必要內容。`Task Type` 使用英文匯入枚舉、`Locale` 為 `zh-TW`、部門為 `銷售`。Prompt 採用 `Goal＋Context＋Source＋Expectations` 結構，並以 `{{欄位，例如：範例}}` 標示使用者可直接替換的內容；Work IQ 與治理規則保留在 Skill 內。
 
 ## 建置與驗證
 
