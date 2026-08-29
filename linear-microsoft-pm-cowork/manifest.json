@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "2.0.0",
+  "id": "a39e322f-9aa8-4d59-a165-4f7b960b79c2",
+  "developer": {
+    "name": "lwokeray",
+    "websiteUrl": "https://github.com/lwokeray/cowork-plugins",
+    "privacyUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/linear-microsoft-pm-cowork/README.md#privacy",
+    "termsOfUseUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/linear-microsoft-pm-cowork/README.md#terms-of-use"
+  },
+  "name": {
+    "short": "PM Cowork",
+    "full": "產品與專案管理 Copilot Cowork"
+  },
+  "description": {
+    "short": "以證據、治理與人工核准管理產品探索、規劃、交付及成果。",
+    "full": "提供 16 個繁體中文產品與專案管理 Skills，涵蓋 intake、issue shaping、PRD、story map、估算、加權決策、風險、project ops、roadmap、cycle、客戶訊號、專案更新、成果檢視、治理與品質審查。"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#5E6AD2",
+  "agentSkills": [
+    {
+      "folder": "./skills/pm-operating-system"
+    },
+    {
+      "folder": "./skills/issue-triage"
+    },
+    {
+      "folder": "./skills/issue-shaping"
+    },
+    {
+      "folder": "./skills/product-spec-writer"
+    },
+    {
+      "folder": "./skills/story-map-builder"
+    },
+    {
+      "folder": "./skills/project-sizing-guide"
+    },
+    {
+      "folder": "./skills/weighted-scorer"
+    },
+    {
+      "folder": "./skills/risk-heatmap"
+    },
+    {
+      "folder": "./skills/project-ops"
+    },
+    {
+      "folder": "./skills/initiative-roadmap"
+    },
+    {
+      "folder": "./skills/cycle-planning"
+    },
+    {
+      "folder": "./skills/customer-signal"
+    },
+    {
+      "folder": "./skills/project-update"
+    },
+    {
+      "folder": "./skills/outcome-review"
+    },
+    {
+      "folder": "./skills/governance"
+    },
+    {
+      "folder": "./skills/pm-reviewer"
+    }
+  ]
+}
