@@ -1,0 +1,183 @@
+{
+  "suite": "pm-cowork-2.0.1",
+  "locale": "zh-TW",
+  "supported_app": "Copilot Cowork",
+  "evals": [
+    {
+      "id": "pm-operating-system",
+      "prompt": "請為我們的產品團隊建立 PM operating system，統一 intake、PRD、cycle、roadmap、風險與週報的責任邊界。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "issue-triage",
+      "prompt": "請整理本週收到的產品請求，標示重複項、需要補件的項目，以及建議由哪個 team 接手。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "issue-shaping",
+      "prompt": "把已核准的匯出失敗問題整理成可交付 issue，補上邊界情境、驗收條件與依賴。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "product-spec-writer",
+      "prompt": "根據客戶研究與現有流程，建立新版權限管理 PRD，包含需求 ID、非功能需求、成功指標與 rollout。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "story-map-builder",
+      "prompt": "把已核准的 onboarding PRD 轉成 story map，提出 MVP、第二階段與各 slice 的 learning goal。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "project-sizing-guide",
+      "prompt": "請估算這個專案的工程規模，列出樂觀、最可能、保守區間及需要重新估算的觸發條件。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "weighted-scorer",
+      "prompt": "比較三個分析平台，依成本、整合、安全、可營運性評分，並測試權重改變是否會翻轉結論。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "risk-heatmap",
+      "prompt": "請為下一季 release 建立 5×5 風險熱圖，列出前三大風險、緩解行動、owner 與 residual exposure。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "project-ops",
+      "prompt": "幫我建立新專案的 operating baseline，包含里程碑、角色、決策節奏、依賴與每週健康檢查。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "initiative-roadmap",
+      "prompt": "請建立未來兩季的產品 roadmap，依策略成果排列 initiatives，標出依賴、信心與需要主管決策的地方。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "cycle-planning",
+      "prompt": "依目前 team capacity 規劃下一個兩週 cycle，列出選入、候補、移除項目與關鍵依賴。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "customer-signal",
+      "prompt": "整理最近 90 天企業客戶對權限管理的回饋，找出主題、反證、證據強度與下一步驗證問題。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "project-update",
+      "prompt": "準備本週給主管的專案更新，聚焦成果、健康度變化、風險、依賴與需要決策的事項。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "outcome-review",
+      "prompt": "檢視新版 onboarding 上線後 30 天的成果，比較 baseline、target、observed 與 guardrail，提出下一步。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "governance",
+      "prompt": "請更新專案狀態並發布主管週報；先列出所有變更與收件對象，等我確認後再執行。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    },
+    {
+      "id": "pm-reviewer",
+      "prompt": "請審查這份 PRD 與預計建立的 issues，在寫入前指出證據、驗收、依賴與核准缺口。",
+      "expected": [
+        "辨識唯一 PM 物件與時間範圍",
+        "重要結論附來源或標示 unknown",
+        "事實、推論、建議與 approval 分離",
+        "mutation 先預覽核准並讀回驗證",
+        "不輸出內部工具或思考過程"
+      ]
+    }
+  ]
+}

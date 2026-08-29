@@ -1,0 +1,35 @@
+name: Validate Cowork Plugins
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python scripts/validate_repo.py
+      - run: python -m unittest discover -s tests -v
+      - name: Build every plugin
+        run: |
+          for plugin in plugins/*-cowork; do
+            python scripts/build_plugin.py "$(basename "$plugin")"
+          done
+      - name: Inspect package roots
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import zipfile
+          allowed = {"manifest.json", "color.png", "outline.png", "skills", "tools"}
+          for path in Path("build").glob("*.zip"):
+              with zipfile.ZipFile(path) as archive:
+                  roots = {name.split("/", 1)[0] for name in archive.namelist() if name}
+              assert roots <= allowed, f"{path}: unexpected ZIP roots {sorted(roots - allowed)}"
+          PY

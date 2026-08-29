@@ -1,0 +1,123 @@
+{
+  "suite": "hr-cowork-1.0.1-routing",
+  "locale": "zh-TW",
+  "positive": [
+    {
+      "id": "hr-operations-brief",
+      "prompt": "請整理 {{日期與範圍，例如：今天、台灣 HR 團隊}} 的 HR 工作。優先列出 {{流程，例如：面試、下週一到職、員工服務}}，合併重複事件，標示 Owner、截止日、阻塞、敏感個案索引及需要我決定的事項；先提供唯讀摘要，不直接寄信或更新任務。",
+      "expected_skill": "hr-operations-brief"
+    },
+    {
+      "id": "workforce-requisition-intake",
+      "prompt": "請將 {{需求來源，例如：主管郵件與會議紀錄}} 整理為 {{職務，例如：Senior Cloud Engineer}} 的人力需求申請。驗證業務成果、容量或技能缺口、Headcount、Budget、Level、Location、Target Start、替代方案與核准路徑；缺少項目標示待確認，不直接建立已核准職缺。",
+      "expected_skill": "workforce-requisition-intake"
+    },
+    {
+      "id": "job-description-design",
+      "prompt": "請依 {{核准職缺，例如：台北 Senior Security Consultant}} 建立完整 Job Description。包含角色成果、主要責任、Must-have、可培養能力、工作條件、薪酬與適用聲明的待確認欄位；檢查不必要資格、偏誤與可評估性，提供發布前 QA，不直接刊登。",
+      "expected_skill": "job-description-design"
+    },
+    {
+      "id": "talent-sourcing-plan",
+      "prompt": "請為 {{職缺，例如：Microsoft 365 Solution Architect}} 規劃人才來源。把核心成果轉成直接與相鄰證據、搜尋語彙、渠道、去重、Consent、Outreach 草稿、每週容量、漏斗假設與 Review trigger；不得用年齡、外貌、學校或其他敏感代理條件，也不要直接批次發送。",
+      "expected_skill": "talent-sourcing-plan"
+    },
+    {
+      "id": "candidate-intake-screening",
+      "prompt": "請針對 {{候選人或批次，例如：此職缺最近 5 位申請者}}，依 {{核准 Rubric，例如：JD 的 5 項 Must-have}} 建立 Evidence Map。區分有證據、相鄰證據、未提及與需驗證，檢查重複與資料權利，提出人工複核問題；不要自動排名、拒絕或推斷敏感屬性。",
+      "expected_skill": "candidate-intake-screening"
+    },
+    {
+      "id": "interview-plan-scorecard",
+      "prompt": "請依 {{職缺，例如：Sales Manager}} 設計結構化 Interview Kit。建立 4–6 項工作能力、Panel 分工、Behavioral／Situational questions、固定追問、Work sample、1–4 分專屬錨點、NE 規則、合理調整與 Debrief template；移除敏感或文化契合問題。",
+      "expected_skill": "interview-plan-scorecard"
+    },
+    {
+      "id": "interview-coordination",
+      "prompt": "請為 {{候選人與職缺，例如：Alex 的 Cloud Architect 面試}} 協調 {{面試範圍，例如：下週三場 Panel}}。核對身份、Email、時區、時長、必要面試官、Buffer、Room／online link 與必要調整，只先提供 2–3 個時段和完整邀請預覽，取得核准後才建立事件。",
+      "expected_skill": "interview-coordination"
+    },
+    {
+      "id": "interview-debrief",
+      "prompt": "請為 {{候選人與職缺，例如：Alex／Cloud Architect}} 建立 Interview Debrief Pack。依預先核准 Competency 整理各面試官獨立 Evidence、Score、Anchor 對齊、NE、分歧、流程偏差與待補問題，隔離敏感或主觀評論；保留 Human decision 欄位，不替 Panel 決定錄取。",
+      "expected_skill": "interview-debrief"
+    },
+    {
+      "id": "candidate-communications",
+      "prompt": "請為 {{候選人與情境，例如：完成二面、等待結果的 Alex}} 撰寫 {{訊息類型，例如：進度更新、邀請、補件或婉拒}}。先核對正式 Stage、Decision、日期、語言與聯絡方式，包含清楚下一步及期限；不要透露內部評分或捏造理由，只提供傳送預覽。",
+      "expected_skill": "candidate-communications"
+    },
+    {
+      "id": "offer-compensation-review",
+      "prompt": "請為 {{候選人與職缺，例如：Alex／Senior Consultant}} 建立 Offer Decision Pack。核對 Human selection decision、Level、Location、Salary band、Budget、Total Rewards、內部一致性、市場資料口徑、Start、Contingencies 與 Approvers，提供可比較情境與正式條款預覽；不要用過往薪資自動定薪或直接寄出。",
+      "expected_skill": "offer-compensation-review"
+    },
+    {
+      "id": "onboarding-orchestration",
+      "prompt": "請依 {{已接受 Offer，例如：9 月 15 日到職的台北 Solution Architect}} 建立 Onboarding Master Plan。涵蓋 HR、Payroll、IT、Security、Facilities、Manager、Learning、Day 1、30／60／90 天、Owner、依賴、證據與 Readiness Gate；敏感資料只放安全入口，先提供執行預覽。",
+      "expected_skill": "onboarding-orchestration"
+    },
+    {
+      "id": "employee-record-change",
+      "prompt": "請處理 {{異動，例如：兩位員工於月底更換主管與成本中心}}。使用唯一 Employee ID 核對正式來源、Current value、Requested value、Effective date、Reason、Approver、Payroll／Directory／Access 影響與通知，逐系統顯示 Preview；未核准或身份不明的項目不要寫入。",
+      "expected_skill": "employee-record-change"
+    },
+    {
+      "id": "leave-accommodation-intake",
+      "prompt": "請接收 {{需求，例如：員工希望三個月調整工作地點與時間}}。只整理工作功能、需要的安排、期間、關鍵日期與安全聯絡方式，查找適用政策、Owner、文件安全入口、Interim options、Manager need-to-know 與 Review；不要詢問診斷或自行批准／拒絕。",
+      "expected_skill": "leave-accommodation-intake"
+    },
+    {
+      "id": "employee-relations-case",
+      "prompt": "請把 {{來源，例如：員工對主管行為的申訴}} 建立為受限 ER Case Brief。保留原始陳述，區分 Allegation、Observation、Hearsay、Document 與 Unknown，建立 Timeline、Evidence inventory、立即安全／報復風險、Conflict、Preservation 與 Human decision gates；不要判斷誰說謊或建議處分。",
+      "expected_skill": "employee-relations-case"
+    },
+    {
+      "id": "performance-cycle-support",
+      "prompt": "請為 {{員工與期間，例如：Alex 的 2026 H2 review}} 建立 Performance Evidence Matrix。對照正式 Goals、Role／Level、具體 Contribution、Outcome、Feedback、Context 與來源，檢查 Recency、Visibility、Attribution 與標準不一致，產生 Review Draft 與 Calibration questions；Rating 保留給 Manager 決定。",
+      "expected_skill": "performance-cycle-support"
+    },
+    {
+      "id": "learning-development-plan",
+      "prompt": "請依 {{對象與目標，例如：M365 顧問團隊提升 Copilot Studio 交付能力}} 建立 Learning & Development Plan。說明 Baseline evidence、Target behavior、Learn／Observe／Practice／Feedback／Apply、Owner、時間、成本、Accessibility、工作應用證據與 Review；不要只列課程或把完成課程當成能力。",
+      "expected_skill": "learning-development-plan"
+    },
+    {
+      "id": "engagement-listening-analysis",
+      "prompt": "請分析 {{資料，例如：2026 Q3 engagement survey 與開放題}}。先檢查 Population、Scale、Response、Missingness、可比性與匿名門檻 {{門檻，例如：至少 10 人}}，整理量化趨勢、去識別主題、資料限制與 Action owner；不要識別回覆者或預測個人離職。",
+      "expected_skill": "engagement-listening-analysis"
+    },
+    {
+      "id": "workforce-capacity-planning",
+      "prompt": "請為 {{範圍，例如：台灣 Microsoft Delivery 團隊 2027 年}} 建立 Workforce Capacity Plan。定義 Demand driver、Productive capacity、Skill coverage、Vacancy、Aggregate attrition、Hiring lead time、Cost 與 Base／Upside／Downside 情境，提供 Action mix、敏感度、Trigger 與 Approvers；不要預測或排名個人離職。",
+      "expected_skill": "workforce-capacity-planning"
+    },
+    {
+      "id": "policy-handbook-maintenance",
+      "prompt": "請更新 {{政策，例如：台灣 Hybrid Work Policy}}。確認 Current controlled version、適用地區、Policy owner、官方／Legal input、Requirement conflict，產生完整修訂正文、Before／After、Impact、RACI、FAQ、Manager guide、Communication、Effective date 與 Publication Gate；未完成必要核准前不要覆寫或發布。",
+      "expected_skill": "policy-handbook-maintenance"
+    },
+    {
+      "id": "offboarding-transition",
+      "prompt": "請依 {{正式事件，例如：Alex 已核准於 9 月 30 日離職}} 建立 Offboarding Master Plan。區分 Last working day、Employment end、Access cutoff、Payroll／Benefits、Knowledge／Customer handoff、Assets、Secrets、Records／Legal hold、分眾溝通與 Post-exit reconciliation；未正式通知或核准前不要停權、刪除或公告。",
+      "expected_skill": "offboarding-transition"
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "替 Contoso 建立銷售提案與 Win strategy。",
+      "expected_plugin": "sales-cowork",
+      "must_not_route_to": "hr-cowork"
+    },
+    {
+      "prompt": "檢查 Azure workload 的備份與 Restore test。",
+      "expected_plugin": "it-operations-cowork",
+      "must_not_route_to": "hr-cowork"
+    },
+    {
+      "prompt": "建立產品 Roadmap 與兩週 Cycle。",
+      "expected_plugin": "pm-cowork",
+      "must_not_route_to": "hr-cowork"
+    }
+  ]
+}

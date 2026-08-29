@@ -1,0 +1,103 @@
+{
+  "suite": "pm-cowork-2.0.1-routing",
+  "locale": "zh-TW",
+  "positive": [
+    {
+      "id": "pm-operating-system",
+      "prompt": "請為我們的產品團隊建立 PM operating system，統一 intake、PRD、cycle、roadmap、風險與週報的責任邊界。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "pm-operating-system"
+    },
+    {
+      "id": "issue-triage",
+      "prompt": "請整理本週收到的產品請求，標示重複項、需要補件的項目，以及建議由哪個 team 接手。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "issue-triage"
+    },
+    {
+      "id": "issue-shaping",
+      "prompt": "把已核准的匯出失敗問題整理成可交付 issue，補上邊界情境、驗收條件與依賴。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "issue-shaping"
+    },
+    {
+      "id": "product-spec-writer",
+      "prompt": "根據客戶研究與現有流程，建立新版權限管理 PRD，包含需求 ID、非功能需求、成功指標與 rollout。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "product-spec-writer"
+    },
+    {
+      "id": "story-map-builder",
+      "prompt": "把已核准的 onboarding PRD 轉成 story map，提出 MVP、第二階段與各 slice 的 learning goal。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "story-map-builder"
+    },
+    {
+      "id": "project-sizing-guide",
+      "prompt": "請估算這個專案的工程規模，列出樂觀、最可能、保守區間及需要重新估算的觸發條件。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "project-sizing-guide"
+    },
+    {
+      "id": "weighted-scorer",
+      "prompt": "比較三個分析平台，依成本、整合、安全、可營運性評分，並測試權重改變是否會翻轉結論。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "weighted-scorer"
+    },
+    {
+      "id": "risk-heatmap",
+      "prompt": "請為下一季 release 建立 5×5 風險熱圖，列出前三大風險、緩解行動、owner 與 residual exposure。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "risk-heatmap"
+    },
+    {
+      "id": "project-ops",
+      "prompt": "幫我建立新專案的 operating baseline，包含里程碑、角色、決策節奏、依賴與每週健康檢查。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "project-ops"
+    },
+    {
+      "id": "initiative-roadmap",
+      "prompt": "請建立未來兩季的產品 roadmap，依策略成果排列 initiatives，標出依賴、信心與需要主管決策的地方。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "initiative-roadmap"
+    },
+    {
+      "id": "cycle-planning",
+      "prompt": "依目前 team capacity 規劃下一個兩週 cycle，列出選入、候補、移除項目與關鍵依賴。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "cycle-planning"
+    },
+    {
+      "id": "customer-signal",
+      "prompt": "整理最近 90 天企業客戶對權限管理的回饋，找出主題、反證、證據強度與下一步驗證問題。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "customer-signal"
+    },
+    {
+      "id": "project-update",
+      "prompt": "準備本週給主管的專案更新，聚焦成果、健康度變化、風險、依賴與需要決策的事項。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "project-update"
+    },
+    {
+      "id": "outcome-review",
+      "prompt": "檢視新版 onboarding 上線後 30 天的成果，比較 baseline、target、observed 與 guardrail，提出下一步。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "outcome-review"
+    },
+    {
+      "id": "governance",
+      "prompt": "請更新專案狀態並發布主管週報；先列出所有變更與收件對象，等我確認後再執行。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "governance"
+    },
+    {
+      "id": "pm-reviewer",
+      "prompt": "請審查這份 PRD 與預計建立的 issues，在寫入前指出證據、驗收、依賴與核准缺口。 範圍是 {{物件或團隊，例如：目前產品團隊}}，期間是 {{時間範圍，例如：本季}}。請依核准來源產出可直接審查的結果，標示來源與日期、未知與衝突、owner、風險、依賴、待決策事項及下一步；任何建立、更新、寄送或發布先提供完整預覽。",
+      "expected_skill": "pm-reviewer"
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "依候選人的年齡與學校替我自動排名。",
+      "expected_plugin": "hr-cowork",
+      "must_not_route_to": "pm-cowork"
+    },
+    {
+      "prompt": "準備客戶 Proposal 的 Gold Review 與送件檢查。",
+      "expected_plugin": "sales-cowork",
+      "must_not_route_to": "pm-cowork"
+    },
+    {
+      "prompt": "處理 M365 service incident。",
+      "expected_plugin": "it-operations-cowork",
+      "must_not_route_to": "pm-cowork"
+    }
+  ]
+}

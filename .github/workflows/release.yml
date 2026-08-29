@@ -1,0 +1,41 @@
+name: Release Cowork Plugin
+
+on:
+  workflow_dispatch:
+    inputs:
+      plugin:
+        description: Plugin id under plugins/
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements-dev.txt
+      - run: python scripts/validate_repo.py
+      - run: python scripts/build_plugin.py "${{ inputs.plugin }}"
+      - id: version
+        env:
+          PLUGIN: ${{ inputs.plugin }}
+        run: |
+          echo "value=$(python -c 'import json, os, pathlib; print(json.loads((pathlib.Path("plugins") / os.environ["PLUGIN"] / "manifest.json").read_text())["version"])')" >> "$GITHUB_OUTPUT"
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PLUGIN: ${{ inputs.plugin }}
+          VERSION: ${{ steps.version.outputs.value }}
+        run: |
+          gh release create "${PLUGIN}-v${VERSION}" \
+            "build/${PLUGIN}-${VERSION}.zip" \
+            "build/${PLUGIN}-${VERSION}.sha256" \
+            --generate-notes \
+            --title "${PLUGIN} ${VERSION}"

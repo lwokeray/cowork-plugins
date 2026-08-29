@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "3.1.0",
+  "id": "34614978-57a3-49f2-83f1-6546422571ec",
+  "developer": {
+    "name": "lwokeray",
+    "websiteUrl": "https://github.com/lwokeray/cowork-plugins",
+    "privacyUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/plugins/sales-cowork/README.md#privacy",
+    "termsOfUseUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/plugins/sales-cowork/README.md#terms"
+  },
+  "name": {
+    "short": "Sales Cowork",
+    "full": "企業銷售 Sales Cowork"
+  },
+  "description": {
+    "short": "以 Microsoft 365 支援企業型銷售的研究、會議、商機、提案與交接",
+    "full": "專為企業型銷售、解決方案銷售、售前顧問與銷售主管設計的 Copilot Cowork Skills Plugin。透過 Cowork 內建 Unified Work IQ MCP，在使用者既有權限與核准控制下協調 Outlook、Teams、Calendar、Planner、SharePoint、OneDrive、Word、Excel、PowerPoint、PDF、Enterprise Search 與 Deep Research。"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#00378C",
+  "agentSkills": [
+    { "folder": "./skills/daily-sales-rhythm" },
+    { "folder": "./skills/lead-intake-qualification" },
+    { "folder": "./skills/account-research" },
+    { "folder": "./skills/market-competitive-research" },
+    { "folder": "./skills/account-plan" },
+    { "folder": "./skills/customer-meeting-brief" },
+    { "folder": "./skills/meeting-follow-up" },
+    { "folder": "./skills/opportunity-strategy" },
+    { "folder": "./skills/deal-inspection" },
+    { "folder": "./skills/sales-outreach-engagement" },
+    { "folder": "./skills/sales-task-planning" },
+    { "folder": "./skills/pipeline-workspace-hygiene" },
+    { "folder": "./skills/forecast-decision-pack" },
+    { "folder": "./skills/proposal-preparation" },
+    { "folder": "./skills/proposal-quality-review" },
+    { "folder": "./skills/commercial-review-handoff" },
+    { "folder": "./skills/close-delivery-handoff" },
+    { "folder": "./skills/renewal-expansion-review" }
+  ]
+}

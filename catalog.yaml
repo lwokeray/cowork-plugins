@@ -1,0 +1,21 @@
+plugins:
+  - id: sales-cowork
+    path: plugins/sales-cowork
+    status: candidate
+    responsibility: 企業銷售、商機、提案、商務審查、成交交接與續約擴展
+  - id: hr-cowork
+    path: plugins/hr-cowork
+    status: candidate
+    responsibility: 招募、員工生命週期、HR operations、人才發展與人力規劃
+  - id: pm-cowork
+    path: plugins/pm-cowork
+    status: candidate
+    responsibility: 產品與專案 intake、規格、規劃、交付、風險、治理與成果檢視
+  - id: it-operations-cowork
+    path: plugins/it-operations-cowork
+    status: candidate
+    responsibility: Identity、Endpoint、M365、Cloud、Network、Security、Change 與 IT Operations
+  - id: it-helpdesk-cowork
+    path: plugins/it-helpdesk-cowork
+    status: candidate
+    responsibility: Dynamics 365 Customer Service IT case intake、troubleshooting、communication 與 escalation
