@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
   "manifestVersion": "1.28",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "id": "6b18b8b9-7d4a-4f5c-83c7-2b7d79e1f06a",
   "developer": {
     "name": "lwokeray",
@@ -11,11 +11,11 @@
   },
   "name": {
     "short": "IT Help Desk Cowork",
-    "full": "IT Help Desk Cowork"
+    "full": "IT Help Desk Cowork Service Operations"
   },
   "description": {
-    "short": "Case briefing, knowledge replies, escalation handoffs, and supervisor review for Dynamics 365 Customer Service.",
-    "full": "Focused IT Help Desk workflows for Microsoft 365 Copilot Cowork using the Dynamics 365 Customer Service plugin. Create case briefs, draft knowledge-grounded responses, prepare escalation handoffs, and review open cases without external systems or autonomous remediation."
+    "short": "Evidence-grounded IT case handling for Dynamics 365 Customer Service.",
+    "full": "Complete IT Help Desk workflows for Copilot Cowork using Dynamics 365 Customer Service and approved Microsoft 365 context: intake and triage, case briefing, troubleshooting, knowledge-grounded replies, requester communication, service requests, escalation, major incidents, recurring issue analysis, incident review, knowledge maintenance, and supervisor review."
   },
   "icons": {
     "color": "color.png",
@@ -23,17 +23,17 @@
   },
   "accentColor": "#2B579A",
   "agentSkills": [
-    {
-      "folder": "./skills/case-brief"
-    },
-    {
-      "folder": "./skills/knowledge-grounded-reply"
-    },
-    {
-      "folder": "./skills/escalation-handoff"
-    },
-    {
-      "folder": "./skills/supervisor-case-review"
-    }
+    { "folder": "./skills/case-intake-triage" },
+    { "folder": "./skills/case-brief" },
+    { "folder": "./skills/technical-troubleshooting" },
+    { "folder": "./skills/knowledge-grounded-reply" },
+    { "folder": "./skills/requester-communication" },
+    { "folder": "./skills/service-request-fulfillment" },
+    { "folder": "./skills/escalation-handoff" },
+    { "folder": "./skills/major-incident-coordination" },
+    { "folder": "./skills/recurring-issue-analysis" },
+    { "folder": "./skills/incident-review" },
+    { "folder": "./skills/knowledge-maintenance" },
+    { "folder": "./skills/supervisor-case-review" }
   ]
 }

@@ -1,77 +1,229 @@
 ---
 name: knowledge-grounded-reply
-description: >-
-  Drafts an IT Help Desk response grounded in approved knowledge articles in Dynamics 365 Customer Service.
-  TRIGGER — use when the user asks to answer an employee, draft troubleshooting steps,
-  find a knowledge article for a case, prepare a customer-ready response, or re-engage
-  a silent requester from a Dynamics 365 case.
-  SKIP only when no Dynamics 365 case or approved knowledge context is available, or
-  when the user asks for a case brief, escalation handoff, queue review, or a system outside Dynamics 365.
+description: |
+  Drafts IT support guidance grounded in approved knowledge and the current case.
+  Use when a user asks to "reply with the right KB", "find troubleshooting instructions",
+  "draft a knowledge-based response", "send steps for this error", "check whether this article applies",
+  or needs safe requester guidance with prerequisites, expected results, and stop conditions.
+  It does not invent missing policy or technical steps, publish knowledge, or send a message without approval.
 license: MIT
 metadata:
   author: lwokeray
-  version: "1.0.0"
+  version: 2.0.0
 ---
 
-# Knowledge-Grounded Reply
+# Knowledge-Grounded IT Reply
 
-## Purpose
+## Overview
 
-Create a reviewable employee-ready reply from the approved knowledge content and the current Dynamics 365 Customer Service case. The result is a draft, not a sent message and not a resolution decision.
+Find the strongest approved knowledge for the exact case, verify that it applies, and turn it into a clear requester-facing draft. Keep the article's safety boundaries intact and never fill a policy, licensing, security, or configuration gap from general model knowledge.
 
-## Guardrails
+## When to Use
 
-- Use only the Dynamics 365 Customer Service case, related activities/timeline, and approved knowledge articles available through the plugin.
-- Do not use general model knowledge to fill a missing policy, permission, license, warranty, SLA, security, or remediation detail.
-- If no article is a reliable match, state `no reliable match` and recommend escalation rather than improvising.
-- Do not send email, post to a channel, update a case, mark a case resolved, or create a knowledge proposal without a Cowork approval/edit/dismiss checkpoint.
-- Separate what the case proves, what the knowledge article says, and what the requester must still provide.
+- Finding an approved knowledge article for a case symptom or error code
+- Checking article applicability by product, version, platform, audience, and environment
+- Drafting requester steps from one or more compatible articles
+- Explaining prerequisites, expected results, stop conditions, and escalation paths
+- Recording which knowledge was considered, accepted, or rejected
 
-## Workflow
+## When NOT to Use
 
-1. Identify the Dynamics 365 case by case number. If the case is ambiguous, ask the user to select one.
-2. Read the case subject, description, priority, status, latest activity, and requester context.
-3. Search the available approved Customer Service knowledge articles. Prefer the most specific article whose scope and version match the case.
-4. Reject articles that are outdated, contradictory, incomplete for the reported condition, or not approved for the relevant audience.
-5. Draft a response with: acknowledgement, current understanding, verified steps, prerequisites, expected result, what to send back, limitation, and escalation condition.
-6. Attach evidence beside each material instruction: case field, activity/timeline record, or knowledge article title/version.
-7. If the user requests a revision, revise only the requested part and keep unsupported content out.
-8. Return a draft and stop before any send or write-back action.
+- Writing a generic progress or acknowledgement message — use `requester-communication`
+- Troubleshooting without relevant approved knowledge — use `technical-troubleshooting`
+- Creating or revising the knowledge article — use `knowledge-maintenance`
+- Sending instructions that change production, access, identity, endpoint security, or data without an authorized fulfillment process
+- Treating an unpublished, expired, draft, or mismatched article as approved guidance
+
+## Quick Start
+
+```text
+User: "Draft a reply for case CAS-10482 using the approved KB."
+
+1. Read the case symptom, environment, version, prior attempts, and audience.
+2. Search approved knowledge with exact service names, errors, and differentiating terms.
+3. Verify publication state, scope, prerequisites, version, and safety notes.
+4. Reject weak or conflicting matches explicitly.
+5. Draft only the applicable steps and preserve expected results and stop conditions.
+6. Mark the message as a draft until the user approves sending it.
+```
+
+## Source Priority
+
+Use the following order:
+
+1. Published, tenant-approved knowledge articles
+2. Authoritative service or vendor documentation approved by the organization
+3. Active major incident communications or service notices
+4. Resolved related cases only as supporting evidence, not as policy
+5. Direct case evidence
+
+Do not use unsupported general knowledge to create administrative commands, registry changes, scripts, policy exceptions, licensing claims, or security instructions.
+
+## Core Instructions
+
+### 1. Define the Knowledge Need
+
+Extract from the case:
+
+- Product or service and feature
+- Exact symptom, error text, and error code
+- Platform, device type, operating system, version, browser, and network when relevant
+- User role and intended audience
+- Production or test environment
+- Steps already attempted and their results
+- Access level needed for possible steps
+- Data sensitivity or security concerns
+
+If critical applicability data is missing, ask for it before giving steps that might be wrong or unsafe.
+
+### 2. Search Narrowly
+
+Start with exact error codes, service names, feature names, and version. Broaden one dimension at a time. Avoid searches containing unnecessary requester names, message bodies, personal data, or unrelated case details.
+
+For each candidate article, capture:
+
+- Article identifier, title, and source
+- Publication state and last review date if visible
+- Product, platform, version, tenant, and audience scope
+- Prerequisites and required permissions
+- Warning, rollback, stop, and escalation guidance
+
+### 3. Score Applicability
+
+Evaluate each candidate against the case:
+
+| Check | Requirement |
+|---|---|
+| Publication | Approved and available to the intended audience |
+| Product and feature | Exact match or explicitly compatible |
+| Version and platform | Matches or article states cross-version applicability |
+| Symptom and error | Same behavior, not merely similar wording |
+| Environment | Instructions are valid for the case's tenant and environment |
+| Prerequisites | Requester or resolver can safely meet them |
+| Prior attempts | Does not blindly repeat a failed step |
+| Safety | Warnings, permissions, rollback, and stop conditions are usable |
+
+Label each article `Applicable`, `Partially applicable`, `Conflicting`, `Stale`, or `Insufficient evidence`. Do not combine articles whose instructions or prerequisites conflict.
+
+### 4. Resolve Conflicts
+
+When two sources disagree:
+
+1. Prefer the approved source with the narrower product/version/environment match.
+2. Check review date and supersession metadata.
+3. Preserve the disagreement in internal notes.
+4. Do not select a risky path solely because it is newer.
+5. Escalate to the knowledge owner when authority cannot be determined.
+
+### 5. Draft the Reply
+
+The requester-facing draft must:
+
+- Acknowledge the specific symptom without overstating the diagnosis
+- Explain why the selected guidance applies in plain language
+- State prerequisites before steps
+- Present steps in the order required by the approved source
+- Include the expected result after each meaningful checkpoint
+- Preserve warnings, stop conditions, and escalation instructions
+- Ask the requester to report the exact result, not merely “did it work?”
+- Avoid internal queue names, private notes, unrelated cases, and sensitive diagnostics
+
+Tailor presentation, not technical substance. You may shorten redundant wording, but do not omit a prerequisite, permission requirement, safety warning, rollback, or validation step.
+
+### 6. Separate Internal Evidence from External Text
+
+Internal notes may include article evaluation, rejected candidates, and case evidence. The external reply must not reveal:
+
+- Other requesters or case identifiers
+- Internal-only articles or resolver notes
+- Sensitive topology, hostnames, tokens, access details, or security indicators
+- Hypotheses stated as confirmed causes
+
+### 7. Apply the Action Boundary
+
+Keep the output in draft state. If a supported communication tool is active, invoke its platform approval checkpoint before sending. If a case note or article association is proposed, treat that as a separate write action.
 
 ## Output Format
 
-### Draft status
+```markdown
+# Knowledge-grounded reply — [Case ID]
 
-`Draft only — not sent, not written back, not resolved`
+## Guidance status
+- Ready to send | Needs applicability detail | No approved match | Knowledge conflict
+- Case environment: ...
 
-### Source check
+## Approved sources
+| Article | Status | Applicability | Important limits |
+|---|---|---|---|
 
-| Source | Match | Use |
-|---|---|---|
-| Dynamics 365 case |  |  |
-| Approved knowledge article |  |  |
-| Related activity / timeline |  |  |
+## Rejected or unresolved sources
+| Article | Reason not used |
+|---|---|
 
-### Employee-ready reply
+## Requester-facing draft
+**Subject:** [case-specific subject]
 
-**Subject:**
+[Acknowledgement and concise context]
 
-**Message:**
+Before you begin:
+- [Prerequisite]
 
-1. **What we understand:**
-2. **What to try:**
-3. **Before you start:**
-4. **How to confirm the result:**
-5. **Reply with:**
-6. **If it still fails:**
+Steps:
+1. [Approved step]
+   - Expected result: ...
+2. ...
 
-### Evidence and limits
+Stop and reply to us if:
+- [Article-derived stop condition]
 
-- **Case facts:**
-- **Knowledge-backed instructions:**
-- **Unknowns:**
-- **Excluded assumptions:**
+Please send back:
+- [Exact observation needed]
 
-### Action boundary
+## Internal evidence note
+- Selected because: ...
+- Case evidence used: ...
+- Remaining unknowns: ...
 
-End with one of: `Draft ready for representative review`, `No reliable match — escalate`, or `Needs requester information`.
+## Action boundary
+- Message status: Draft, not sent
+- Other proposed writes: ...
+```
+
+## Communication Rules
+
+- Match the requester's technical level while retaining exact button names, paths, and error codes.
+- Use numbered steps for sequences and bullets for prerequisites or outcomes.
+- Do not blame the requester or use phrases such as “you should have,” “obviously,” or “just.”
+- Do not promise a resolution time unless an authoritative commitment exists.
+- Do not say “this will fix it”; state the expected result and what to do if it differs.
+- If no approved article applies, say so and prepare a diagnostic or escalation path instead of improvising.
+
+## Guardrails
+
+- Never invent a knowledge article, identifier, publication state, instruction, or quotation.
+- Never expose unpublished or internal-only knowledge to an unauthorized audience.
+- Never add administrative commands or configuration changes absent from the approved source.
+- Never remove safety warnings, backup requirements, rollback instructions, or authorization limits.
+- Never send the draft or mutate the case without the platform checkpoint.
+- Treat security concerns as a routing trigger, not an opportunity to provide improvised containment steps.
+
+## Common Issues
+
+| Issue | Correction |
+|---|---|
+| Article matches the error but not the product version | Mark partially applicable and obtain version-specific guidance |
+| Article is linked to an old case | Verify its current publication and applicability independently |
+| Two approved articles conflict | Prefer the narrower authoritative match or escalate to the knowledge owner |
+| Requester lacks required permissions | Do not ask them to bypass controls; route the privileged step |
+| Instructions repeat a failed action | State the prior result and use a different approved branch if available |
+| No article exists | Report the gap and use `technical-troubleshooting` or `knowledge-maintenance` |
+
+## Completion Checklist
+
+- Case environment and audience are known
+- Every used source is real, approved, and applicable
+- Rejected matches have a reason
+- Draft contains prerequisites, ordered steps, expected results, and stop conditions
+- Internal evidence and external communication are separated
+- No technical substance was invented
+- Send and record updates remain explicitly unexecuted until approved
