@@ -6,14 +6,14 @@ description: >-
   meeting invitation, or scheduled engagement plan. Do not use for mass marketing or unapproved contact lists.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Sales Outreach and Engagement
 
 ## Purpose
 
-Turn approved account evidence and a defined customer outcome into a bounded series of Outlook, Teams, and Calendar actions.
+Turn approved account evidence and a defined customer outcome into a bounded series of Outlook, Teams, and Calendar actions using Cowork's built-in unified Work IQ MCP tools.
 
 ## Guardrails
 
@@ -24,10 +24,10 @@ Turn approved account evidence and a defined customer outcome into a bounded ser
 ## Workflow
 
 1. Confirm audience, objective, channel, timing, and stop condition.
-2. Retrieve relevant permission-accessible account context and prior communication history.
+2. Use Work IQ `ask` for relevant context, then `search_paths`, `get_schema`, and `fetch` to verify the exact audience, prior communications, and calendar state.
 3. Draft the smallest suitable sequence with one purpose per touch.
 4. Check tone, duplication, sensitive data, unsupported claims, and calendar conflicts.
-5. Present each Outlook, Teams, Calendar, scheduled, or event-driven action for approval.
+5. For create or update, confirm the path and schema. For `do_action`, require an exact URL supported by Work IQ. Present each action for approval and don't retry policy denial.
 
 ## Output format
 

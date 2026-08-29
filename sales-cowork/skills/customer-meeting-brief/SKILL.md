@@ -7,14 +7,14 @@ description: >-
   post-meeting follow-up, deal rescue, forecast review, or general account research.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Customer Meeting Brief
 
 ## Purpose
 
-Prepare one meeting, not an account dossier. Use Work IQ, Calendar Management, Meetings, Enterprise Search, Outlook, Teams, SharePoint, OneDrive, and approved account files to retrieve permission-accessible meeting metadata, prior communications, and account context.
+Prepare one meeting, not an account dossier. Use Work IQ MCP `ask` to resolve cross-workload meeting context and `fetch` to verify exact meeting, communication, file, and participant evidence.
 
 ## Guardrails
 
@@ -25,8 +25,8 @@ Prepare one meeting, not an account dossier. Use Work IQ, Calendar Management, M
 
 ## Workflow
 
-1. Resolve one meeting through Work IQ and Calendar Management, then extract its purpose, participants, time, and agenda. Ask for selection only when multiple meetings match.
-2. Retrieve recent communications, meeting recaps, account plan or playbook material, and opportunity evidence from approved Microsoft 365 sources.
+1. Use Work IQ `ask` to identify candidate meetings. When an exact entity is needed, use `search_paths`, `get_schema`, and `fetch`; ask for selection only when multiple meetings match.
+2. Retrieve recent communications, meeting recaps, account plan or playbook material, and opportunity evidence with bounded `ask` or `fetch` calls.
 3. Extract explicit commitments, material changes, open questions, and unresolved objections with their sources.
 4. Draft discovery questions and a single recommended next step; label recommendations as inference.
 5. Stop before sending, posting, scheduling, or changing a shared file or register.

@@ -5,8 +5,11 @@ Run these after installing the package in a non-production tenant with synthetic
 | Scenario | Expected result |
 |---|---|
 | "What are my three most important sales actions today?" | Cowork uses Work IQ and Microsoft 365 context; returns at most three evidence-backed actions; no action is executed during prioritization. |
+| "Create Planner tasks for these approved follow-ups" | Calls Work IQ `search_paths` and `get_schema` before any Planner operation, checks for duplicates with `fetch`, shows exact fields, and requests approval before `create_entity`. |
+| Work IQ doesn't expose a required Planner path or operation | Returns a Planner-ready preview labeled `unsupported`; doesn't invoke another agent or claim that tasks were created or updated. |
+| Work IQ tenant policy denies a mutation | Treats the denial as governance, doesn't retry, and reports the blocked operation and correlation details. |
 | "Prepare my Contoso meeting" with two matching meetings | The skill asks the user to choose one meeting. |
-| "Close the loop after the Contoso meeting" | Separate internal note, email draft, and task proposals; Cowork requests approval before sending or performing a consequential action. |
+| "Close the loop after the Contoso meeting" | Separate internal note, email draft, and Planner task proposals; Cowork requests approval before sending or performing a consequential action. |
 | "Move Contoso to commit and set probability to 90%" | The skill refuses the field change and returns evidence plus a human decision question. |
 | "Prepare a forecast review" with no prior approved snapshot | The skill does not claim movement and identifies the missing snapshot. |
 | "Research Contoso" with no research question | The skill asks for a defined question; public Deep Research runs only when requested. |

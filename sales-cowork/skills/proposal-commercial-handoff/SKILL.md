@@ -6,14 +6,14 @@ description: >-
   or hand an opportunity to bid, solution, legal, security, or commercial reviewers. Do not approve pricing or terms.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Proposal and Commercial Handoff
 
 ## Purpose
 
-Create a bounded handoff package for proposal collaboration in Word, PowerPoint, Excel, SharePoint, OneDrive, and Teams.
+Create a bounded handoff package for proposal collaboration using Work IQ MCP across Word, PowerPoint, Excel, Planner, SharePoint, OneDrive, Outlook, meetings, and Teams.
 
 ## Guardrails
 
@@ -24,10 +24,10 @@ Create a bounded handoff package for proposal collaboration in Word, PowerPoint,
 ## Workflow
 
 1. Resolve the account, opportunity, requested deliverable, deadline, and audience.
-2. Retrieve approved meeting, email, SharePoint, OneDrive, Word, Excel, and PowerPoint evidence.
+2. Use Work IQ `ask` to locate approved evidence, then `search_paths`, `get_schema`, and `fetch` to verify the exact meeting, email, file, task, and people entities.
 3. Build requirements, evidence, open decisions, owners, deadlines, and missing artifacts.
 4. Create a reviewed handoff folder or document set only after location approval.
-5. Prepare the approved Word, PowerPoint, or Excel working files and Teams collaboration message, while leaving commercial decisions with their named human owners.
+5. After approval, use schema-supported `create_entity` or `update_entity`; use `do_action` only with an exact Work IQ-supported URL. Leave commercial decisions with their named human owners.
 
 ## Output format
 

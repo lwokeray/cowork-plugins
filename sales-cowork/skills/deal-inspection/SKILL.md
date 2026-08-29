@@ -6,14 +6,14 @@ description: >-
   or whether manager help is needed. Do not use to change stage, probability, price, terms, close date, or forecast.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Deal Inspection
 
 ## Purpose
 
-Inspect one named opportunity, or a user-confirmed set of up to five priority opportunities, using permission-accessible Outlook, Teams, SharePoint, OneDrive, meeting, and approved Excel register evidence from Work IQ. The result is decision support, never an automatic commercial or forecast decision.
+Inspect one named opportunity, or a user-confirmed set of up to five priority opportunities, using Work IQ MCP `ask` for cross-workload reasoning and `fetch` for exact Outlook, Teams, SharePoint, OneDrive, meeting, Planner, and approved Excel evidence.
 
 ## Guardrails
 
@@ -25,7 +25,7 @@ Inspect one named opportunity, or a user-confirmed set of up to five priority op
 ## Workflow
 
 1. Resolve the deal and its permitted source scope.
-2. Locate the approved Excel or SharePoint opportunity register and correlate its account, stage, value, target date, activity, and owner fields with buyer communications and documents from Work IQ. If no approved register exists, label register fields `unavailable` and continue with communications evidence.
+2. Use Work IQ `ask` to locate the approved register and relevant buyer context. Use `search_paths`, `get_schema`, and `fetch` to verify register, communication, meeting, file, and Planner entities. If no approved register exists, label its fields `unavailable` and continue.
 3. Identify the latest evidence for customer need, stakeholder, decision process, commercial path, and next commitment.
 4. State the blocker only to the extent supported by evidence; otherwise name the missing evidence.
 5. Recommend one next safe action and identify whether manager support is needed.

@@ -6,14 +6,14 @@ description: >-
   or decision questions for a defined period. Do not use to calculate or change forecast values without approved snapshots.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Forecast Decision Pack
 
 ## Purpose
 
-Prepare a manager-facing decision pack for a defined team scope, forecast period, and as-of date. Use approved Excel forecast workbooks or snapshots stored in SharePoint or OneDrive. The skill doesn't fabricate movement or alter forecast values.
+Prepare a manager-facing decision pack for a defined team scope, forecast period, and as-of date. Use Work IQ MCP `ask` to locate approved snapshots and `fetch` to verify the exact Excel, SharePoint, or OneDrive evidence.
 
 ## Guardrails
 
@@ -24,7 +24,7 @@ Prepare a manager-facing decision pack for a defined team scope, forecast period
 
 ## Workflow
 
-1. Confirm scope, period, as-of date, and approved source snapshots. Use Work IQ, Excel, Enterprise Search, SharePoint, and OneDrive to retrieve them; if the previous snapshot is absent, stop only the movement comparison.
+1. Confirm scope, period, as-of date, and approved source snapshots. Use Work IQ `ask` to locate them, then `search_paths`, `get_schema`, and `fetch` to retrieve exact entities; if the previous snapshot is absent, stop only the movement comparison.
 2. Validate whether each snapshot is approved and comparable; stop movement analysis if either condition is not met.
 3. Compare material changes and inspect the buyer evidence behind each relevant item.
 4. Flag high-risk items and evidence gaps without assigning a new forecast value.

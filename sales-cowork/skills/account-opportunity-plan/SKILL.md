@@ -6,14 +6,14 @@ description: >-
   whitespace analysis, or executive engagement plan. Do not use for forecast decisions or proposal authoring.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Account and Opportunity Plan
 
 ## Purpose
 
-Create a durable plan from Outlook, Teams, meetings, SharePoint, OneDrive, approved Excel registers, and existing Word or PowerPoint account artifacts.
+Create a durable plan from Microsoft 365 evidence. Use Work IQ MCP `ask` for cross-workload account reasoning and `fetch` for exact Outlook, Teams, meeting, Planner, SharePoint, OneDrive, Excel, Word, and PowerPoint entities.
 
 ## Guardrails
 
@@ -24,10 +24,10 @@ Create a durable plan from Outlook, Teams, meetings, SharePoint, OneDrive, appro
 ## Workflow
 
 1. Resolve one account and opportunity plus the intended plan audience.
-2. Retrieve objectives, business problems, stakeholders, interactions, commitments, competition, risks, and existing artifacts.
+2. Use Work IQ `ask` to retrieve objectives, business problems, stakeholders, interactions, commitments, competition, risks, and artifacts; use `search_paths`, `get_schema`, and `fetch` to verify material entities.
 3. Build stakeholder, opportunity, whitespace, and mutual-action sections with evidence gaps.
 4. Recommend no more than three actions with owner, due date, and source.
-5. Create or update Word, Excel, or PowerPoint only after the user approves the target file and change preview.
+5. For Word, Excel, PowerPoint, or Planner mutation, discover the path and schema, show a change preview, obtain approval, and use the supported `create_entity` or `update_entity`; route Planner operations to `sales-task-planning`.
 
 ## Output format
 

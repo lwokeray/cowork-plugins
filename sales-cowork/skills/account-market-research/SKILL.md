@@ -6,14 +6,14 @@ description: >-
   or research needed for a sales conversation. Do not use for an undefined company profile or automatic public-web research.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Account and Market Research
 
 ## Purpose
 
-Answer a precise research question relevant to one account, market, or sales hypothesis. Use Work IQ and Enterprise Search for permission-accessible internal evidence. Use Deep Research for public research only when the user asks for external or public research.
+Answer a precise research question relevant to one account, market, or sales hypothesis. Use Work IQ MCP `ask` for internal semantic reasoning, `call_function` for supported enterprise search, and `fetch` for exact source verification. Use Deep Research only when the user requests public research.
 
 ## Guardrails
 
@@ -25,7 +25,7 @@ Answer a precise research question relevant to one account, market, or sales hyp
 ## Workflow
 
 1. Confirm the target account or market, research question, intended sales use, and whether public research is requested.
-2. Retrieve permission-accessible internal evidence through Work IQ, Enterprise Search, Outlook, Teams, SharePoint, and OneDrive; record its source date or timestamp.
+2. Retrieve bounded internal evidence with Work IQ `ask` or `call_function`; use `search_paths`, `get_schema`, and `fetch` to verify material Outlook, Teams, SharePoint, OneDrive, people, or Planner entities and record timestamps.
 3. If public research is requested, use Deep Research and keep public evidence separate from internal evidence.
 4. Answer only what the sources support, then list implications as labeled hypotheses or questions.
 5. State gaps that require customer confirmation.

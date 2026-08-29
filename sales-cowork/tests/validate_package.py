@@ -13,6 +13,20 @@ from pathlib import Path
 import yaml
 
 
+WORK_IQ_TOOLS = {
+    "ask",
+    "fetch",
+    "create_entity",
+    "update_entity",
+    "delete_entity",
+    "do_action",
+    "call_function",
+    "list_agents",
+    "get_schema",
+    "search_paths",
+}
+
+
 def fail(message: str) -> None:
     print(f"FAIL: {message}")
     raise SystemExit(1)
@@ -134,6 +148,11 @@ def main() -> None:
             fail(f"{skill_path} metadata must be a mapping")
         if skill_metadata.get("version") != manifest["version"]:
             fail(f"{skill_path} version must match manifest version")
+        referenced_tools = {
+            tool for tool in WORK_IQ_TOOLS if re.search(rf"`{re.escape(tool)}`", body)
+        }
+        if not referenced_tools:
+            fail(f"{skill_path} must explicitly reference at least one built-in Work IQ MCP tool")
         if skill_name in skill_names:
             fail(f"duplicate skill name: {skill_name}")
         skill_names.add(skill_name)

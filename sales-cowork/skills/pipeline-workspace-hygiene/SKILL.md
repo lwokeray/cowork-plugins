@@ -6,14 +6,14 @@ description: >-
   overdue commitments, or inconsistent pipeline files. Do not use to make forecast or commercial decisions.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Pipeline Workspace Hygiene
 
 ## Purpose
 
-Keep an approved Excel or SharePoint pipeline register consistent with permission-accessible communications, meetings, files, and commitments.
+Keep an approved Excel or SharePoint pipeline register consistent with permission-accessible communications, meetings, Planner tasks, files, and commitments retrieved through Work IQ MCP.
 
 ## Guardrails
 
@@ -24,10 +24,10 @@ Keep an approved Excel or SharePoint pipeline register consistent with permissio
 ## Workflow
 
 1. Confirm the approved register and review scope.
-2. Validate required columns, identifiers, owners, dates, duplicates, and allowed values.
-3. Compare relevant rows with Work IQ evidence and flag stale or unsupported fields.
+2. Use Work IQ `search_paths` and `get_schema` to resolve the register and related entity types, then `fetch` the bounded review scope.
+3. Use `ask` only for cross-workload correlation; verify material findings with `fetch` and flag stale or unsupported fields.
 4. Separate mechanical corrections from business decisions.
-5. Apply only approved mechanical corrections; route decision fields to their named owner.
+5. Show a field-level preview and apply only approved mechanical corrections with `update_entity`; route decision fields to their named owner and don't retry policy denial.
 
 ## Output format
 

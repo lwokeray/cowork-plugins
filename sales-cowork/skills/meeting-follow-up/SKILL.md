@@ -2,18 +2,18 @@
 name: meeting-follow-up
 description: >-
   Creates a reviewable post-meeting package for one customer meeting: internal note, customer follow-up email draft,
-  and proposed tasks. Use when the user asks to close the loop after a meeting, extract customer commitments,
+  and proposed Planner tasks. Use when the user asks to close the loop after a meeting, extract customer commitments,
   draft follow-up, or turn meeting actions into approved Microsoft 365 actions. Do not use for deal review or proposal authoring.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Meeting Follow-Up
 
 ## Purpose
 
-Create three distinct review artifacts from one completed meeting: an internal note, a customer email, and task proposals. Use Work IQ and the Meetings skill to retrieve the permission-accessible recap, transcript, chat, notes, and related communications. Use the Email or Communications skill for the follow-up action.
+Create three distinct review artifacts from one completed meeting: an internal note, a customer email, and Planner task proposals. Use Work IQ MCP `ask` for the meeting context and `fetch` for exact recap, transcript, chat, note, and message evidence. Route approved Planner work to `sales-task-planning`.
 
 ## Guardrails
 
@@ -24,11 +24,11 @@ Create three distinct review artifacts from one completed meeting: an internal n
 
 ## Workflow
 
-1. Resolve one completed customer meeting through Work IQ and retrieve its recap, transcript, chat, and follow-up context.
+1. Resolve one completed customer meeting with Work IQ `ask`, then use `search_paths`, `get_schema`, and `fetch` to verify the exact available meeting evidence.
 2. Extract buyer evidence: decision process, commitments, objections, requested materials, owner, date, and timestamp.
 3. Produce the internal note, the email draft, and task proposals separately.
 4. For every task with unknown owner or due date, leave the field `unknown` rather than guessing.
-5. Present the exact email, post, calendar, or supported task action for Cowork approval before execution.
+5. For create or update, discover the path and schema. For `do_action`, require an exact URL supported by Work IQ. Present the action for Cowork approval and treat policy denial as final.
 
 ## Output format
 

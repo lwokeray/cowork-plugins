@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
   "manifestVersion": "1.28",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "id": "34614978-57a3-49f2-83f1-6546422571ec",
   "developer": {
     "name": "lwokeray",
@@ -14,8 +14,8 @@
     "full": "Sales Cowork for Copilot Cowork"
   },
   "description": {
-    "short": "Microsoft 365 sales research, meetings, outreach, pipeline, and handoffs",
-    "full": "A Microsoft 365-only Copilot Cowork plugin for B2B sellers and sales managers. It coordinates daily sales work across Work IQ, Outlook, Teams, Calendar, SharePoint, OneDrive, Word, Excel, PowerPoint, PDF, Enterprise Search, and Deep Research."
+    "short": "M365 sales research, meetings, Planner, pipeline, and handoffs",
+    "full": "A Microsoft 365-only Copilot Cowork skills plugin for B2B sellers and sales managers. It orchestrates Cowork's built-in Work IQ MCP tools across Outlook, Teams, Calendar, Planner, SharePoint, OneDrive, Word, Excel, PowerPoint, PDF, Enterprise Search, and Deep Research."
   },
   "icons": {
     "color": "color.png",
@@ -24,6 +24,7 @@
   "accentColor": "#00378C",
   "agentSkills": [
     { "folder": "./skills/daily-sales-rhythm" },
+    { "folder": "./skills/sales-task-planning" },
     { "folder": "./skills/customer-meeting-brief" },
     { "folder": "./skills/meeting-follow-up" },
     { "folder": "./skills/deal-inspection" },

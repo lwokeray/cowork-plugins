@@ -1,14 +1,15 @@
 # Sales Cowork
 
-Sales Cowork is a **Microsoft 365-only Copilot Cowork plugin** for B2B sellers and Sales Managers. It coordinates common Sales work through Work IQ and Cowork's built-in Microsoft 365 capabilities.
+Sales Cowork is a **Microsoft 365-only Copilot Cowork skills plugin** for B2B sellers and Sales Managers. It teaches Cowork when and how to use its built-in unified Work IQ MCP tools for common Sales work.
 
 ## Included skills
 
 | Skill | Use it for |
 |---|---|
-| `daily-sales-rhythm` | Choose up to three actions from Work IQ, calendar, communications, and files. |
+| `daily-sales-rhythm` | Choose up to three actions from Work IQ, Planner, calendar, communications, and files. |
+| `sales-task-planning` | Review or prepare approved Microsoft Planner tasks and sales plans. |
 | `customer-meeting-brief` | Prepare one customer meeting from Work IQ and Microsoft 365 account evidence. |
-| `meeting-follow-up` | Turn one completed meeting into an internal note, customer email draft, and proposed tasks. |
+| `meeting-follow-up` | Turn one completed meeting into an internal note, customer email draft, and proposed Planner tasks. |
 | `deal-inspection` | Diagnose one opportunity from Outlook, Teams, SharePoint, OneDrive, and Excel evidence. |
 | `forecast-decision-pack` | Compare approved Excel or SharePoint forecast snapshots. |
 | `account-market-research` | Answer a defined account or market question using Work IQ and Deep Research. |
@@ -21,11 +22,13 @@ Sales Cowork is a **Microsoft 365-only Copilot Cowork plugin** for B2B sellers a
 
 ## Design boundary
 
-This package adds Sales-specific orchestration to Work IQ and Cowork's built-in Email, Scheduling, Calendar Management, Meetings, Daily Briefing, Enterprise Search, Communications, Deep Research, Word, Excel, PowerPoint, PDF, OneDrive, SharePoint, and Teams capabilities. These capabilities run with the signed-in user's Microsoft 365 permissions.
+This package contains only Agent Skills. It doesn't bundle an MCP connector, OAuth registration, or workload-specific Mail, Teams, Calendar, OneDrive, SharePoint, Word, or User MCP server. Each skill invokes the unified Work IQ MCP tools already available in Cowork: `ask`, `fetch`, `create_entity`, `update_entity`, `delete_entity`, `do_action`, `call_function`, `list_agents`, `get_schema`, and `search_paths`.
 
-The Microsoft 365 system of work is explicit: Outlook and Teams hold communications and commitments; Calendar and Meetings provide time and meeting evidence; SharePoint and OneDrive hold approved account, opportunity, proposal, and handoff artifacts; Excel holds lead, pipeline, forecast, and renewal registers; Word and PowerPoint produce customer and internal deliverables.
+Use `ask` for cross-workload semantic reasoning, `fetch` for exact source entities, and `call_function` for supported searches or computed results. For `fetch`, `create_entity`, and `update_entity`, use `search_paths` to confirm the resource path and `get_schema` to obtain the current Microsoft Graph v1.0 payload. Use `do_action` or `delete_entity` only when the exact supported URL is supplied by the current Work IQ contract; never infer one. Never assume a Planner or other workload path exists merely because Work IQ can reason over that workload.
 
-Every skill distinguishes fact, inference, and unknown. Material claims require an accessible source record, message, document, or timestamp. Cowork must present its normal approval checkpoint before sending email, posting to Teams, scheduling a meeting, moving or overwriting files, or changing a shared register. Pricing, discount, legal terms, final commitments, and forecast decisions remain human-controlled.
+The Microsoft 365 system of work is explicit: Outlook and Teams hold communications and commitments; Calendar and Meetings provide time and meeting evidence; Planner holds tasks, owners, dates, priority, and progress; SharePoint and OneDrive hold approved account, opportunity, proposal, and handoff artifacts; Excel holds lead, pipeline, forecast, and renewal registers; Word and PowerPoint produce customer and internal deliverables.
+
+Every skill distinguishes fact, inference, and unknown. Material claims require an accessible source record, message, document, task, or timestamp. Reads remain bounded and permission-trimmed. Before `create_entity` or `update_entity`, the skill confirms the path and schema; before `do_action`, it confirms the supported action URL. Every mutation requires an exact preview and Cowork approval. Work IQ tenant policy can still block mutation even after user approval.
 
 ## Build and validate
 
@@ -41,13 +44,16 @@ The upload ZIP must contain `manifest.json`, `color.png`, `outline.png`, and `sk
 
 ## Tenant test
 
-Upload `dist/sales-cowork.zip` in a non-production Microsoft 365 tenant. Test with synthetic Outlook, Teams, Calendar, SharePoint, OneDrive, Word, Excel, PowerPoint, and meeting content that the signed-in test user can access. Confirm permission trimming, evidence citations, approval checkpoints, register write previews, and safe handling of missing Microsoft 365 evidence.
+Upload `dist/sales-cowork.zip` in a non-production Microsoft 365 tenant. Test with synthetic Outlook, Teams, Calendar, Planner, SharePoint, OneDrive, Word, Excel, PowerPoint, and meeting content that the signed-in test user can access. Confirm Work IQ tool routing, runtime path and schema discovery, permission trimming, evidence citations, approval checkpoints, mutation-policy denial handling, Planner task previews, and register write previews.
 
 ## Official references
 
 - [Build plugins for Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugin-development)
 - [Use plugins with Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugins)
 - [Copilot Cowork overview](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/)
+- [Work IQ MCP overview](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/mcp/overview)
+- [Work IQ MCP tool reference](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/mcp/tool-reference)
+- [Work IQ API overview](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/work-iq/api-overview)
 
 ## Privacy
 

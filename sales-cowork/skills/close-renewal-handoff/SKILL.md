@@ -6,14 +6,14 @@ description: >-
   prepare a renewal review, or track post-sale commitments. Do not approve contractual or financial terms.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Close, Renewal, and Handoff
 
 ## Purpose
 
-Preserve customer outcomes and commitments across the transition from active opportunity to delivery, adoption follow-up, and renewal using Outlook, Teams, Calendar, SharePoint, OneDrive, Word, Excel, and PowerPoint.
+Preserve customer outcomes and commitments across close, delivery, adoption, and renewal using Cowork's built-in unified Work IQ MCP tools across Outlook, Teams, Calendar, Planner, SharePoint, OneDrive, Word, Excel, and PowerPoint.
 
 ## Guardrails
 
@@ -24,10 +24,10 @@ Preserve customer outcomes and commitments across the transition from active opp
 ## Workflow
 
 1. Confirm transition type: close preparation, delivery handoff, adoption follow-up, or renewal review.
-2. Retrieve approved outcome, scope, stakeholders, dates, dependencies, documents, and unresolved commitments.
-3. Produce the internal handoff, customer communication draft, calendar checkpoints, and renewal or adoption register proposal.
+2. Use Work IQ `ask` to retrieve the approved outcome, scope, stakeholders, dates, dependencies, documents, tasks, and unresolved commitments; verify material entities with `search_paths`, `get_schema`, and `fetch`.
+3. Produce the internal handoff, customer communication draft, calendar checkpoints, Planner task proposal, and renewal or adoption register proposal.
 4. Identify every missing owner, date, artifact, or approval.
-5. Present consequential Outlook, Teams, Calendar, file, or register actions for approval.
+5. Discover the path and schema for create or update; require an exact Work IQ-supported URL for `do_action`. Present the Outlook, Teams, Calendar, Planner, file, or register action for approval before execution.
 
 ## Output format
 

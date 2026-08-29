@@ -6,14 +6,14 @@ description: >-
   or prepare the first safe next action. Do not use for bulk outreach, opportunity planning, or forecast review.
 metadata:
   author: lwokeray
-  version: "1.2.0"
+  version: "1.4.0"
 ---
 
 # Lead Intake and Qualification
 
 ## Purpose
 
-Turn one lead or a bounded batch of up to ten new inquiries into evidence-led qualification briefs using Work IQ, Outlook, Teams, SharePoint, OneDrive, and an approved Excel or SharePoint intake register.
+Turn one lead or a bounded batch of up to ten new inquiries into evidence-led qualification briefs. Use Work IQ MCP `ask` for related context and `fetch` for exact Outlook, Teams, file, people, Planner, and register evidence.
 
 ## Guardrails
 
@@ -24,10 +24,10 @@ Turn one lead or a bounded batch of up to ten new inquiries into evidence-led qu
 ## Workflow
 
 1. Confirm the intake scope, time window, and approved lead register.
-2. Retrieve the inquiry, related communications, organization context, owner, and existing duplicate evidence.
+2. Use Work IQ `ask` to locate the inquiry and related context, then `search_paths`, `get_schema`, and `fetch` to verify exact communications, people, register rows, and duplicates.
 3. Assess business need, stakeholder, urgency, fit, next information needed, and routing recommendation.
 4. Produce one qualification brief per lead and one recommended next action.
-5. If a register update or reply is requested, show exact fields or message and wait for approval.
+5. For a register or Planner create/update, discover the path and schema. For a reply, require an exact Work IQ-supported action URL. Show the mutation, wait for approval, then use the relevant tool or route Planner work to `sales-task-planning`.
 
 ## Output format
 
