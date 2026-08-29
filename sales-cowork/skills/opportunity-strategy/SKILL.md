@@ -1,263 +1,165 @@
 ---
 name: opportunity-strategy
 description: >-
-  針對單一可識別商機，整合客戶成果、利害關係人、決策流程、評估標準、競爭替代方案、商務路徑與現有證據，形成可驗證的 Opportunity Strategy。
-  使用者要制定成交策略、檢視如何推進一筆商機、準備 Deal review 或決定下一步資源投入時使用；單純找資料、批次 Deal 健檢、Forecast 彙整或直接變更商機欄位時不使用。
+  為一個明確的企業商機、Renewal 或 Negotiation 建立證據導向的買方成果、利害關係人、決策路徑、競爭態勢與推進策略。
+  適用於 Opportunity Plan、Deal Map、Mutual Action Plan 與 Next-step sequencing；不適用於 Account-wide planning、Forecast change 或無證據的商業判斷。
 metadata:
   author: lwokeray
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
-# 商機策略
+# 商機推進策略
 
-## 角色與任務
+## 概述
 
-你是企業型解決方案銷售的 Opportunity Strategy Partner。你的任務是把零散活動轉成一個可驗證的成交論點：客戶為何要改變、誰必須支持、如何做決定、我們憑什麼勝出、哪個缺口最可能阻止下一階段，以及本週應完成哪些高影響行動。
+針對一個命名商機建立 Practical Deal Map。以客戶證據為主，區分 Account-level 背景與 Opportunity-specific 證據，產出可驗證的決策路徑、風險、Sequencing 及最多三項優先行動。
 
-策略必須以客戶證據為核心。會議多、郵件多、Demo 完成或內部感覺良好，都不能單獨代表商機前進。
+## 適用情境
 
-對使用者只呈現商業判斷、證據與行動，不說明內部資料取得方式或系統細節。
+- 建立 Opportunity Plan 或 Deal Strategy。
+- 盤點 Stakeholder、Decision Process、Competition 與 Commercial path。
+- 準備 Negotiation posture 或 Mutual Action Plan 草案。
+- 為 Renewal 或 Expansion 建立單一商機推進路徑。
 
-## 啟用條件
+## 不適用情境
 
-使用此 Skill：
+- 整體 Account Plan → `account-plan`
+- 只診斷商機目前健康度 → `deal-inspection`
+- 變更 Stage、Probability、Close Date 或 Forecast。
+- Proposal 內容製作 → `proposal-preparation`
 
-- 「幫我制定 [客戶／商機] 的成交策略。」
-- 「這筆 Opportunity 下一步該怎麼推？」
-- 「準備明天的 Deal strategy review。」
-- 「我們要如何取得 Sponsor 並完成決策流程？」
+## 快速開始
 
-不要使用此 Skill：
+1. 確認唯一 Account、Opportunity、Offer、目標日期及 Strategy audience。
+2. 用 `ask` 取得買方成果、利害關係人、互動、objection、競爭、商務與工作脈絡。
+3. 用 `search_paths`、`get_schema`、`fetch` 驗證重大 evidence。
+4. 建立 Outcome、Stakeholder、Decision、Competition、Commercial、Risk 與 Action map。
+5. 任何 artifact 儲存先顯示位置與差異；Planner execution 轉交 `sales-task-planning`。
 
-- 同時快速檢查多筆 Deal：使用 deal-inspection。
-- 只需要 Account 全貌：使用 account-plan 或 account-research。
-- 產出 Forecast movement 與管理層決策包：使用 forecast-decision-pack。
-- 未經確認直接變更 Stage、Amount、Close date 或 Forecast category。
+## 核心流程
 
-## 完成定義
+### 階段一：Opportunity Identity
 
-- 已唯一識別商機、Account、主要方案與合理時間範圍。
-- 客戶成果、影響、成功標準與改變理由有來源或標為未知。
-- 利害關係人依實際行為與證據判斷，不依職稱猜測。
-- 決策流程、評估標準、商務路徑與競爭替代方案分開整理。
-- 策略明確指出最關鍵的三個缺口與最多三項優先行動。
-- 每項行動都能產生新的客戶證據、解除阻塞或促成決策。
-- 沒有自行修改任何商機或 Forecast 資料。
+- 不混合相同 Account 下的不同商機、產品或 Renewal period。
+- 找不到唯一商機 artifact 時，先列候選供使用者確認。
+- 使用者提供的 Deal label 不代表內容已被客戶確認。
 
-## 作業模式與必要輸入
+### 階段二：Evidence Map
 
-依使用目的選擇模式：
+驗證：買方業務成果、問題、衡量方式、利害關係人、決策與採購流程、競爭或替代方案、商務與技術依賴、下一個明確承諾。
 
-- Strategy build：建立完整客戶改變論點、Stakeholder、Decision path、競爭與行動。
-- Strategy refresh：以既有策略為基準，只更新新證據、風險、假設與行動。
-- Blocker resolution：只處理一個已知阻塞，定義解除條件與 Owner。
-- Deal review prep：轉成主管可快速質詢的策略論點、證據缺口與三項決定。
+Champion、Budget、Authority、Decision Criteria、Decision Process、Paper Process、Pain、Competition 等欄位沒有直接證據時標示 `未知`，不得為了填滿 framework 而推測。
 
-最少需要可識別 Opportunity。未指定期間時使用最近九十天的客戶證據並回看形成商機的原始需求；未指定 Deadline 時不以內部 Close date 當客戶時點。若同一 Account 有多筆相似商機，先辨識產品、範圍、Owner 或金額。
+### 階段三：Strategy
 
-## 證據規則
+- 先處理最可能阻塞買方決策的 Evidence gap。
+- 每個行動必須對應一個 Outcome 或 Gap。
+- Negotiation posture 只描述準備方向，不代表 Pricing、Discount 或 Terms 已獲核准。
+- Mutual Action Plan 的 Owner 與日期必須可追溯；未確認者標示 Proposed。
 
-- 客戶明確成果、成功標準、具名決策者行為與承諾高於內部 Stage、Probability 或 Seller 觀感。
-- Proposal 寄出、Demo 完成與會議增加只算我方活動，直到客戶接受、回應或完成決策步驟。
-- Stakeholder 角色需由實際責任、決定或行為支持，不能由職稱推定。
-- 競爭包含具名廠商、自建、既有方案、延期與維持現狀；沒有客戶證據就標待驗證。
-- 商務、Security、Legal 與 Delivery 狀態使用具名 Owner 的最新確認，不以會議印象代替核准。
-- Strategy hypothesis 必須同時有支持證據、可能反證及可觀察的驗證結果。
+### 階段四：輸出
 
-## 商機識別與基準
-
-使用 Account、Opportunity 名稱、產品／方案、Owner、金額、預計決策時間與近期文件確認單一商機。同一 Account 有多筆相近商機時，先列出差異請使用者選擇。
-
-建立策略前先記錄目前基準：
-
-- 內部紀錄的 Stage、Amount、Close date 與 Owner。
-- 最近一個客戶確認的里程碑。
-- 最近一次有意義的客戶互動。
-- 主要文件與版本。
-
-內部欄位只是現況紀錄，不等於客戶證據；若兩者不一致，策略以差距為重點。
-
-## 執行流程
-
-### 1. 還原客戶的改變論點
-
-整理四件事：
-
-- 現況：客戶現在如何處理。
-- 問題與影響：現況造成什麼可觀察的成本、風險或機會損失。
-- 期望成果：客戶希望改善什麼。
-- 時點：為何要在某日期前行動。
-
-每項標示已確認、部分確認或待驗證。沒有可量化影響時，不自行估算；提出能讓客戶量化的問題。
-
-### 2. 建立成功標準
-
-把泛泛需求轉成客戶可判斷的條件，例如效能、安全、使用者採用、導入時間、整合、治理、成本或商業結果。每項記錄：標準、提出者、驗證方式、重要性、目前證據與缺口。
-
-不得用我方功能清單代替客戶成功標準。
-
-### 3. 建立利害關係人地圖
-
-辨識 Business sponsor、Economic approver、Technical evaluator、User leader、Procurement、Legal／Security、Partner 與可能反對者。對每人記錄：
-
-- 可確認角色與影響範圍。
-- 他關心的成果或風險。
-- 最近直接互動及日期。
-- 對下一步的具體行為。
-- 關係強度與未知。
-
-只有職稱、被 CC 或參加一次會議，不足以證明決策權或支持程度。
-
-### 4. 還原決策與採購路徑
-
-分開整理：
-
-- 業務決策：誰確認問題值得解決。
-- 技術驗證：誰定義與接受技術結果。
-- 安全／法遵審查：需要哪些資料與核准。
-- 商務與採購：預算、報價、合約及採購程序。
-- 最終核准：誰能正式承諾。
-
-每一步要有 Owner、輸入、完成證據與時間點。缺少完整流程時，將下一次客戶互動設計為共同建立路徑，而不是猜測。
-
-### 5. 分析競爭與替代方案
-
-競爭不只包含具名廠商，也包含自建、既有供應商、延後專案與維持現狀。對每個替代方案分析：客戶為何考慮、它滿足哪些條件、我們有哪些直接證據、哪些主張仍待驗證。
-
-只使用與客戶評估標準相關的差異，不製作沒有來源的 Battlecard。
-
-### 6. 檢查方案與商務適配
-
-確認目前方案是否對應客戶成果，範圍、假設、依賴、Delivery 能力、Pricing 狀態與合約路徑是否一致。區分：
-
-- 已核准可承諾。
-- 已提出待客戶確認。
-- 內部草案待審。
-- 尚未定義。
-
-不替 Pricing、Legal、Security 或 Delivery Owner 做核准。
-
-### 7. 建立策略假設
-
-以「因為—所以—驗證」格式撰寫最多三項：
-
-- 因為哪些客戶證據，我們相信什麼。
-- 所以應採取哪個方向。
-- 需要用什麼客戶行為或決定驗證。
-
-若無法寫出驗證方式，該項只是意見，不列為核心策略。
-
-### 8. 找出關鍵缺口與風險
-
-優先處理會阻止客戶決定的缺口：改變理由不足、沒有 Sponsor、成功標準不明、決策流程未知、技術驗證失焦、商務或法務阻塞、競爭替代方案更符合條件、時間表不可信。
-
-每項風險包含觸發證據、影響、Owner、緩解行動與最晚處理時點。不要只用紅黃綠而不解釋原因。
-
-### 9. 選擇三項優先行動
-
-行動必須符合至少一項：取得新客戶證據、接觸必要利害關係人、確認決策／採購路徑、解除關鍵阻塞、取得雙方承諾。
-
-每項包含 Deliverable、Owner、Due、客戶對應人、完成證據與依賴。避免「保持聯繫」「安排 Demo」「催採購」等無完成標準的活動。
-
-## 判斷規則
-
-- 客戶的明確行為與承諾高於內部 Stage 或 Seller 判斷。
-- 沒有客戶時點或改變理由時，Close date 可信度低。
-- 沒有具名決策者與流程時，不宣稱已完成決策對齊。
-- Proposal 已送出但成功標準未確認，不代表商機成熟。
-- 長時間沒有客戶回應是風險訊號，但需結合最後承諾與脈絡判斷。
-- 風險無 Owner 或緩解日期時，不算已管理。
-
-## 輸出契約
-
-### Opportunity Snapshot
-
-列商機、Account、Owner、內部時間表、最近客戶里程碑與資料日期。
-
-### Strategy Thesis
-
-一段說明客戶為何改變、我方如何創造差異及必須先驗證的核心假設。
-
-### 客戶成果與成功標準
-
-| 成果／標準 | 證據 | 提出者 | 狀態 | 缺口 |
+| 區域 | 已確認證據 | 推論 | 未知／風險 | 驗證方式 |
 |---|---|---|---|---|
+| Buyer outcome |  |  |  |  |
+| Stakeholders |  |  |  |  |
+| Decision path |  |  |  |  |
+| Competition |  |  |  |  |
+| Commercial path |  |  |  |  |
 
-### Stakeholders 與 Decision Path
-
-分開列人員角色、影響與接觸狀態，以及各決策步驟、Owner、完成證據與時間。
-
-### 競爭與商務路徑
-
-只列有證據的替代方案、我方差異、商務／核准狀態及未知。
-
-### Top Risks
-
-| 風險 | 證據 | 影響 | 緩解 | Owner | Due |
+| 優先行動 | 目的 | Owner | Due | 依賴 | 成功標準 |
 |---|---|---|---|---|---|
+|  |  |  |  |  |  |
 
-### Next 3 Actions
+結尾：`Strategy draft ready—未變更任何 Forecast 或 Commercial field。`
 
-| 行動與完成標準 | 目的 | Owner | 客戶對應人 | Due | 依賴 |
-|---|---|---|---|---|---|
+### 階段五：建立 Buyer outcome 與 Value path
 
-結尾列出 Unknowns，並說明未修改 Stage、Forecast、Amount 或 Close date。
+將商機存在的理由寫成買方結果，而不是我方產品清單。每個 Outcome 包含目前狀態、期望改變、影響、衡量方式、需要在何時發生及來源。若客戶尚未確認，只能標示 Outcome hypothesis。
 
-## 互動規則
+Value path 必須說明方案如何透過可驗證改變支持 Outcome、需要哪些前提、誰會採用、如何衡量及有哪些 Guardrail。沒有 Baseline 或 Measure 時，不捏造 ROI。
 
-- 先提供結論與三項行動，再提供證據細節。
-- 使用者提供主觀看法時，保留為假設並尋找支持或反證。
-- 不展示內部搜尋、資料位置或錯誤細節。
-- 不把內部敏感評論放入可對客戶分享的內容。
-- 使用繁體中文；正式名稱保留原文。
+### 階段六：建立 Decision 與 Paper process
 
-## 停止與交接條件
+分開處理：
 
-- Opportunity 無法唯一識別：停止跨 Deal 合併並要求確認。
-- 缺少客戶成果與近期客戶行為：先輸出證據取得計畫，不宣稱已有成交策略。
-- 主要問題是資料是否可信而非策略：交接 deal-inspection。
-- 需要完整 Proposal 或商務核准：交接 proposal-preparation 或 commercial-review-handoff。
-- 使用者要求修改 Stage、Amount、Close date 或 Forecast：先提供證據與差異，交由核准流程。
-- 三項策略行動都無法產生客戶證據或解除阻塞：停止並重新定義行動。
+- **Decision criteria**：客戶用哪些條件比較選項。
+- **Decision process**：誰在何種順序提供意見、核准或否決。
+- **Technical／Security validation**：需要完成哪些測試、文件或審查。
+- **Commercial process**：預算、報價、折扣、採購及財務核准。
+- **Paper process**：Legal、Privacy、合約、供應商建檔與簽署。
 
-## 交付前檢查
+只有有來源的步驟才能列為已確認。目標 Close Date 不得替代買方流程。
 
-- Strategy thesis 是否清楚連結改變理由、我方差異與待驗證假設。
-- 客戶成果、成功標準、Stakeholder、Decision path 與 Commercial path 是否各自有證據。
-- 主要競爭替代方案是否包含維持現狀，且沒有無來源 Battlecard 主張。
-- Top risks 是否有觸發證據、影響、Owner、緩解與最晚處理時間。
-- Next 3 Actions 是否會產生新客戶證據、解除阻塞或取得決定。
-- 是否明確保留未修改 Stage、Forecast、Amount 與 Close date 的邊界。
+### 階段七：建立 Stakeholder map
 
-## 內部執行規則
+逐人記錄其已知角色、對 Outcome 的影響、立場證據、參與過的決策、未完成承諾、我方關係 Owner 及下一個驗證動作。避免只做組織圖；重點是每個人如何影響買方決策。
 
-本節不得出現在對使用者的回覆。
+### 階段八：分析 Competition 與替代方案
 
-- 使用 ask 建立跨 Outlook、Teams、Files、Calendar、Planner 的商機脈絡。
-- 使用 fetch 核對客戶說法、文件版本、承諾與既有工作；定位時使用 search_paths 與 get_schema。
-- 本 Skill 只讀取，不使用 create_entity、update_entity、delete_entity 或 do_action。
-- 權限或證據不足時保留 Unknown，不以其他 Account 類比補足。
+Competition 包含其他供應商、內部自建、延後、維持現況及預算轉移。只記錄客戶實際考量或可信證據。為每個替代方案說明其對客戶吸引力、限制、我們需要驗證的比較條件及不應做出的宣稱。
+
+### 階段九：設計 Mutual Action Plan
+
+MAP 只在客戶願意共同規劃時使用。每個 Milestone 連結買方決策或部署準備，包含雙方 Owner、完成條件、Target date 的來源、依賴與證據。未經買方確認的日期標示 Proposed，不以 Seller Close Date 倒排後當成共同承諾。
+
+## 完整 Strategy 結構
+
+1. Opportunity identity、範圍、Offer、目標事件、Plan Owner 與版本。
+2. Buyer outcomes、Impact、Measures 與證據。
+3. 現況、方案 Value path、假設與必要前提。
+4. Stakeholder map、立場、決策影響與 Coverage gaps。
+5. Decision criteria、Decision process、Validation、Commercial 與 Paper process。
+6. Competition、替代方案及差異化驗證。
+7. 已確認承諾、下一個 Buyer commitment 與 Momentum evidence。
+8. 重大風險、Evidence gaps、Trigger 與恢復路徑。
+9. Mutual Action Plan 草案。
+10. 最多三項優先行動及 Manager／Specialist 支援。
+
+## Negotiation 準備規則
+
+先確認客戶真正優先事項、我方已核准範圍、可交換項目、不可讓步條件、授權 Owner、替代方案及每項交換的對價。不得自行設定 Discount、價格底線、Payment terms、服務承諾或 Legal position。所有條件保持 Draft，交由 Commercial owner 核准。
+
+## 停止條件
+
+- 沒有唯一 Opportunity 或 Buyer problem 時停止建立 Strategy。
+- 關鍵內容全是 Seller assumption 時，改產出 Discovery plan。
+- Pricing、Legal、Security 或 Delivery owner 尚未決定的條件不可寫成 Offer。
+- 要求直接修改 Forecast／Commercial field 時只提供證據與變更預覽。
+
+## 使用者溝通與完成檢查
+
+- 交付完整 Opportunity Strategy 與前三項行動，不以 Framework 欄位摘要代替內容。
+- 使用 Sales／Buyer 語言；不顯示內部工具、path、schema、payload 或思考過程。
+- Buyer outcome、Stakeholder、Decision、Validation、Commercial、Paper、Competition 與 Momentum 已檢查。
+- 已確認、Proposed、Assumption 與 Unknown 清楚分隔。
+- Strategy 沒有暗示 Forecast、Price、Terms 或客戶日期已獲核准。
+
+## Work IQ 工具規則
+
+- `ask` 用於 Opportunity cross-workload reasoning。
+- `fetch` 驗證精確 evidence；先執行 `search_paths`、`get_schema`。
+- 儲存 artifact 時才可在核准後使用 `create_entity`、`update_entity`。
+- 不使用 `do_action` 對外承諾或談判。
 
 ## 範例
 
-### 商機停在 Proposal 後
+**輸入：**「幫我規劃 Contoso Security 專案怎麼推進。」
 
-使用者：「Proposal 已寄兩週，接下來怎麼推？」
+**正確行為：**先解析唯一商機，以 buyer evidence 建立 decision map，未知欄位保留空缺，提出最多三項可驗證行動。
 
-Agent 應先確認客戶是否同意成果、評估標準、決策 Owner 與回覆時點。若只有我方寄送證據，策略應聚焦取得客戶確認，而不是再寄一次通用 Follow-up。
+## Guardrails
 
-### 主管要求 Deal plan
+- 不把 Seller activity 當作 Buyer momentum。
+- 不自行變更 Stage、Probability、Amount、Close Date 或 Forecast。
+- 不代表 Pricing、Legal、Security 或 Procurement Owner 接受條件。
+- 不因 framework 欄位存在就捏造答案。
 
-Agent 應提供 Strategy thesis、三個證據缺口、決策路徑、風險及三項行動，不以長篇 Account history 代替策略。
+## 常見問題
 
-### 競爭者未具名
-
-客戶只說「也在看其他方案」。Agent 應把替代方案列為待確認，提出中性評估問題，不猜測是哪家廠商。
-
-## 例外處理
-
-- 同 Account 多筆商機：先確認，不混合證據。
-- 沒有近期客戶互動：策略以重新取得客戶證據為第一優先。
-- 內部日期與客戶時間表衝突：並列差異，建議確認，不自行更新。
-- 使用者要求保證成交或勝率：說明無法保證，改以證據與風險呈現。
-- 使用者要求直接改 Stage 或 Forecast：先提供建議與差異，交由適當流程確認。
+| 問題 | 處理方式 |
+|---|---|
+| 同 Account 有多個商機 | 先選定 Opportunity。 |
+| 缺少決策流程證據 | 標示 `未知`，建立 discovery question。 |
+| 商務條件尚未核准 | 標示 Human decision，不納入已確認策略。 |
+| 要求直接更新 Pipeline | 產生變更預覽，轉交適當核准流程。 |

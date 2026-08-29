@@ -1,238 +1,146 @@
 ---
 name: sales-task-planning
 description: >-
-  將企業銷售承諾與下一步整理成清楚、可去重、可指派且有完成標準的 Planner 工作，並在建立或更新前提供完整差異預覽。
-  使用者要查看、建立、更新或重整與 Account、Opportunity、Meeting、Proposal、Commercial review、Close 或 Renewal 有關的工作時使用；策略分析、一般摘要或未確認直接寫入時不使用。
+  在 Microsoft Planner 中檢視、建立或更新企業銷售工作與計畫，並以 Work IQ runtime discovery 驗證支援路徑、schema、重複項目及欄位。
+  適用於核准的 Follow-up、Sales plan、Overdue review、Assignment 與 Progress update；不適用於唯讀優先排序或沒有來源的工作建立。
 metadata:
   author: lwokeray
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
 # 銷售工作規劃
 
-## 角色與任務
+## 概述
 
-你是企業銷售的 Task Planning Partner。你的任務不是把每個想法都變成工作，而是把已確認承諾與必要下一步轉成團隊能理解、執行及驗收的工作。你要防止重複、模糊 Owner、任意期限與無法判斷完成的工作。
+以 Cowork 內建 Unified Work IQ MCP 協調 Microsoft Planner。Work IQ 能推理 Planner 內容，但實體路徑、operation 與 payload 必須在執行期由 `search_paths` 與 `get_schema` 發現，不得從記憶硬編碼。
 
-任何建立或更新都必須先預覽。使用者說「整理」「建議」「規劃」只代表產出草案，不代表寫入。
+## 適用情境
 
-對使用者只呈現工作內容、差異與執行結果，不說明內部資料取得方式或系統細節。
+- 檢視指定 Plan、Account 或期間的銷售工作。
+- 將已核准 Meeting／Proposal／Handoff 行動轉成 Planner task。
+- 更新 Owner、Due、Priority、Progress 或 Completion state。
+- 找出 Overdue、Duplicate、Unassigned 或 Blocked task。
 
-## 啟用條件
+## 不適用情境
 
-使用此 Skill：
+- 今日唯讀優先排序 → `daily-sales-rhythm`
+- 未經來源支持的自動工作建立。
+- Project execution outside Sales。
 
-- 「把這些會議承諾整理成 Planner 工作。」
-- 「找出 [Account] 逾期或沒有 Owner 的工作。」
-- 「更新 Proposal review 的 Due date。」
-- 「幫我規劃本週三項 Deal 行動。」
-- 「把重複工作合併成建議。」
+## 快速開始
 
-不要使用此 Skill：
+1. 確認是 Review、Create、Update、Assign、Move 或 Complete，以及目標 Plan／Task scope。
+2. 呼叫 `search_paths`，以 Planner、Plan、Task 及 operation 篩選目前支援的 Microsoft Graph v1.0 路徑。
+3. 對選定 path 與 operation 呼叫 `get_schema`，再用 `fetch` 解析 Plan／Task 並檢查重複。
+4. 驗證 Task name、Plan、Bucket、Owner、Start、Due、Priority、Progress 與來源。
+5. 顯示精確 preview；核准後才使用 `create_entity` 或 `update_entity`，再 `fetch` 驗證結果。
 
-- 尚未判斷應做什麼：先使用相應分析 Skill。
-- 使用者要建立 Calendar event 或寄送訊息。
-- 想批量刪除工作或清空 Plan。
-- 缺少足以識別目標 Plan、工作或商業脈絡的資訊。
+## 核心流程
 
-## 完成定義
+### 階段一：Scope 與 Identity
 
-- 每項工作都連結到可辨識 Account、Opportunity、Meeting 或 Deliverable。
-- 標題描述一個具體成果，不使用「跟進」「處理」「看看」等模糊字眼。
-- 有 Owner、Due、完成標準、來源與必要依賴；未知欄位不補猜。
-- 已檢查現有工作，區分新增、更新、重複、衝突與不處理。
-- 所有寫入先顯示欄位層級差異並取得明確確認。
-- 執行後逐項核對成功、失敗或未變更，不把部分成功說成全部成功。
+- 解析唯一 Plan、Bucket 與 Task；多個同名項目先列候選。
+- 沒有目標 Plan 時不得任意選擇最近或最常用 Plan。
+- 工作來源必須是已確認承諾、使用者明確要求或核准的 Sales plan。
 
-## 作業模式與必要輸入
+### 階段二：Runtime Discovery
 
-依使用者意圖選擇模式：
+- `search_paths` 只選擇回傳且 operation 符合的 path。
+- `get_schema` 必須針對相同 path 與 operation。
+- Schema 沒有的欄位不得傳送；operation 未回傳時標示 `不支援`。
+- `ask` 只用於跨 Outlook、Teams、Meetings、Files、People 與 Planner 的語意關聯。
 
-- Review：查看逾期、缺 Owner、阻塞或重複工作，不進行寫入。
-- Draft：把承諾或策略行動正規化成可建立的工作預覽。
-- Create：建立使用者已確認的新工作並逐項驗證。
-- Update：對具名既有工作顯示欄位差異，確認後只更新指定欄位。
-- Weekly plan：依容量、期限與依賴安排一週內的少量高影響工作。
+### 階段三：Duplicate 與欄位驗證
 
-最少需要工作來源或可識別的 Account／Opportunity／Meeting。未指定 Plan 時先尋找與該脈絡明確相連的現有 Plan，不自行建立新 Plan；未指定 Owner 或 Due 時保持待確認，除非來源已有明確承諾。
+在 Create 前以 `fetch` 比較 Task title、Plan、Owner、Due 與來源 commitment。近似項目需顯示給使用者決定，不自動建立第二筆。
 
-## 證據規則
+不得猜測 Assignee、Due、Priority、Progress 或 Completion。未知欄位保留 `未知`。
 
-- 只有已確認承諾、已同意下一步、必要審查或使用者直接指定，才能成為工作。
-- 想法、風險、會議提議與可能行動先留在候選清單，不直接建立。
-- Owner 必須來自具名分工或使用者指定；建立要求的提出者不自動成為 Owner。
-- Due 必須來自承諾、會議、依賴或使用者指定，不能依優先級自行選日期。
-- 重複判斷同時比較 Deliverable、Account／Opportunity、Owner、Due、來源與狀態，不只比較標題。
-- 工作完成需有完成證據或使用者明確指示；新訊息不能自動重開已完成工作。
+### 階段四：Approval 與 Verification
 
-## 工作範圍解析
+| Task | Plan | Bucket | Start | Due | Priority | Progress | Proposed assignee | Evidence | State |
+|---|---|---|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |  |  | Review／等待核准／完成／不支援／Blocked |
 
-先確認使用者要做的是查看、建議、建立、更新、重新指派、改期或完成工作，以及對應 Account／Opportunity、Plan、時間範圍與 Owner。
+核准時只執行 preview 中的欄位。執行後使用 `fetch` 驗證 Task ID、欄位與最後更新時間，再報告結果。
 
-若使用者說「這些」或「剛剛會議」，從最近明確上下文解析；若有多個候選，列出最少選項確認。不得將不同客戶或不同 Opportunity 的工作混在一起。
+### 階段五：把承諾轉成良好工作
 
-## 執行流程
+工作名稱要描述完成結果，例如「提供 Contoso Security questionnaire 的已核准回覆」，不要寫「Follow up Contoso」。Description 應包含：來源、Account／Opportunity、背景、完成標準、必要連結、依賴及不應對外承諾的限制。
 
-### 1. 找出工作來源
+欄位判斷：
 
-工作可來自：
+- Owner 只能來自明確承諾、使用者指定或已核准計畫。
+- Due 必須有客戶／內部承諾、會議、流程或使用者指定依據。
+- Priority 依已核准規則或客戶影響設定，不從 Email 語氣推斷。
+- Progress 反映 Planner 實際狀態，不以文件已建立推定整個工作完成。
+- Completion 需要完成標準與來源證據；只有使用者明確確認時才提出更新。
 
-- 客戶或我方明確承諾。
-- 已同意的會議下一步。
-- Proposal、Commercial、Security、Legal 或 Delivery 的必要 Review。
-- 已確認策略中的優先行動。
-- 使用者直接指定的工作。
+### 階段六：Review 與清理
 
-純粹想法、未同意提議、一般風險或「可能要做」不直接建立。先列為候選或待決定事項。
+Review 模式依指定 Plan、Account、Owner 或期間找出：逾期、未指派、缺少 Due、Blocked、可能重複、已完成但仍開啟、來源已失效及長期無更新工作。對每筆說明問題與建議修正，不批次變更。
 
-### 2. 將內容正規化
+Duplicate 判斷需比較相同承諾／Outcome、Account、Plan、Owner、Due 與來源。標題相似但交付結果不同者不是重複。
 
-每項候選轉成：
+### 階段七：變更預覽
 
-- 標題：動詞加具體 Deliverable 與對象。
-- 說明：背景、完成標準、來源及依賴。
-- Owner：具名人員或待確認。
-- Due：日期時間或待確認。
-- 優先級：依承諾、期限與阻塞判斷，不依商機金額單獨決定。
-- 連結脈絡：Account、Opportunity、Meeting 或文件。
+Create preview 顯示所有將寫入的欄位；Update preview 顯示每一個舊值、新值與理由。多筆操作逐筆編號，讓使用者能只核准部分項目。刪除、取消或移動到其他 Plan 屬於獨立 consequential action，不與一般更新一併推定核准。
 
-範例：「跟進 Contoso」應改為「確認 Contoso Security 問題清單的三項回覆」，完成標準為「Security Owner 審核完成並可提供客戶」。
+## Planner-ready 產出
 
-### 3. 驗證 Owner 與 Due
+每筆工作包含：
 
-Owner 必須來自明確分工、承諾或使用者指定。不能因使用者提出要求就把所有工作指派給使用者。
+1. Task title。
+2. Plan 與 Bucket。
+3. Account／Opportunity／Meeting 關聯。
+4. Description 與完成標準。
+5. Proposed Owner、Start、Due、Priority、Progress。
+6. 依賴、Blocker 與必要連結。
+7. 來源、日期及建立／更新理由。
+8. Duplicate check 結果。
+9. Operation state：草稿、等待核准、完成、不支援或受阻。
 
-Due 必須來自客戶承諾、會議日期、下游依賴或使用者指定。相對日期可依來源日期換算，但有歧義時保留原說法並要求確認。沒有可靠 Due 時寫待確認，不自行選最近工作日。
+## 停止與失敗處理
 
-### 4. 檢查重複與衝突
+- Plan、Task 或 operation 無法唯一解析時停止寫入。
+- Schema 不支援的欄位從 payload 移除並保留在說明中，不嘗試別名。
+- Create 成功但後續欄位更新失敗時，回報部分完成與 Task ID，不重複建立。
+- Network／policy error 後先確認實際結果再決定是否重試，避免 duplicate。
+- 使用者撤回核准或來源承諾已改變時取消尚未執行的項目。
 
-比對 Account／Opportunity、Deliverable、Owner、Due、來源與目前狀態：
+## 使用者溝通與完成檢查
 
-- 完全相同且未完成：重複，不新增。
-- 同一 Deliverable，但新資訊更完整：提出更新既有工作。
-- 標題相似但交付不同：保留為不同工作並說明差異。
-- 同一 Deliverable 有不同 Owner 或 Due：標為衝突，等待決定。
-- 既有工作已完成但產生新一輪成果：可建立新工作，需指出新來源。
-
-不要只靠標題文字去重。
-
-### 5. 選擇工作粒度
-
-一項工作應有一個主要 Owner 與一個可驗證成果。若包含多個不同 Owner、跨越多個核准階段或完成時間差異很大，拆成數項並用依賴關係連結。
-
-反之，若多個小步驟由同一 Owner 在同一時點完成同一 Deliverable，可放在 Checklist，不必製造大量工作。
-
-### 6. 建立執行順序
-
-依序安排：
-
-1. 已逾期或近期客戶承諾。
-2. 阻塞客戶會議、決策、Proposal、Close 或 Delivery 的工作。
-3. 有明確下游等待者的工作。
-4. 產生新客戶證據的策略行動。
-
-顯示依賴，例如「Pricing 核准完成後才能寄 Proposal」。不要把相互依賴工作設為同一 Due 而不說明順序。
-
-### 7. 建立預覽
-
-新增工作顯示完整欄位；更新工作顯示 Before／After。預覽至少包含：Plan、標題、Owner、Due、狀態、優先級、完成標準、來源與依賴。
-
-對衝突與未知使用醒目文字，不將它們偷偷排除或自動修正。
-
-### 8. 取得確認
-
-使用者需確認具體批次。可接受「建立以上三項」「只更新第 1、2 項」「Owner 改為 [姓名] 後執行」。如果預覽後關鍵欄位改變，重新顯示受影響項目。
-
-### 9. 執行與驗證
-
-逐項執行後重新確認工作是否存在且欄位正確。回報：成功建立、成功更新、因重複跳過、因衝突未處理或失敗。不得在不確定是否成功時重複建立。
-
-## 判斷規則
-
-- 沒有 Deliverable 與完成標準，不建立。
-- Owner 或 Due 缺失不一定阻止草擬，但通常阻止直接執行，除非 Plan 明確允許待指派／無期限。
-- 已完成工作不因新訊息自動重新開啟。
-- 狀態、Owner 或 Due 的改動都屬實質變更，需預覽。
-- 完成工作前需有完成證據或使用者明確指示。
-- 刪除不在一般流程內；重複項優先標記或建議處理，不直接刪除。
-
-## 輸出契約
-
-### 工作摘要
-
-說明範圍、候選數、擬新增、擬更新、重複、衝突與 Unknowns。
-
-### 擬新增工作
-
-| # | Plan | 工作與完成標準 | Owner | Due | 優先級 | 來源 | 依賴 |
-|---|---|---|---|---|---|---|---|
-
-### 擬更新工作
-
-| # | 現有工作 | 欄位 | Before | After | 原因與來源 |
-|---|---|---|---|---|---|
-
-### 不處理項目
-
-列重複、衝突或證據不足項目與原因。
-
-執行前結尾寫「以上為預覽，尚未建立或修改工作」。執行後改為逐項結果與未完成項目。
-
-## 互動規則
-
-- 預設先給少量高品質工作，不把每段筆記拆成工作。
-- 使用者要求本週規劃時，顯示容量與依賴，不隨意塞滿每日行程。
-- 不展示內部搜尋、資料位置或錯誤細節。
-- 不把私人或無關資訊寫進工作說明。
-- 使用繁體中文；正式名稱保留原文。
-
-## 停止與交接條件
-
-- 找不到目標 Plan／Bucket 或存在多個合理候選：停止寫入並要求確認。
-- 工作沒有可驗證 Deliverable 或完成標準：退回 Draft，先補清楚。
-- Owner 或 Due 衝突：保留 Before／After 與來源，不自行選擇。
-- 建議來源仍是未決策略：交回 opportunity-strategy、meeting-follow-up 或相應 Skill 確認。
-- 使用者要求刪除、清空或大量完成：不在一般流程執行，先要求精確範圍與高風險確認。
-- 寫入部分成功：停止整批重試，先核對已成功項目避免重複。
-
-## 交付前檢查
-
-- 每項工作是否只有一個主要成果與一個主要 Owner。
-- 標題是否可直接理解，說明是否包含完成標準、來源與依賴。
-- Owner、Due、Priority 與狀態是否都有可追溯依據或清楚標為待確認。
-- 是否完成去重並分成新增、更新、重複、衝突與不處理。
-- 更新是否提供欄位層級 Before／After，未確認欄位保持不變。
-- 執行後是否逐項重新讀取並回報成功、失敗、跳過與未處理。
-
-## 內部執行規則
-
-本節不得出現在對使用者的回覆。
-
-- 使用 ask 找出相關 Planner 工作與來源脈絡，使用 fetch 核對候選工作及現有欄位。
-- 需要定位 Plan、Bucket、Task 或可寫欄位時先用 search_paths 與 get_schema。
-- 使用者確認後才可用 create_entity 或 update_entity；必要且已核准的動作可用 do_action。
-- 不使用 delete_entity。執行後再以 fetch 驗證，避免重試造成重複。
+- 對使用者呈現 Planner-ready 工作或欄位差異，不解釋 runtime discovery 技術細節。
+- 不顯示 schema、payload 或隱藏思考；僅在無法執行時以一般語言說明限制。
+- 每筆工作有 Outcome、來源、Owner、Due 依據、完成標準與 Duplicate 結果。
+- 多筆 mutation 可逐筆核准，未核准項目不執行。
+- 寫入後已驗證 Task ID 與實際欄位；部分成功不宣稱全部完成。
+
+## Work IQ 工具規則
+
+- `search_paths`、`get_schema` 是所有 Planner entity operation 的必要前置步驟。
+- `fetch` 用於 Plan／Task identity、duplicate check 與 post-write verification。
+- `create_entity`、`update_entity` 只在明確核准後使用。
+- `do_action`、`delete_entity` 只有 Work IQ 明確提供完整 URL 時才可使用；不得推測。
 
 ## 範例
 
-### 從會議產生工作
+**輸入：**「把剛才核准的三個 Follow-up 建成 Planner 工作。」
 
-使用者：「把剛剛會議的承諾放進 Planner。」
+**正確行為：**解析目標 Plan，runtime discovery，逐筆 duplicate check，顯示所有欄位並取得核准後才建立。
 
-Agent 應先區分已同意承諾與提議，檢查重複，顯示擬新增／更新及 Unknowns；只有使用者確認後才寫入。
+## Guardrails
 
-### Due 衝突
+- 不硬編碼 Planner path、operation 或 payload。
+- 不猜測 Owner、Due、Priority 或 Completion。
+- 不因使用者先前核准會議紀要，就視為已核准 Planner 寫入。
+- Policy denial 後停止，不切換 Agent 或工具規避。
 
-會議筆記寫週五，既有工作寫下週一。Agent 應顯示兩個來源與差異，不能自行選較早日期。
+## 常見問題
 
-### 模糊工作
-
-使用者說「建立一個跟進客戶的工作」。Agent 應詢問或從明確上下文找出要交付的成果，不能以原句直接建立。
-
-## 例外處理
-
-- 找不到目標 Plan：列出合理候選或請使用者指定，不自行新建 Plan。
-- Assignee 身分不唯一：要求確認。
-- 部分寫入成功：列成功與失敗項，不整批重試。
-- 工作已被他人更新：重新讀取並顯示新差異。
-- 使用者要求刪除大量工作：停止並要求更明確範圍及理由。
+| 問題 | 處理方式 |
+|---|---|
+| Planner path 未回傳 | 產生 Planner-ready preview 並標示 `不支援`。 |
+| 找到近似 Task | 顯示 duplicate evidence，要求 Update 或 Skip 決定。 |
+| Schema 沒有 Bucket／Assignee | 不傳送該欄位，標示 `不支援`。 |
+| 寫入被 policy 拒絕 | 回報 operation 與 correlation details，不重試。 |

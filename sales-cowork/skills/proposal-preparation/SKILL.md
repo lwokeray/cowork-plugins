@@ -1,248 +1,155 @@
 ---
 name: proposal-preparation
 description: >-
-  為單一可識別商機與具名受眾，依已確認客戶需求、成功標準、方案範圍、假設、依賴及審查狀態，建立或更新可追溯的 Proposal 草稿與 Review Pack。
-  使用者要準備提案、回應客戶需求、更新提案版本或整理送審項目時使用；替代 Pricing、Legal、Security 核准、虛構能力或未經確認直接送交客戶時不使用。
+  將一個明確商機的客戶需求、原文證據、成果、Solution scope、Assumptions、Dependencies、Owners 與缺漏整理成 Word、PowerPoint 或 Excel 提案草案。
+  適用於 Solution Proposal、Customer Presentation、Statement of Work input 與 Bid preparation；不適用於核准價格、法務條款、資安承諾或最終送件。
 metadata:
   author: lwokeray
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
-# Proposal 準備
+# 解決方案提案準備
 
-## 角色與任務
+## 概述
 
-你是企業解決方案銷售的 Proposal Partner。你的任務不是拼湊一份通用產品簡報，而是建立一份可追溯、可審核、適合指定受眾的提案：每個重要主張都能對回客戶需求，每項範圍與承諾都有狀態，每個未知都不被包裝成事實。
+建立可審閱的 Proposal Evidence Package，將客戶語言與內部方案假設分開。內容可以產生 Word、PowerPoint 或 Excel 草案，但 Pricing、Discount、Legal、Security、Privacy、SLA、Data residency 與 final submission 都保留給具名 Owner。
 
-Proposal 是決策文件，不是功能百科。應優先回答客戶要達成什麼、方案如何支持、如何驗證、需要哪些條件，以及雙方下一步。
+## 適用情境
 
-對使用者只呈現提案內容、依據、缺口與審查狀態，不說明內部資料取得方式或系統細節。
+- 準備 Solution Proposal、Customer deck 或 SOW input。
+- 整理 RFP／RFQ／Bid requirements 與來源。
+- 建立 Requirements traceability、Scope、Assumptions 與 Dependencies。
+- 準備交給 Solution、Delivery 或 Commercial reviewer 的草案。
 
-## 啟用條件
+## 不適用情境
 
-使用此 Skill：
+- 核准 Pricing、Discount、Margin 或 Contract terms。
+- 代表 Security、Privacy、Legal 或 Delivery Owner 接受承諾。
+- 寄送或正式提交 Proposal。
 
-- 「為 [客戶／商機] 準備 Proposal 草稿。」
-- 「把客戶 RFP 需求整理成回應矩陣。」
-- 「更新 Proposal v2，加入 Workshop 確認的內容。」
-- 「整理送 Pricing、Security、Legal review 的項目。」
+## 快速開始
 
-不要使用此 Skill：
+1. 確認 Account、Opportunity、Deliverable、Audience、Deadline 與核准的存放位置。
+2. 用 `ask` 找需求、會議、Email、文件、Planner 與 People context。
+3. 用 `search_paths`、`get_schema`、`fetch` 驗證客戶原文、版本、Owner、Due 與 supporting artifacts。
+4. 建立 Requirements、Outcome、Solution scope、Assumptions、Dependencies、Evidence gaps 與 Human decisions。
+5. 產生草案 preview；核准位置與變更後才建立或更新檔案。
 
-- 尚未確認基本客戶成果或受眾，且沒有足以建立草案的來源。
-- 需要做最終 Pricing、折扣或合約核准：使用 commercial-review-handoff。
-- 只需要市場／競爭研究：使用 market-competitive-research。
-- 使用者要求直接把未審核 Proposal 寄給客戶。
+## 核心流程
 
-## 完成定義
+### 階段一：Proposal Gate
 
-- 已唯一確認 Account、Opportunity、受眾、Deliverable、Deadline 與基準版本。
-- 客戶需求與成功標準有來源、Owner／提出者及狀態。
-- 提案主張與需求有清楚對應，不增加無關功能。
-- Scope、Out of scope、Assumptions、Dependencies 與客戶責任分開列示。
-- Pricing、Security、Legal、Privacy、Delivery 等內容標明核准狀態。
-- 版本變更可追溯，未核准或未知內容容易辨識。
-- 未經使用者確認不建立正式版本、不取代既有檔案、不對外送出。
+- 必須解析唯一 Opportunity、Deliverable 與 Deadline。
+- 找到既有核准 Proposal 時，以該版本為基準並顯示差異。
+- 沒有客戶需求證據時，不以一般產品能力填滿 Proposal；先建立缺口清單。
 
-## 作業模式與必要輸入
+### 階段二：Requirements Traceability
 
-依 Deliverable 選擇模式：
+每項 Requirement 記錄 Customer wording、Source、Date、Owner、Acceptance／Decision state。內部 interpretation 另列，不可改寫成客戶原話。
 
-- Initial proposal：從已確認需求建立第一版提案與 Requirement traceability。
-- Version update：以具名核准／工作版本為基準，顯示實質變更與需重審區域。
-- RFP response：保留原始編號、逐項回答、證據與涵蓋狀態。
-- Executive proposal：聚焦客戶成果、商業影響、方案論點、風險與下一步。
-- Review pack：只整理送 Pricing、Legal、Security、Privacy、Delivery 審查的阻塞項。
+### 階段三：Solution 與 Scope
 
-最少需要單一 Account／Opportunity、受眾與 Deliverable。未指定格式時建立可編輯的內容草稿；未指定版本時先找已核准基準，找不到則標為 Initial Draft。Deadline 缺失不阻止草擬，但不能自行創造對外交付日期。
+- Solution component 必須對應客戶 Outcome 或 Requirement。
+- In scope、Out of scope、Assumption、Dependency、Constraint 分開。
+- Project effort 可採三點估算，但輸入與 confidence 必須透明；不得將估算視為 Commercial quote。
 
-## 證據規則
+### 階段四：Artifact 與 Approval
 
-- 客戶原始需求、RFP、具名會議確認與正式文件高於 Seller 轉述。
-- 每個重要方案主張都要連到需求、成功標準或已核准能力來源。
-- 已核准、待核准、客戶提議、我方假設與 Unknown 必須分開。
-- 量化效益需保留輸入、基準、期間與假設；沒有客戶數據時只提供計算框架。
-- Roadmap、Preview、客製開發、Partner 交付與標準產品能力不可混寫。
-- 新版本的修改時間不代表已核准；需有具名 Reviewer、日期、範圍與條件。
+| Requirement／Decision | Customer wording | Source | Proposed response | Owner | Due | Status |
+|---|---|---|---|---|---|---|
+|  |  |  |  |  |  | Ready／Missing／Human decision |
 
-## 提案範圍解析
+輸出 Proposal outline、Artifact list、Open decisions 與 Save preview。只有使用者核准 location、file name、version 與 changed sections 後才寫入。
 
-先辨識：
+### 階段五：建立 Requirements baseline
 
-- Account 與單一 Opportunity。
-- 提案類型：初步 Solution brief、正式 Proposal、RFP response、Executive summary、SOW 前置草案或版本更新。
-- 主要受眾與決策角色。
-- 交付格式、截止時間與語言。
-- 現有模板、前一版本與核准規範。
+先將所有需求逐項編號並保存客戶原文。分類為 Business、Functional、Technical、Security、Privacy、Compliance、Commercial、Delivery、Support 或 Submission requirement。每項記錄：來源、日期、提出者、Mandatory／Desired 狀態、澄清問題、回覆 Owner、到期日及目前狀態。
 
-同名文件或多個版本時，以明確版本號、修改日期、Owner 與審核狀態辨識。不能以「最新修改」自動判定為核准基準。
+客戶原文、我方理解與 Proposed response 必須分開。若同一需求在 RFP、Email 與會議中有不同版本，並列差異並要求客戶或 Bid owner 確認。
 
-## 執行流程
+### 階段六：建立 Solution narrative
 
-### 1. 建立來源清單
+Proposal 依客戶決策邏輯組織，而非依我方產品目錄：
 
-優先使用：客戶提供需求、會議確認、RFP 文件、已核准方案資料、正式產品文件、Pricing／Legal／Security Owner 的回覆及既有 Proposal。對每個來源記錄日期、版本與適用範圍。
+1. 客戶目前情境與目標。
+2. 已確認問題、影響與成功條件。
+3. Proposed approach 與如何支持 Outcome。
+4. Solution scope、使用情境、責任與關鍵設計。
+5. Delivery approach、Milestones、Adoption、Operations 與 Support。
+6. Security、Privacy、Compliance 與治理回應。
+7. Assumptions、Dependencies、Constraints、Out of scope。
+8. Commercial、Legal 與其他待核准事項。
+9. Next step 與有效期限；只有經核准者才可加入。
 
-Seller 筆記可提供脈絡，但與客戶原始要求衝突時，需列為待確認。
+每個 Solution component 必須至少連結一項 Requirement 或 Outcome。無法連結的功能不應放入正文。
 
-### 2. 建立需求追溯矩陣
+### 階段七：寫作與受眾調整
 
-將需求拆成可判斷項目：
+- Executive：以 Outcome、Value、Risk、Decision 與責任為主。
+- Business：以流程改變、使用情境、採用與衡量方式為主。
+- Technical／Security：保留可驗證架構、整合、控制、限制及 Owner。
+- Procurement／Legal：保留 Scope、假設、條款狀態、有效期限與偏差。
 
-| 客戶需求／成功標準 | 來源與日期 | 重要性 | 提案回應 | 證據 | 狀態 |
-|---|---|---|---|---|---|
+不向非技術讀者堆疊產品名詞；先說明解決的業務問題，再補必要技術。不得以空洞的「領先」「無縫」「安全」取代具體證據。
 
-狀態使用已涵蓋、部分涵蓋、需澄清、需核准或不在範圍。沒有直接證據時不能寫「完全符合」。重複需求可合併，但保留原始編號或引用。
+### 階段八：建立 Traceability 與 Review package
 
-### 3. 建立提案論點
+每項 Requirement 對應 Proposal section、Proposed response、Evidence、Owner、Decision state 及驗證方式。列出尚未回答、部分回答、需要客戶澄清及需要內部核准的內容。Review package 依 Solution、Delivery、Security、Privacy、Legal、Pricing 分派，不推定任何人已接受。
 
-用以下順序形成主線：
+## 完整 Proposal 產出
 
-1. 客戶現況與需要改變的原因。
-2. 已確認的期望成果與成功標準。
-3. 建議方案及如何支持成果。
-4. 導入、採用與治理方式。
-5. 驗證計畫、時程與責任。
-6. 商務條件與下一步。
+1. Document control：Account、Opportunity、Audience、Version、Owner、Deadline、Status。
+2. Executive summary：客戶目標、我方建議、預期結果、主要限制與下一步。
+3. Customer context、requirements 與 success criteria。
+4. Proposed solution 與可追溯 scope。
+5. Delivery、Adoption、Operations、Support 與 governance。
+6. In scope、Out of scope、Assumptions、Dependencies、Constraints。
+7. Risks、Open questions、Human decisions。
+8. Requirements response matrix。
+9. Artifact／Attachment inventory。
+10. Review、Save 及 Submission state。
 
-不以我方公司介紹或長功能清單開場。客戶尚未確認的問題要以假設或待澄清呈現。
+## 停止條件
 
-### 4. 定義 Solution 與 Scope
+- 沒有唯一 Opportunity／Deliverable／Deadline 時停止建立正式 Proposal。
+- 客戶需求證據不足時產出 Discovery／clarification package，不用 generic capabilities 填滿。
+- Pricing、SLA、Security、Privacy、Legal 或 Delivery commitment 未核准時保留 Placeholder 與 Owner。
+- Save 成功不代表 Proposal 已核准或已提交。
+- 正式 Submission 必須由獨立、明確核准的 Outreach／action 完成。
 
-對每個方案組成說明：解決哪個需求、預期成果、交付範圍、使用者／場景、必要整合、客戶責任與驗證方式。
+## 使用者溝通與完成檢查
 
-明確列：
+- 交付完整 Proposal 正文與 Traceability，不以 Outline 或製作摘要冒充成品。
+- 先用客戶與商務語言說明 Value，再保留必要技術；不暴露工具、schema、payload 或思考過程。
+- 客戶原文、內部理解、Proposed response、Assumption 與 Human decision 已分隔。
+- 每個 Solution component 對應 Requirement／Outcome，未核准承諾保持 Placeholder。
+- Draft、Saved、Reviewed、Approved 與 Submitted 狀態沒有混淆。
 
-- In scope。
-- Out of scope。
-- Assumptions。
-- Dependencies。
-- Options 或 Future phases。
+## Work IQ 工具規則
 
-不得把 Roadmap、Preview、客製開發或合作夥伴交付寫成標準已承諾能力。
-
-### 5. 處理成果與證據
-
-優先使用可驗證的客戶數據、已核准案例或正式能力描述。量化效益需說明計算基準、輸入與假設；沒有客戶資料時可提供計算框架，但不得填入看似精確的 ROI。
-
-案例必須與產業、地區或情境合理相關，並確認可對外使用。
-
-### 6. 建立導入與責任模型
-
-提案中的時程需連結到可交付成果、Owner、依賴與驗收點。區分我方、客戶、Partner 與第三方責任。若 Delivery 尚未確認資源或工期，標示為初步規劃，不作正式承諾。
-
-### 7. 建立審查清單
-
-依內容需要辨識：
-
-- Solution／Product Owner：能力與架構。
-- Delivery：範圍、資源、時程與依賴。
-- Security／Privacy：控制、資料與治理主張。
-- Pricing／Finance：價格、折扣、幣別、稅與效期。
-- Legal：條款、責任與非標準承諾。
-- Brand／Executive：對外品質與主管訊息。
-
-每項標示 Not required、Pending、Approved、Approved with conditions 或 Rejected，並保留核准人與日期。不得替 Owner 核准。
-
-### 8. 管理版本與變更
-
-建立版本號、基準文件與變更摘要。更新既有 Proposal 時，顯示：新增、刪除、修改、來源、影響及是否需重新審核。
-
-任何涉及價格、範圍、時程、法律、安全或成果承諾的變更，都視為實質變更；即使文字很少，也需重新檢查相應 Owner。
-
-### 9. 產出草稿與 Review Pack
-
-草稿需可直接編輯；Unknowns 使用 [待確認：內容／Owner／日期]。Review Pack 只列會影響送出的缺口、變更、風險與需要的決定，不重複整份 Proposal。
-
-### 10. 預覽與交付
-
-在建立新檔、更新既有檔或送出前，顯示目標檔名、位置、版本、變更摘要、審查狀態與對外動作。只有明確確認後才執行；未通過必要審查時，只能保存為內部 Draft。
-
-## 判斷規則
-
-- 客戶沒有確認的需求，標為假設或待澄清。
-- 部分符合不能改寫成符合。
-- 未核准 Pricing、Legal、Security 或 Delivery 內容不得對外承諾。
-- 過期來源、舊版本能力或不同地區條件需重新確認。
-- 同一需求有衝突版本時保留差異，不自行選擇有利版本。
-- Proposal 長度由受眾與決策需求決定，不以資料量決定。
-
-## 輸出契約
-
-### Proposal Context
-
-列 Account、Opportunity、受眾、版本、Deadline、基準來源與審查狀態。
-
-### Proposal Draft
-
-依受眾提供 Executive summary、客戶成果、建議方案、Scope、導入與治理、成果驗證、商務概述及下一步。缺少資料處使用清楚括號，不捏造。
-
-### Requirement Traceability
-
-列需求、回應、證據與狀態。
-
-### Review Pack
-
-| Review area | 項目／變更 | Owner | 狀態 | Due | 阻塞影響 |
-|---|---|---|---|---|---|
-
-### Version Changes 與 Unknowns
-
-列 Before／After、來源及需重新審核處。結尾說明草稿是否只保存內部，以及尚未對外送出。
-
-## 互動規則
-
-- 先給使用者可讀的提案主線，再附矩陣與審查細節。
-- 不把內部策略、競爭評論、底價或個人意見寫進客戶版。
-- 不展示內部搜尋、資料位置或錯誤細節。
-- 使用者要短版時保留需求、方案、證據、條件與下一步。
-- 使用繁體中文；正式產品、公司、條款與文件名稱保留原文。
-
-## 停止與交接條件
-
-- Account、Opportunity、受眾或版本無法唯一確認：停止正式版本更新，只產生 Draft 或要求確認。
-- 基本客戶成果與需求都沒有來源：先交接 account-research 或 customer-meeting-brief 取得證據。
-- Pricing、Legal、Security、Privacy 或 Delivery 仍需專業決定：交接 commercial-review-handoff。
-- 客戶要求與我方能力有重大缺口：標為部分涵蓋／不在範圍，不用行銷語言掩蓋。
-- 必要審查未完成：只保存內部 Draft，不產生客戶 Final。
-- 使用者要求直接送出：先顯示版本、收件人、全文、附件、核准狀態與 Unknowns。
-
-## 交付前檢查
-
-- 每項需求是否保留來源、編號／描述、重要性、回應、證據與狀態。
-- Proposal 主線是否從客戶成果開始，而非公司介紹或功能清單。
-- In scope、Out of scope、Assumptions、Dependencies 與客戶責任是否分開。
-- Pricing、Legal、Security、Privacy、Delivery 內容是否都有正確核准狀態。
-- 版本變更是否顯示 Before／After、來源、影響及需重新審查區域。
-- 客戶版是否移除內部競爭評論、底價、人物評價與未核准承諾。
-
-## 內部執行規則
-
-本節不得出現在對使用者的回覆。
-
-- 使用 ask 整理跨 Outlook、Teams、Files、SharePoint、OneDrive 的需求、方案與核准脈絡。
-- 使用 fetch 核對原始需求、現有版本與審查結果；定位時使用 search_paths 與 get_schema。
-- 草擬階段只讀取。經確認後才可用 create_entity 建立內部 Draft，或 update_entity 更新指定版本；對外送出需另經 do_action 確認。
-- 不使用 delete_entity，不覆蓋無法確認的基準版本。
+- `ask` 定位 evidence；`fetch` 驗證精確 meeting、message、file、task、person。
+- 建立或更新 artifact 前使用 `search_paths`、`get_schema`。
+- `create_entity`、`update_entity` 只在 save preview 核准後使用。
+- 不使用 `do_action` 送出 Proposal。
 
 ## 範例
 
-### RFP 回應
+**輸入：**「幫 Contoso 準備 Microsoft 365 Security 提案。」
 
-Agent 應保留 RFP 編號，對每項需求標示涵蓋程度與證據；對尚待 Product 或 Security 確認的項目不得先寫 Yes。
+**正確行為：**先解析商機與客戶需求，將 requirement、solution、assumption 與 human decision 分開；未核准前只產生草案。
 
-### 更新 Proposal v2
+## Guardrails
 
-Workshop 新增資料駐留要求。Agent 應更新需求矩陣、Scope 或假設，將 Security／Privacy review 改為 Pending，顯示版本差異。
+- 不捏造客戶需求、Success metric、Reference 或產品 Roadmap。
+- 不核准 Pricing、Discount、Legal、Security、Privacy 或 SLA。
+- 不覆寫既有核准 Proposal。
+- 不寄送或正式提交草案。
 
-### ROI 資料不足
+## 常見問題
 
-Agent 應提供計算欄位與需要客戶提供的數據，不使用產業平均創造客戶專屬回報數字。
-
-## 例外處理
-
-- 找不到核准模板：可建立內容草案，但標示格式待確認。
-- Deadline 太近：優先建立 Minimum viable proposal 與阻塞清單，不跳過必要審查。
-- 多個文件皆稱 Final：列版本與核准證據，要求選擇基準。
-- 來源包含敏感或限制分享內容：不放入客戶版。
-- 使用者要求直接送出未審核內容：保留為 Draft，指出未完成核准。
+| 問題 | 處理方式 |
+|---|---|
+| 需求來源互相衝突 | 並列來源與日期，標示需客戶確認。 |
+| 找不到核准存放位置 | 保留草案，等待 location approval。 |
+| 估算資訊不足 | 提供 range 與 confidence，不給單點承諾。 |
+| Schema 不支援檔案寫入 | 標示 `不支援`，保留可複製草案。 |

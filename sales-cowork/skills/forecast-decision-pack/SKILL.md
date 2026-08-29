@@ -1,242 +1,153 @@
 ---
 name: forecast-decision-pack
 description: >-
-  比較目前與前一個已核准 Forecast 快照，以一致口徑說明新增、移出、金額、日期及分類變動，連結客戶證據與風險，產出管理層可直接決策的 Forecast Pack。
-  使用者要準備週會、月會、季度 Forecast review、解釋變動或建立管理層問題清單時使用；直接修改 Forecast、只檢查單筆 Deal 或在缺少可比較基準時聲稱趨勢時不使用。
+  依核准且可比較的目前與先前 Excel、SharePoint 或 OneDrive 快照，準備限定團隊與期間的 Forecast／Pipeline 決策包。
+  適用於 Forecast call、Material movement、Deal risk 與 Manager decision questions；不適用於沒有核准快照、推算未提供數值或直接修改 Forecast。
 metadata:
   author: lwokeray
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
 # Forecast 決策包
 
-## 角色與任務
+## 概述
 
-你是銷售主管的 Forecast Decision Partner。你的任務不是重新計算一個看似精確的數字，而是讓主管知道：相較上次核准版本，什麼改變、為何改變、哪些改變有客戶證據、哪裡需要決策或介入。
+為 Sales Manager 或 RevOps 準備具 as-of date、來源及 Evidence gap 的 Forecast decision pack。報告值、Buyer evidence、風險與 Human decision 必須分開；活動報告不能替代 Forecast。
 
-Forecast Pack 必須可重現。所有比較都要使用明確快照、相同範圍與一致定義；無法比較時直接說明，不能把兩份不同口徑資料硬湊成趨勢。
+## 適用情境
 
-對使用者只呈現 Forecast 變化、證據、風險與決策，不說明內部資料取得方式或系統細節。
+- 準備指定 Team／Period 的 Forecast call。
+- 比較目前與先前核准 snapshot 的重大變化。
+- 找出高風險 Deal、Evidence gap 與 Manager questions。
 
-## 啟用條件
+## 不適用情境
 
-使用此 Skill：
+- 沒有核准 current snapshot 的 Forecast review。
+- 沒有 prior snapshot 卻宣稱 movement。
+- 自動改變 Forecast category、Amount、Probability、Stage 或 Close Date。
 
-- 「準備本週 Forecast review pack。」
-- 「和上週相比，Commit 有哪些變動？」
-- 「哪些 Deal 影響本季 Forecast？」
-- 「整理需要 VP 決定或介入的 Forecast 問題。」
+## 快速開始
 
-不要使用此 Skill：
+1. 確認 Team scope、Forecast period、as-of date、current snapshot 與 prior snapshot。
+2. 用 `ask` 找核准來源，再以 `search_paths`、`get_schema`、`fetch` 讀取精確 entities。
+3. 驗證 approval status、Owner、schema、currency、period 與 snapshot comparability。
+4. 比較 material movement，對關鍵項目檢查 Buyer evidence。
+5. 產生 Rollup、Risk、Evidence gaps 與具名 Manager decision questions；不執行任何變更。
 
-- 只有單筆商機需要診斷：使用 deal-inspection 或 opportunity-strategy。
-- 使用者要直接調整 Forecast category、Amount 或 Close date。
-- 沒有任何前期快照卻要求計算變動；可產出現況包，但不能稱為比較。
-- 不同地區、幣別、期間或定義尚未對齊。
+## 核心流程
 
-## 完成定義
+### 階段一：Snapshot Gate
 
-- 已確認目前快照與前一個已核准快照的日期、Owner、範圍與版本。
-- 已對齊期間、團隊、幣別、匯率日期及 Forecast 定義。
-- 每個重大變動分類為新增、移出、金額、日期、分類、關閉或資料修正。
-- 變動原因區分客戶證據、內部決定與未確認說明。
-- 管理層摘要可對回 Deal 明細，合計與明細一致。
-- 已列出下行、上行、資料品質風險及具體決策問題。
-- 沒有修改任何 Forecast 或 Opportunity 資料。
+- Current snapshot 必須存在、屬於指定 scope／period 且可確認為核准來源。
+- Prior snapshot 不存在時，只輸出 current posture，不宣稱 movement。
+- 欄位、currency、period 或 aggregation 不一致時停止直接比較，列出差異。
 
-## 作業模式與必要輸入
+### 階段二：Movement Analysis
 
-依資料與 Review 目的選擇模式：
+只比較來源中已存在的數值及 category，記錄 old／new／delta／source。不得補算缺少的 Probability、Amount 或 Forecast value，除非使用者提供明確公式及授權分析。
 
-- Current-state pack：只有目前快照時，整理現況、風險與決策，不宣稱 movement。
-- Snapshot comparison：比較目前與前一個已核准快照的完整變動。
-- Commit challenge：聚焦 Commit Deal 的客戶證據、時間可信度與下行條件。
-- Executive review：壓縮為淨變化、重大 Deal、Upside／Downside 與需要主管決定事項。
+### 階段三：Evidence Inspection
 
-最少需要目前 Forecast 快照與明確期間。Movement 模式還需要前一個已核准或使用者指定的基準快照。未指定範圍時沿用目前快照的團隊、地區與 Deal 類型，但必須在輸出中列明，不能自行擴大。
+對 material items 驗證最近 Buyer outcome、Stakeholder、Decision／Commercial path、Next commitment。Seller activity 與內部 optimism 只能列為 context，不得視為 Buyer evidence。
 
-## 證據規則
+### 階段四：Decision Pack
 
-- 快照是數字基準；變動原因仍需回到客戶互動、核准、文件或作業修正來源。
-- Seller comment 是重要說明，但在沒有客戶來源時只能標為內部判斷。
-- Category、Amount、Close date 與 Owner 變化分別記錄，不能以單一 movement reason 包含所有改動。
-- 客戶日期、決策路徑與完成條件共同支持時間可信度；只有 Close date 欄位不足。
-- 匯率、範圍、組織調整與資料清理造成的變化，要與真實商業增減分開。
-- 不同幣別、期間或分類定義沒有對齊時，不合計、不比較。
+| Scope | Period | As-of | Current snapshot | Prior snapshot | Comparability |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
 
-## 快照與口徑
+| Deal／Segment | Reported movement | Buyer evidence | Evidence gap | Risk posture | Manager decision question |
+|---|---|---|---|---|---|
+|  |  |  |  |  |  |
 
-先確認：
+每個 Decision question 包含 Decision owner、需要的 Evidence 與 Due。結尾：`決策包已完成；未變更任何 Forecast 或 Commercial field。`
 
-- Forecast 期間與截止日期。
-- 團隊、地區、Segment、Seller 或 Manager 範圍。
-- 幣別與匯率基準。
-- Commit、Best case、Pipeline 等分類定義。
-- 目前與前次快照來源、建立日期與核准狀態。
-- 是否包含已關閉、Renewal、Services 或特定 Deal 類型。
+### 階段五：建立 Rollup
 
-前次版本必須是已核准或使用者明確指定的比較基準。若只能找到自動儲存或個人草稿，需標示不適合正式比較。
+只使用 Snapshot 已存在且定義清楚的欄位計算 Rollup。逐一確認 Currency、Exchange rate、Period、Owner、Category 與 Aggregation 規則。不同 Currency 不可直接相加；若 Snapshot 已提供核准換算值，保留其匯率、日期及來源。
 
-## 執行流程
+Rollup 至少分開：
 
-### 1. 驗證可比性
+- Snapshot reported total／category。
+- 與前一核准 Snapshot 的變化。
+- 新增、移出、上調、下調、日期移動及金額變更。
+- 無法比較、缺少來源或 schema 改變的金額。
+- Manager 尚未核准的建議調整。
 
-比較欄位、Deal 範圍與定義。若有組織調整、幣別變更、欄位定義更新或歷史資料回補，將其列為口徑變化，與真實商業變化分開。
+不得用自行估算值補齊 Gap 後宣稱為正式 Forecast。
 
-無法完全對齊時，可提供部分比較，但每個合計需清楚註明涵蓋範圍。
+### 階段六：Material movement review
 
-### 2. 建立快照合計
+依組織既有 materiality 規則挑選 Deal；沒有規則時，顯示影響最大的變化並說明選擇方式，不自行建立正式 threshold。每筆 Movement 要回答：
 
-按核准分類彙總目前與前次 Amount、Deal count 及必要的加權值。不得自行發明 Probability 或用未核准規則加權。
+1. Snapshot 中哪個值從什麼變成什麼。
+2. 改變的日期、來源與 Owner。
+3. 是否有近期 Buyer evidence 支持。
+4. 最大 Evidence gap 或風險。
+5. Manager 需要作成什麼決策。
 
-先驗算：分類合計是否等於總計、明細是否重複、幣別是否一致、關閉 Deal 是否正確處理。
+### 階段七：設計 Forecast call
 
-### 3. 建立 Deal movement ledger
+Decision Pack 不是逐筆朗讀 Pipeline。建議順序：
 
-以穩定 Opportunity 識別碼對齊兩個快照，分類：
+1. Scope、Period、as-of、Snapshot 與 comparability。
+2. Rollup 與最大 Movement。
+3. 會影響 Commit／Best case／Pipeline 判斷的 Deals。
+4. Close date 或 Amount 與 Buyer process 不一致者。
+5. 需要 Manager／Specialist／Commercial 支援的決策。
+6. 會後 Owner、Due 與下一個核准 Snapshot。
 
-- 新增到範圍。
-- 移出範圍。
-- Amount 增減。
-- Close date 移入／移出期間。
-- Forecast category 改變。
-- Closed Won／Lost。
-- Owner 或資料修正，不一定是商業變化。
+## 完整 Decision Pack
 
-同一 Deal 有多項變動時保留每項差異，但指定對 Forecast 數字的主要影響，避免重複計算。
+- Executive headline：目前 posture、變化與信心限制。
+- Snapshot control：位置、版本、核准狀態、schema、Currency、Period、as-of。
+- Rollup：原始報告值及可比較變化。
+- Movement table：Old、New、Delta、原因來源及 Buyer evidence。
+- Deal evidence：Outcome、Stakeholder、Decision／Commercial path、Next commitment。
+- Risks and gaps：高影響、低信心、Stale、無權限或矛盾項目。
+- Manager questions：Decision、Options、Recommendation、Owner、Due、No-action impact。
+- Follow-up actions：只做建議，不寫回 Forecast。
 
-### 4. 查證變動原因
+## 停止條件
 
-對重大變動找近期客戶來源、會議決定、Commercial／Legal 狀態、內部核准或資料修正紀錄。原因分為：
-
-- 客戶確認：有明確外部證據。
-- 內部決定：管理或 Seller 更新，但尚未取得客戶確認。
-- 作業修正：重複、幣別、公式或欄位修正。
-- 未知：沒有足夠來源。
-
-Seller 的自由文字說明是重要輸入，但不能自動升級為客戶證據。
-
-### 5. 評估時間可信度
-
-對影響本期的 Deal 檢查：下一個客戶里程碑、決策／採購流程、未完成承諾、Commercial／Legal／Security 依賴與距截止日的剩餘時間。
-
-若 Close date 只有內部欄位、沒有客戶時點或完成路徑，列為時間風險。不要自行移出本期。
-
-### 6. 建立上行與下行情境
-
-只使用具名 Deal 與明確條件：
-
-- 下行：哪些 Deal 若某條件未在何時完成，可能影響 Commit／本期。
-- 上行：哪些 Deal 只有在客戶完成何種行為後，才可能進入更高分類。
-
-不得提供無法追溯的單一樂觀／悲觀百分比。每個情境列 Amount、條件、Owner 與決策時點。
-
-### 7. 找出管理層決策
-
-只提出需要主管層級的問題，例如資源優先級、高層客戶介入、Pricing exception、跨部門 Owner、Deal qualification 或 Forecast 記錄原則。每個問題包含：需要決定什麼、最晚日期、選項、影響及建議 Owner。
-
-一般 Seller Follow-up 不應包裝成主管決策。
-
-### 8. 準備 Review 敘事
-
-用以下順序：總體變化、主要驅動 Deal、下行風險、上行條件、需要決策、資料限制。每個數字都可回到明細；避免只談總額不談原因。
-
-## 判斷規則
-
-- 沒有核准前次快照：只能做 current-state pack。
-- 不同幣別未對齊：不相加。
-- Close date 變更不等於客戶時間表變更，需查原因。
-- Category 上調但無新客戶證據：標為未驗證上調。
-- Amount 變動若來自範圍或匯率，與商業增減分開。
-- Deal 已 Closed Won 但沒有相應證據時，列資料驗證問題，不自行更改。
-- 對同一 Deal 的下行與上行不得重複計入同一情境合計。
-
-## 輸出契約
-
-### Forecast Snapshot
-
-列期間、範圍、幣別、目前快照、比較快照與資料截至時間。
-
-### Executive Summary
-
-最多五點：淨變化、主要驅動、最大下行、可驗證上行與需要決策。
-
-### Category Movement
-
-| 分類 | 前次 | 目前 | 變化 | Deal 數變化 | 說明 |
-|---|---:|---:|---:|---:|---|
-
-### Major Deal Movements
-
-| Deal | 變動類型 | Before | After | 原因類型 | 證據與日期 | 影響 |
-|---|---|---|---|---|---|---|
-
-### Downside／Upside
-
-分別列 Deal、Amount、觸發條件、Owner 與最晚決策日。
-
-### Decisions Required
-
-| 決策 | 選項／建議 | 影響 | Owner | Due |
-|---|---|---|---|---|
-
-### Data Limitations
-
-列不可比、來源缺失與未驗證變動。結尾說明未修改 Forecast 或商機資料。
-
-## 互動規則
-
-- 主管版先講變動與決策，明細放後面。
-- 使用明確金額、幣別、日期與正負方向，不用「大幅」「不少」等模糊字。
-- 不展示內部搜尋、資料位置或錯誤細節。
-- 不把 Seller 評價混入 Forecast 證據。
-- 使用繁體中文；正式分類與欄位名稱保留原文。
-
-## 停止與交接條件
-
-- 沒有核准前次快照：切換 Current-state pack，不產生 movement 數字。
-- 明細合計與摘要不平：停止正式結論，先列差異與可能來源。
-- 幣別、期間、團隊範圍或分類定義不可比：只提供共同範圍或分開呈現。
-- 單筆 Deal 需要根因診斷：交接 deal-inspection；Forecast Pack 只保留其數字影響。
-- 需要修改 Forecast 或 Opportunity：先提供建議、證據與 Before／After，交由核准流程。
-- 找不到重大 movement 原因：標為 Unknown，不以 Seller 活動或相似 Deal 補造。
-
-## 交付前檢查
-
-- 目前與基準快照的日期、版本、範圍、幣別及定義是否可比較。
-- Category 合計、總計、Deal count 與 movement ledger 是否相互一致。
-- 每個重大 movement 是否有變動類型、Before、After、原因類型與來源。
-- Upside／Downside 是否使用具名 Deal、Amount、條件、Owner 與決策時點。
-- Manager questions 是否真需主管決策，而非一般 Follow-up。
-- 是否列明資料限制並保留 Forecast 與 Opportunity 欄位未變更。
-
-## 內部執行規則
-
-本節不得出現在對使用者的回覆。
-
-- 使用 ask 找出 Forecast 快照、Opportunity 明細、近期客戶證據與核准脈絡。
-- 使用 fetch 核對快照版本、Deal movement 及來源；需要定位時使用 search_paths 與 get_schema。
-- 本 Skill 只讀取，不使用 create_entity、update_entity、delete_entity 或 do_action。
-- 對不完整或不可比資料不得以其他時期推估補齊。
+- Current Snapshot 不存在或無法確認範圍時，不產出正式 Forecast Pack。
+- Prior Snapshot 不可比較時不計算 movement。
+- Currency／schema／Period 不一致且無核准轉換規則時停止彙總。
+- Buyer evidence 不足時降低信心，不用 Seller commentary 補足。
+- 使用者要求更新 Forecast field 時，先列證據與精確變更，由具名 Owner 核准並使用其他流程執行。
+
+## 使用者溝通與完成檢查
+
+- 交付可直接用於 Forecast call 的 Decision Pack，不呈現檢索或計算過程摘要。
+- 使用 Sales Manager／RevOps 語言；不顯示內部工具、path、schema、payload 或隱藏思考。
+- Snapshot、Currency、Period、as-of 與 comparability 已確認。
+- Reported value、movement、Buyer evidence、risk 與 Human decision 清楚分開。
+- 無 Prior／不可比較資料時沒有虛構 movement，且未寫回 Forecast。
+
+## Work IQ 工具規則
+
+- `ask` 找到核准 snapshots 與相關背景。
+- `fetch` 驗證 snapshots 與 deal evidence；先使用 `search_paths`、`get_schema`。
+- 此 Skill 不使用 mutation tools。
 
 ## 範例
 
-### Commit 下滑
+**輸入：**「準備本季 Forecast Review。」
 
-前次 Commit 10M、目前 8M。Agent 應列出造成 2M 變化的具名 Deal、變動類型與原因，區分客戶延期、內部改分類及資料修正。
+**正確行為：**先要求 Team、as-of 與核准 current snapshot；沒有 prior snapshot 時明確停止 movement comparison。
 
-### 沒有前次核准快照
+## Guardrails
 
-Agent 應產出本期現況、風險與決策清單，但明確說明不能計算正式 movement。
+- 不把活動報告當 Forecast。
+- 不推算或修改缺少的 Forecast values。
+- 不以內部 optimistic note 取代 Buyer evidence。
+- 不將分析結果寫回 register。
 
-### Category 上調無客戶證據
+## 常見問題
 
-Agent 應標為未驗證上調，列需要的客戶里程碑；不能替使用者降回原分類。
-
-## 例外處理
-
-- 快照範圍不同：先調整共同範圍或分開呈現。
-- 匯率基準缺失：保留原幣別，不計單一總額。
-- Deal ID 改變：使用多欄位對照並標示可能配對，不宣稱確定。
-- 數字與明細不平：停止正式結論，先列差異來源。
-- 使用者要求直接改 Forecast：提供變更建議與證據，交由核准流程處理。
+| 問題 | 處理方式 |
+|---|---|
+| 無 prior snapshot | 只輸出 current posture。 |
+| Snapshot schema 不同 | 顯示差異，不直接比較。 |
+| Approval status 無法確認 | 標示 `未知`，不宣稱正式 Forecast。 |
+| Deal evidence 無權限 | 標示 `無法存取`，降低風險判斷信心。 |

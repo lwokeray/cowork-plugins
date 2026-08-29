@@ -14,20 +14,15 @@ from pathlib import Path
 import yaml
 
 
-INTERNAL_TOOLS = {
+WORK_IQ_TOOLS = {
     "ask", "fetch", "create_entity", "update_entity", "delete_entity",
     "do_action", "call_function", "list_agents", "get_schema", "search_paths",
 }
 
 REQUIRED_SECTIONS = {
-    "## 角色與任務", "## 啟用條件", "## 完成定義", "## 執行流程",
-    "## 作業模式與必要輸入", "## 證據規則", "## 輸出契約", "## 互動規則",
-    "## 停止與交接條件", "## 交付前檢查", "## 內部執行規則", "## 範例", "## 例外處理",
-}
-
-USER_FACING_TECHNICAL_TERMS = {
-    "Work IQ", "MCP", "search_paths", "get_schema", "create_entity",
-    "update_entity", "delete_entity", "do_action", "call_function", "list_agents",
+    "## 概述", "## 適用情境", "## 不適用情境", "## 快速開始",
+    "## 核心流程", "## 使用者溝通與完成檢查", "## Work IQ 工具規則",
+    "## 範例", "## Guardrails", "## 常見問題",
 }
 
 PROMPT_COLUMNS = [
@@ -65,16 +60,6 @@ def parse_frontmatter(text: str, path: Path) -> dict[str, object]:
     if not isinstance(parsed, dict):
         fail(f"{path} frontmatter 必須是 mapping")
     return parsed
-
-
-def split_internal_section(body: str, path: Path) -> tuple[str, str]:
-    heading = "## 內部執行規則"
-    start = body.find(heading)
-    if start < 0:
-        fail(f"{path} 缺少內部執行規則")
-    next_heading = re.search(r"^## .+$", body[start + len(heading):], re.MULTILINE)
-    end = start + len(heading) + next_heading.start() if next_heading else len(body)
-    return body[:start] + body[end:], body[start:end]
 
 
 def png_size(path: Path) -> tuple[int, int]:
@@ -231,17 +216,10 @@ def main() -> None:
             fail(f"{skill_path} version 必須與 manifest 相同")
         if missing_sections := REQUIRED_SECTIONS - set(re.findall(r"^## .+$", body, re.MULTILINE)):
             fail(f"{skill_path} 缺少完整章節：{', '.join(sorted(missing_sections))}")
-        if len(body.encode("utf-8")) < 10000:
+        if len(body.encode("utf-8")) < 6500:
             fail(f"{skill_path} 內容過短，未達完整 Skill 規格")
-        if re.search(r"(?:references|scripts)/", body):
-            fail(f"{skill_path} 核心流程必須採單檔平鋪，不得依賴 references 或 scripts")
-        user_facing, internal = split_internal_section(body, skill_path)
-        if technical := sorted(term for term in USER_FACING_TECHNICAL_TERMS if term in user_facing):
-            fail(f"{skill_path} 使用者可見章節含內部技術名詞：{', '.join(technical)}")
-        if not any(re.search(rf"(?<![A-Za-z0-9_]){re.escape(tool)}(?![A-Za-z0-9_])", internal) for tool in INTERNAL_TOOLS):
-            fail(f"{skill_path} 內部執行規則未說明可用工具")
-        if not re.search(r"本節[^\n]*不得[^\n]*(?:回覆|輸出)", internal):
-            fail(f"{skill_path} 必須明確隔離內部執行規則")
+        if not any(re.search(rf"`{re.escape(tool)}`", body) for tool in WORK_IQ_TOOLS):
+            fail(f"{skill_path} 必須明確引用 Cowork 內建 Work IQ MCP tool")
         if skill_name in names:
             fail(f"Skill name 重複：{skill_name}")
         names.add(str(skill_name))

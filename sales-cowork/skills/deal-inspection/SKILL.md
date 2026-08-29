@@ -1,245 +1,158 @@
 ---
 name: deal-inspection
 description: >-
-  快速檢查一至五筆企業商機，以近期客戶證據判斷真實進展、主要阻塞、證據缺口與最安全的下一步，形成可供 Seller 或 Manager 使用的 Deal Inspection。
-  使用者要找出哪些 Deal 需要介入、為何停滯、下次 Review 該問什麼或比較少量商機健康度時使用；完整成交策略、整體 Forecast 或批量修改商機資料時不使用。
+  檢查一個明確企業商機或最多五筆指定商機的買方證據、阻礙、資訊缺口、管理支援與下一個安全行動。
+  適用於 Deal Health、Stalled Deal、Deal Rescue 與 Manager Inspection；不適用於建立完整 Strategy、修改商業欄位或產生 Forecast commitment。
 metadata:
   author: lwokeray
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
-# 商機健檢
+# 商機健康度檢查
 
-## 角色與任務
+## 概述
 
-你是企業銷售的 Deal Inspection Partner。你的任務不是替 Seller 打分數，而是用最少但可靠的客戶證據回答：這筆 Deal 真正前進了嗎、目前卡在哪、內部紀錄是否可信、下一個動作是否能產生客戶決定。
+以可追溯的 Buyer Evidence 診斷商機，而不是用 Seller activity 代替進展。每筆商機只指出一個最主要阻礙、一個最重要 Evidence gap，以及一個最安全下一步。
 
-檢查重點是可驗證的買方行為，不是 Seller 活動量。寄出 Proposal、完成 Demo、安排很多內部會議，都不等於客戶已前進。
+## 適用情境
 
-對使用者只呈現健檢結論、證據與建議，不說明內部資料取得方式或系統細節。
+- 商機停滯、需要 Rescue 或 Manager support。
+- 檢查 Buyer momentum、Commitment 與 Decision evidence。
+- 對最多五筆已選定商機做 bounded inspection。
 
-## 啟用條件
+## 不適用情境
 
-使用此 Skill：
+- 建立完整 Opportunity Strategy → `opportunity-strategy`
+- 變更 Stage、Probability、Amount、Close Date 或 Forecast。
+- 整體 Pipeline／Forecast Review → `forecast-decision-pack`
 
-- 「檢查這三筆 Deal 哪一筆最需要我介入。」
-- 「為什麼 [商機] 卡住了？」
-- 「幫我準備 Pipeline review 的追問。」
-- 「這筆 Deal 的 Close date 還可信嗎？」
+## 快速開始
 
-不要使用此 Skill：
+1. 解析唯一商機或使用者確認的最多五筆清單。
+2. 使用 `ask` 找到核准 register、近期互動、會議、文件與 Planner 工作。
+3. 使用 `search_paths`、`get_schema`、`fetch` 驗證 Buyer need、Stakeholder、Decision path、Commercial path 及 Next commitment。
+4. 分離 `事實／推論／未知`，找出主要阻礙與缺少證據。
+5. 每筆提出一個安全下一步及 Manager handoff；不執行任何欄位變更。
 
-- 要為單筆 Deal 建立完整策略：使用 opportunity-strategy。
-- 要產出季度 Forecast movement 與管理決策：使用 forecast-decision-pack。
-- 超過五筆商機的批量稽核；應縮小範圍或分批。
-- 未經確認直接修改 Stage、Close date 或 Forecast category。
+## 核心流程
 
-## 完成定義
+### 階段一：Identity Gate
 
-- 每筆商機都已唯一識別，證據沒有跨 Account 或跨 Opportunity 混用。
-- 已查看最近客戶互動、承諾、決定、文件與下一里程碑。
-- 已區分客戶行為、我方活動、內部假設與缺失資訊。
-- 每筆都有健康判斷、主要阻塞、一個最高價值證據缺口及一個安全下一步。
-- 健康判斷附理由，不只給顏色或分數。
-- 需要 Manager 或 Specialist 介入時，明確說明目的與準備事項。
-- 沒有修改商機資料。
+- 不混合相同 Account 下不同 Offer、Region 或 Renewal period。
+- 沒有核准 register 時，register 欄位標示 `無法取得`，仍可檢查其他證據。
+- 批次上限五筆，超過時要求使用者指定優先清單。
 
-## 作業模式與必要輸入
+### 階段二：Buyer Evidence
 
-依範圍選擇模式：
+逐筆驗證：客戶成果或問題、具證據的 Stakeholder role、Decision process、Commercial／Procurement path、競爭或替代方案、下一個客戶承諾與時間。
 
-- 單筆診斷：找出主要阻塞、最高價值證據缺口與一個安全下一步。
-- 小批次比較：以相同維度檢查最多五筆 Deal 並排序 Manager attention。
-- Close-date challenge：專門檢查客戶時點、決策步驟與剩餘工作是否支持日期。
-- Manager review：產出每筆健康理由、兩個質詢問題與需要介入的決定。
+郵件數量、會議數量、Internal task completion 與正面語氣都不是 Buyer momentum 的充分證據。
 
-最少需要可識別 Deal 或小批次候選。未指定期間時查看最近六十天，企業採購週期較長時可延伸九十天；未指定比較標準時使用本 Skill 的六個 Deal 基礎，不套用未提供的內部 Scorecard。
+### 階段三：健康度與阻礙
 
-## 證據規則
+- `證據充分`：主要決策要素有近期且一致的來源。
+- `需關注`：有客戶需求，但 Decision／Commercial／Next commitment 有重大缺口。
+- `高風險`：接近目標日期卻沒有近期 Buyer commitment，或來源互相矛盾。
+- `未知`：無法取得足夠證據，不能合理判斷。
 
-- 買方完成決策步驟、引入必要角色、確認成功標準或承諾里程碑才算 Buyer progress。
-- 我方郵件、Proposal、Demo、內部會議與欄位更新只算 Seller activity。
-- 健康判斷需同時考慮進展、主要阻塞、時間可信度與下一步可行性。
-- Amount 大、主管關注或語氣樂觀不能單獨提高健康度。
-- Close date 需有客戶時點與可完成路徑；只有內部欄位時視為未驗證。
-- 找不到足夠證據時狀態為「無法判斷」，不能用其他相似 Deal 補足。
+健康度是分析輸出，不得自動寫入 Pipeline。
 
-## 範圍與基準
+### 階段四：輸出
 
-一次最多檢查五筆。使用者沒有指定時，可依即將到期、近期無客戶行動、重要承諾逾期或內部欄位不一致找候選，但需顯示選取原因。
+| 區域 | 證據導向發現 | 信心 | 來源與日期 |
+|---|---|---|---|
+| Buyer outcome |  |  |  |
+| Stakeholder |  |  |  |
+| Decision／Commercial path |  |  |  |
+| Next commitment |  |  |  |
+| 主要阻礙 |  |  |  |
+| Evidence gap |  |  |  |
+| 下一步 |  |  |  |
+| Manager handoff |  |  |  |
 
-對每筆先記錄：Account、Opportunity、Owner、Amount、Stage、Close date、Forecast category、最後客戶互動日期及最近客戶承諾。這些是比較基準，不代表已確認事實。
+結尾：`檢查完成；未變更任何 Commercial 或 Forecast field。`
 
-## 執行流程
+### 階段五：檢查 Momentum 的真實性
 
-### 1. 建立近期證據窗口
+Buyer momentum 至少需要一項近期、可驗證的買方行動，例如：提供所需資料、引薦必要 Stakeholder、確認評估標準、接受共同下一步、啟動 Security／Procurement 流程或完成具體決議。Seller 發信、內部會議、Demo 準備或 Proposal 完成不能單獨證明 Momentum。
 
-預設查看最近 30 至 60 天；長週期企業採購可延伸至 90 天。尋找：
+對每項 Momentum evidence 記錄：買方行為、日期、與 Decision path 的關係、下一個已確認承諾及若未發生的影響。
 
-- 客戶明確確認的成果、評估標準或下一步。
-- 具名客戶 Owner 與決策者的參與。
-- 已完成或即將完成的客戶里程碑。
-- 客戶對 Proposal、Demo、Security、Commercial 或 Contract 的具體回應。
-- 雙方承諾與完成狀態。
+### 階段六：辨識最主要阻礙
 
-我方寄信、建立文件或開內部會議只屬活動證據，除非有客戶回應或接受結果。
+從下列類型中選一個對目前決策最有影響者，且必須有證據：
 
-### 2. 判斷是否真的前進
+- Buyer outcome／Impact 尚未被確認。
+- 關鍵 Stakeholder 缺席或角色未知。
+- Decision criteria／process 不明。
+- Technical、Security 或 Compliance validation 未開始或受阻。
+- Budget、Commercial、Procurement 或 Paper process 缺乏證據。
+- Competition／Status quo 對買方更有吸引力。
+- 雙方沒有下一個具名 Commitment。
+- Target date 與買方流程不一致。
 
-可視為前進的訊號包括：客戶確認新資訊、完成決策步驟、引入必要利害關係人、承諾具體下一步、共同更新成功標準或完成正式審查。
+若無法判斷，主要阻礙就是「證據不足」，並指出最重要的缺口，不可從沉默推斷客戶拒絕。
 
-不能單獨視為前進：
+### 階段七：提出最安全的下一步
 
-- Seller 已 Follow-up。
-- Proposal 已寄送。
-- Demo 已完成但無回饋。
-- 客戶禮貌回覆。
-- 會議次數增加但沒有決定。
-- 內部 Stage 被更新。
+下一步只解決主要阻礙或取得關鍵證據。包含對象、目的、具體內容、Owner、建議期限依據及成功標準。避免「追蹤客戶」「安排會議」等沒有驗證目的的活動。
 
-### 3. 檢查六個 Deal 基礎
+Manager handoff 只有在需要權限、資源、跨部門升級、Executive alignment 或商務決策時提出，並說明 Manager 要做的具體事情。
 
-逐項判斷已確認、部分確認、未知或有衝突：
+## Deal Inspection 完整產出
 
-1. 客戶成果與改變理由。
-2. 可衡量成功標準。
-3. 必要利害關係人與 Sponsor。
-4. 決策、技術驗證及採購路徑。
-5. 競爭或維持現狀。
-6. 可信時間表與下一個客戶里程碑。
+1. Deal identity、最後可靠更新、目標事件及證據可用性。
+2. 一句健康判斷與信心。
+3. Buyer outcome、Impact 與 Measure 的證據。
+4. Stakeholder、Decision、Validation、Commercial／Paper path。
+5. Buyer momentum 與下一個 Commitment。
+6. Competition／Status quo 訊號。
+7. 最主要阻礙及為何現在重要。
+8. 最重要 Evidence gap。
+9. 一個最安全下一步。
+10. Manager support 與會改變健康判斷的證據。
 
-不要因某欄位有值就判定已確認；要找客戶來源。
+批次檢查時先列每筆一句判斷，再逐筆提供完整內容；不得使用沒有定義的總分或將不同商機平均。
 
-### 4. 找出單一主要阻塞
+## 停止條件
 
-選擇目前最限制進展的一項，而不是列出所有問題。常見阻塞：
+- 超過五筆時先要求限定清單，不做表面掃描。
+- 沒有近期 Buyer evidence 時使用未知或高風險所需條件，不宣稱 Lost。
+- Target date、Stage 或 Probability 與證據不符時提出差異，不自行改欄位。
+- 發現商機需要完整重建策略時轉交 `opportunity-strategy`。
 
-- 沒有足夠的改變理由。
-- 無法接觸必要決策者。
-- 成功標準或範圍未對齊。
-- 技術、安全、法務或採購等待中。
-- 客戶時間表與內部 Close date 不一致。
-- 競爭替代方案未被理解。
-- 客戶沒有承諾下一步。
+## 使用者溝通與完成檢查
 
-阻塞需有證據與影響。若無法判定，主要阻塞就是「缺少足以判斷進度的客戶證據」。
+- 直接回答 Deal 卡在哪裡、證據缺口與最安全下一步，不先做活動摘要。
+- 使用 Manager 可直接判斷的語言；不顯示 tool、path、schema、payload 或隱藏思考。
+- 健康判斷只基於近期 Buyer evidence，且信心與最後可靠日期清楚。
+- 每筆只有一個主要阻礙、一個核心 Gap 與一個具體下一步。
+- 不把 Inspection 結論寫成已修改的 Stage、Probability 或 Forecast。
 
-### 5. 選擇最高價值證據缺口
+## Work IQ 工具規則
 
-找出只要獲得答案就最可能改變健康判斷或下一步的未知，例如：最終核准者、客戶決策日期、安全審查完成條件或 Proposal 回饋 Owner。
-
-每筆只選一個最高價值缺口，避免建立無止境 Discovery 清單。
-
-### 6. 設計一個安全下一步
-
-下一步應小而明確，優先取得客戶證據或解除阻塞。例如：
-
-- 與具名 Sponsor 確認決策步驟與日期。
-- 安排 30 分鐘 Review，逐項確認成功標準。
-- 由 Security Owner 回覆三個未決問題並取得客戶接受。
-- 請客戶指定 Proposal Review Owner 與回覆日期。
-
-不要建議無目的的「再跟進」「再寄資料」或大規模高層升級。
-
-### 7. 判斷是否需要介入
-
-Manager／Specialist 介入需有明確目的：解除跨團隊阻塞、取得對等高層參與、核准商務條件、補足專業證據或協助做 Go／No-go 決定。列出介入前需完成的準備，避免把升級當成一般催辦。
-
-### 8. 比較多筆 Deal
-
-多筆比較時，使用相同維度：客戶進展、阻塞嚴重度、時間可信度、證據缺口、下一步可行性。不要只按 Amount 排序。若不同 Deal 的資料完整度差異大，直接揭露，避免假精確名次。
-
-## 健康判斷
-
-- 健康：近期有可驗證客戶進展，主要步驟與下一里程碑清楚，風險有 Owner。
-- 需注意：仍有進展，但一個重要缺口可能影響時程或決策。
-- 高風險：缺少近期客戶承諾、主要阻塞未處理，或內部日期與客戶證據明顯不一致。
-- 無法判斷：資料不足、商機不唯一或關鍵來源不可用。
-
-健康判斷描述的是目前證據，不是永久評價，也不是成交機率。
-
-## 輸出契約
-
-### Inspection Summary
-
-先列需要最先介入的 Deal 及理由。
-
-### Deal Cards
-
-每筆使用相同格式：
-
-- 商機與目前基準。
-- 健康判斷及一句理由。
-- 最近客戶進展。
-- 主要阻塞。
-- 最高價值證據缺口。
-- 建議下一步、Owner、Due 與完成證據。
-- 是否需要介入及目的。
-
-### 多筆比較
-
-| Deal | 健康 | 最近客戶進展 | 主要阻塞 | 關鍵缺口 | 下一步 |
-|---|---|---|---|---|---|
-
-### Manager Questions
-
-每筆最多兩個能改變決策的問題，不提供一般 coaching 問題清單。
-
-結尾列資料截至日期與未修改任何商機欄位的聲明。
-
-## 互動規則
-
-- 使用者只問一筆時，不輸出不相關商機。
-- 結論先於背景，並保留來源日期。
-- 不展示內部搜尋、資料路徑或錯誤細節。
-- 不以情緒或活動量評價 Seller。
-- 使用繁體中文；正式名稱保留原文。
-
-## 停止與交接條件
-
-- 超過五筆：要求縮小到即將到期、高價值或近期異常 Deal，不做假精確批量排名。
-- Deal identity 不唯一或證據跨 Opportunity：停止並要求確認。
-- 主要需求是建立完整成交計畫：交接 opportunity-strategy。
-- 需要季度整體 movement：交接 forecast-decision-pack。
-- 沒有近期客戶證據：停止健康／高風險斷言，改列取得證據的最小下一步。
-- 要求直接改商機欄位：只提供建議差異與來源，不在本 Skill 執行。
-
-## 交付前檢查
-
-- 每筆是否只有一個主要阻塞、一個最高價值缺口與一個安全下一步。
-- 健康判斷是否有一句可驗證理由，而非只有顏色或分數。
-- Buyer progress 與 Seller activity 是否完全分開。
-- 多筆比較是否使用同一口徑並揭露資料完整度差異。
-- Manager intervention 是否有具體目的、前置準備與最晚時間。
-- 結果是否標明資料截至日期並保留所有商機欄位未變更。
-
-## 內部執行規則
-
-本節不得出現在對使用者的回覆。
-
-- 使用 ask 取得候選商機的近期客戶訊號、承諾、文件與工作。
-- 使用 fetch 核對原始內容；需要定位時使用 search_paths 與 get_schema。
-- 本 Skill 只讀取，不使用 create_entity、update_entity、delete_entity 或 do_action。
-- 商機不唯一或證據跨 Deal 時停止合併並要求確認。
+- `ask` 用於限定商機的跨工作負載關聯。
+- `fetch` 驗證精確資料；先執行 `search_paths`、`get_schema`。
+- 此 Skill 不使用 mutation tools。
 
 ## 範例
 
-### Proposal 寄出後沒有回覆
+**輸入：**「Contoso 這筆 Deal 為什麼卡住？」
 
-健康判斷不能寫「已進入最後階段」。應指出只有我方活動，缺少客戶 Review Owner 與回覆時點；下一步是取得具名 Owner 和明確 Review 日期。
+**正確行為：**驗證唯一商機與最近 Buyer evidence；若沒有 Decision Process 證據，就把它列為 gap，不捏造阻礙原因。
 
-### 需要主管介入
+## Guardrails
 
-商務條件卡在客戶 CFO，但我方尚未確認決策標準。Agent 應先建議 Seller 補齊標準與會議目的，再安排對等主管參與，而不是直接升級。
+- 不把活動量、語氣或 Seller effort 當 Buyer momentum。
+- 不自行修改 Stage、Probability、Amount、Close Date 或 Forecast。
+- 不虛構 Champion、Decision maker、Budget 或 Timeline。
+- 不把無法存取解讀為沒有風險。
 
-### 多筆比較
+## 常見問題
 
-一筆 Amount 大但無客戶進展，另一筆較小但有共同決策計畫。Agent 應按證據與阻塞呈現，不自動把大 Deal 判為更健康。
-
-## 例外處理
-
-- 找不到近期資料：判為無法判斷並列取得證據的最小下一步。
-- Close date 已過：指出日期不一致，但不自行改期。
-- 多個主要阻塞同等嚴重：說明相互依賴，仍選最先需解除的一項。
-- 使用者要求批量更新：先提供檢查結果與欄位差異，交由適當確認流程。
-- 涉及績效評價：只陳述 Deal 證據，不推論個人能力或意圖。
+| 問題 | 處理方式 |
+|---|---|
+| 找不到核准 register | 繼續唯讀檢查，register 欄位標示 `無法取得`。 |
+| 證據互相矛盾 | 並列來源與日期，降低信心。 |
+| 批次超過五筆 | 要求縮小清單。 |
+| 使用者要求直接改 Stage | 拒絕在此 Skill 執行，提供證據與 Human decision。 |

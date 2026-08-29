@@ -1,234 +1,147 @@
 ---
 name: pipeline-workspace-hygiene
 description: >-
-  檢查儲存在 Excel、SharePoint 或 OneDrive 的銷售 Pipeline 與工作空間資料，找出重複、格式、缺值、版本、日期及可追溯性問題，將機械性修正與需要 Seller 判斷的商業變更分開處理。
-  使用者要清理 Pipeline 表格、修正資料品質、比對版本或準備 Review 前的工作區整理時使用；判斷 Deal 策略、修改 Forecast 意見或在沒有核准下改動業務欄位時不使用。
+  檢查並清理核准的 Excel、SharePoint 或 OneDrive 銷售工作區，找出重複紀錄、缺少 Owner、逾期承諾、過期資料與沒有證據的欄位。
+  適用於 Pipeline register 的 mechanical cleanup；不適用於自行決定 Stage、Amount、Probability、Close Date、Owner 或 Forecast。
 metadata:
   author: lwokeray
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
-# Pipeline 與工作空間整理
+# Pipeline 工作區清理
 
-## 角色與任務
+## 概述
 
-你是銷售工作空間的 Data Steward。你的任務是讓 Pipeline 與相關文件可讀、可追溯、可比較，而不是替 Seller 決定 Stage、Amount、Close date、Probability 或 Forecast category。
+維持 Microsoft 365-based Sales register 的資料一致性。把可安全修正的 Mechanical issue 與需要 Business owner 決策的欄位分開；任何共用內容變更都需欄位級 preview 與核准。
 
-你要清楚區分兩種問題：
+## 適用情境
 
-- 機械性問題：空白、格式不一致、明顯重複、失效連結、欄位型別或版本標示。
-- 商業判斷問題：哪個日期正確、Deal 是否前進、金額是否改變、誰應負責、Forecast 應如何分類。
+- 找出 duplicate、missing owner、invalid date、stale record 或 inconsistent format。
+- 比對 register 與可存取的 Outlook、Teams、Meetings、Planner 及 files evidence。
+- 更新已核准的機械性修正。
 
-前者可在精確預覽與確認後修正；後者只能提出差異與所需證據。
+## 不適用情境
 
-## 啟用條件
+- 自行決定 Stage、Amount、Probability、Close Date、Forecast 或 Business status。
+- 進行 Forecast Review → `forecast-decision-pack`
+- 診斷單一 Deal → `deal-inspection`
 
-使用此 Skill：
+## 快速開始
 
-- 「清理這份 Pipeline Excel，列出可修與需確認項目。」
-- 「找出重複 Opportunity、空白 Owner 和過期連結。」
-- 「比較 SharePoint 上兩個 Pipeline 版本。」
-- 「在 Review 前檢查欄位一致性。」
+1. 確認唯一核准 register、file／list／table／sheet、Owner、review scope 與 as-of time。
+2. 使用 `search_paths`、`get_schema` 解析 entity，使用 `fetch` 讀取限定範圍。
+3. 使用 `ask` 做跨工作負載 correlation，但重大 finding 再以 `fetch` 驗證。
+4. 將問題分類為 `Mechanical correction` 或 `Business decision`。
+5. 顯示欄位級 before／after／evidence；核准後只套用 mechanical corrections。
 
-不要使用此 Skill：
+## 核心流程
 
-- 要判斷商機健康：使用 deal-inspection。
-- 要產出 Forecast 決策包：使用 forecast-decision-pack。
-- 使用者只說「把資料弄正確」但沒有可辨識來源或修正基準。
-- 要直接覆蓋整份檔案、刪除資料列或改動大量商業欄位而沒有逐項確認。
+### 階段一：Source-of-truth Gate
 
-## 完成定義
+- 必須命名檔案或 List、Table／Sheet、Owner 與 last-modified time。
+- 多個 register 符合時不得合併，先要求使用者選定。
+- 沒有核准 register 時停止寫入，但可提供建議的 Data Quality checklist。
 
-- 已唯一確認檔案、表格／清單、工作表與版本。
-- 已建立欄位意義與資料範圍，不把公式、摘要或歷史區誤當有效紀錄。
-- 問題依機械性、疑似重複、版本衝突、商業判斷與不可驗證分類。
-- 每項建議都包含定位、現值、建議值、理由與來源。
-- 不以推論填入 Stage、Amount、Close date、Probability、Forecast category 或 Owner。
-- 寫入前有欄位層級預覽及明確確認；寫入後重新讀取驗證。
+### 階段二：Data Quality Review
 
-## 作業模式與必要輸入
+檢查 duplicate key、missing required field、invalid date／format、stale timestamp、orphan owner、broken link、overdue commitment 與 unsupported business value。
 
-依使用目的選擇模式：
+### 階段三：Evidence Reconciliation
 
-- Data quality review：找出缺值、型別、日期、公式、連結與狀態異常。
-- Duplicate review：判斷確定重複、高度疑似與可能相關紀錄。
-- Version comparison：逐列比較兩份具名版本的新增、刪除、修改與衝突。
-- Safe correction：只對使用者確認的機械性問題進行欄位級修正。
-- Review readiness：優先處理會造成 Pipeline／Forecast Review 誤判的資料問題。
+- `Mechanical correction`：格式、明確 duplicate、已確認 owner identity、明確日期轉換等不需要商務判斷的修正。
+- `Business decision`：Stage、Amount、Probability、Close Date、Forecast category、Opportunity status 或任何需要解讀 Buyer intent 的欄位。
 
-最少需要可識別檔案與資料區。未指定工作表或表格時，先從具名範圍、欄位與活動資料判斷候選；若多個資料區都合理，停止寫入並列候選。未指定修正意圖時只做 Review，不直接修改。
+活動量不能作為 Business field 更新依據；來源衝突時不得自動覆蓋。
 
-## 證據規則
+### 階段四：Preview 與 Apply
 
-- 已核准模板、欄位說明與穩定公式可定義機械性規則；多數值不一定代表正確規則。
-- 空白值不等於零、No、Unknown 或不適用。
-- 穩定唯一 ID 才能確認重複；名稱、金額或 Account 相同只能形成疑似。
-- 新檔案或較晚修改時間不代表商業內容較正確。
-- Stage、Amount、Close date、Probability、Forecast category 與 Owner 屬商業判斷，需有具名來源。
-- 公式修復只有在相鄰公式與既有規則能唯一決定時才視為機械性修正。
+| Record | Finding | Current | Proposed | Evidence | Decision owner | State |
+|---|---|---|---|---|---|---|
+|  |  |  |  |  |  | Finding／等待核准／Updated／Decision required／Blocked |
 
-## 範圍解析
+只套用核准的 Mechanical corrections。完成後重新 `fetch` 驗證 affected records，回報 reviewed、clean、proposed、updated、blocked 與 decision-required 數量。
 
-先確認檔案名稱、位置、工作表／清單、表格名稱、時間範圍與使用目的。同名檔案或多個版本時，使用修改日期、Owner、資料範圍及使用者提供脈絡辨識；無法唯一確認就列候選。
+### 階段五：建立資料品質基準
 
-在分析前保留：來源版本、最後修改日期、資料列數、主要欄位與公式區域。不可把視圖排序或篩選結果當成永久資料。
+先讀取目前 Table／List schema 與核准的欄位定義，再判斷資料品質。不得假設所有 Sales register 都使用相同 Stage、Probability、Date 或 Owner 規則。若沒有 Data dictionary，將可客觀驗證的格式問題與需要 Owner 定義的規則分開。
 
-## 執行流程
+檢查面向：
 
-### 1. 理解資料結構
+- **Identity**：Account、Opportunity、Contact、Owner、Record ID 是否可唯一辨識。
+- **Completeness**：核准 required fields 是否缺漏。
+- **Validity**：日期、Currency、Email、Choice、Number 與 Link 格式是否符合 schema。
+- **Consistency**：同一欄位的值、時區、貨幣、命名及分類是否一致。
+- **Freshness**：最後更新時間是否超出既定 review cadence。
+- **Uniqueness**：同一 Opportunity／Commitment 是否被重複記錄。
+- **Referential integrity**：Owner、Account、Proposal、Task 或 source link 是否仍存在。
+- **Evidence**：關鍵 Business field 是否有可追溯來源與觀察日期。
 
-辨識標題列、資料區、公式欄、合計列、命名範圍、Lookup 表及說明欄。記錄唯一識別組合，例如 Account＋Opportunity ID；若沒有穩定識別碼，後續只能標「疑似重複」。
+### 階段六：分類可修正程度
 
-對每個重要欄位理解其預期型別與允許值，但不可擅自建立新規則。以現有文件說明、已核准模板或穩定多數格式作參考，並標明依據。
+| 類型 | 例子 | 行為 |
+|---|---|---|
+| 安全機械修正 | 明確日期格式、空白、大小寫、已驗證同一人識別 | 可建立欄位級 Preview |
+| 建議修正 | 可能重複、可疑 Owner、過期連結 | 顯示證據，由使用者決定 |
+| Business decision | Stage、Amount、Probability、Close Date、Forecast、Status | 只列問題與 Decision owner |
+| 無法修正 | 權限、schema、來源或 operation 不可用 | 保留結果並標示原因 |
 
-### 2. 建立資料品質檢查
+「明確 duplicate」仍需確定哪一筆是 source of truth、需要保留哪些歷史與連結。預設不刪除紀錄。
 
-至少檢查：
+### 階段七：處理 Stale 與 Conflict
 
-- 必填欄位缺失。
-- 日期、金額、百分比與文字型別不一致。
-- 日期不可能或先後關係異常。
-- 前後空白、大小寫或命名格式差異。
-- 公式被固定值覆蓋或範圍中斷。
-- 連結無效、附件或文件版本找不到。
-- 同一 Deal 在多處出現但關鍵欄位不同。
-- 已關閉項目仍出現在 Active view 等狀態矛盾。
+Stale 只表示缺少近期驗證，不表示 Deal 已失敗。列出最後可靠來源、需要更新的欄位與應由誰確認。若 Register 與較新 Buyer evidence 衝突，將差異交給 Business owner，不直接覆蓋。
 
-異常只表示需檢查，不表示建議值一定正確。
+## 完整清理報告
 
-### 3. 區分可自動修正與需決策
+1. Source of truth、範圍、Table／List、Owner、as-of time 與 schema 版本。
+2. Review 數量及各類 finding 統計。
+3. 安全機械修正：Record、欄位、舊值、新值、規則與證據。
+4. 建議修正：衝突、候選值、判斷所需資料。
+5. Business decisions：欄位、現值、相反證據、Decision owner。
+6. Stale／Missing evidence：最後更新日期與取得新證據的方法。
+7. Blocked／Unsupported：權限、schema 或 operation 限制。
+8. Apply 結果：成功、部分成功、失敗及重新驗證狀態。
 
-可視為機械性修正的例子：去除多餘空白、統一已核准日期格式、修復可由相鄰公式明確推得的公式、將相同允許值的大小寫統一。
+## 停止條件
 
-必須交由人判斷：變更 Stage、Amount、Close date、Probability、Forecast category、Owner、客戶承諾、刪除疑似重複紀錄、選擇衝突版本。
+- Source of truth、Table 或範圍不唯一時停止寫入。
+- 沒有核准欄位規則時不批次正規化 Business values。
+- 更新結果不明時先重新 Fetch，不重送相同 mutation。
+- 大量刪除、合併或覆寫需獨立核准，不包含在一般 cleanup。
 
-即使是機械性修正，也需顯示範圍與預覽；不能直接整欄覆寫。
+## 使用者溝通與完成檢查
 
-### 4. 處理疑似重複
+- 交付清楚的資料品質報告、修正預覽及決策清單，不輸出工具操作紀錄。
+- 使用 Business／RevOps 可理解的欄位語言；不暴露 schema、payload 或隱藏思考。
+- Mechanical correction、建議修正、Business decision 與 Blocked 已分開。
+- 每個 proposed change 有舊值、新值、規則、證據與影響範圍。
+- Apply 後成功、部分成功、失敗與未執行數量均經驗證。
 
-使用多個訊號比對：穩定 ID、Account、Opportunity 名稱、Owner、金額、Close date、來源文件與近期更新。分類：
+## Work IQ 工具規則
 
-- 確定重複：有相同穩定 ID 或明確來源證明。
-- 高度疑似：主要欄位一致，但缺少唯一 ID。
-- 可能相關：名稱相似但範圍或成果不同。
-
-不自動刪除。提出保留哪筆、需合併哪些欄位與判定依據，等待 Owner 決定。
-
-### 5. 比較版本
-
-版本比較需建立共同 Key，逐列顯示新增、刪除、修改與無法對齊。對修改顯示 Before／After，不只回報檔案不同。
-
-較新的檔案不一定正確。若新版本缺少舊版本重要資料，列為衝突；不得用修改時間自動判勝。
-
-### 6. 檢查可追溯性
-
-對重要商業欄位確認是否有來源或最後確認資訊：客戶時間點、金額、Stage、Forecast、Owner、下一步。沒有來源時標為「缺乏依據」，但不要自行回填。
-
-連結的文件若存在多版本，指出目前表格指向哪版，以及是否有較新已核准版本。
-
-### 7. 排定修正順序
-
-優先：會造成 Review 誤判、公式錯誤、多人使用衝突、無法追溯或下游報告失真的問題。純視覺格式排後處理。
-
-將建議分成：可安全修正、需 Seller 確認、需資料 Owner 決定、暫不處理。
-
-### 8. 預覽與確認
-
-每個擬修正項顯示檔案、工作表／清單、列 Key、欄位、Before、After、理由與影響。批次修正需可分組確認，例如「只修 12 項格式問題，不動 4 項商業欄位」。
-
-### 9. 執行與驗證
-
-經確認後執行指定修正，再重新讀取受影響範圍。確認列數、公式、欄位值與未授權範圍未變。若部分失敗，停止擴大修改並列出實際結果。
-
-## 判斷規則
-
-- 沒有唯一 Key 時不宣稱重複已確認。
-- 空白值不代表零、No、Unknown 或不適用。
-- 日期格式統一不得改變日期本身或時區語意。
-- 公式看似異常但商業規則不明時，只標示問題。
-- 任何刪列、清空、整欄覆寫或大量合併都視為高風險，不在一般修正中執行。
-- 使用者已確認的批次若內容或範圍改變，需重新預覽。
-
-## 輸出契約
-
-### 檢查範圍
-
-列來源、版本、工作表／清單、資料列數、資料日期與限制。
-
-### 品質摘要
-
-| 類別 | 數量 | 影響 | 建議處理 |
-|---|---:|---|---|
-
-### 可安全修正
-
-| 定位 | 欄位 | Before | After | 理由 |
-|---|---|---|---|---|
-
-### 需商業判斷
-
-| 定位 | 欄位／衝突 | 現有值 | 需要的證據 | 建議 Owner |
-|---|---|---|---|---|
-
-### 重複與版本衝突
-
-列判定程度、涉及紀錄與下一步，不直接刪除。
-
-執行前寫「以上為預覽，尚未修改檔案」。執行後回報已驗證的變更與仍待處理項目。
-
-## 互動規則
-
-- 使用商業語言說明影響，不輸出資料處理術語堆疊。
-- 問題很多時先顯示高影響項目，再提供完整清單。
-- 不展示內部搜尋、定位機制或錯誤細節。
-- 保留原檔結構、公式與使用者未要求的格式。
-- 使用繁體中文；正式欄位與檔名保留原文。
-
-## 停止與交接條件
-
-- 無法辨識標題、資料區、唯一 Key 或公式範圍：停止寫入，只交付問題清單。
-- 疑似重複沒有穩定 ID 或正式來源：不刪除、不合併，交由資料 Owner 決定。
-- 修正需要判斷 Deal 真實進展：交接 deal-inspection，不在表格中猜值。
-- 需要 Forecast movement 與管理決策：交接 forecast-decision-pack。
-- 擬修改整欄、刪列、清空或大範圍覆蓋：停止一般流程，要求精確範圍與高風險確認。
-- 寫入後讀回結果不一致：停止後續批次並回報實際變更。
-
-## 交付前檢查
-
-- 檔案、版本、工作表／清單、資料區與資料日期是否唯一。
-- 問題是否分成機械性、疑似重複、版本衝突、商業判斷與不可驗證。
-- 每項擬修正是否有定位、Before、After、理由與影響。
-- 商業欄位是否全部保留給具名 Owner，沒有用推論回填。
-- 版本比較的合計、列數、公式與無法對齊項是否已驗算。
-- 執行後是否確認未授權範圍、公式與資料列數沒有意外變動。
-
-## 內部執行規則
-
-本節不得出現在對使用者的回覆。
-
-- 使用 ask 找出相關 Files 與 SharePoint／OneDrive 脈絡，使用 fetch 取得正確版本與範圍。
-- 需要資料結構或可寫欄位時使用 search_paths 與 get_schema。
-- 確認後才用 update_entity 或適當 do_action 修改指定範圍；通常不需 create_entity。
-- 不使用 delete_entity。寫入後再次 fetch 驗證受影響範圍。
+- `search_paths`、`get_schema`、`fetch` 用於 register discovery、schema 與 bounded retrieval。
+- `ask` 只做 cross-workload correlation，不能取代 exact verification。
+- `update_entity` 只在欄位級 preview 核准後執行。
+- 不使用 `delete_entity` 移除 record，除非 Work IQ 明確支援且使用者對特定項目另行核准。
 
 ## 範例
 
-### Close date 衝突
+**輸入：**「清理本週 Pipeline workbook。」
 
-兩個版本分別為 [日期 A] 與 [日期 B]。Agent 應列兩個來源與需要的客戶證據，不能因 B 檔較新就自動覆蓋。
+**正確行為：**先確認唯一 workbook／table，將格式錯誤與 Stage decision 分開，只對核准的格式修正執行 update。
 
-### 格式修正
+## Guardrails
 
-同一欄已有核准格式，但三列日期以文字保存。Agent 可提出明確轉換預覽；確認後只修改三列並驗證。
+- 不用 inferred activity 更新 Business fields。
+- 不覆蓋來源衝突或較新的 register value。
+- 不批次刪除資料。
+- 不在缺少 source-of-truth 時建立另一份平行 register。
 
-### 疑似重複
+## 常見問題
 
-兩列 Account、名稱與金額相同，但產品範圍不同且沒有 ID。Agent 應標「可能相關」，不可刪除或合併。
-
-## 例外處理
-
-- 檔案被鎖定或唯讀：提供檢查報告，不嘗試繞過。
-- 找不到標題或資料範圍：停止寫入並請使用者確認。
-- 公式或巨集高度複雜：只檢查可安全理解的區域。
-- 資料量過大：先抽取高風險欄位與近期範圍，說明未涵蓋部分。
-- 寫入後驗證不一致：停止後續批次並回報實際狀態。
+| 問題 | 處理方式 |
+|---|---|
+| 多份 register | 要求指定唯一 source of truth。 |
+| Table／Sheet 無法解析 | 標示 `不支援`，不寫入。 |
+| Evidence 與 register 衝突 | 列為 Business decision。 |
+| 部分更新成功 | 重新 fetch 每筆結果，分開報告完成與 blocked。 |

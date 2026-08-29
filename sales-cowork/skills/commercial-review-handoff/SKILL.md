@@ -1,249 +1,147 @@
 ---
 name: commercial-review-handoff
 description: >-
-  將單一 Proposal 或商務版本中的 Pricing、折扣、付款、合約、Security、Privacy、SLA、資料駐留與例外條件，整理成具 Owner、期限、決策狀態及來源的 Commercial Review Handoff。
-  使用者要送交 Pricing、Finance、Legal、Security、Privacy 或 Delivery 審查，或追蹤商務未決項時使用；代替正式核准、擅自接受客戶條款或未經確認送出承諾時不使用。
+  整理一個企業商機或提案中的 Pricing、Discount、Margin、Legal、Security、Privacy、SLA、Data residency 與必要核准，建立具風險、Owner、Due 與來源的 Commercial Review Handoff。
+  適用於商務審查與跨部門核准準備；不適用於代替核准人接受條款、決定最終價格或送出 Proposal。
 metadata:
   author: lwokeray
-  version: "2.2.0"
+  version: "3.0.0"
 ---
 
-# 商務審查移交
+# 商務審查交接
 
-## 角色與任務
+## 概述
 
-你是企業銷售的 Commercial Review Coordinator。你的任務是把散落在 Proposal、郵件、會議與附件中的商務條件轉成一份可審核的決策包，讓各 Owner 知道要審什麼、依據哪個版本、何時決定，以及缺少決定會阻塞什麼。
+把 Proposal 中需要人員決策的 Commercial、Legal、Security 與 Privacy 項目轉成可追蹤的 Review Package。此 Skill 負責 Evidence、Risk classification、Owner routing 與狀態，不做最終決策。
 
-你不替 Pricing、Finance、Legal、Security、Privacy 或 Delivery 做專業判斷，也不把「已討論」誤寫成「已核准」。
+## 適用情境
 
-對使用者只呈現審查事項、來源、狀態與下一步，不說明內部資料取得方式或系統細節。
+- 準備 Pricing／Discount／Margin review。
+- 整理 Contract deviation、SLA、Data residency、Security 或 Privacy question。
+- 建立 Reviewer、Due、Evidence、Decision state 與 escalation path。
+- 準備跨部門 Commercial review meeting。
 
-## 啟用條件
+## 不適用情境
 
-使用此 Skill：
+- 核准價格、折扣、Margin 或付款條件。
+- 接受 Legal、Security、Privacy 或 SLA 承諾。
+- 直接修改或寄送正式 Proposal／Contract。
 
-- 「把 Proposal v3 送審前的商務項目整理好。」
-- 「哪些折扣、條款和 Security 問題還沒核准？」
-- 「準備 Legal／Finance handoff pack。」
-- 「比較客戶 redline 與我們上一版條件。」
+## 快速開始
 
-不要使用此 Skill：
+1. 確認唯一 Opportunity／Proposal、版本、Deadline 與要求的 Review scope。
+2. 用 `ask` 定位 Proposal、Email、Teams、Meeting、Policy、Reviewer 與已有 Decisions。
+3. 用 `search_paths`、`get_schema`、`fetch` 驗證條款、來源、版本、Owner 與 approval evidence。
+4. 將項目分類為 `Ready／Need clarification／Decision required／Blocked`，評估 Severity 與 Likelihood。
+5. 建立 Handoff；Planner 或 file write 在逐項 preview 與核准後執行。
 
-- 仍在建立整體 Proposal：使用 proposal-preparation。
-- 使用者要求你直接核准折扣、條款或風險例外。
-- 已簽約後要移交 Delivery：使用 close-delivery-handoff。
-- 文件或版本不唯一，且無法確定要審哪一版。
+## 核心流程
 
-## 完成定義
+### 階段一：Version Gate
 
-- 已唯一確認 Account、Opportunity、Proposal／Quote／Contract 版本與客戶截止日。
-- 每個審查項有原文或準確摘要、來源、Before／After、風險、Owner、Due 與狀態。
-- 標準條件、客戶要求、我方提議與已核准例外分開。
-- 依賴與審查順序清楚，不讓多個 Owner 在不同版本上作業。
-- 核准只在有具名核准人、日期、範圍與條件時標示 Approved。
-- 未經使用者確認不送出 Handoff、不建立工作、不對外回覆客戶。
+- 必須確認 Proposal／Contract 的唯一版本與 last-modified time。
+- 不比較或合併不同版本而不顯示差異。
+- 口頭或聊天中的「可以」不能取代正式 approval evidence。
 
-## 作業模式與必要輸入
+### 階段二：Decision Inventory
 
-依審查需求選擇模式：
+逐項記錄 Category、Request、Current position、Source、Owner、Due、Severity、Likelihood、Approval state 與 Required evidence。
 
-- Review readiness：盤點所有商務項、Owner、狀態、依賴與阻塞。
-- Version／redline comparison：逐項比較客戶版本、我方基準與目前提議。
-- Owner handoff：為 Pricing、Finance、Legal、Security、Privacy 或 Delivery 產生最小充分決策包。
-- Approval consolidation：彙整具名核准、條件、適用版本與剩餘缺口。
-- Customer-safe status：只整理目前可以、條件式可以或不可對外承諾的內容。
+### 階段三：Risk 與 Escalation
 
-最少需要可識別 Opportunity 與具名 Proposal、Quote、SOW、Contract 或 Redline 版本。未指定 Review function 時依實際變更分派，不把所有文件預設送給全部 Owner；未指定 Deadline 時保留待確認並說明受影響的客戶節點。
+- Severity 反映可能影響；Likelihood 反映發生可能性，兩者不得混為一項主觀分數。
+- High impact 或超出核准範圍的項目明確標示 Senior reviewer／Legal／Security／Privacy escalation。
+- 不提供法律意見或代表 reviewer 作出 acceptance。
 
-## 證據規則
+### 階段四：輸出與追蹤
 
-- 商務項的原文、頁面／條款、版本與日期優先於摘要或口頭轉述。
-- Approved 必須具備核准人、日期、適用版本、範圍與任何附帶條件。
-- 「看起來可以」「原則同意」或會議討論不自動等於正式核准。
-- 標準條件、客戶要求、我方提議與已核准例外必須四分開。
-- 新版 Redline 不自動取代舊版；需辨識是否為完整新基準或局部修改。
-- 內部底價、毛利、談判界線與風險評語只可出現在必要的內部 Owner 版本。
+| Category | Request／Deviation | Source／Version | Severity | Likelihood | Owner | Due | Required decision | State |
+|---|---|---|---|---|---|---|---|---|
+|  |  |  |  |  |  |  |  | Ready／Clarify／Decision／Blocked |
 
-## 範圍與版本確認
+最後列出 `可繼續項目`、`阻塞項目`、`Escalations` 與 `下一個 Review checkpoint`。
 
-先辨識：
+### 階段五：逐類建立 Review packet
 
-- 商機與客戶實體。
-- 基準 Proposal、Quote、Order form、SOW、Contract 或 Redline 版本。
-- 客戶要求的回覆日期與預計簽署日期。
-- 已參與及需要參與的 Review functions。
-- 已核准的標準或例外版本。
+不同類別不可混成一個泛稱「待法務／資安確認」：
 
-「Final」「Latest」「Customer copy」不是可靠版本控制。必須使用版本號、檔案日期、Owner、核准訊息或明確交付紀錄確認。
+- **Pricing／Finance**：List price、Discount request、Currency、Tax、Billing、Payment terms、Margin impact、Approval threshold 與有效期限。
+- **Legal／Contract**：條款原文、我方標準位置、客戶偏差、責任、賠償、終止、IP、Warranty、Governing law 與簽署流程。
+- **Security**：控制要求、證據、責任邊界、Assessment／Questionnaire、Exception 與 remediation owner。
+- **Privacy／Data**：資料類型、角色、處理位置、跨境、Retention、DPA、Subprocessor 與 Data subject obligation。
+- **SLA／Support**：服務範圍、Availability、Response／Resolution、Exclusion、Credit、Support hours 與 Measurement。
+- **Delivery**：Scope、Milestone、Resource、Acceptance、Dependency、Change control 與 Customer responsibility。
 
-## 執行流程
+只列與本 Proposal／Contract 有關的項目；不要自行提供專業法律意見或 Security acceptance。
 
-### 1. 建立商務項目清單
+### 階段六：辨識偏差與風險
 
-從基準文件與近期往來擷取：
-
-- 價格、折扣、幣別、稅、付款條件、有效期限與最小承諾。
-- 合約期限、續約、終止、責任、賠償與非標準條款。
-- Scope、里程碑、驗收、服務責任與變更程序。
-- Security、Privacy、資料處理、資料駐留與法規要求。
-- SLA、Support、Service credit 與例外要求。
-- Partner 或第三方依賴。
-
-不相關的 Proposal 敘事不放入 Handoff。
-
-### 2. 建立基準與差異
-
-對每個項目辨識：標準／已核准基準、客戶要求、目前我方提議、差異及來源。若找不到基準，標為「基準待確認」，不可把慣例當正式政策。
-
-同一要求在 Email、Redline 與會議中不同時，按日期排列並指出是否有明確取代關係。
-
-### 3. 分派正確 Owner
-
-依組織既有責任分工指派建議 Owner；不確定時寫待確認。常見分工：
-
-- Pricing／Finance：價格、折扣、付款、幣別、毛利或效期。
-- Legal：合約條款、責任、賠償、終止與非標準義務。
-- Security／Privacy：控制、資料處理、駐留、稽核與法規回應。
-- Delivery：Scope、時程、資源、驗收與服務能力。
-- Sales／Executive approver：商業取捨與客戶策略。
-
-同一項需多方審查時指定主要 Owner 與 Consulted parties，不用模糊的「大家確認」。
-
-### 4. 判斷狀態
-
-使用一致狀態：
-
-- Not started。
-- In review。
-- More information required。
-- Approved。
-- Approved with conditions。
-- Rejected。
-- Superseded。
-
-Approved 必須有核准人、日期、適用版本與條件。聊天中的「看起來可以」不一定是正式核准；標為需確認。
-
-### 5. 評估影響與優先級
-
-每項說明：若不決定，會阻塞 Proposal、客戶回覆、簽署、Delivery 或 Forecast 哪一步；最晚決策日如何由客戶 Deadline 與下游工作反推。
-
-高風險不等於必須拒絕。只陳述非標準程度、影響、依賴與需決策者，不作法律結論。
-
-### 6. 建立審查順序
-
-處理會改變其他項目的上游決策，例如 Scope 會影響 Pricing 與 Delivery，資料駐留可能影響架構與商務條件。明確列出：先決項、可平行項與最後整合檢查。
-
-避免所有項目都給相同 Due；依賴項需預留後續整合時間。
-
-### 7. 撰寫 Owner 專屬摘要
-
-每位 Owner 只收到與其決策相關的最少內容：需要決定什麼、客戶原始要求、基準、選項、商業影響、Deadline、附件與聯絡人。避免要求 Reviewer 閱讀整個 Deal history 才能開始。
-
-### 8. 檢查對外可用性
+每項偏差保留客戶原文、我方標準或既有位置、差異、可能影響、Likelihood basis、建議 Reviewer、需要的決策及 Deadline impact。Severity 高不等於一定拒絕；它表示需要適當 Owner 處理。
 
 區分：
 
-- 可對客戶確認的已核准內容。
-- 需以條件式回覆的內容。
-- 仍在內部 Review、不得對外承諾的內容。
-- 已拒絕且需 Sales 設計替代方案的內容。
+- Clarification：文字或適用範圍不清楚。
+- Evidence request：需要文件或證明，尚不構成偏差。
+- Deviation：客戶要求與核准標準不同。
+- Decision required：存在可選路徑，需具名 Owner 決定。
+- Blocked：缺少必要 Owner、證據或時間，無法安全繼續。
 
-任何內部底價、毛利、談判界線、個人意見或風險評語不得放入客戶版。
+### 階段七：建立 Approval trail
 
-### 9. 預覽、確認與追蹤
+Approval evidence 應指出核准者、角色、核准的精確內容、版本、日期、限制與來源。Emoji、短句「OK」、會議出席或非 Owner 的同意只能作為背景。Approval 改變後保留歷史與被取代版本。
 
-送交 Review 或建立工作前，顯示收件人、每項決策、版本、Due、附件與訊息草稿。取得明確確認後才執行。執行後驗證交付對象與附件版本，並保留仍待決定項。
+## 完整 Handoff 結構
 
-## 判斷規則
+1. Opportunity、Proposal／Contract、Version、Deadline、Review owner 與 Scope。
+2. Executive blockers：最可能影響 Submission／Signature 的項目。
+3. 分類 Decision inventory。
+4. Clause／Requirement 原文與精確 Source location。
+5. Current position、Deviation、Impact、Likelihood 與 Required evidence。
+6. Reviewer、Decision owner、Due、Escalation 及 Status。
+7. 已取得 Approval trail 與尚未覆蓋的範圍。
+8. 可以繼續、必須修訂、暫停及阻塞項目。
+9. Review meeting agenda 與下一個 Checkpoint。
 
-- 沒有版本與範圍的核准不可沿用。
-- 核准有條件時，必須保留條件直到交付文件已符合。
-- 客戶接受 Proposal 不代表我方法務或價格已核准，反之亦然。
-- 口頭說法與正式 Redline 衝突時需明確確認，不能靜默選擇。
-- Deadline 未確認時不要創造日期；可提出建議 Due 並標為待同意。
-- 已被新版本取代的項目保留稽核紀錄，但不送進目前待辦。
+## 停止條件
 
-## 輸出契約
+- Proposal／Contract 版本不唯一時停止 Review conclusion。
+- 未取得正式 Approval evidence 時不得標示 Approved。
+- Reviewer 沒有權限作成決策時改為 Routing，不接受其意見為最終核准。
+- Deadline 已過或風險超出授權時升級，不自行接受條件。
+- 使用者要求直接改正式合約或送出 Proposal 時，先完成獨立差異與核准流程。
 
-### Review Snapshot
+## 使用者溝通與完成檢查
 
-列 Account、Opportunity、基準版本、客戶 Deadline、目前 Review 狀態與資料日期。
+- 交付逐項可追蹤的 Commercial Review Package，不只寫「待確認」摘要。
+- 使用 Reviewer 能直接決策的語言；不顯示內部工具、schema、payload 或隱藏思考。
+- 每項有原文、版本、偏差、影響、Owner、Due、Required evidence 與 Decision state。
+- Pricing、Legal、Security、Privacy、SLA 與 Delivery 責任沒有混在一起。
+- Supporting context 沒有被錯誤標示為正式 Approval。
 
-### Decision Register
+## Work IQ 工具規則
 
-| # | 項目 | 客戶要求／變更 | 基準 | Owner | 狀態 | Due | 阻塞影響 | 來源 |
-|---|---|---|---|---|---|---|---|---|
-
-### Approval Evidence
-
-| 項目 | 核准人 | 日期 | 適用版本 | 條件 |
-|---|---|---|---|---|
-
-### Review Sequence 與 Escalations
-
-列先決項、可平行項、需要升級的決策與最晚時間。
-
-### Owner Handoff Drafts
-
-依 Owner 提供精簡訊息草稿及附件清單。
-
-### Customer-safe Status
-
-列已可回覆、需條件式回覆及不可承諾內容。若未執行，結尾說明尚未送審、建立工作或回覆客戶。
-
-## 互動規則
-
-- 先顯示會阻塞 Deadline 的決策，再顯示完整清單。
-- 不把專業核准結果改寫得比原文更廣。
-- 不展示內部搜尋、資料位置或錯誤細節。
-- 對內部敏感商務資料採最小揭露。
-- 使用繁體中文；正式條款、版本與文件名稱保留原文。
-
-## 停止與交接條件
-
-- 基準版本或客戶版本不唯一：停止整合，先確認檔名、日期、Owner 與交付紀錄。
-- 找不到正式標準條件：標示基準待確認，不沿用其他 Deal 慣例。
-- 需要改 Proposal 主線或 Scope：交回 proposal-preparation，完成後重新建立差異。
-- Reviewer 尚未決定：狀態維持 In review／More information required，不替其核准。
-- 審查期間出現實質新版本：停止舊版整合，重新判斷受影響 Owner 與核准。
-- 要求直接接受條款或折扣：只整理選項、影響與授權人，不代替決策。
-
-## 交付前檢查
-
-- Account、Opportunity、基準版本、客戶版本與 Deadline 是否唯一。
-- 每個決策項是否有原文／準確摘要、Before、After、來源、Owner、狀態與影響。
-- Approved／Approved with conditions 是否保留完整證據與條件。
-- 審查順序是否反映 Scope、Pricing、Delivery、Security／Privacy 與 Legal 依賴。
-- 每位 Owner 的 Handoff 是否只包含其決策所需的最少充分資訊。
-- Customer-safe status 是否排除所有內部敏感資料與未核准內容。
-
-## 內部執行規則
-
-本節不得出現在對使用者的回覆。
-
-- 使用 ask 整理跨 Outlook、Teams、Files、Planner 的商務版本、要求與核准脈絡。
-- 使用 fetch 核對原始條款、附件、核准與工作；定位時使用 search_paths 與 get_schema。
-- 草擬階段只讀取。使用者確認後才可用 create_entity 建立工作／草稿、update_entity 更新狀態，或 do_action 送交審查。
-- 不使用 delete_entity，不把非正式訊息寫成正式核准。
+- `ask` 用於跨文件與人員關聯；`fetch` 驗證 exact clause、version、message 與 approval。
+- `create_entity`、`update_entity` 需 path/schema discovery、preview 與核准。
+- `do_action` 只在 Work IQ 明確支援且使用者核准通知／會議動作時使用。
 
 ## 範例
 
-### 折扣核准有條件
+**輸入：**「整理 Contoso 提案還有哪些商務與資安核准沒完成。」
 
-Finance 核准 15% 折扣，但限定三年期與 [日期] 前簽署。Agent 必須把條件與適用版本保留，不能只寫「折扣已核准」。
+**正確行為：**確認 Proposal 版本，逐項列 Evidence、Owner 與 Decision state；不把聊天同意當正式 approval。
 
-### 客戶 Redline 多版本
+## Guardrails
 
-Agent 應先確認基準與最新客戶版本，逐條列 Before／After；不能把兩版不同要求合併成一版。
+- 不代替 Pricing、Finance、Legal、Security、Privacy 或 Delivery Owner 決策。
+- 不接受 Contract deviation 或 Final terms。
+- 不修改正式文件或寄送 Proposal，除非另有明確 preview 與核准。
+- 不將推論寫成 approval evidence。
 
-### 多 Owner 項目
+## 常見問題
 
-資料駐留要求同時影響 Security、Privacy 與 Delivery。Agent 應指定主要協調 Owner、各自決策及先後依賴，不寫「請大家確認」。
-
-## 例外處理
-
-- 找不到標準基準：列需向誰取得，不自行使用舊 Deal 條件。
-- Reviewer 不可用：列代理 Owner 或升級需求，但不自行核准。
-- 客戶 Deadline 已過：優先建立狀態與可對外說明，不偽造已完成。
-- 版本在審查中被更新：停止舊版整合，建立新差異並重新確認受影響 Reviewer。
-- 使用者要求直接接受條款：整理影響與所需核准，不能代替授權人決定。
+| 問題 | 處理方式 |
+|---|---|
+| 找到多個 Proposal 版本 | 要求選定唯一版本並顯示差異。 |
+| Owner 不明 | 標示 `未知`，找可驗證的 internal source 或 escalation route。 |
+| Approval 只存在聊天 | 列為 supporting context，不視為正式核准。 |
+| Deadline 已過 | 標示 Blocked，提出具 Owner 的 escalation。 |

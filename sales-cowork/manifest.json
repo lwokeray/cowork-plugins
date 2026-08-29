@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
   "manifestVersion": "1.28",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "id": "34614978-57a3-49f2-83f1-6546422571ec",
   "developer": {
     "name": "lwokeray",
@@ -15,7 +15,7 @@
   },
   "description": {
     "short": "以 Microsoft 365 支援企業型銷售的研究、會議、商機、提案與交接",
-    "full": "專為企業型銷售、解決方案銷售、售前顧問與銷售主管設計的 Copilot Cowork Skills Plugin。運用 Microsoft 365 中使用者有權存取的會議、郵件、訊息、工作與文件，協助完成日常研究、準備、分析、規劃與執行。"
+    "full": "專為企業型銷售、解決方案銷售、售前顧問與銷售主管設計的 Copilot Cowork Skills Plugin。透過 Cowork 內建 Unified Work IQ MCP，在使用者既有權限與核准控制下協調 Outlook、Teams、Calendar、Planner、SharePoint、OneDrive、Word、Excel、PowerPoint、PDF、Enterprise Search 與 Deep Research。"
   },
   "icons": {
     "color": "color.png",
