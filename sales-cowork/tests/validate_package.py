@@ -34,6 +34,11 @@ TASK_TYPES = {
     "掌握近況", "程式碼", "準備", "詢問", "編輯", "學習",
 }
 
+PROMPT_TECHNICAL_TERMS = {
+    "Work IQ", "search_paths", "get_schema", "create_entity", "update_entity",
+    "delete_entity", "do_action", "call_function", "list_agents",
+}
+
 
 def fail(message: str) -> None:
     print(f"FAIL: {message}")
@@ -80,6 +85,14 @@ def validate_prompts(package: Path, expected_count: int) -> None:
             fail(f"Prompt Card 第 {index} 列 Display Prompt 超過 132 字元或為空")
         if not 1 <= len(row["Prompt Text"]) <= 8000:
             fail(f"Prompt Card 第 {index} 列 Prompt Text 超過 8000 字元或為空")
+        if len(row["Prompt Text"]) < 80:
+            fail(f"Prompt Card 第 {index} 列 Prompt Text 過短，缺少完整使用情境")
+        if not re.search(r"\[[^\]]*例如：[^\]]+\]", row["Prompt Text"]):
+            fail(f"Prompt Card 第 {index} 列 Prompt Text 必須包含 [欄位，例如：範例] 格式")
+        if "[" not in row["Display Prompt"] or "]" not in row["Display Prompt"]:
+            fail(f"Prompt Card 第 {index} 列 Display Prompt 必須顯示可替換欄位")
+        if technical := sorted(term for term in PROMPT_TECHNICAL_TERMS if term in row["Prompt Text"]):
+            fail(f"Prompt Card 第 {index} 列不得包含 Skill 內部工具名稱：{', '.join(technical)}")
         if len(row["Description"]) > 200:
             fail(f"Prompt Card 第 {index} 列 Description 超過 200 字元")
         if row["Products"] != "Copilot Cowork":

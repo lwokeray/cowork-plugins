@@ -40,7 +40,7 @@ Sales Cowork 是專為 Enterprise Sales、B2B Solution Sales、Presales 與 Sale
 - [Prompt Card 欄位目錄](prompts/prompt-cards.md)
 - [Prompt Card CSV](prompts/prompt-cards.csv)
 
-每個 Skill 對應一張繁體中文 Prompt Card，支援的應用程式固定為 `Copilot Cowork`、部門固定為 `銷售`，工作類型使用 Microsoft Prompt UI 提供的分類。
+每個 Skill 對應一張繁體中文 Prompt Card，支援的應用程式固定為 `Copilot Cowork`、部門固定為 `銷售`，工作類型使用 Microsoft Prompt UI 提供的分類。Prompt 採用 `Goal＋Context＋Source＋Expectations` 結構，並以 `[欄位，例如：範例]` 標示使用者可直接替換的內容；Work IQ 與治理規則保留在 Skill 內。
 
 ## 建置與驗證
 
