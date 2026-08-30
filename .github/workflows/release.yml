@@ -29,18 +29,21 @@ jobs:
           cache-dependency-path: requirements-dev.txt
       - run: python -m pip install -r requirements-dev.txt
       - run: python scripts/validate_repo.py
-      - name: Build all plugins
+      - name: Build all plugins and Prompt Cards
         run: |
           for plugin in plugins/*-cowork; do
-            python scripts/build_plugin.py "$(basename "$plugin")"
+            plugin_id="$(basename "$plugin")"
+            python scripts/build_plugin.py "$plugin_id"
+            version="$(python -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8"))["version"])' "$plugin/manifest.json")"
+            cp "$plugin/prompts/prompt-cards.csv" "build/${plugin_id}-${version}-prompt-cards.csv"
           done
-      - name: Publish downloadable ZIPs
+      - name: Publish downloadable assets
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           tag="cowork-plugins-${GITHUB_SHA::7}"
           if gh release view "$tag" >/dev/null 2>&1; then
-            gh release upload "$tag" build/*.zip build/*.sha256 --clobber
+            gh release upload "$tag" build/*.zip build/*-prompt-cards.csv --clobber
           else
-            gh release create "$tag"               build/*.zip               build/*.sha256               --target "$GITHUB_SHA"               --title "Cowork Plugins"               --notes "Download the ZIP for the role-specific Cowork Plugin you need. SHA-256 files are included for integrity verification."
+            gh release create "$tag" build/*.zip build/*-prompt-cards.csv --target "$GITHUB_SHA" --title "Cowork Plugins" --notes "Each role-specific Plugin includes a deployment ZIP and an import-ready Prompt Card CSV."
           fi

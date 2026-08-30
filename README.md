@@ -18,7 +18,7 @@ Microsoft 365 Copilot Cowork 的職能型 Plugin monorepo。每個 Plugin 依業
 
 ## Download
 
-從 [Latest Release](https://github.com/lwokeray/cowork-plugins/releases/latest) 直接下載所需的 Plugin ZIP。每個 ZIP 都附有同名 `.sha256` 完整性驗證檔。
+從 [Latest Release](https://github.com/lwokeray/cowork-plugins/releases/latest) 直接下載所需職能的 Plugin ZIP 與對應 Prompt Card CSV。
 
 ## Plugin Structure
 
