@@ -16,6 +16,10 @@ Microsoft 365 Copilot Cowork 的職能型 Plugin monorepo。每個 Plugin 依業
 | [`it-helpdesk-cowork`](plugins/it-helpdesk-cowork/) | 2.0.1 | 12 | candidate | Dynamics 365 Customer Service IT case intake、troubleshooting、communication 與 escalation |
 <!-- PLUGIN_CATALOG:END -->
 
+## Download
+
+從 [Latest Release](https://github.com/lwokeray/cowork-plugins/releases/latest) 直接下載所需的 Plugin ZIP。每個 ZIP 都附有同名 `.sha256` 完整性驗證檔。
+
 ## Plugin Structure
 
 每個 Plugin 使用相同結構：
