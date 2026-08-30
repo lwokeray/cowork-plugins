@@ -1,0 +1,108 @@
+{
+  "suite": "it-operations-cowork-1.0.1-routing",
+  "locale": "zh-TW",
+  "positive": [
+    {
+      "id": "it-operations-coordinator",
+      "prompt": "請整理 {{範圍與期間，例如：今天企業 IT Operations}} 的事件、變更、弱點、存取、雲端與 M365 工作。合併重複訊號，區分已確認事實、未知與阻塞，列出 Priority、影響、Owner、期限、依賴、來源及下一個安全行動；Help Desk case 請另外標示交接，不直接執行變更。",
+      "expected_skill": "it-operations-coordinator"
+    },
+    {
+      "id": "it-access-lifecycle",
+      "prompt": "請處理 {{人員或事件，例如：Alex 於月底轉調到 Finance}} 的存取權限生命週期。核對唯一身份、正式人事事件、生效時間、目前與目標權限、Group／Role／License、特權存取、資料 Owner、SoD、例外與回收項目，先提供逐項變更預覽與核准需求，不直接新增或移除權限。",
+      "expected_skill": "it-access-lifecycle"
+    },
+    {
+      "id": "it-endpoint-support",
+      "prompt": "請診斷 {{使用者與裝置，例如：Alex 的 Windows 11 laptop}} 發生的 {{問題與時間，例如：今天無法套用合規原則}}。核對裝置身份、管理與合規狀態、近期變更、錯誤、影響範圍及已嘗試動作，提出最小風險驗證步驟、停止條件與需要核准的修復預覽，不宣稱未驗證的 root cause。",
+      "expected_skill": "it-endpoint-support"
+    },
+    {
+      "id": "it-m365-operations",
+      "prompt": "請分析 {{工作負載與問題，例如：Exchange Online 郵件延遲}} 在 {{範圍與期間}} 的影響。核對 Service health、受影響對象、租戶設定、近期變更、權限與訊息證據，區分 Microsoft service issue、tenant configuration、user scope 與未知，提出驗證、緩解、溝通及升級建議；任何設定變更先提供差異預覽。",
+      "expected_skill": "it-m365-operations"
+    },
+    {
+      "id": "it-network-diagnostics",
+      "prompt": "請診斷 {{來源、目的地與症狀，例如：台北辦公室無法連線到指定 SaaS}}。建立時間軸與影響範圍，核對 DNS、Route、Proxy、Firewall、VPN、Certificate、Latency、Packet loss 與近期變更，依最低風險順序提出測試、預期結果、分支判斷及升級資料，不要求停用安全控制作為捷徑。",
+      "expected_skill": "it-network-diagnostics"
+    },
+    {
+      "id": "it-cloud-operations",
+      "prompt": "請檢查 {{Subscription、Resource group 或 workload}} 在 {{期間}} 的健康度與異常。核對資源身份、Service health、Availability、Metric、Log、Deployment、Dependency、Quota、Cost 與近期變更，列出已確認影響、主要假設、缺少證據、緩解路徑與具 Owner 的行動；不直接重啟、擴容或修改 Production。",
+      "expected_skill": "it-cloud-operations"
+    },
+    {
+      "id": "it-incident-command",
+      "prompt": "請為 {{事件名稱與開始時間}} 建立 Major Incident Command Pack。確認影響、Severity、Incident commander、Technical leads、Business owner、時間軸、已知與未知、目前緩解、工作流、Decision log、更新節奏與下一次 checkpoint；所有 Production action 與外部公告分別列出核准人，不自行執行修復或宣告恢復。",
+      "expected_skill": "it-incident-command"
+    },
+    {
+      "id": "it-problem-root-cause",
+      "prompt": "請分析 {{問題與相關事件範圍}} 的 recurring pattern。重建時間軸、共同條件、差異、近期變更、偵測缺口與技術證據，區分 Trigger、Contributing factor、Root cause hypothesis 與已證實原因，提出反證測試、Workaround、永久修正、Owner、驗證方式及預防性監控；證據不足時不得宣稱 root cause。",
+      "expected_skill": "it-problem-root-cause"
+    },
+    {
+      "id": "it-change-release-control",
+      "prompt": "請審查 {{Change／Release 名稱、環境與窗口}}。核對目的、精確變更、受影響服務、Dependency、Security、測試證據、Monitoring、Communication、Implementation、Rollback、Owner 與 Approval，依證據給出 Ready／Revise／Stop；不要把排定窗口視為已核准，也不要直接部署。",
+      "expected_skill": "it-change-release-control"
+    },
+    {
+      "id": "it-security-response",
+      "prompt": "請處理 {{Alert／Incident ID 與時間範圍}}。確認資料來源、受影響身份與資產、Severity、Timeline、Indicator、已知行為、可能範圍、證據保存及通知需求，區分觀察、推論與未知，提出調查、遏止、清除與復原建議；停權、隔離、刪除或封鎖前必須顯示影響與核准需求。",
+      "expected_skill": "it-security-response"
+    },
+    {
+      "id": "it-vulnerability-compliance",
+      "prompt": "請分析 {{弱點、控制或掃描範圍}}。核對 CVE／Finding、資產身份、Internet exposure、Exploitability、Business criticality、現有控制、Patch／Mitigation、Owner、SLA、Exception 與證據日期，產出風險優先序與修復驗證計畫；不只依 CVSS 排序，也不自行接受風險或宣稱合規。",
+      "expected_skill": "it-vulnerability-compliance"
+    },
+    {
+      "id": "it-backup-recovery",
+      "prompt": "請檢查 {{服務、資料或工作負載}} 的 Backup／Recovery readiness。核對正式 RPO／RTO、Backup policy、最新成功點、Immutability、Encryption、Access、Retention、Dependency、Restore procedure 與最近測試證據，指出 Coverage gap、單點風險、測試計畫與 Owner；沒有成功 Restore evidence 時不得宣稱可復原。",
+      "expected_skill": "it-backup-recovery"
+    },
+    {
+      "id": "it-asset-license-management",
+      "prompt": "請檢查 {{資產或 License 範圍，例如：Microsoft 365 授權}} 在 {{期間}} 的配置與使用。核對唯一資產、Owner、Lifecycle、Assignment、Entitlement、Usage、Cost、Contract、Renewal、Security state 與資料品質，列出重複、閒置、缺漏與回收候選；移除授權或處置資產前提供使用者影響與核准預覽。",
+      "expected_skill": "it-asset-license-management"
+    },
+    {
+      "id": "it-vendor-escalation",
+      "prompt": "請為 {{供應商、服務與問題}} 建立 Vendor Escalation Pack。整理 Tenant／Subscription 或合約識別、Business impact、Severity、開始時間、重現步驟、錯誤、時間軸、已排除項目、附件清單、可分享與不可分享資料、SLA、Case ID 與明確請求，並準備更新草稿；不暴露 secret，也不在核准前送出。",
+      "expected_skill": "it-vendor-escalation"
+    },
+    {
+      "id": "it-knowledge-runbook",
+      "prompt": "請根據 {{已驗證來源與操作範圍}} 建立或更新 Runbook。包含適用與排除情境、權限與前提、輸入、逐步操作、分支判斷、Expected result、停止條件、Rollback、Validation、Escalation、Owner、Review date 與版本差異；未驗證步驟標示待測試，不直接發布成正式知識。",
+      "expected_skill": "it-knowledge-runbook"
+    },
+    {
+      "id": "it-operations-reporting",
+      "prompt": "請為 {{受眾與期間，例如：主管本週營運會議}} 建立 IT Operations Report。核對資料期間、範圍與來源，整理 Availability、Incidents、Changes、Security、Vulnerability、Capacity、Backup、Vendor、SLA、趨勢與重大差異，標示資料限制、Owner、決策及具體 asks；不要用無定義的紅黃綠或把缺資料當成正常。",
+      "expected_skill": "it-operations-reporting"
+    },
+    {
+      "id": "it-automation-governance",
+      "prompt": "請審查 {{Flow、Script、Agent 或 Automation 名稱}}。核對 Owner、Business purpose、Identity、Permission、Trigger、Input trust、Action scope、Concurrency、Idempotency、Error handling、Secret、Logging、Alert、Rollback、Human approval、DLP 與停止機制，產出風險與修正清單；高風險寫入不得在未核准下自動執行。",
+      "expected_skill": "it-automation-governance"
+    }
+  ],
+  "negative": [
+    {
+      "prompt": "把這封使用者求助建立成 Dynamics 365 Case。",
+      "expected_plugin": "it-helpdesk-cowork",
+      "must_not_route_to": "it-operations-cowork"
+    },
+    {
+      "prompt": "替客戶建立完整銷售提案。",
+      "expected_plugin": "sales-cowork",
+      "must_not_route_to": "it-operations-cowork"
+    },
+    {
+      "prompt": "安排候選人 Panel 面試。",
+      "expected_plugin": "hr-cowork",
+      "must_not_route_to": "it-operations-cowork"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.28",
+  "version": "1.0.1",
+  "id": "0ed8d723-8ac8-4479-bd18-ffc8fc2c2e28",
+  "developer": {
+    "name": "lwokeray",
+    "websiteUrl": "https://github.com/lwokeray/cowork-plugins",
+    "privacyUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/plugins/finance-cowork/README.md#privacy",
+    "termsOfUseUrl": "https://github.com/lwokeray/cowork-plugins/blob/main/plugins/finance-cowork/README.md#terms"
+  },
+  "name": {
+    "short": "Finance Cowork",
+    "full": "企業財務 Finance Cowork"
+  },
+  "description": {
+    "short": "以 Microsoft 365 支援企業結帳、會計、預算、財務分析、稽核與內控",
+    "full": "專為企業財務、會計、FP&A、Treasury、Controllership 與 Internal Audit 設計的 Copilot Cowork Skills Plugin。透過 Cowork 內建 Unified Work IQ MCP，在使用者既有權限與核准控制下協調 Outlook、Teams、Calendar、Planner、SharePoint、OneDrive、Word、Excel、PowerPoint、PDF、Enterprise Search 與 Deep Research。"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "accentColor": "#0F6CBD",
+  "agentSkills": [
+    {
+      "folder": "./skills/close-management"
+    },
+    {
+      "folder": "./skills/journal-entry-preparation"
+    },
+    {
+      "folder": "./skills/account-reconciliation"
+    },
+    {
+      "folder": "./skills/financial-statement-preparation"
+    },
+    {
+      "folder": "./skills/variance-analysis"
+    },
+    {
+      "folder": "./skills/budget-forecast-planning"
+    },
+    {
+      "folder": "./skills/cash-liquidity-forecast"
+    },
+    {
+      "folder": "./skills/working-capital-review"
+    },
+    {
+      "folder": "./skills/invoice-expense-review"
+    },
+    {
+      "folder": "./skills/financial-analysis"
+    },
+    {
+      "folder": "./skills/financial-model-building"
+    },
+    {
+      "folder": "./skills/dcf-valuation"
+    },
+    {
+      "folder": "./skills/management-reporting"
+    },
+    {
+      "folder": "./skills/audit-evidence-support"
+    },
+    {
+      "folder": "./skills/internal-control-testing"
+    }
+  ]
+}

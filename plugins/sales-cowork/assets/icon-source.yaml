@@ -1,0 +1,10 @@
+library: Microsoft Fluent UI System Icons
+repository: https://github.com/microsoft/fluentui-system-icons
+commit: 4d685f77b2cb8f3f412a74ec8d920c8c91149528
+license: MIT
+icon: Handshake
+stem: handshake
+label: SALES
+color: "#008272"
+color_variant: filled
+outline_variant: regular

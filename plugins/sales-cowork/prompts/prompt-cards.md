@@ -1,0 +1,255 @@
+# 企業銷售 Sales Cowork Prompt Cards
+
+此檔案由 `prompt-cards.yaml` 自動產生，請勿直接修改。
+
+## 規劃銷售工作重點
+
+- Skill：`daily-sales-rhythm`
+- 顯示文字：幫我整理最重要的銷售行動
+- Department：銷售
+- Task type：Catch up
+- Locale：zh-TW
+
+依指定日期與負責範圍整理具期限、客戶影響及來源的優先行動。
+
+**Prompt**
+
+幫我整理 {{日期範圍，例如：今天}} 最重要的銷售行動，範圍是 {{客戶或商機範圍，例如：我負責的企業客戶}}。請列出最多 {{數量，例如：3}} 項，包含為什麼現在要處理、Owner、期限與參考來源。
+
+## 評估新進銷售線索
+
+- Skill：`lead-intake-qualification`
+- 顯示文字：幫我評估新進銷售線索並提出下一步
+- Department：銷售
+- Task type：Analyze
+- Locale：zh-TW
+
+評估指定來源與期間內的新線索、缺少資訊及建議下一步。
+
+**Prompt**
+
+幫我評估 {{線索範圍，例如：今天收到的企業客戶詢問}}，依 {{評估重點，例如：需求明確度、角色、時程與服務適配性}} 進行分析。請逐筆列出已知資訊、缺少資訊、評估結果，以及一個建議下一步。
+
+## 研究目標客戶
+
+- Skill：`account-research`
+- 顯示文字：幫我研究目標客戶最近的互動與承諾
+- Department：銷售
+- Task type：Find
+- Locale：zh-TW
+
+彙整指定客戶在一段期間內的互動、承諾、關係人與資訊缺口。
+
+**Prompt**
+
+幫我研究 {{客戶名稱，例如：Contoso}} 在 {{期間，例如：最近 90 天}} 的工作往來。請整理客戶目標、近期互動、明確承諾、相關人員、進行中的工作與待確認事項，並在重要資訊旁標示來源與日期。
+
+## 分析市場與競爭態勢
+
+- Skill：`market-competitive-research`
+- 顯示文字：幫我分析市場與競爭態勢對銷售的影響
+- Department：銷售
+- Task type：Analyze
+- Locale：zh-TW
+
+針對明確問題分析市場、競爭者、銷售影響與待驗證假設。
+
+**Prompt**
+
+幫我分析 {{市場或競爭問題，例如：零信任方案近期的市場變化}}，用於 {{使用情境，例如：Contoso 的高階主管會議}}。請比較 {{對象，例如：主要競爭方案與替代做法}}，整理關鍵證據、銷售影響及需要向客戶驗證的問題。{{公開研究需求，例如：需要同時參考近期公開資料}}
+
+## 建立客戶經營計畫
+
+- Skill：`account-plan`
+- 顯示文字：幫我建立客戶經營計畫
+- Department：銷售
+- Task type：Design
+- Locale：zh-TW
+
+依客戶成果、關係覆蓋與業務缺口建立指定期間的 Account Plan。
+
+**Prompt**
+
+幫我為 {{客戶名稱，例如：Contoso}} 建立或更新 {{計畫期間，例如：本年度}} 的客戶經營計畫，重點放在 {{規劃重點，例如：客戶成果、關係覆蓋與新機會}}。請整理已知狀況、關係缺口、風險與未知，並提出最多 {{數量，例如：3}} 項具 Owner 和期限的行動。
+
+## 準備客戶會議
+
+- Skill：`customer-meeting-brief`
+- 顯示文字：幫我準備客戶會議
+- Department：銷售
+- Task type：Prepare
+- Locale：zh-TW
+
+為指定的單一客戶會議整理背景、承諾、議程與發現問題。
+
+**Prompt**
+
+幫我準備 {{客戶或會議名稱，例如：Contoso 季度檢討會}}，時間是 {{日期與時間，例如：9 月 10 日下午 2 點}}。這場會議希望達成 {{會議目標，例如：確認下一階段試行範圍}}。請整理參與者、近期變化、明確承諾、未解問題、建議議程、發現問題與一個建議下一步。
+
+## 整理會後追蹤
+
+- Skill：`meeting-follow-up`
+- 顯示文字：幫我整理會後追蹤
+- Department：銷售
+- Task type：Create
+- Locale：zh-TW
+
+將指定會議整理成內部紀要、客戶信件草稿與工作建議。
+
+**Prompt**
+
+幫我整理 {{會議名稱，例如：Contoso Discovery Workshop}} 在 {{日期，例如：昨天}} 的會後追蹤。請分別產生：1. 內部會議紀要；2. 給客戶的 Follow-up Email 草稿；3. 後續工作建議。每項決議或承諾請列出 Owner、期限、來源，以及是否已確認。信件語氣請採用 {{語氣，例如：專業且精簡}}。
+
+## 設計商機推進策略
+
+- Skill：`opportunity-strategy`
+- 顯示文字：幫我設計商機推進策略
+- Department：銷售
+- Task type：Design
+- Locale：zh-TW
+
+依買方成果、利害關係人與決策流程建立單一商機的推進計畫。
+
+**Prompt**
+
+幫我為 {{客戶或商機名稱，例如：Contoso Security Modernization}} 設計推進策略，目標是 {{近期目標，例如：確認試行與決策時程}}。請整理買方成果、關係人、決策流程、競爭態勢、商務路徑、主要風險與未知，並提出最多 {{數量，例如：3}} 項具優先順序的下一步。
+
+## 檢查商機健康度
+
+- Skill：`deal-inspection`
+- 顯示文字：幫我檢查商機目前的健康度
+- Department：銷售
+- Task type：Analyze
+- Locale：zh-TW
+
+依近期買方證據找出指定商機的阻礙、資訊缺口與安全下一步。
+
+**Prompt**
+
+幫我檢查 {{商機名稱，例如：Contoso Security Modernization}} 截至 {{檢查日期，例如：今天}} 的健康度。請根據近期買方證據，指出目前狀態、最主要阻礙、最重要的資訊缺口、是否需要主管協助，以及一個最安全的下一步。
+
+## 準備客戶聯繫
+
+- Skill：`sales-outreach-engagement`
+- 顯示文字：幫我準備客戶聯繫內容
+- Department：銷售
+- Task type：Execute
+- Locale：zh-TW
+
+依指定對象、目的與背景準備適合的客戶信件、Teams 訊息或會議邀請。
+
+**Prompt**
+
+幫我準備給 {{聯繫對象，例如：Contoso IT Director 王經理}} 的 {{聯繫方式，例如：Follow-up Email}}，目的是 {{聯繫目的，例如：確認下週 Workshop 時間}}。請參考 {{背景，例如：上次會議承諾與已提供的資料}}，採用 {{語氣，例如：專業、自然且精簡}}，先提供可確認的完整草稿。
+
+## 安排 Planner 銷售工作
+
+- Skill：`sales-task-planning`
+- 顯示文字：幫我把銷售行動整理成 Planner 工作
+- Department：銷售
+- Task type：Schedule
+- Locale：zh-TW
+
+將指定來源中的已確認行動整理成 Microsoft Planner 工作建議。
+
+**Prompt**
+
+幫我把 {{行動來源，例如：今天 Contoso 會議中已確認的 Follow-up}} 整理成 {{Planner 計畫名稱，例如：Enterprise Sales Plan}} 的工作。每筆請包含工作名稱、建議 Owner、開始日期、期限、Priority、來源與完成標準；先檢查是否已有重複工作，再提供建立或更新預覽。
+
+## 清理銷售工作區
+
+- Skill：`pipeline-workspace-hygiene`
+- 顯示文字：幫我檢查並清理銷售工作區
+- Department：銷售
+- Task type：Edit
+- Locale：zh-TW
+
+檢查指定銷售檔案或清單中的重複、缺漏、過期與不一致資料。
+
+**Prompt**
+
+幫我檢查 {{銷售檔案或清單，例如：FY27 Enterprise Pipeline.xlsx}} 中 {{檢查範圍，例如：本週更新的商機}}。請找出重複紀錄、缺少 Owner、無效日期、逾期承諾、過期資料與缺少證據的欄位，並分開列出可以直接修正的資料問題，以及需要業務 Owner 決定的項目。
+
+## 準備 Forecast 決策包
+
+- Skill：`forecast-decision-pack`
+- 顯示文字：幫我準備 Forecast Review
+- Department：銷售
+- Task type：Analyze
+- Locale：zh-TW
+
+比較指定團隊與期間的核准快照並整理重大變化及主管問題。
+
+**Prompt**
+
+幫我準備 {{團隊或範圍，例如：Enterprise Sales Team}} 在 {{Forecast 期間，例如：FY27 Q1}}、截至 {{日期，例如：9 月 30 日}} 的 Forecast Review。請比較 {{目前快照，例如：本週核准版本}} 與 {{先前快照，例如：上週核准版本}}，整理重大變化、買方證據、風險、資訊缺口及需要主管決定的問題。
+
+## 準備解決方案提案
+
+- Skill：`proposal-preparation`
+- 顯示文字：幫我準備解決方案提案
+- Department：銷售
+- Task type：Prepare
+- Locale：zh-TW
+
+依客戶需求、受眾與期限建立具來源的提案或簡報草案。
+
+**Prompt**
+
+幫我為 {{客戶或商機名稱，例如：Contoso Security Modernization}} 準備 {{提案類型，例如：解決方案提案簡報}}，受眾是 {{受眾，例如：CIO、IT 與 Security 團隊}}，期限是 {{期限，例如：下週五}}。請整理客戶需求、預期成果、方案範圍、假設、依賴、缺少資訊與待核准事項，並建立可供審閱的草案架構。
+
+## 審查提案品質與送件準備
+
+- Skill：`proposal-quality-review`
+- 顯示文字：幫我做提案最終品質審查
+- Department：銷售
+- Task type：Analyze
+- Locale：zh-TW
+
+核對指定提案版本的需求覆蓋、證據、引用、一致性、核准及送件阻塞。
+
+**Prompt**
+
+請審查 {{客戶與提案版本，例如：Contoso Proposal v5}}，審查階段是 {{階段，例如：Red Review 或送件前最終檢查}}，截止時間為 {{期限與時區}}。請核對 Requirement coverage、Claim 與 citation、跨文件一致性、商務與風險核准、附件及提交規則，列出 Critical／High findings、精確修法、Owner、期限與 PASS／REVISE／STOP 建議；不要代替主管核准或直接提交。
+
+## 檢查商務審查事項
+
+- Skill：`commercial-review-handoff`
+- 顯示文字：幫我檢查提案的商務風險
+- Department：銷售
+- Task type：Analyze
+- Locale：zh-TW
+
+整理指定提案版本中尚待 Pricing、Legal、Security 或 Privacy 審查的項目。
+
+**Prompt**
+
+幫我檢查 {{提案或版本，例如：Contoso Proposal v3}} 在 {{審查範圍，例如：價格、折扣、法務、資安與隱私}} 中尚未完成的事項。請列出每項要求或偏差、來源版本、風險、Owner、期限、所需決策與目前狀態，並指出需要升級處理的項目。
+
+## 準備成交交付交接
+
+- Skill：`close-delivery-handoff`
+- 顯示文字：幫我準備成交到 Delivery 的交接
+- Department：銷售
+- Task type：Prepare
+- Locale：zh-TW
+
+依核准成果、範圍與承諾建立從成交到 Delivery 的交接資料。
+
+**Prompt**
+
+幫我為 {{客戶或商機名稱，例如：Contoso Security Modernization}} 準備 {{交接類型，例如：成交到 Delivery 的交接}}。請依 {{核准來源，例如：已簽署合約與核准 Proposal}} 整理客戶成果、範圍、利害關係人、里程碑、承諾、假設、依賴、Owner、文件與未解事項，並提出 Kickoff 與後續工作的建議。
+
+## 檢視續約與擴展機會
+
+- Skill：`renewal-expansion-review`
+- 顯示文字：幫我檢視續約與擴展狀態
+- Department：銷售
+- Task type：Catch up
+- Locale：zh-TW
+
+依指定續約期間的成果、採用與承諾證據檢視風險及擴展假設。
+
+**Prompt**
+
+幫我檢視 {{客戶名稱，例如：Contoso}} 在 {{續約期間，例如：未來 120 天}} 的續約與擴展狀態，重點是 {{檢查重點，例如：已實現成果、採用情況、未完成承諾與關係人變化}}。請整理續約準備度、主要風險、可能的擴展假設、需要向客戶確認的問題，以及最多 {{數量，例如：3}} 項下一步。

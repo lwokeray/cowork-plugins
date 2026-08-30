@@ -1,2 +1,8 @@
 __pycache__/
 *.py[cod]
+.venv/
+build/
+dist/
+*.zip
+*.sha256
+.DS_Store
