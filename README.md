@@ -1,6 +1,6 @@
 # Microsoft 365 Copilot Cowork Plugins
 
-職能型 Microsoft 365 Copilot Cowork Plugin monorepo。每個 Plugin 都是獨立的 M365 Unified App Package source，包含 manifest、icons、完整 Monolithic Skills、Prompt Cards 與行為驗證。
+Microsoft 365 Copilot Cowork 的職能型 Plugin monorepo。每個 Plugin 依業務職能獨立封裝，包含可部署的 M365 Unified App Package、完整 Monolithic Skills、Prompt Cards 與驗證案例。
 
 ## Plugin Catalog
 
@@ -16,30 +16,68 @@
 | [`it-helpdesk-cowork`](plugins/it-helpdesk-cowork/) | 2.0.1 | 12 | candidate | Dynamics 365 Customer Service IT case intake、troubleshooting、communication 與 escalation |
 <!-- PLUGIN_CATALOG:END -->
 
-Finance 與 Marketing 與其他職能 Plugin 使用相同的 Skills、Prompt Cards、icons、evals 與 tenant acceptance contract；Catalog 只收錄通過 repository validator 的完整 package。
+## Plugin Structure
+
+每個 Plugin 使用相同結構：
+
+```text
+plugins/<domain>-cowork/
+├── manifest.json
+├── color.png
+├── outline.png
+├── README.md
+├── CHANGELOG.md
+├── assets/
+│   └── icon-source.yaml
+├── skills/
+│   └── <skill-name>/
+│       └── SKILL.md
+├── prompts/
+│   ├── prompt-cards.yaml
+│   ├── prompt-cards.md
+│   └── prompt-cards.csv
+└── evals/
+    ├── routing.json
+    ├── behavior.json
+    └── tenant-checklist.md
+```
+
+部署套件包含 `manifest.json`、`color.png`、`outline.png`、`skills/`，以及使用 Connector 時才需要的 `tools/`。README、Prompt Cards、evals 與 icon source metadata 僅供 Repository 維護與驗證。
 
 ## Repository Layout
 
 ```text
-plugins/<domain>-cowork/    獨立職能 Plugin source
-docs/standards/             Repository、Skill、Prompt Card、icon 與發布規範
-scripts/                    共用驗證、Prompt Card 產生與打包工具
-.github/workflows/          Pull request validation 與 GitHub Release
-catalog.yaml                Plugin 清單、狀態與責任邊界
+.github/workflows/    Pull Request 驗證與 Release workflow
+docs/standards/       Repository、Plugin、Skill、Prompt Card、icon、eval 與發布規範
+plugins/              各職能 Cowork Plugin source
+scripts/              驗證、Prompt Card 同步、Catalog 產生與建置工具
+tests/                Repository tooling tests
+catalog.yaml          Plugin 清單、版本來源與責任邊界
+requirements-dev.txt  驗證與建置相依套件
 ```
 
-`proposal-cowork` 已退役。提案準備、品質審查、商務審查及 Win/Loss learning 已歸入 `sales-cowork`；完整能力對照見 [Proposal migration map](docs/migrations/proposal-to-sales.md)。其他職能只處理自己授權範圍內的輸入與核准。
+## Prompt Cards
 
-Self-hosted Power Automate MCP 已移至獨立私人 repository：[`lwokeray/power-automate-mcp-selfhosted`](https://github.com/lwokeray/power-automate-mcp-selfhosted)。
+- `prompt-cards.yaml`：唯一編輯來源。
+- `prompt-cards.md`：供人工檢閱。
+- `prompt-cards.csv`：UTF-8 BOM 格式，供 Microsoft 365 Copilot 匯入。
+- 每個 Skill 必須對應一張 Prompt Card，routing eval 使用相同 Prompt。
+
+同步指定 Plugin 的 Prompt Cards：
+
+```bash
+python scripts/prompt_cards.py plugins/sales-cowork --write
+```
 
 ## Validate
 
 ```bash
 python -m pip install -r requirements-dev.txt
 python scripts/validate_repo.py
+python -m unittest discover -s tests -v
 ```
 
-驗證內容包括 manifest v1.28、Skill 數量與 frontmatter、Monolithic 內容完整度、Prompt Card 一對一覆蓋、icon 尺寸與透明度、evals、Catalog、禁止追蹤 ZIP 及舊目錄殘留。
+驗證涵蓋 manifest v1.28、GUID、SemVer、icons、Skill frontmatter 與內容契約、Prompt Card 覆蓋、routing、behavior、tenant acceptance、Catalog，以及部署 ZIP 結構。
 
 ## Build
 
@@ -47,7 +85,24 @@ python scripts/validate_repo.py
 python scripts/build_plugin.py sales-cowork
 ```
 
-產物建立於本機 `build/`，ZIP 根目錄只包含 `manifest.json`、`color.png`、`outline.png`、`skills/` 及必要的 `tools/`。ZIP 與 SHA-256 只透過 GitHub Release 發布，不提交到 Git。
+建置結果輸出至 `build/`：
+
+```text
+build/<plugin-id>-<version>.zip
+build/<plugin-id>-<version>.sha256
+```
+
+ZIP 根目錄只包含部署所需檔案；建置結果不提交至 Repository。
+
+## Release
+
+在 GitHub Actions 執行 `Release Cowork Plugin` workflow，輸入 `plugins/` 下的 Plugin id。Workflow 會先驗證完整 Repository，再建立 ZIP、SHA-256 與 GitHub Release。
+
+Release tag 格式：
+
+```text
+<plugin-id>-v<version>
+```
 
 ## Standards
 
