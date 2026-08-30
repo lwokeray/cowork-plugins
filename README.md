@@ -20,6 +20,52 @@ Microsoft 365 Copilot Cowork 的職能型 Plugin monorepo。每個 Plugin 依業
 
 從 [Latest Release](https://github.com/lwokeray/cowork-plugins/releases/latest) 直接下載所需職能的 Plugin ZIP 與對應 Prompt Card CSV。
 
+## 安裝與匯入流程
+
+所有安裝檔與 Prompt Cards 均從 [GitHub Release](https://github.com/lwokeray/cowork-plugins/releases/tag/cowork-plugins-2f99033) 的 **Assets** 直接下載。
+
+### 1. 上傳 Plugin
+
+從 Release 下載對應職能的 Plugin ZIP，於 Microsoft 365 admin center 選擇「代理程式」→「新增代理程式」→「選擇檔案」，等待上傳與驗證成功。
+
+![上傳 Cowork Plugin](docs/images/01-upload-plugin.jpg)
+
+### 2. 指派群組與安裝
+
+依公司政策將 Plugin 發佈至對應使用者或群組；如需預設安裝啟用，可在「安裝（選擇性）」指定群組。
+
+![指派群組與安裝](docs/images/02-assign-groups.jpg)
+
+### 3. 套用原則範本
+
+一般 Cowork Plugin 選擇預設原則範本；僅在已完成自訂治理設計與測試時才選 Custom。
+
+![套用原則範本](docs/images/03-apply-policy.jpg)
+
+### 4. 檢閱權限並發佈
+
+確認需要的權限後按「下一步」，檢閱 Plugin、群組與原則範本，最後按「發佈」。
+
+![檢閱權限](docs/images/04-review-permissions.jpg)
+
+![檢閱並發佈](docs/images/05-publish-plugin.jpg)
+
+### 5. 確認上傳完成與 Skills
+
+確認顯示「您已上傳」，再從導覽列進入「代理程式」→「工具」，開啟剛上傳的 Plugin，確認 Skills 清單正常顯示。
+
+![上傳完成](docs/images/06-upload-complete.jpg)
+
+![確認 Plugin Skills](docs/images/07-verify-skills.jpg)
+
+### 6. 匯入 Prompt Cards
+
+進入「Copilot」→「提示」→「匯入提示」→「瀏覽」，從 Release 的 **Assets** 下載並選取對應 Plugin 的 `prompt-cards.csv`。
+
+![開啟 Copilot 提示](docs/images/08-open-copilot-prompts.jpg)
+
+![匯入 Prompt Cards](docs/images/09-import-prompt-cards.jpg)
+
 ## Plugin Structure
 
 每個 Plugin 使用相同結構：
