@@ -24,6 +24,12 @@ Microsoft 365 Copilot Cowork 的職能型 Plugin monorepo。每個 Plugin 依業
 
 所有安裝檔與 Prompt Cards 均從 [GitHub Release](https://github.com/lwokeray/cowork-plugins/releases/tag/cowork-plugins-2f99033) 的 **Assets** 直接下載。
 
+### 0. 進入上傳畫面
+
+在 Microsoft 365 admin center 左側導覽列點選「代理程式」圖示，選擇「所有代理程式」，再點選「新增代理程式」。
+
+![進入代理程式上傳畫面](docs/images/00-open-agent-upload.jpg)
+
 ### 1. 上傳 Plugin
 
 從 Release 下載對應職能的 Plugin ZIP，於 Microsoft 365 admin center 選擇「代理程式」→「新增代理程式」→「選擇檔案」，等待上傳與驗證成功。
