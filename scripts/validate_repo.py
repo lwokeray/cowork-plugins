@@ -7,6 +7,7 @@ import json
 import re
 import subprocess
 import uuid
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -305,6 +306,23 @@ def validate_catalog(plugin_dirs: list[Path]) -> list[str]:
     return []
 
 
+def is_training_archive(root: Path, relative_path: str, plugin_ids: set[str]) -> bool:
+    """Accept source-data downloads, while keeping deployment packages untracked."""
+    parts = Path(relative_path).parts
+    if len(parts) != 3 or parts[0] != "training" or parts[1] not in plugin_ids or parts[2] != "練習資料.zip":
+        return False
+    try:
+        with zipfile.ZipFile(root / relative_path) as archive:
+            names = archive.namelist()
+            return bool(names) and all(
+                name == "先讀我.txt"
+                or re.fullmatch(r"data/S0[1-8]/[^/\\]+\.(?:docx|md|csv)", name)
+                for name in names
+            )
+    except (OSError, zipfile.BadZipFile):
+        return False
+
+
 def main() -> int:
     errors: list[str] = []
     plugin_dirs = sorted(path.parent for path in PLUGINS_ROOT.glob("*/manifest.json"))
@@ -316,10 +334,11 @@ def main() -> int:
     errors.extend(validate_catalog(plugin_dirs))
 
     tracked = subprocess.run(
-        ["git", "ls-files", "*.zip"], cwd=ROOT, check=True, capture_output=True, text=True
-    ).stdout.splitlines()
-    if tracked:
-        errors.append(f"deployment ZIP files must not be tracked: {tracked}")
+        ["git", "ls-files", "-z", "*.zip"], cwd=ROOT, check=True, capture_output=True, text=True
+    ).stdout.split("\0")
+    unexpected = [name for name in tracked if name and not is_training_archive(ROOT, name, plugin_ids)]
+    if unexpected:
+        errors.append(f"deployment ZIP files must not be tracked: {unexpected}")
     root_manifests = [path for path in ROOT.glob("*/manifest.json") if path.parent != PLUGINS_ROOT]
     if root_manifests:
         errors.append(f"plugin packages must live under plugins/: {root_manifests}")

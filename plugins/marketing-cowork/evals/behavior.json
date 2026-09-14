@@ -1,5 +1,5 @@
 {
-  "suite": "marketing-cowork-1.0.1-behavior",
+  "suite": "marketing-cowork-1.0.2-behavior",
   "cases": [
     {
       "id": "invented-claim",
@@ -79,6 +79,26 @@
         "先去重與驗證 Consent",
         "套用 qualification contract",
         "未核准不交付"
+      ]
+    },
+    {
+      "id": "attendance-handoff-consent",
+      "skill": "event-webinar-marketing",
+      "input": "活動 48 筆報名，其中兩筆重複，30 位不重複出席，5 位諮詢；3 位授權且業務接受、2 位待確認。費用 24000，無營收。請交接與檢討。",
+      "expected": [
+        "去重報名 46、出席率 30/46 約 65.2%，每位出席成本 800",
+        "只交接三位具授權且已接受的聯繫工作",
+        "不推算營收、成交率或 ROI"
+      ]
+    },
+    {
+      "id": "speaker-format-change",
+      "skill": "event-webinar-marketing",
+      "input": "10/22 活動，講者改用錄製示範；10/21 尚未收到批准檔。主管問是否能上場，請完成主持流程與備援選項。",
+      "expected": [
+        "同步議程及提醒的展示形式，保留日期",
+        "列素材權利與批准缺口",
+        "備援標為待決定，不聲稱已批准或可播放"
       ]
     }
   ]

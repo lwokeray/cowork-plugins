@@ -1,0 +1,2073 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IT Operations Cowork 更新部署失敗後如何受控恢復</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#162a40;background:#f4f7fb;font:17px/1.8 'Noto Sans CJK TC','Microsoft JhengHei',sans-serif}main{max-width:1100px;margin:28px auto;background:white;padding:42px 56px;box-shadow:0 4px 30px #183b6312}h1{font-size:32px;line-height:1.4;color:#075ac5;margin:0 0 24px}h2{font-size:25px;line-height:1.5;color:#075ac5;border-top:5px solid #adf0d7;padding-top:26px;margin-top:60px;scroll-margin:20px}h3{font-size:20px;color:#124c8c;margin-top:30px}p{margin:15px 0}a{color:#075bc8;text-underline-offset:3px;overflow-wrap:anywhere}img{max-width:100%;height:auto;display:block;margin:14px auto}figure{margin:24px 0;border:1px solid #d3dfee;border-radius:12px;padding:12px;break-inside:avoid}figcaption{color:#546579;font-size:14px}pre{background:#eff6ff;border-left:5px solid #0c6ddc;padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;font:16px/1.9 'Noto Sans CJK TC',sans-serif;position:relative}code{font-family:inherit}table{border-collapse:collapse;width:100%;font-size:15px;margin:22px 0;table-layout:auto}th{background:#e8f2ff;color:#134a88;text-align:left}th,td{padding:12px;border:1px solid #d4dfec;vertical-align:top;overflow-wrap:anywhere}tr:nth-child(even){background:#f7fafc}li{margin:8px 0}details{padding:16px 20px;margin:20px 0;background:#f3f9ff;border:1px solid #cfdef0;border-radius:8px}summary{font-weight:600;color:#075ac5;cursor:pointer}.answer{background:#effbf5;border-color:#a9ddc5}nav{padding:15px 20px;background:#e8f2ff;display:flex;gap:14px;flex-wrap:wrap;border-radius:10px}nav a{font-size:15px}.copy{display:block;margin-bottom:10px;padding:6px 15px;border:0;background:#075ac5;color:white;border-radius:5px;cursor:pointer}footer{margin-top:50px;color:#50657e;font-size:13px} @media(max-width:720px){body{font-size:16px}main{padding:25px 18px;margin:0}h1{font-size:27px}h2{font-size:23px}table{font-size:13px}th,td{padding:8px}figure{padding:3px}pre{font-size:15px;padding:16px}nav{gap:10px}} @media print{@page{size:A4;margin:17mm 15mm}body{background:white;font-size:10pt;line-height:1.65}main{max-width:none;padding:0;margin:0;box-shadow:none}nav,.copy{display:none}h1{font-size:24pt}h2{font-size:17pt;break-before:page;margin-top:0;padding-top:10px}h3{font-size:12pt;break-after:avoid}table{font-size:8.3pt}th,td{padding:6px}tr{break-inside:avoid}thead{display:table-header-group}pre{font-size:9.5pt;padding:12px}figure{break-inside:avoid;margin:12px 0}figure img{max-height:105mm;width:auto}figcaption{font-size:8pt}.slide{display:none}details{padding:10px;margin:12px 0}summary{font-size:10pt}a{color:#075ac5;text-decoration:none}footer{font-size:8pt}}blockquote{margin:20px 0;padding:12px 24px;background:#faf8f2;border-left:4px solid #b9a16a;white-space:pre-line;line-height:1.8}blockquote h4{white-space:normal;font-size:19px;margin:12px 0}.table-scroll{overflow-x:auto}table{min-width:560px}nav:empty{display:none}.course{margin-top:70px;border-top:12px solid #075ac5;padding-top:36px}h4{font-size:19px}section>h1{margin-top:26px}.copy{font:15px 'Microsoft JhengHei',sans-serif} @media print{blockquote{font-size:10pt}.table-scroll{overflow:visible}table{min-width:0}}</style></head><body><main><h1>IT Operations Cowork 更新部署失敗後如何受控恢復｜連續圖解實作</h1>
+<p>每一步依序呈現工作事件、完整來源、操作圖、可複製提示、預期結果與修訂方法。照本文往下操作即可。整課沿用同一個 Cowork 任務。</p>
+<h2 id="it-operations-s0">接下這個工作</h2>
+<p>你的角色：遠景精密 IT 工程師王明哲。</p>
+<p>公司準備更新 60 台筆電上的業務用戶端。你負責變更計畫，主管李承恩核准，服務台協助使用者驗證。先在 10 台試行，其中 2 台登入異常。你要保留逐台證據、停止擴大部署、確認回復條件，再交接後續觀察。Cowork 協助準備、核對與追蹤，實際裝置動作由授權管理員在受管工具執行。</p>
+<p>案例公司、人員與全部業務紀錄均為合成教學資料。操作圖採 Microsoft 官方實際畫面加註，圖中的示例案件與檔名以本課指定值替換。建議預留 150 分鐘完成案例與實作。</p>
+<h2 id="it-operations-s1">準備好就開始</h2>
+<ol>
+<li>下載並解壓本課 <a href="%E7%B7%B4%E7%BF%92%E8%B3%87%E6%96%99.zip">練習資料.zip</a>；附件在 <strong>data</strong>，依序使用 S01 至 S08 資料夾。這些 Word 與 CSV 用來上傳 Cowork，原文與明細也會直接顯示在每一步。</li>
+<li>登入講師提供的工作／學校帳戶，進入 <strong>Cowork</strong>，點 <strong>Customize → Plugins</strong>，確認 <strong>it-operations-cowork</strong> 可使用。若尚未出現，請講師確認帳戶與部署範圍。</li>
+<li>準備完成後，從下方 S01 建立任務；之後在同一任務接續新事件。每步只加入當步指定附件。</li>
+</ol>
+<figure><img src="../common/plugins.png" alt="操作圖：進入 Customize，切換到 Plugins 頁籤" loading="lazy"><figcaption>操作圖：進入 Customize，切換到 Plugins 頁籤。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<p>本課交付完整檔案與可審閱草稿。實際系統寄送、寫入或設備操作須有對應連線與授權；課堂提供的來源紀錄代表案例中已發生的事情。</p>
+<h2 id="it-operations-s2">S01｜把變更範圍寫到逐台可核對</h2>
+<p>現在情境時間是 2026/10/22 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D01_變更單與試行執行計畫.docx｜完整原文</strong></p>
+<blockquote>
+<h4>業務用戶端4.3試行</h4>
+<p>文件ID：CHG-26022</p>
+<p>時間（台北）：2026/10/22 17:00</p>
+<p>文件類型：變更申請</p>
+<p>建立／寄件人：王明哲</p>
+<p>收件／參與人：李承恩</p>
+<p>環境：遠景精密受管筆電。服務：課程合成業務用戶端，現有版本 4.2，目標 4.3。資產清單共 60 台，詳見 CHG-26022_資產與核准範圍.csv。
+本次只批准 LT-001 至 LT-010 共 10 台試行，窗口 10/22 18:00–19:00 台北時間。LT-011 至 LT-060 不在本次執行批准內。
+執行者王明哲，批准人李承恩，使用者驗證窗口林怡君，服務台通知陳宇軒。先核對裝置 ID、目前版本與設定備份，再按試行計畫更新。安裝結果、登入與開啟案件分開記錄。
+任一台出現無法登入時停止後續批次。10 台試行同一批啟動，收到結果後不得擴大至剩餘裝置。回復需確認廠商程序、資料影響及精確目標批准。
+本次批准狀態：Approved，李承恩於 17:00 確認上述範圍。計畫沒有批准全部 60 台升級，也沒有批准關閉安全控制。</p>
+<h4>試行前必要檢查</h4>
+<p>文件ID：CHG-CHECK01</p>
+<p>時間（台北）：2026/10/22 17:00</p>
+<p>文件類型：執行前檢查表</p>
+<p>建立／寄件人：王明哲</p>
+<p>收件／參與人：變更工作小組</p>
+<p>逐台核對：資產 ID 與使用者是否相符，現有版本是否為 4.2，設定備份能否讀取，維護窗口能否取得使用者驗證，核准套件是否可用。
+執行紀錄需寫開始時間、結果與異常，不得只記「完成」。登入成功後還要開啟測試案件，記錄是否能讀取必要資料。
+回復程序由管理員從核准位置取得並確認適用版本，Cowork 負責整理與交接，不在資料不全時自行生成卸載命令。此表為前置要求，逐台結果另附。</p>
+</blockquote>
+<p><strong>CHG-26022_資產與核准範圍.csv｜全部 60 筆原始明細</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>資產ID</th>
+<th>部門</th>
+<th>使用者代碼</th>
+<th>目前應用版本</th>
+<th>本次核准</th>
+<th>核准單</th>
+<th>備份路徑代碼</th>
+<th>17時備份可讀</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LT-001</td>
+<td>採購</td>
+<td>USER-001</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-001</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-002</td>
+<td>採購</td>
+<td>USER-002</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-002</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-003</td>
+<td>採購</td>
+<td>USER-003</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-003</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-004</td>
+<td>採購</td>
+<td>USER-004</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-004</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-005</td>
+<td>採購</td>
+<td>USER-005</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-005</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-006</td>
+<td>採購</td>
+<td>USER-006</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-006</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-007</td>
+<td>採購</td>
+<td>USER-007</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-007</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-008</td>
+<td>採購</td>
+<td>USER-008</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-008</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-009</td>
+<td>採購</td>
+<td>USER-009</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-009</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-010</td>
+<td>採購</td>
+<td>USER-010</td>
+<td>4.2</td>
+<td>是</td>
+<td>CHG-26022</td>
+<td>BKP-LT-010</td>
+<td>是</td>
+</tr>
+<tr>
+<td>LT-011</td>
+<td>採購</td>
+<td>USER-011</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-012</td>
+<td>採購</td>
+<td>USER-012</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-013</td>
+<td>採購</td>
+<td>USER-013</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-014</td>
+<td>採購</td>
+<td>USER-014</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-015</td>
+<td>採購</td>
+<td>USER-015</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-016</td>
+<td>採購</td>
+<td>USER-016</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-017</td>
+<td>採購</td>
+<td>USER-017</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-018</td>
+<td>採購</td>
+<td>USER-018</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-019</td>
+<td>採購</td>
+<td>USER-019</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-020</td>
+<td>採購</td>
+<td>USER-020</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-021</td>
+<td>製造</td>
+<td>USER-021</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-022</td>
+<td>製造</td>
+<td>USER-022</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-023</td>
+<td>製造</td>
+<td>USER-023</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-024</td>
+<td>製造</td>
+<td>USER-024</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-025</td>
+<td>製造</td>
+<td>USER-025</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-026</td>
+<td>製造</td>
+<td>USER-026</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-027</td>
+<td>製造</td>
+<td>USER-027</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-028</td>
+<td>製造</td>
+<td>USER-028</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-029</td>
+<td>製造</td>
+<td>USER-029</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-030</td>
+<td>製造</td>
+<td>USER-030</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-031</td>
+<td>製造</td>
+<td>USER-031</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-032</td>
+<td>製造</td>
+<td>USER-032</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-033</td>
+<td>製造</td>
+<td>USER-033</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-034</td>
+<td>製造</td>
+<td>USER-034</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-035</td>
+<td>製造</td>
+<td>USER-035</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-036</td>
+<td>製造</td>
+<td>USER-036</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-037</td>
+<td>製造</td>
+<td>USER-037</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-038</td>
+<td>製造</td>
+<td>USER-038</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-039</td>
+<td>製造</td>
+<td>USER-039</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-040</td>
+<td>製造</td>
+<td>USER-040</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-041</td>
+<td>製造</td>
+<td>USER-041</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-042</td>
+<td>製造</td>
+<td>USER-042</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-043</td>
+<td>製造</td>
+<td>USER-043</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-044</td>
+<td>製造</td>
+<td>USER-044</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-045</td>
+<td>製造</td>
+<td>USER-045</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-046</td>
+<td>製造</td>
+<td>USER-046</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-047</td>
+<td>製造</td>
+<td>USER-047</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-048</td>
+<td>製造</td>
+<td>USER-048</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-049</td>
+<td>製造</td>
+<td>USER-049</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-050</td>
+<td>製造</td>
+<td>USER-050</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-051</td>
+<td>製造</td>
+<td>USER-051</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-052</td>
+<td>製造</td>
+<td>USER-052</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-053</td>
+<td>製造</td>
+<td>USER-053</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-054</td>
+<td>製造</td>
+<td>USER-054</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-055</td>
+<td>製造</td>
+<td>USER-055</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-056</td>
+<td>製造</td>
+<td>USER-056</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-057</td>
+<td>製造</td>
+<td>USER-057</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-058</td>
+<td>製造</td>
+<td>USER-058</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-059</td>
+<td>製造</td>
+<td>USER-059</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+<tr>
+<td>LT-060</td>
+<td>製造</td>
+<td>USER-060</td>
+<td>4.2</td>
+<td>否</td>
+<td></td>
+<td></td>
+<td>未檢查</td>
+</tr>
+</tbody></table></div>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/home.png" alt="操作圖：新增任務、加入附件、送出第一個委派" loading="lazy"><figcaption>操作圖：新增任務、加入附件、送出第一個委派。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<ol>
+<li>點 <strong>New task</strong>，在輸入框左側按 <strong>＋ → Upload images and files</strong>。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S01</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D01_變更單與試行執行計畫.docx；CHG-26022_資產與核准範圍.csv</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
+</ol>
+<h3>委派內容｜it-change-release-control</h3>
+<pre><code class="language-text">案例：IT Operations Cowork 更新部署失敗後如何受控恢復；操作 S01。使用 it-change-release-control 的工作方法。
+現在情境時間是 2026/10/22 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+依 CHG-26022 建立執行前檢查表，列十台試行範圍、目前與目標版本、窗口、角色、停止條件及回復前置。明確排除其餘五十台，先不執行任何裝置動作。
+這一步新收到的附件：D01_變更單與試行執行計畫.docx；CHG-26022_資產與核准範圍.csv。
+建立可下載的 I01_逐台變更檢查.xlsx，內容必須包含：60台資產、核准範圍、版本、備份、實施驗證核准人、時間窗、停止條件。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>I01_逐台變更檢查.xlsx</strong>。完整成果應包含：<strong>60台資產、核准範圍、版本、備份、實施驗證核准人、時間窗、停止條件</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>核准</td>
+<td>LT-001至010，18–19時</td>
+<td>CHG-26022</td>
+</tr>
+<tr>
+<td>未納入</td>
+<td>LT-011至060共50台</td>
+<td>資產清單</td>
+</tr>
+<tr>
+<td>停止</td>
+<td>任一登入失敗即停止後續批次</td>
+<td>CHG-26022</td>
+</tr>
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
+<p>CHG-26022 執行前檢查單
+核准範圍 LT-001 至 LT-010，現行 4.2、目標 4.3，10/22 18:00–19:00 台北時間。王明哲實施、林怡君驗證、李承恩核准、陳宇軒溝通。LT-011 至 LT-060 全數排除。
+逐台確認身分、原版本、設定備份與可恢復性；更新後測試登入及開啟案件。任一台登入失敗即觸發停止後續批次。回復須核對適用廠商程序、支援與資料影響。本表是作業檢查草稿，未執行裝置動作。</p>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 I01_逐台變更檢查.xlsx，本步必須滿足下列條件：
+- 核准：LT-001至010，18–19時。引用：CHG-26022。
+- 未納入：LT-011至060共50台。引用：資產清單。
+- 停止：任一登入失敗即停止後續批次。引用：CHG-26022。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 I01_逐台變更檢查_v2.xlsx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>I01_逐台變更檢查.xlsx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="it-operations-s3">S02｜逐台結果不能只看安裝成功</h2>
+<p>現在情境時間是 2026/10/22 18:20 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D02_逐台試行結果與停止紀錄.docx｜完整原文</strong></p>
+<blockquote>
+<h4>第一批試行回報</h4>
+<p>文件ID：IT-LOG1820</p>
+<p>時間（台北）：2026/10/22 18:20</p>
+<p>文件類型：操作日誌</p>
+<p>建立／寄件人：王明哲</p>
+<p>收件／參與人：李承恩；陳宇軒</p>
+<p>本批 LT-001 至 LT-010 的安裝程序已回報。LT-001 至 LT-008 顯示 4.3，使用者登入及開啟案件測試通過。LT-009、LT-010 安裝也完成，但登入回傳 E-401，尚未開啟案件。
+逐台時間與測試結果見 CHG-26022_1820_逐台執行結果.csv。兩台原因尚未確認，不能因安裝狀態成功就列為業務可用。這兩台仍可連線，設定備份可讀。
+目前應依停止條件停止後續批次；尚待執行者回報實際停止時間。LT-011 至 LT-060 尚未執行，沒有更新結果可回報。請先確認兩台差異與回復條件。</p>
+</blockquote>
+<p><strong>CHG-26022_1820_逐台執行結果.csv｜全部 10 筆原始明細</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>資產ID</th>
+<th>安裝完成時間</th>
+<th>安裝後版本</th>
+<th>登入測試</th>
+<th>開啟案件測試</th>
+<th>錯誤碼</th>
+<th>測試時間</th>
+<th>執行人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LT-001</td>
+<td>2026/10/22 18:01</td>
+<td>4.3</td>
+<td>通過</td>
+<td>通過</td>
+<td></td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-002</td>
+<td>2026/10/22 18:02</td>
+<td>4.3</td>
+<td>通過</td>
+<td>通過</td>
+<td></td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-003</td>
+<td>2026/10/22 18:03</td>
+<td>4.3</td>
+<td>通過</td>
+<td>通過</td>
+<td></td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-004</td>
+<td>2026/10/22 18:04</td>
+<td>4.3</td>
+<td>通過</td>
+<td>通過</td>
+<td></td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-005</td>
+<td>2026/10/22 18:05</td>
+<td>4.3</td>
+<td>通過</td>
+<td>通過</td>
+<td></td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-006</td>
+<td>2026/10/22 18:06</td>
+<td>4.3</td>
+<td>通過</td>
+<td>通過</td>
+<td></td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-007</td>
+<td>2026/10/22 18:07</td>
+<td>4.3</td>
+<td>通過</td>
+<td>通過</td>
+<td></td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-008</td>
+<td>2026/10/22 18:08</td>
+<td>4.3</td>
+<td>通過</td>
+<td>通過</td>
+<td></td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-009</td>
+<td>2026/10/22 18:09</td>
+<td>4.3</td>
+<td>失敗</td>
+<td>未能執行</td>
+<td>E-401</td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+<tr>
+<td>LT-010</td>
+<td>2026/10/22 18:10</td>
+<td>4.3</td>
+<td>失敗</td>
+<td>未能執行</td>
+<td>E-401</td>
+<td>2026/10/22 18:20</td>
+<td>王明哲</td>
+</tr>
+</tbody></table></div>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<ol>
+<li>留在目前任務；前一步成果 <strong>I01_逐台變更檢查.xlsx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S02</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D02_逐台試行結果與停止紀錄.docx；CHG-26022_1820_逐台執行結果.csv</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
+</ol>
+<h3>委派內容｜it-endpoint-support</h3>
+<pre><code class="language-text">案例：IT Operations Cowork 更新部署失敗後如何受控恢復；操作 S02。使用 it-endpoint-support 的工作方法。
+現在情境時間是 2026/10/22 18:20 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+建立十台試行結果表，分開安裝結果、登入測試與案件操作。對 LT-009、LT-010 標示登入失敗與原因未知，依既定條件提出停止擴大部署的狀態。
+這一步新收到的附件：D02_逐台試行結果與停止紀錄.docx；CHG-26022_1820_逐台執行結果.csv。
+以先前的 I01_逐台變更檢查.xlsx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 I02_1820逐台結果.xlsx，內容必須包含：資產、安裝結果、版本、登入、開啟案件、錯誤、應採動作、證據時間。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>I02_1820逐台結果.xlsx</strong>。完整成果應包含：<strong>資產、安裝結果、版本、登入、開啟案件、錯誤、應採動作、證據時間</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>001–008</td>
+<td>4.3登入與案件通過</td>
+<td>1820逐台表</td>
+</tr>
+<tr>
+<td>009–010</td>
+<td>安裝完成但登入E-401</td>
+<td>1820逐台表</td>
+</tr>
+<tr>
+<td>停止</td>
+<td>此時應停止，尚無18:22執行證據</td>
+<td>時間門檻</td>
+</tr>
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
+<p>18:20 試行結果表
+LT-001 至 LT-008：安裝 4.3 完成，登入通過，開啟案件通過。LT-009、LT-010：安裝完成，但登入 E-401，案件操作受阻或尚無成功證據，原因未知。
+依任一台登入失敗的停止條件，應停止後續部署並通知變更負責人。18:20 尚不能引用 18:22 的停止執行紀錄當成已完成。其餘 50 台仍在本次核准範圍外。</p>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 I02_1820逐台結果.xlsx，本步必須滿足下列條件：
+- 001–008：4.3登入與案件通過。引用：1820逐台表。
+- 009–010：安裝完成但登入E-401。引用：1820逐台表。
+- 停止：此時應停止，尚無18:22執行證據。引用：時間門檻。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 I02_1820逐台結果_v2.xlsx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>I02_1820逐台結果.xlsx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="it-operations-s4">S03｜下一個檢查要能區分原因</h2>
+<p>現在情境時間是 2026/10/22 18:25 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D03_異常初步檢查日誌.docx｜完整原文</strong></p>
+<blockquote>
+<h4>LT009與LT010登入異常</h4>
+<p>文件ID：IT-DIAG1825</p>
+<p>時間（台北）：2026/10/22 18:25</p>
+<p>文件類型：診斷紀錄</p>
+<p>建立／寄件人：王明哲</p>
+<p>收件／參與人：李承恩</p>
+<p>18:22 王明哲已停止後續批次並通知變更負責人，未向 LT-011 至 LT-060 發出部署。
+已做檢查：兩台仍在線；目前應用版本都為 4.3；安裝完成時間在維護窗口內；設定備份檔可讀。其他八台也安裝 4.3，已通過登入及開啟案件。
+觀察：LT-009 與 LT-010 的登入訊息為 E-401。日誌並沒有證明是密碼錯誤、網路中斷或新版程式缺陷。尚缺兩台與成功裝置的環境差異及受限診斷資料。
+下一檢查需由管理員取得最少必要的應用登入事件及設定差異，保留時間窗與裝置 ID，不蒐集密碼、使用者全部文件或完整郵箱。尚未重裝其他裝置，也未停用安全設定。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<ol>
+<li>留在目前任務；前一步成果 <strong>I02_1820逐台結果.xlsx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S03</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D03_異常初步檢查日誌.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
+</ol>
+<h3>委派內容｜it-problem-root-cause</h3>
+<pre><code class="language-text">案例：IT Operations Cowork 更新部署失敗後如何受控恢復；操作 S03。使用 it-problem-root-cause 的工作方法。
+現在情境時間是 2026/10/22 18:25 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+依目前結果建立排查記錄，列已做動作、結果、假設與反證，以及下一個需要管理員提供的最小證據。不要重裝全部裝置或停用安全控制。
+這一步新收到的附件：D03_異常初步檢查日誌.docx。
+以先前的 I02_1820逐台結果.xlsx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 I03_差異診斷交接.docx，內容必須包含：已知事實、假設、可反駁測試、成功對照裝置、最少需要資料、owner。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>I03_差異診斷交接.docx</strong>。完整成果應包含：<strong>已知事實、假設、可反駁測試、成功對照裝置、最少需要資料、owner</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>18:22</td>
+<td>已停止後續批次</td>
+<td>IT-DIAG1825</td>
+</tr>
+<tr>
+<td>共同版本</td>
+<td>八台成功，不能推全部4.3失敗</td>
+<td>1820逐台表</td>
+</tr>
+<tr>
+<td>根因</td>
+<td>未知，需比對必要事件與設定</td>
+<td>IT-DIAG1825</td>
+</tr>
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
+<p>排查記錄
+已知八台同版本可用、兩台登入失敗，18:22 已停止後續批次。兩台仍連線且備份可讀。可能原因需區分裝置設定、帳號條件與應用相容性，目前均為假設。
+請管理員提供兩台與一台成功對照裝置的應用版本、失敗時間附近錯誤事件及必要設定差異，依最小範圍去識別。八台成功可反駁「所有 4.3 必然失敗」，不能單靠此證明特定根因。不要以重裝全部或停用控制作為下一步。</p>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 I03_差異診斷交接.docx，本步必須滿足下列條件：
+- 18:22：已停止後續批次。引用：IT-DIAG1825。
+- 共同版本：八台成功，不能推全部4.3失敗。引用：1820逐台表。
+- 根因：未知，需比對必要事件與設定。引用：IT-DIAG1825。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 I03_差異診斷交接_v2.docx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>I03_差異診斷交接.docx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="it-operations-s5">S04｜回復核准只涵蓋兩台</h2>
+<p>現在情境時間是 2026/10/22 18:35 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D04_廠商回復程序與範圍核准.docx｜完整原文</strong></p>
+<blockquote>
+<h4>4.3回復4.2程序</h4>
+<p>文件ID：RB-43</p>
+<p>時間（台北）：2026/10/22 18:30</p>
+<p>文件類型：廠商操作文件</p>
+<p>建立／寄件人：廠商技術窗口</p>
+<p>收件／參與人：王明哲</p>
+<p>適用範圍：本課業務用戶端 4.3，回復目標 4.2。執行前須保留使用者設定備份，確認資料保存位置與支援的安裝套件。由授權管理員從公司核准套件位置取得操作命令。
+步驟一：核對目標裝置與批准文件，記錄目前版本及備份可讀性。步驟二：依正式套件程序移除 4.3 並安裝 4.2。步驟三：依程序恢復設定，檢查版本及資料。步驟四：請該裝置使用者驗證登入及開啟案件。步驟五：記錄結果與未解問題，进入觀察。
+任一步未成功，保留日誌與目前狀態，停止相依步驟交廠商。此份教學程序不含可直接執行的套件或命令，不用猜測命令替代正式文件。</p>
+<h4>兩台装置回復核准</h4>
+<p>文件ID：IT-APP1835</p>
+<p>時間（台北）：2026/10/22 18:35</p>
+<p>文件類型：批准紀錄</p>
+<p>建立／寄件人：李承恩</p>
+<p>收件／參與人：王明哲；陳宇軒</p>
+<p>批准只對 LT-009 與 LT-010 依 RB-43 回復至 4.2。執行者王明哲，保留設定備份，完成後由各使用者驗證登入與開啟案件。
+LT-001 至 LT-008 保持現況。其餘 50 台仍未批准升級或回復。請服務台保留部分失敗與回復範圍，不能寫整體更新成功。
+完成後觀察至 10/23 18:55，再依實際紀錄決定結案與下一輪條件。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<ol>
+<li>留在目前任務；前一步成果 <strong>I03_差異診斷交接.docx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S04</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D04_廠商回復程序與範圍核准.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
+</ol>
+<h3>委派內容｜it-change-release-control</h3>
+<pre><code class="language-text">案例：IT Operations Cowork 更新部署失敗後如何受控恢復；操作 S04。使用 it-change-release-control 的工作方法。
+現在情境時間是 2026/10/22 18:35 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+準備 LT-009、LT-010 的回復交接單：裝置、備份、核准文件、實作者、回復步驟檢查點與使用者驗證。引用 RB-43，命令交由授權管理員取得，不自行編造。
+這一步新收到的附件：D04_廠商回復程序與範圍核准.docx。
+以先前的 I03_差異診斷交接.docx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 I04_兩台回復交接.docx，內容必須包含：裝置、適用程序、備份前置、批准人時間、實施者、回復後檢查、排除範圍。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>I04_兩台回復交接.docx</strong>。完整成果應包含：<strong>裝置、適用程序、備份前置、批准人時間、實施者、回復後檢查、排除範圍</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>程序</td>
+<td>RB-43前置及限制</td>
+<td>RB-43</td>
+</tr>
+<tr>
+<td>批准</td>
+<td>18:35，僅009／010</td>
+<td>IT-APP1835</td>
+</tr>
+<tr>
+<td>命令</td>
+<td>由管理員核對正式套件程序，不補造</td>
+<td>RB-43</td>
+</tr>
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
+<p>兩台回復交接單
+只涵蓋 LT-009、LT-010。18:30 RB-43 說明可由 4.3 回復 4.2，前置為可讀設定備份；18:35 李承恩批准按該程序回復兩台。王明哲在公司核准位置核對套件與實際命令，執行前確認裝置及備份，執行後確認版本、資料與登入，再由使用者驗證開啟案件。
+其餘八台保留現況，50 台未納入。本教材沒有足夠內容形成可執行命令，不自行補造。</p>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 I04_兩台回復交接.docx，本步必須滿足下列條件：
+- 程序：RB-43前置及限制。引用：RB-43。
+- 批准：18:35，僅009／010。引用：IT-APP1835。
+- 命令：由管理員核對正式套件程序，不補造。引用：RB-43。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 I04_兩台回復交接_v2.docx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>I04_兩台回復交接.docx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="it-operations-s6">S05｜回復後核對實際服務</h2>
+<p>現在情境時間是 2026/10/22 19:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D05_回復及使用者驗證.docx｜完整原文</strong></p>
+<blockquote>
+<h4>回復結果</h4>
+<p>文件ID：IT-RB1850</p>
+<p>時間（台北）：2026/10/22 18:55</p>
+<p>文件類型：執行紀錄</p>
+<p>建立／寄件人：王明哲</p>
+<p>收件／參與人：李承恩</p>
+<p>依 IT-APP1835 對 LT-009、LT-010 執行回復，兩台均顯示 4.2，設定與必要資料檢查通過。執行結果見 CHG-26022_1855_完整資產狀態.csv。
+18:55 各裝置使用者分別登入及開啟測試案件，回覆通過。前八台仍為 4.3 且通過本次測試，剩餘 50 台沒有執行。
+目前能說服務已恢復並進入觀察，E-401 的根因仍未確認。對供應商請保留失敗裝置、成功對照組、時間窗、版本與已做檢查，不要傳送不必要的使用者內容。</p>
+</blockquote>
+<p><strong>CHG-26022_1855_完整資產狀態.csv｜全部 60 筆原始明細</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>資產ID</th>
+<th>原版本</th>
+<th>目前版本</th>
+<th>本次動作</th>
+<th>登入</th>
+<th>開啟案件</th>
+<th>最後驗證時間</th>
+<th>驗證人</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LT-001</td>
+<td>4.2</td>
+<td>4.3</td>
+<td>更新</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:20</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-002</td>
+<td>4.2</td>
+<td>4.3</td>
+<td>更新</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:20</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-003</td>
+<td>4.2</td>
+<td>4.3</td>
+<td>更新</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:20</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-004</td>
+<td>4.2</td>
+<td>4.3</td>
+<td>更新</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:20</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-005</td>
+<td>4.2</td>
+<td>4.3</td>
+<td>更新</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:20</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-006</td>
+<td>4.2</td>
+<td>4.3</td>
+<td>更新</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:20</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-007</td>
+<td>4.2</td>
+<td>4.3</td>
+<td>更新</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:20</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-008</td>
+<td>4.2</td>
+<td>4.3</td>
+<td>更新</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:20</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-009</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>回復</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:55</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-010</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>回復</td>
+<td>通過</td>
+<td>通過</td>
+<td>2026/10/22 18:55</td>
+<td>林怡君</td>
+</tr>
+<tr>
+<td>LT-011</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-012</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-013</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-014</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-015</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-016</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-017</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-018</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-019</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-020</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-021</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-022</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-023</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-024</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-025</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-026</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-027</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-028</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-029</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-030</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-031</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-032</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-033</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-034</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-035</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-036</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-037</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-038</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-039</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-040</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-041</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-042</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-043</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-044</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-045</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-046</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-047</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-048</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-049</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-050</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-051</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-052</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-053</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-054</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-055</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-056</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-057</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-058</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-059</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>LT-060</td>
+<td>4.2</td>
+<td>4.2</td>
+<td>未執行</td>
+<td>未測試</td>
+<td>未測試</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table></div>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<ol>
+<li>留在目前任務；前一步成果 <strong>I04_兩台回復交接.docx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S05</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D05_回復及使用者驗證.docx；CHG-26022_1855_完整資產狀態.csv</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
+</ol>
+<h3>委派內容｜it-operations-coordinator</h3>
+<pre><code class="language-text">案例：IT Operations Cowork 更新部署失敗後如何受控恢復；操作 S05。使用 it-operations-coordinator 的工作方法。
+現在情境時間是 2026/10/22 19:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+核對管理員記錄與使用者驗證，列十台實際版本、業務測試與觀察期限。提供給服務台的狀態訊息草稿，不把「已恢復」寫成「根因已排除」。
+這一步新收到的附件：D05_回復及使用者驗證.docx；CHG-26022_1855_完整資產狀態.csv。
+以先前的 I04_兩台回復交接.docx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 I05_1900服務狀態.xlsx，內容必須包含：60台原版本及現版、動作、管理員驗證、使用者驗證、觀察截止、原因狀態。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<h3>若出現原檔修改提案，就在這裡決定</h3>
+<figure><img src="../common/approve.png" alt="操作圖：檢查檔名與 proposed changes，正確時 Approve once，有誤時 Cancel" loading="lazy"><figcaption>操作圖：檢查檔名與 proposed changes，正確時 Approve once，有誤時 Cancel。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<p>若畫面顯示 <strong>Edit file?</strong>，先確認對象是本步要產出的 <strong>I05_1900服務狀態.xlsx</strong> 或你指定的修訂檔，再讀 proposed changes。變更符合本步原文及範圍，選 <strong>Approve once</strong>；檔名或內容不對，選 <strong>Cancel</strong>，用下方修訂提示說明。未出現此視窗時，直接檢查輸出檔案。</p>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>I05_1900服務狀態.xlsx</strong>。完整成果應包含：<strong>60台原版本及現版、動作、管理員驗證、使用者驗證、觀察截止、原因狀態</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>八台</td>
+<td>維持4.3</td>
+<td>1855完整狀態</td>
+</tr>
+<tr>
+<td>兩台</td>
+<td>18:50回4.2；18:55使用者通過</td>
+<td>IT-RB1850</td>
+</tr>
+<tr>
+<td>50台</td>
+<td>未執行</td>
+<td>1855完整狀態</td>
+</tr>
+<tr>
+<td>根因</td>
+<td>仍待分析</td>
+<td>D03、D05</td>
+</tr>
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
+<p>19:00 服務狀態草稿
+管理員 18:50 記錄 LT-009／010 回復 4.2，使用者 18:55 確認登入與開啟案件成功。LT-001 至 008 仍為 4.3 且本次驗證通過；其餘 50 台未執行。
+給服務台：兩台已恢復本次受影響功能，目前依要求觀察至 10/23 18:55。E-401 原因仍待分析，請記錄同類再發時間與受影響裝置，不宣稱根因已排除。</p>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 I05_1900服務狀態.xlsx，本步必須滿足下列條件：
+- 八台：維持4.3。引用：1855完整狀態。
+- 兩台：18:50回4.2；18:55使用者通過。引用：IT-RB1850。
+- 50台：未執行。引用：1855完整狀態。
+- 根因：仍待分析。引用：D03、D05。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 I05_1900服務狀態_v2.xlsx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>I05_1900服務狀態.xlsx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="it-operations-s7">S06｜交給供應商的資料要有問題</h2>
+<p>現在情境時間是 2026/10/22 19:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>這一步沒有新來信或附件。接續剛才的工作，用目前已知資訊完成 <strong>I06_供應商問題包.docx</strong>。</p>
+<h3>這一步沿用的原始工作紀錄</h3>
+<p><strong>CHG-26022｜2026/10/22 17:00｜王明哲 → 李承恩｜業務用戶端4.3試行</strong></p>
+<blockquote>
+<p>環境：遠景精密受管筆電。服務：課程合成業務用戶端，現有版本 4.2，目標 4.3。資產清單共 60 台，詳見 CHG-26022_資產與核准範圍.csv。
+本次只批准 LT-001 至 LT-010 共 10 台試行，窗口 10/22 18:00–19:00 台北時間。LT-011 至 LT-060 不在本次執行批准內。
+執行者王明哲，批准人李承恩，使用者驗證窗口林怡君，服務台通知陳宇軒。先核對裝置 ID、目前版本與設定備份，再按試行計畫更新。安裝結果、登入與開啟案件分開記錄。
+任一台出現無法登入時停止後續批次。10 台試行同一批啟動，收到結果後不得擴大至剩餘裝置。回復需確認廠商程序、資料影響及精確目標批准。
+本次批准狀態：Approved，李承恩於 17:00 確認上述範圍。計畫沒有批准全部 60 台升級，也沒有批准關閉安全控制。</p>
+</blockquote>
+<p><strong>CHG-CHECK01｜2026/10/22 17:00｜王明哲 → 變更工作小組｜試行前必要檢查</strong></p>
+<blockquote>
+<p>逐台核對：資產 ID 與使用者是否相符，現有版本是否為 4.2，設定備份能否讀取，維護窗口能否取得使用者驗證，核准套件是否可用。
+執行紀錄需寫開始時間、結果與異常，不得只記「完成」。登入成功後還要開啟測試案件，記錄是否能讀取必要資料。
+回復程序由管理員從核准位置取得並確認適用版本，Cowork 負責整理與交接，不在資料不全時自行生成卸載命令。此表為前置要求，逐台結果另附。</p>
+</blockquote>
+<p><strong>IT-LOG1820｜2026/10/22 18:20｜王明哲 → 李承恩；陳宇軒｜第一批試行回報</strong></p>
+<blockquote>
+<p>本批 LT-001 至 LT-010 的安裝程序已回報。LT-001 至 LT-008 顯示 4.3，使用者登入及開啟案件測試通過。LT-009、LT-010 安裝也完成，但登入回傳 E-401，尚未開啟案件。
+逐台時間與測試結果見 CHG-26022_1820_逐台執行結果.csv。兩台原因尚未確認，不能因安裝狀態成功就列為業務可用。這兩台仍可連線，設定備份可讀。
+目前應依停止條件停止後續批次；尚待執行者回報實際停止時間。LT-011 至 LT-060 尚未執行，沒有更新結果可回報。請先確認兩台差異與回復條件。</p>
+</blockquote>
+<p><strong>IT-DIAG1825｜2026/10/22 18:25｜王明哲 → 李承恩｜LT009與LT010登入異常</strong></p>
+<blockquote>
+<p>18:22 王明哲已停止後續批次並通知變更負責人，未向 LT-011 至 LT-060 發出部署。
+已做檢查：兩台仍在線；目前應用版本都為 4.3；安裝完成時間在維護窗口內；設定備份檔可讀。其他八台也安裝 4.3，已通過登入及開啟案件。
+觀察：LT-009 與 LT-010 的登入訊息為 E-401。日誌並沒有證明是密碼錯誤、網路中斷或新版程式缺陷。尚缺兩台與成功裝置的環境差異及受限診斷資料。
+下一檢查需由管理員取得最少必要的應用登入事件及設定差異，保留時間窗與裝置 ID，不蒐集密碼、使用者全部文件或完整郵箱。尚未重裝其他裝置，也未停用安全設定。</p>
+</blockquote>
+<p><strong>RB-43｜2026/10/22 18:30｜廠商技術窗口 → 王明哲｜4.3回復4.2程序</strong></p>
+<blockquote>
+<p>適用範圍：本課業務用戶端 4.3，回復目標 4.2。執行前須保留使用者設定備份，確認資料保存位置與支援的安裝套件。由授權管理員從公司核准套件位置取得操作命令。
+步驟一：核對目標裝置與批准文件，記錄目前版本及備份可讀性。步驟二：依正式套件程序移除 4.3 並安裝 4.2。步驟三：依程序恢復設定，檢查版本及資料。步驟四：請該裝置使用者驗證登入及開啟案件。步驟五：記錄結果與未解問題，进入觀察。
+任一步未成功，保留日誌與目前狀態，停止相依步驟交廠商。此份教學程序不含可直接執行的套件或命令，不用猜測命令替代正式文件。</p>
+</blockquote>
+<p><strong>IT-APP1835｜2026/10/22 18:35｜李承恩 → 王明哲；陳宇軒｜兩台装置回復核准</strong></p>
+<blockquote>
+<p>批准只對 LT-009 與 LT-010 依 RB-43 回復至 4.2。執行者王明哲，保留設定備份，完成後由各使用者驗證登入與開啟案件。
+LT-001 至 LT-008 保持現況。其餘 50 台仍未批准升級或回復。請服務台保留部分失敗與回復範圍，不能寫整體更新成功。
+完成後觀察至 10/23 18:55，再依實際紀錄決定結案與下一輪條件。</p>
+</blockquote>
+<p><strong>IT-RB1850｜2026/10/22 18:55｜王明哲 → 李承恩｜回復結果</strong></p>
+<blockquote>
+<p>依 IT-APP1835 對 LT-009、LT-010 執行回復，兩台均顯示 4.2，設定與必要資料檢查通過。執行結果見 CHG-26022_1855_完整資產狀態.csv。
+18:55 各裝置使用者分別登入及開啟測試案件，回覆通過。前八台仍為 4.3 且通過本次測試，剩餘 50 台沒有執行。
+目前能說服務已恢復並進入觀察，E-401 的根因仍未確認。對供應商請保留失敗裝置、成功對照組、時間窗、版本與已做檢查，不要傳送不必要的使用者內容。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<ol>
+<li>留在目前任務；前一步成果 <strong>I05_1900服務狀態.xlsx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>本步直接沿用任務中已提供的附件，無需重新上傳。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
+</ol>
+<h3>委派內容｜it-vendor-escalation</h3>
+<pre><code class="language-text">案例：IT Operations Cowork 更新部署失敗後如何受控恢復；操作 S06。使用 it-vendor-escalation 的工作方法。
+現在情境時間是 2026/10/22 19:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+製作供應商交接包，保留失敗時間、受影響兩台、相對成功八台的差異、回復結果與尚待回答的問題。排除帳密與其他使用者資料，附件只引用核准位置。
+這一步沒有新附件，請沿用前面已提供的來源。
+以先前的 I05_1900服務狀態.xlsx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 I06_供應商問題包.docx，內容必須包含：錯誤及業務影響、時間線、失敗裝置、成功對照、回復結果、要回答的問題、缺件。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>I06_供應商問題包.docx</strong>。完整成果應包含：<strong>錯誤及業務影響、時間線、失敗裝置、成功對照、回復結果、要回答的問題、缺件</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>錯誤</td>
+<td>E-401，兩台失敗八台成功</td>
+<td>I02</td>
+</tr>
+<tr>
+<td>恢復</td>
+<td>回4.2後使用者驗證通過</td>
+<td>I05</td>
+</tr>
+<tr>
+<td>待答</td>
+<td>適用條件、最小事件資料、下次驗證要求</td>
+<td>送審問題</td>
+</tr>
+<tr>
+<td>接受</td>
+<td>供應商接案與時間未提供</td>
+<td>保留待確認</td>
+</tr>
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
+<p>供應商問題包
+CHG-26022 的兩台 LT-009／010 於 18:20 出現登入 E-401，對照八台同批 4.3 可登入並開啟案件。兩台於 18:50 回復 4.2，18:55 使用者測試通過。
+請協助確認 E-401 與版本／設定的適用條件、還需哪些最小事件資料，以及再次試行前的修正與測試要求。目前無證據證明共同根因。附件限核准位置的去識別記錄，不附帳密；供應商接受與回覆時間若未提供則待確認。</p>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 I06_供應商問題包.docx，本步必須滿足下列條件：
+- 錯誤：E-401，兩台失敗八台成功。引用：I02。
+- 恢復：回4.2後使用者驗證通過。引用：I05。
+- 待答：適用條件、最小事件資料、下次驗證要求。引用：送審問題。
+- 接受：供應商接案與時間未提供。引用：保留待確認。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 I06_供應商問題包_v2.docx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>I06_供應商問題包.docx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="it-operations-s8">S07｜觀察結束後如何結案</h2>
+<p>現在情境時間是 2026/10/23 18:55 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D06_觀察結束及供應商待答.docx｜完整原文</strong></p>
+<blockquote>
+<h4>十台試行觀察回報</h4>
+<p>文件ID：IT-OBS2355</p>
+<p>時間（台北）：2026/10/23 18:55</p>
+<p>文件類型：觀察紀錄</p>
+<p>建立／寄件人：王明哲</p>
+<p>收件／參與人：李承恩；陳宇軒</p>
+<p>觀察範圍為本次十台試行裝置，自 10/22 18:55 至 10/23 18:55。期间未再回報相同登入問題；沒有對其餘 50 台或其他未測業務進行驗證。
+LT-001 至 LT-008 維持 4.3，LT-009、LT-010 維持 4.2。供應商尚在分析兩台失敗證據，沒有提交根因與修正版確認。
+請整理本次變更結果、觀察範圍、未解事項及下一次部署前置：供應商答覆、差異測試、回復條件與批准範圍。下一次部署尚未核准。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<ol>
+<li>留在目前任務；前一步成果 <strong>I06_供應商問題包.docx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S07</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D06_觀察結束及供應商待答.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
+</ol>
+<h3>委派內容｜it-operations-reporting</h3>
+<pre><code class="language-text">案例：IT Operations Cowork 更新部署失敗後如何受控恢復；操作 S07。使用 it-operations-reporting 的工作方法。
+現在情境時間是 2026/10/23 18:55 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+產出變更檢討與下一次部署前置清單。分開本次部分成功、兩台回復及後續根因分析；列下次需補的測試與核准，不自行重新啟動剩餘五十台。
+這一步新收到的附件：D06_觀察結束及供應商待答.docx。
+以先前的 I06_供應商問題包.docx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 I07_觀察與變更檢討.docx，內容必須包含：觀察起訖、受測範圍、再發紀錄、版本分布、根因狀態、關閉及下批待決。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>I07_觀察與變更檢討.docx</strong>。完整成果應包含：<strong>觀察起訖、受測範圍、再發紀錄、版本分布、根因狀態、關閉及下批待決</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>觀察</td>
+<td>截至10/23 18:55，十台未再回報</td>
+<td>IT-OBS2355</td>
+</tr>
+<tr>
+<td>範圍</td>
+<td>8更新／2回復／50未執行</td>
+<td>I05</td>
+</tr>
+<tr>
+<td>決策</td>
+<td>尚需關閉審查與下批批准</td>
+<td>D06</td>
+</tr>
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
+<p>變更檢討送審稿
+截至 10/23 18:55，本次十台未再回報相同登入問題，僅涵蓋此觀察範圍。八台更新至 4.3，兩台回復 4.2，50 台未執行。供應商仍在分析，下一次部署尚未核准。
+下次前置為取得適用原因或修正說明、補足兩台失敗情境測試、確認回復程序、重新定義批次及時間窗並取得核准。觀察期完成支持關閉審查，不等於有權人已決定關閉或恢復全面部署。</p>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 I07_觀察與變更檢討.docx，本步必須滿足下列條件：
+- 觀察：截至10/23 18:55，十台未再回報。引用：IT-OBS2355。
+- 範圍：8更新／2回復／50未執行。引用：I05。
+- 決策：尚需關閉審查與下批批准。引用：D06。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 I07_觀察與變更檢討_v2.docx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>I07_觀察與變更檢討.docx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="it-operations-s9">S08｜結業：把所有六十台標完成</h2>
+<p>現在情境時間是 2026/10/24 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D07_主管要求整批完成報告.docx｜完整原文</strong></p>
+<blockquote>
+<h4>請把六十台更新狀態交上來</h4>
+<p>文件ID：IT-M2409</p>
+<p>時間（台北）：2026/10/24 09:00</p>
+<p>文件類型：主管訊息</p>
+<p>建立／寄件人：李承恩</p>
+<p>收件／參與人：王明哲</p>
+<p>我需要回報這批 60 台，先前聽到服務已恢復，是否可以直接把整批標完成？請給我逐台結果及可以對外說明的版本。
+若只有部分升級、部分回復或未執行，請寫清楚哪些裝置及仍待誰處理。這封要求報告的訊息沒有另批准重新部署，也沒有免除下一輪測試。
+請把供應商尚未回答的問題一併列出，方便下一次審閱。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<ol>
+<li>留在目前任務；前一步成果 <strong>I07_觀察與變更檢討.docx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S08</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D07_主管要求整批完成報告.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
+</ol>
+<h3>委派內容｜it-operations-reporting</h3>
+<pre><code class="language-text">案例：IT Operations Cowork 更新部署失敗後如何受控恢復；操作 S08。使用 it-operations-reporting 的工作方法。
+現在情境時間是 2026/10/24 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+交付逐台結果及主管報告，保留八台更新、兩台回復、五十台未執行的區別。說明本次已完成的觀察與仍待供應商解答事項，不能把未執行列改為成功。
+這一步新收到的附件：D07_主管要求整批完成報告.docx。
+以先前的 I07_觀察與變更檢討.docx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 I08_主管部署報告.docx，內容必須包含：逐台附件、部署分布、觀察證據、未執行範圍、錯誤總結、待決。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>I08_主管部署報告.docx</strong>。完整成果應包含：<strong>逐台附件、部署分布、觀察證據、未執行範圍、錯誤總結、待決</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>總數</td>
+<td>60=8更新+2回復+50未執行</td>
+<td>資產明細</td>
+</tr>
+<tr>
+<td>完成說法</td>
+<td>不可寫60台全更新</td>
+<td>IT-M2409</td>
+</tr>
+<tr>
+<td>後續</td>
+<td>根因、關閉、下一批各自待決</td>
+<td>I07</td>
+</tr>
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
+<p>主管報告
+本次核准十台試行的結果為八台更新成功、兩台登入失敗後回復原版，兩台已經使用者驗證恢復。十台觀察期完成且範圍內未再回報同類問題。其餘 50 台沒有執行，不能標示完成。
+待決事項為變更關閉審查、供應商根因分析及下批部署核准。逐台明細保留各資產原版本、執行與回復版本、測試結果及時間。</p>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 I08_主管部署報告.docx，本步必須滿足下列條件：
+- 總數：60=8更新+2回復+50未執行。引用：資產明細。
+- 完成說法：不可寫60台全更新。引用：IT-M2409。
+- 後續：根因、關閉、下一批各自待決。引用：I07。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 I08_主管部署報告_v2.docx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>I08_主管部署報告.docx</strong>（若有修訂，保存 v2）。本案例完成。保留這八步成果及修訂版，作為交接與課堂實作成果。</p>
+<h2 id="it-operations-s10">做完這個案件，你交付什麼</h2>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>步驟</th>
+<th>交付檔案</th>
+<th>內容要完整到什麼程度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S01</td>
+<td>I01_逐台變更檢查.xlsx</td>
+<td>60台資產、核准範圍、版本、備份、實施驗證核准人、時間窗、停止條件</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>I02_1820逐台結果.xlsx</td>
+<td>資產、安裝結果、版本、登入、開啟案件、錯誤、應採動作、證據時間</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>I03_差異診斷交接.docx</td>
+<td>已知事實、假設、可反駁測試、成功對照裝置、最少需要資料、owner</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>I04_兩台回復交接.docx</td>
+<td>裝置、適用程序、備份前置、批准人時間、實施者、回復後檢查、排除範圍</td>
+</tr>
+<tr>
+<td>S05</td>
+<td>I05_1900服務狀態.xlsx</td>
+<td>60台原版本及現版、動作、管理員驗證、使用者驗證、觀察截止、原因狀態</td>
+</tr>
+<tr>
+<td>S06</td>
+<td>I06_供應商問題包.docx</td>
+<td>錯誤及業務影響、時間線、失敗裝置、成功對照、回復結果、要回答的問題、缺件</td>
+</tr>
+<tr>
+<td>S07</td>
+<td>I07_觀察與變更檢討.docx</td>
+<td>觀察起訖、受測範圍、再發紀錄、版本分布、根因狀態、關閉及下批待決</td>
+</tr>
+<tr>
+<td>S08</td>
+<td>I08_主管部署報告.docx</td>
+<td>逐台附件、部署分布、觀察證據、未執行範圍、錯誤總結、待決</td>
+</tr>
+</tbody></table></div>
+<p>現場展示八份成果，說明事件如何改變判斷、哪些工作已具備完成證據、哪些仍待決定。完整度、來源與時間、例外處理、狀態判斷及修訂品質各 0–2 分；至少 8 分，且不得把未核准或未執行事項標為完成。此為課堂評量條件，尚不代表已在你的租戶實測。</p>
+<h2 id="it-operations-s11">產品來源與版本資訊</h2>
+<p>2026-09-14 連續閱讀版。原情境簡報、案例時間與工作先後順序沿用既定課程。所有必要教學內容均已在本課呈現。以下網址僅供教材維護與延伸查閱。</p>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/use-cowork">Microsoft Cowork 使用指南</a></li>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-customize">Microsoft Customize 指南</a></li>
+<li><a href="https://techcommunity.microsoft.com/blog/microsoft-copilot-blog/cowork-in-progress/4511672">Microsoft Cowork in progress：操作圖原始產品畫面</a></li>
+</ul>
+<footer>2026-09-14 連續閱讀版。官方產品畫面加註，業務資料為合成案例。</footer></main><script>document.querySelectorAll('pre').forEach(p=>{const b=document.createElement('button');b.className='copy';b.textContent=p.textContent.startsWith('請修訂')?'複製修訂提示':'複製委派提示';b.onclick=async()=>{const t=p.querySelector('code').textContent;try{await navigator.clipboard.writeText(t);b.textContent='已複製'}catch(e){const r=document.createRange();r.selectNodeContents(p.querySelector('code'));const s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent='已選取，請按 Ctrl+C'}};p.prepend(b)});</script></body></html>

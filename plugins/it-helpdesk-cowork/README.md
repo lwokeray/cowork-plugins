@@ -84,3 +84,7 @@ This sample plugin is provided as-is for tenant-controlled evaluation. Validate 
 - [Build plugins for Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugin-development)
 - [Use Dynamics 365 Customer Service skills in Copilot Cowork](https://learn.microsoft.com/en-us/dynamics365/customer-service/use/use-copilot-cowork-service-skills)
 - [Manage plugins for Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-manage-plugins)
+
+## 完整情境實作
+
+[逐步操作手冊、提示詞與參考成品](../../training/it-helpdesk-cowork/完整實作手冊.md)。練習資料 ZIP 內含完整 Word 來源文件與逐筆 CSV，依 data/S01–S08 分階段發放；每步在同一頁直接呈現完整原文、產品操作圖、可複製提示與預期結果，照順序往下操作即可。
