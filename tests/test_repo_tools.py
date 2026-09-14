@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 from build_plugin import build  # noqa: E402
 from validate_repo import main as validate_repo  # noqa: E402
+from validate_repo import is_training_archive  # noqa: E402
 
 
 class RepositoryToolsTest(unittest.TestCase):
@@ -23,6 +24,21 @@ class RepositoryToolsTest(unittest.TestCase):
 
     def test_repository_contract(self) -> None:
         self.assertEqual(validate_repo(), 0)
+
+    def test_training_download_excludes_deployment_packages(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            relative = "training/sales-cowork/練習資料.zip"
+            target = root / relative
+            target.parent.mkdir(parents=True)
+            with zipfile.ZipFile(target, "w") as archive:
+                archive.writestr("data/S01/客戶來信.md", "合成教學來源")
+            self.assertTrue(is_training_archive(root, relative, {"sales-cowork"}))
+            self.assertFalse(is_training_archive(root, relative, {"finance-cowork"}))
+            self.assertFalse(is_training_archive(root, "plugins/sales-cowork/練習資料.zip", {"sales-cowork"}))
+            with zipfile.ZipFile(target, "a") as archive:
+                archive.writestr("manifest.json", "{}")
+            self.assertFalse(is_training_archive(root, relative, {"sales-cowork"}))
 
     def test_prompt_card_csv_contract(self) -> None:
         expected_header = [

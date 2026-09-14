@@ -87,4 +87,4 @@ This sample plugin is provided as-is for tenant-controlled evaluation. Validate 
 
 ## 完整情境實作
 
-[逐步操作手冊、提示詞與參考成品](../../training/it-helpdesk-cowork/完整實作手冊.md)。練習資料 ZIP 內含完整 Word 來源文件與逐筆 CSV，依 data/S01–S08 分階段發放；手冊逐步標示原簡報頁碼、產品操作圖、提示與驗收。
+[逐步操作手冊、提示詞與參考成品](../../training/it-helpdesk-cowork/完整實作手冊.md)。練習資料 ZIP 內含完整 Word 來源文件與逐筆 CSV，依 data/S01–S08 分階段發放；每步在同一頁直接呈現完整原文、產品操作圖、可複製提示與預期結果，照順序往下操作即可。

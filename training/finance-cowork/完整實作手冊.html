@@ -1,136 +1,861 @@
-<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>finance Cowork 圖解手冊</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#162a40;background:#f4f7fb;font:17px/1.8 'Noto Sans CJK TC','Microsoft JhengHei',sans-serif}main{max-width:1100px;margin:28px auto;background:white;padding:42px 56px;box-shadow:0 4px 30px #183b6312}h1{font-size:32px;line-height:1.4;color:#075ac5;margin:0 0 24px}h2{font-size:25px;line-height:1.5;color:#075ac5;border-top:5px solid #adf0d7;padding-top:26px;margin-top:60px;scroll-margin:20px}h3{font-size:20px;color:#124c8c;margin-top:30px}p{margin:15px 0}a{color:#075bc8;text-underline-offset:3px;overflow-wrap:anywhere}img{max-width:100%;height:auto;display:block;margin:14px auto}figure{margin:24px 0;border:1px solid #d3dfee;border-radius:12px;padding:12px;break-inside:avoid}figcaption{color:#546579;font-size:14px}pre{background:#eff6ff;border-left:5px solid #0c6ddc;padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;font:16px/1.9 'Noto Sans CJK TC',sans-serif;position:relative}code{font-family:inherit}table{border-collapse:collapse;width:100%;font-size:15px;margin:22px 0;table-layout:auto}th{background:#e8f2ff;color:#134a88;text-align:left}th,td{padding:12px;border:1px solid #d4dfec;vertical-align:top;overflow-wrap:anywhere}tr:nth-child(even){background:#f7fafc}li{margin:8px 0}details{padding:16px 20px;margin:20px 0;background:#f3f9ff;border:1px solid #cfdef0;border-radius:8px}summary{font-weight:600;color:#075ac5;cursor:pointer}.answer{background:#effbf5;border-color:#a9ddc5}nav{padding:15px 20px;background:#e8f2ff;display:flex;gap:14px;flex-wrap:wrap;border-radius:10px}nav a{font-size:15px}.copy{display:block;margin-bottom:10px;padding:6px 15px;border:0;background:#075ac5;color:white;border-radius:5px;cursor:pointer}footer{margin-top:50px;color:#50657e;font-size:13px} @media(max-width:720px){body{font-size:16px}main{padding:25px 18px;margin:0}h1{font-size:27px}h2{font-size:23px}table{font-size:13px}th,td{padding:8px}figure{padding:3px}pre{font-size:15px;padding:16px}nav{gap:10px}} @media print{@page{size:A4;margin:17mm 15mm}body{background:white;font-size:10pt;line-height:1.65}main{max-width:none;padding:0;margin:0;box-shadow:none}nav,.copy{display:none}h1{font-size:24pt}h2{font-size:17pt;break-before:page;margin-top:0;padding-top:10px}h3{font-size:12pt;break-after:avoid}table{font-size:8.3pt}th,td{padding:6px}tr{break-inside:avoid}thead{display:table-header-group}pre{font-size:9.5pt;padding:12px}figure{break-inside:avoid;margin:12px 0}figure img{max-height:105mm;width:auto}figcaption{font-size:8pt}.slide{display:none}details{padding:10px;margin:12px 0}summary{font-size:10pt}a{color:#075ac5;text-decoration:none}footer{font-size:8pt}}</style></head><body><main><p>GitHub 版來源連結提供完整原文預覽；Word 與 CSV 請下載練習資料.zip。離線教材主包另含原簡報逐頁圖。</p><nav><a href="#sec4">S01</a><a href="#sec5">S02</a><a href="#sec6">S03</a><a href="#sec7">S04</a><a href="#sec8">S05</a><a href="#sec9">S06</a><a href="#sec10">S07</a><a href="#sec11">S08</a></nav><h1>Finance Cowork 月結差異如何查到可審閱的結果｜逐步圖解操作手冊</h1>
-<p>版本：2026-09-14 修訂版。適用：本套 <strong>12 頁情境簡報</strong>。建議課時 150 分鐘：環境與案例 15 分、八步實作各 15 分、核對及回饋 15 分。</p>
-<p>案例公司、人員、郵件、履歷、交易、設備與工單均為合成教學資料。產品操作圖取自 Microsoft 公開實際畫面並加註；畫面中的示例任務不是本案例的租戶執行成果。</p>
-<h2 id="sec0">01｜先接下這個工作</h2>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Finance Cowork 月結差異如何查到可審閱的結果</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#162a40;background:#f4f7fb;font:17px/1.8 'Noto Sans CJK TC','Microsoft JhengHei',sans-serif}main{max-width:1100px;margin:28px auto;background:white;padding:42px 56px;box-shadow:0 4px 30px #183b6312}h1{font-size:32px;line-height:1.4;color:#075ac5;margin:0 0 24px}h2{font-size:25px;line-height:1.5;color:#075ac5;border-top:5px solid #adf0d7;padding-top:26px;margin-top:60px;scroll-margin:20px}h3{font-size:20px;color:#124c8c;margin-top:30px}p{margin:15px 0}a{color:#075bc8;text-underline-offset:3px;overflow-wrap:anywhere}img{max-width:100%;height:auto;display:block;margin:14px auto}figure{margin:24px 0;border:1px solid #d3dfee;border-radius:12px;padding:12px;break-inside:avoid}figcaption{color:#546579;font-size:14px}pre{background:#eff6ff;border-left:5px solid #0c6ddc;padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;font:16px/1.9 'Noto Sans CJK TC',sans-serif;position:relative}code{font-family:inherit}table{border-collapse:collapse;width:100%;font-size:15px;margin:22px 0;table-layout:auto}th{background:#e8f2ff;color:#134a88;text-align:left}th,td{padding:12px;border:1px solid #d4dfec;vertical-align:top;overflow-wrap:anywhere}tr:nth-child(even){background:#f7fafc}li{margin:8px 0}details{padding:16px 20px;margin:20px 0;background:#f3f9ff;border:1px solid #cfdef0;border-radius:8px}summary{font-weight:600;color:#075ac5;cursor:pointer}.answer{background:#effbf5;border-color:#a9ddc5}nav{padding:15px 20px;background:#e8f2ff;display:flex;gap:14px;flex-wrap:wrap;border-radius:10px}nav a{font-size:15px}.copy{display:block;margin-bottom:10px;padding:6px 15px;border:0;background:#075ac5;color:white;border-radius:5px;cursor:pointer}footer{margin-top:50px;color:#50657e;font-size:13px} @media(max-width:720px){body{font-size:16px}main{padding:25px 18px;margin:0}h1{font-size:27px}h2{font-size:23px}table{font-size:13px}th,td{padding:8px}figure{padding:3px}pre{font-size:15px;padding:16px}nav{gap:10px}} @media print{@page{size:A4;margin:17mm 15mm}body{background:white;font-size:10pt;line-height:1.65}main{max-width:none;padding:0;margin:0;box-shadow:none}nav,.copy{display:none}h1{font-size:24pt}h2{font-size:17pt;break-before:page;margin-top:0;padding-top:10px}h3{font-size:12pt;break-after:avoid}table{font-size:8.3pt}th,td{padding:6px}tr{break-inside:avoid}thead{display:table-header-group}pre{font-size:9.5pt;padding:12px}figure{break-inside:avoid;margin:12px 0}figure img{max-height:105mm;width:auto}figcaption{font-size:8pt}.slide{display:none}details{padding:10px;margin:12px 0}summary{font-size:10pt}a{color:#075ac5;text-decoration:none}footer{font-size:8pt}}blockquote{margin:20px 0;padding:12px 24px;background:#faf8f2;border-left:4px solid #b9a16a;white-space:pre-line;line-height:1.8}blockquote h4{white-space:normal;font-size:19px;margin:12px 0}.table-scroll{overflow-x:auto}table{min-width:560px}nav:empty{display:none}.course{margin-top:70px;border-top:12px solid #075ac5;padding-top:36px}h4{font-size:19px}section>h1{margin-top:26px}.copy{font:15px 'Microsoft JhengHei',sans-serif} @media print{blockquote{font-size:10pt}.table-scroll{overflow:visible}table{min-width:0}}</style></head><body><main><h1>Finance Cowork 月結差異如何查到可審閱的結果｜連續圖解實作</h1>
+<p>每一步依序呈現工作事件、完整來源、操作圖、可複製提示、預期結果與修訂方法。照本文往下操作即可。整課沿用同一個 Cowork 任務。</p>
+<h2 id="finance-s0">接下這個工作</h2>
 <p>你的角色：遠景精密財務陳佳穎。</p>
 <p>九月月結進入審閱，主管何佩珊需要知道營運費用為何超出預算。你同時收到總帳匯出、應付待審清單與同事的口頭解釋。你要把金額、期間與已入帳狀態分清楚，查出尚缺的證據，再完成差異說明與管理報告。</p>
-<p>你要沿用一個 Cowork 任務，保存每一步的成果，再根據新收到的資料修訂。角色的批准與使用者驗證都有獨立原始紀錄；任何還未收到的文件、回覆或批准，保持待確認。</p>
-<h2 id="sec1">02｜課前準備與插件入口（簡報第 2 頁）</h2>
+<p>案例公司、人員與全部業務紀錄均為合成教學資料。操作圖採 Microsoft 官方實際畫面加註，圖中的示例案件與檔名以本課指定值替換。建議預留 150 分鐘完成案例與實作。</p>
+<h2 id="finance-s1">準備好就開始</h2>
 <ol>
-<li>解壓縮整份教材包，開啟本課資料夾。先開 <strong>完整實作手冊.html</strong>，另開同資料夾的簡報。</li>
-<li>登入講師指定、已開放 Cowork 的工作／學校帳戶，進入 Cowork。點左側 <strong>Customize</strong>，再點 <strong>Plugins</strong>。</li>
-<li>在 Plugins 中確認講師已部署的 <strong>finance-cowork</strong> 及發行者資訊。若找不到，交由講師核對部署範圍與帳戶；Skills 頁籤與 Plugins 頁籤是不同入口。</li>
-<li>本課採附件與成果草稿流程。沒有提供郵件收件帳號、ERP、資產管理或工單連線時，只交付可審閱檔案。</li>
+<li>下載並解壓本課 <a href="%E7%B7%B4%E7%BF%92%E8%B3%87%E6%96%99.zip">練習資料.zip</a>；附件在 <strong>data</strong>，依序使用 S01 至 S08 資料夾。這些 Word 與 CSV 用來上傳 Cowork，原文與明細也會直接顯示在每一步。</li>
+<li>登入講師提供的工作／學校帳戶，進入 <strong>Cowork</strong>，點 <strong>Customize → Plugins</strong>，確認 <strong>finance-cowork</strong> 可使用。若尚未出現，請講師確認帳戶與部署範圍。</li>
+<li>準備完成後，從下方 S01 建立任務；之後在同一任務接續新事件。每步只加入當步指定附件。</li>
 </ol>
-<figure><a href="../common/plugins.png"><img src="../common/plugins.png" alt="圖 1：Customize → Plugins。原圖停在 Skills，藍色標註指出要切換的 Plugins 頁籤" loading="lazy"></a><figcaption>圖 1：Customize → Plugins。原圖停在 Skills，藍色標註指出要切換的 Plugins 頁籤。點圖可開啟原尺寸。</figcaption></figure>
+<figure><img src="../common/plugins.png" alt="操作圖：進入 Customize，切換到 Plugins 頁籤" loading="lazy"><figcaption>操作圖：進入 Customize，切換到 Plugins 頁籤。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
 
-
-<h2 id="sec2">03｜建立任務與加入來源（簡報第 3 頁）</h2>
-<ol>
-<li>點 <strong>New task</strong>，用第一步的完整提示建立本課任務。第一句保留案例名稱，方便之後在 My tasks 找回。</li>
-<li>點輸入框旁的 <strong>＋</strong>，選 <strong>Upload images and files</strong>（依介面語言顯示上傳圖片與檔案），選擇下表「步驟 1」列出的 DOCX／CSV。</li>
-<li>等附件名稱出現在輸入框且上傳完成，再貼第一步提示；按 <strong>Enter／Send</strong>。核對不是只貼出本機路徑文字。</li>
-<li>後續步驟用同一任務的 <strong>Follow up</strong> 加新附件。不要一次上傳整個 data 資料夾；不要把本手冊、instructor 答案或簡報當作來源輸入。</li>
-<li>要看原文件，從 References／輸入檔案區開啟；要看成果，從 Outputs／輸出檔案區開啟。介面可能使用 Workspace 或檔案側欄名稱，請以實際顯示為準。</li>
-</ol>
-<figure><a href="../common/home.png"><img src="../common/home.png" alt="圖 2：New task、附件加號、Start a task 輸入區" loading="lazy"></a><figcaption>圖 2：New task、附件加號、Start a task 輸入區。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>分階段發放表：簡報、附件、成果逐步對應</h3>
-<p>簡報沿用 A／B／C 的故事分段；本版把每段拆為單獨事件文件。下表的實際檔名與 S01–S08 資料夾是上課發放依據，同一段內的後續批准不會混入較早步驟。</p>
-<table>
+<p>本課交付完整檔案與可審閱草稿。實際系統寄送、寫入或設備操作須有對應連線與授權；課堂提供的來源紀錄代表案例中已發生的事情。</p>
+<h2 id="finance-s2">S01｜鎖定這次月結的資料範圍</h2>
+<p>現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D01_月結通知與帳表範圍.docx｜完整原文</strong></p>
+<blockquote>
+<h4>九月營運費用月結審閱</h4>
+<p>文件ID：F-M001</p>
+<p>時間（台北）：2026/10/05 08:30</p>
+<p>文件類型：郵件</p>
+<p>建立／寄件人：何佩珊</p>
+<p>收件／參與人：陳佳穎</p>
+<p>佳穎，
+請準備遠景精密 2026 年九月營運費用月結追蹤及管理報告，10/07 16:00 前交我看。本期管理報告只涵蓋附表的營運費用範圍，幣別 TWD，金額單位元，均未稅。
+先完成費用截止檢查，再做實際對預算差異，最後形成報告。C1 的承辦是你、覆核是我，期限 10/06 12:00；C2 依賴 C1，期限 10/07 12:00；C3 依賴 C2，期限 10/07 16:00。
+帳務同事另外給的應付待審清單是作業中資料，不要直接併到總帳。請保留帳表版本與資料截止時間，原因說明要有單據或驗收資料支持，不要只憑聊天說法寫進管理報告。</p>
+<h4>GL09 v1 匯出條件</h4>
+<p>文件ID：GL-09-EXPORT</p>
+<p>時間（台北）：2026/10/05 08:45</p>
+<p>文件類型：匯出控制頁</p>
+<p>建立／寄件人：帳務作業</p>
+<p>收件／參與人：陳佳穎</p>
+<p>Entity：遠景精密。Ledger：管理帳。科目範圍：營運費用。期間從 2026/09/01 至 2026/09/30，狀態篩選 Posted。幣別 TWD，單位元，未稅。
+明細另見 GL-09_總帳逐筆明細.csv；每列是已入帳費用，包含憑證號、科目、部門、入帳日、支持文件編號及金額。AP 待審清單不在此匯出範圍。該檔為 GL-09 v1，不含 10/05 後收到的單據。
+請按明細自行合計，不依這頁推定帳務已覆核或期間已鎖定。原帳表的存取與修改由帳務角色負責，提供匯出不代表授權新增或沖銷分錄。</p>
+</blockquote>
+<p><strong>GL-09_總帳逐筆明細.csv｜全部 42 筆原始明細</strong></p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>操作</th>
-<th>簡報頁</th>
-<th>故事段</th>
-<th>本步新增附件</th>
-<th>要保存的成果</th>
+<th>法人</th>
+<th>期間</th>
+<th>來源版本</th>
+<th>分錄列ID</th>
+<th>過帳日期</th>
+<th>科目</th>
+<th>部門</th>
+<th>供應商</th>
+<th>摘要</th>
+<th>支持文件ID</th>
+<th>幣別</th>
+<th>借方未稅金額</th>
+<th>貸方未稅金額</th>
+<th>狀態</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>S01</td>
-<td>4</td>
-<td>A</td>
-<td>D01_月結通知與帳表範圍.docx<br>GL-09_總帳逐筆明細.csv<br>BUD-09_核准預算.csv<br>AP_待審匯入清單.csv<br>F-2609_原始月結追蹤表.csv</td>
-<td>F01_月結工作清單.xlsx</td>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-001</td>
+<td>2026/09/01</td>
+<td>外包費</td>
+<td>製造一課</td>
+<td>辰星技術</td>
+<td>例行服務第01批</td>
+<td>BASE-001</td>
+<td>TWD</td>
+<td>8000</td>
+<td>0</td>
+<td>已過帳</td>
 </tr>
 <tr>
-<td>S02</td>
-<td>5</td>
-<td>A</td>
-<td>D02_應付登記及發票副本.docx</td>
-<td>F02_AP疑似重複覆核.xlsx</td>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-002</td>
+<td>2026/09/02</td>
+<td>外包費</td>
+<td>製造二課</td>
+<td>辰星技術</td>
+<td>例行服務第02批</td>
+<td>BASE-002</td>
+<td>TWD</td>
+<td>12000</td>
+<td>0</td>
+<td>已過帳</td>
 </tr>
 <tr>
-<td>S03</td>
-<td>6</td>
-<td>A</td>
-<td>D03_預算核准及營運詢問.docx</td>
-<td>F03_預算實際差異.xlsx</td>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-003</td>
+<td>2026/09/03</td>
+<td>外包費</td>
+<td>工程課</td>
+<td>辰星技術</td>
+<td>例行服務第03批</td>
+<td>BASE-003</td>
+<td>TWD</td>
+<td>18000</td>
+<td>0</td>
+<td>已過帳</td>
 </tr>
 <tr>
-<td>S04</td>
-<td>7</td>
-<td>B</td>
-<td>D04_採購驗收補件與重複確認.docx</td>
-<td>F04_差異原因送審表.xlsx</td>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-004</td>
+<td>2026/09/04</td>
+<td>外包費</td>
+<td>品質課</td>
+<td>辰星技術</td>
+<td>例行服務第04批</td>
+<td>BASE-004</td>
+<td>TWD</td>
+<td>22000</td>
+<td>0</td>
+<td>已過帳</td>
 </tr>
 <tr>
-<td>S05</td>
-<td>9</td>
-<td>C</td>
-<td>D05_覆核紀錄與報告審閱狀態.docx</td>
-<td>F05_月結狀態變更提案.xlsx</td>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-005</td>
+<td>2026/09/05</td>
+<td>外包費</td>
+<td>製造一課</td>
+<td>辰星技術</td>
+<td>例行服務第05批</td>
+<td>BASE-005</td>
+<td>TWD</td>
+<td>10000</td>
+<td>0</td>
+<td>已過帳</td>
 </tr>
 <tr>
-<td>S06</td>
-<td>10</td>
-<td>C</td>
-<td>沿用已提供來源</td>
-<td>F06_F-2609-R1送審稿.docx</td>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-006</td>
+<td>2026/09/06</td>
+<td>外包費</td>
+<td>製造二課</td>
+<td>辰星技術</td>
+<td>例行服務第06批</td>
+<td>BASE-006</td>
+<td>TWD</td>
+<td>14000</td>
+<td>0</td>
+<td>已過帳</td>
 </tr>
 <tr>
-<td>S07</td>
-<td>11</td>
-<td>C</td>
-<td>D06_期後服務請款.docx</td>
-<td>F07_期後單據調查單.docx</td>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-007</td>
+<td>2026/09/07</td>
+<td>外包費</td>
+<td>工程課</td>
+<td>辰星技術</td>
+<td>例行服務第07批</td>
+<td>BASE-007</td>
+<td>TWD</td>
+<td>16000</td>
+<td>0</td>
+<td>已過帳</td>
 </tr>
 <tr>
-<td>S08</td>
-<td>12</td>
-<td>C</td>
-<td>D07_待付款例外要求.docx</td>
-<td>F08_付款例外與回覆.docx</td>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-008</td>
+<td>2026/09/08</td>
+<td>外包費</td>
+<td>品質課</td>
+<td>辰星技術</td>
+<td>例行服務第08批</td>
+<td>BASE-008</td>
+<td>TWD</td>
+<td>20000</td>
+<td>0</td>
+<td>已過帳</td>
 </tr>
-</tbody></table>
-<h3>來源文件怎麼讀</h3>
-<p>每份 DOCX 均列文件 ID、時間、原始文件類型、寄件／建立人、收件／參與人與完整正文。CSV 保留逐筆識別碼，沒有用一行答案代替明細。以這些欄位確認「誰在什麼時間提供了什麼」，再判斷能否改變工作狀態。</p>
-<p>資料下載：本課 <a href="%E7%B7%B4%E7%BF%92%E8%B3%87%E6%96%99.zip">練習資料.zip</a>。解壓後依 data/S01…S08 發放；所有新附件也能在各步直接下載。</p>
-<h2 id="sec3">04｜修改原檔時的核准（簡報第 8 頁）</h2>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-009</td>
+<td>2026/09/09</td>
+<td>外包費</td>
+<td>製造一課</td>
+<td>辰星技術</td>
+<td>例行服務第09批</td>
+<td>BASE-009</td>
+<td>TWD</td>
+<td>9000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-010</td>
+<td>2026/09/10</td>
+<td>外包費</td>
+<td>製造二課</td>
+<td>辰星技術</td>
+<td>例行服務第10批</td>
+<td>BASE-010</td>
+<td>TWD</td>
+<td>21000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-011</td>
+<td>2026/09/11</td>
+<td>外包費</td>
+<td>工程課</td>
+<td>辰星技術</td>
+<td>例行服務第11批</td>
+<td>BASE-011</td>
+<td>TWD</td>
+<td>8000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-012</td>
+<td>2026/09/12</td>
+<td>外包費</td>
+<td>品質課</td>
+<td>辰星技術</td>
+<td>例行服務第12批</td>
+<td>BASE-012</td>
+<td>TWD</td>
+<td>12000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-013</td>
+<td>2026/09/13</td>
+<td>外包費</td>
+<td>製造一課</td>
+<td>辰星技術</td>
+<td>例行服務第13批</td>
+<td>BASE-013</td>
+<td>TWD</td>
+<td>18000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-014</td>
+<td>2026/09/14</td>
+<td>外包費</td>
+<td>製造二課</td>
+<td>辰星技術</td>
+<td>例行服務第14批</td>
+<td>BASE-014</td>
+<td>TWD</td>
+<td>22000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-015</td>
+<td>2026/09/15</td>
+<td>外包費</td>
+<td>工程課</td>
+<td>辰星技術</td>
+<td>例行服務第15批</td>
+<td>BASE-015</td>
+<td>TWD</td>
+<td>10000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-016</td>
+<td>2026/09/16</td>
+<td>外包費</td>
+<td>品質課</td>
+<td>辰星技術</td>
+<td>例行服務第16批</td>
+<td>BASE-016</td>
+<td>TWD</td>
+<td>14000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-017</td>
+<td>2026/09/17</td>
+<td>外包費</td>
+<td>製造一課</td>
+<td>辰星技術</td>
+<td>例行服務第17批</td>
+<td>BASE-017</td>
+<td>TWD</td>
+<td>16000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-018</td>
+<td>2026/09/18</td>
+<td>外包費</td>
+<td>製造二課</td>
+<td>辰星技術</td>
+<td>例行服務第18批</td>
+<td>BASE-018</td>
+<td>TWD</td>
+<td>20000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-019</td>
+<td>2026/09/19</td>
+<td>外包費</td>
+<td>工程課</td>
+<td>辰星技術</td>
+<td>例行服務第19批</td>
+<td>BASE-019</td>
+<td>TWD</td>
+<td>9000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-020</td>
+<td>2026/09/20</td>
+<td>外包費</td>
+<td>品質課</td>
+<td>辰星技術</td>
+<td>例行服務第20批</td>
+<td>BASE-020</td>
+<td>TWD</td>
+<td>21000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-021</td>
+<td>2026/09/21</td>
+<td>設備保養費</td>
+<td>製造一課</td>
+<td>遠誠維護</td>
+<td>例行服務第01批</td>
+<td>BASE-021</td>
+<td>TWD</td>
+<td>8000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-022</td>
+<td>2026/09/22</td>
+<td>設備保養費</td>
+<td>製造二課</td>
+<td>遠誠維護</td>
+<td>例行服務第02批</td>
+<td>BASE-022</td>
+<td>TWD</td>
+<td>12000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-023</td>
+<td>2026/09/23</td>
+<td>設備保養費</td>
+<td>工程課</td>
+<td>遠誠維護</td>
+<td>例行服務第03批</td>
+<td>BASE-023</td>
+<td>TWD</td>
+<td>18000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-024</td>
+<td>2026/09/24</td>
+<td>設備保養費</td>
+<td>品質課</td>
+<td>遠誠維護</td>
+<td>例行服務第04批</td>
+<td>BASE-024</td>
+<td>TWD</td>
+<td>22000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-025</td>
+<td>2026/09/25</td>
+<td>設備保養費</td>
+<td>製造一課</td>
+<td>遠誠維護</td>
+<td>例行服務第05批</td>
+<td>BASE-025</td>
+<td>TWD</td>
+<td>10000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-026</td>
+<td>2026/09/26</td>
+<td>設備保養費</td>
+<td>製造二課</td>
+<td>遠誠維護</td>
+<td>例行服務第06批</td>
+<td>BASE-026</td>
+<td>TWD</td>
+<td>14000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-027</td>
+<td>2026/09/27</td>
+<td>設備保養費</td>
+<td>工程課</td>
+<td>遠誠維護</td>
+<td>例行服務第07批</td>
+<td>BASE-027</td>
+<td>TWD</td>
+<td>16000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-028</td>
+<td>2026/09/01</td>
+<td>設備保養費</td>
+<td>品質課</td>
+<td>遠誠維護</td>
+<td>例行服務第08批</td>
+<td>BASE-028</td>
+<td>TWD</td>
+<td>20000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-029</td>
+<td>2026/09/02</td>
+<td>設備保養費</td>
+<td>製造一課</td>
+<td>遠誠維護</td>
+<td>例行服務第09批</td>
+<td>BASE-029</td>
+<td>TWD</td>
+<td>9000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-030</td>
+<td>2026/09/03</td>
+<td>設備保養費</td>
+<td>製造二課</td>
+<td>遠誠維護</td>
+<td>例行服務第10批</td>
+<td>BASE-030</td>
+<td>TWD</td>
+<td>21000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-031</td>
+<td>2026/09/04</td>
+<td>設備保養費</td>
+<td>工程課</td>
+<td>遠誠維護</td>
+<td>例行服務第11批</td>
+<td>BASE-031</td>
+<td>TWD</td>
+<td>8000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-032</td>
+<td>2026/09/05</td>
+<td>設備保養費</td>
+<td>品質課</td>
+<td>遠誠維護</td>
+<td>例行服務第12批</td>
+<td>BASE-032</td>
+<td>TWD</td>
+<td>12000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-033</td>
+<td>2026/09/06</td>
+<td>設備保養費</td>
+<td>製造一課</td>
+<td>遠誠維護</td>
+<td>例行服務第13批</td>
+<td>BASE-033</td>
+<td>TWD</td>
+<td>18000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-034</td>
+<td>2026/09/07</td>
+<td>設備保養費</td>
+<td>製造二課</td>
+<td>遠誠維護</td>
+<td>例行服務第14批</td>
+<td>BASE-034</td>
+<td>TWD</td>
+<td>22000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-035</td>
+<td>2026/09/08</td>
+<td>設備保養費</td>
+<td>工程課</td>
+<td>遠誠維護</td>
+<td>例行服務第15批</td>
+<td>BASE-035</td>
+<td>TWD</td>
+<td>10000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-036</td>
+<td>2026/09/09</td>
+<td>設備保養費</td>
+<td>品質課</td>
+<td>遠誠維護</td>
+<td>例行服務第16批</td>
+<td>BASE-036</td>
+<td>TWD</td>
+<td>14000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-037</td>
+<td>2026/09/10</td>
+<td>設備保養費</td>
+<td>製造一課</td>
+<td>遠誠維護</td>
+<td>例行服務第17批</td>
+<td>BASE-037</td>
+<td>TWD</td>
+<td>16000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-038</td>
+<td>2026/09/11</td>
+<td>設備保養費</td>
+<td>製造二課</td>
+<td>遠誠維護</td>
+<td>例行服務第18批</td>
+<td>BASE-038</td>
+<td>TWD</td>
+<td>20000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-039</td>
+<td>2026/09/12</td>
+<td>設備保養費</td>
+<td>工程課</td>
+<td>遠誠維護</td>
+<td>例行服務第19批</td>
+<td>BASE-039</td>
+<td>TWD</td>
+<td>9000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-040</td>
+<td>2026/09/13</td>
+<td>設備保養費</td>
+<td>品質課</td>
+<td>遠誠維護</td>
+<td>例行服務第20批</td>
+<td>BASE-040</td>
+<td>TWD</td>
+<td>21000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-041</td>
+<td>2026/09/30</td>
+<td>外包費</td>
+<td>製造一課</td>
+<td>辰星技術</td>
+<td>服務驗收入帳</td>
+<td>PO-0923</td>
+<td>TWD</td>
+<td>40000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>GL-09 v1</td>
+<td>GL09-042</td>
+<td>2026/09/30</td>
+<td>設備保養費</td>
+<td>製造二課</td>
+<td>遠誠維護</td>
+<td>服務驗收入帳</td>
+<td>SV-0930</td>
+<td>TWD</td>
+<td>20000</td>
+<td>0</td>
+<td>已過帳</td>
+</tr>
+</tbody></table></div>
+<p><strong>BUD-09_核准預算.csv｜全部 2 筆原始明細</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>法人</th>
+<th>期間</th>
+<th>版本</th>
+<th>科目</th>
+<th>幣別</th>
+<th>未稅預算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>核准版</td>
+<td>外包費</td>
+<td>TWD</td>
+<td>300000</td>
+</tr>
+<tr>
+<td>遠景精密</td>
+<td>2026/09</td>
+<td>核准版</td>
+<td>設備保養費</td>
+<td>TWD</td>
+<td>300000</td>
+</tr>
+</tbody></table></div>
+<p><strong>AP_待審匯入清單.csv｜全部 2 筆原始明細</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>AP_ID</th>
+<th>供應商</th>
+<th>發票號碼</th>
+<th>幣別</th>
+<th>未稅金額</th>
+<th>匯入批號</th>
+<th>匯入時間</th>
+<th>審查狀態</th>
+<th>入帳狀態</th>
+<th>付款狀態</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AP-101</td>
+<td>日昇</td>
+<td>AB-1001</td>
+<td>TWD</td>
+<td>18000</td>
+<td>IMPORT-01</td>
+<td>2026/10/02 10:15</td>
+<td>待審</td>
+<td>未入帳</td>
+<td>未付款</td>
+</tr>
+<tr>
+<td>AP-108</td>
+<td>日昇</td>
+<td>AB-1001</td>
+<td>TWD</td>
+<td>18000</td>
+<td>IMPORT-02</td>
+<td>2026/10/03 09:20</td>
+<td>待審</td>
+<td>未入帳</td>
+<td>未付款</td>
+</tr>
+</tbody></table></div>
+<p><strong>F-2609_原始月結追蹤表.csv｜全部 3 筆原始明細</strong></p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>工作</th>
+<th>準備人</th>
+<th>覆核人</th>
+<th>期限</th>
+<th>依賴</th>
+<th>原始狀態</th>
+<th>底稿ID</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>C1</td>
+<td>費用截止檢查</td>
+<td>陳佳穎</td>
+<td>何佩珊</td>
+<td>2026/10/06 12:00</td>
+<td></td>
+<td>待覆核</td>
+<td>GL-09</td>
+</tr>
+<tr>
+<td>C2</td>
+<td>差異分析</td>
+<td>陳佳穎</td>
+<td>何佩珊</td>
+<td>2026/10/07 12:00</td>
+<td>C1</td>
+<td>準備中</td>
+<td></td>
+</tr>
+<tr>
+<td>C3</td>
+<td>管理報告</td>
+<td></td>
+<td>何佩珊</td>
+<td>2026/10/07 16:00</td>
+<td>C2</td>
+<td>未開始</td>
+<td></td>
+</tr>
+</tbody></table></div>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/home.png" alt="操作圖：新增任務、加入附件、送出第一個委派" loading="lazy"><figcaption>操作圖：新增任務、加入附件、送出第一個委派。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
 <ol>
-<li>Cowork 若提出 <strong>Edit file?</strong>，先看檔名是否為本次要修改的版本。</li>
-<li>逐項閱讀 proposed changes，對照你的要求與來源批准範圍。</li>
-<li>正確時選 <strong>Approve once</strong>，只核准此一次動作；若畫面顯示其他動作名稱，核對對象及動作後再決定。</li>
-<li>有誤時選 <strong>Cancel</strong>，回到輸入框指出要修正的項目，收到新提案再檢查。沒有出現核准視窗時，繼續檢查輸出，勿假設已修改共享原檔。</li>
+<li>點 <strong>New task</strong>，在輸入框左側按 <strong>＋ → Upload images and files</strong>。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S01</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D01_月結通知與帳表範圍.docx；GL-09_總帳逐筆明細.csv；BUD-09_核准預算.csv；AP_待審匯入清單.csv；F-2609_原始月結追蹤表.csv</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
 </ol>
-<figure><a href="../common/approve.png"><img src="../common/approve.png" alt="圖 3：正確檔案 → 逐項變更 → Approve once；錯誤則 Cancel" loading="lazy"></a><figcaption>圖 3：正確檔案 → 逐項變更 → Approve once；錯誤則 Cancel。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h2 id="sec4">S01｜鎖定這次月結的資料範圍（簡報第 4 頁）</h2>
-<p><strong>工作方法：close-management。</strong> 現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
-
-
-<h3>A. 先準備這一步的來源</h3>
-<ul>
-<li><a href="data/S01/D01_%E6%9C%88%E7%B5%90%E9%80%9A%E7%9F%A5%E8%88%87%E5%B8%B3%E8%A1%A8%E7%AF%84%E5%9C%8D.md">D01_月結通知與帳表範圍.docx</a></li>
-<li><a href="data/S01/GL-09_%E7%B8%BD%E5%B8%B3%E9%80%90%E7%AD%86%E6%98%8E%E7%B4%B0.csv">GL-09_總帳逐筆明細.csv</a></li>
-<li><a href="data/S01/BUD-09_%E6%A0%B8%E5%87%86%E9%A0%90%E7%AE%97.csv">BUD-09_核准預算.csv</a></li>
-<li><a href="data/S01/AP_%E5%BE%85%E5%AF%A9%E5%8C%AF%E5%85%A5%E6%B8%85%E5%96%AE.csv">AP_待審匯入清單.csv</a></li>
-<li><a href="data/S01/F-2609_%E5%8E%9F%E5%A7%8B%E6%9C%88%E7%B5%90%E8%BF%BD%E8%B9%A4%E8%A1%A8.csv">F-2609_原始月結追蹤表.csv</a></li>
-</ul>
-<h3>B. 照畫面完成委派</h3>
-<ol>
-<li>點 <strong>New task</strong>，按加號加入上列附件，確認上傳完成。</li>
-<li>在 <strong>Start a task</strong> 貼上以下完整提示，確認情境時間後按 Enter／Send。</li>
-<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
-<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
-</ol>
-<figure><a href="../common/home.png"><img src="../common/home.png" alt="圖 S01-A：建立任務並加入本階段來源" loading="lazy"></a><figcaption>圖 S01-A：建立任務並加入本階段來源。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>C. 可直接貼上的完整提示</h3>
+<h3>委派內容｜close-management</h3>
 <pre><code class="language-text">案例：Finance Cowork 月結差異如何查到可審閱的結果；操作 S01。使用 close-management 的工作方法。
 現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
 建立 F-2609 月結追蹤表，列 C1、C2、C3 的交付物、承辦、覆核、期限與依賴。將 GL、預算與待審清單分開，保留期間、幣別及版本。先不更新正式帳務。
@@ -138,21 +863,14 @@
 建立可下載的 F01_月結工作清單.xlsx，內容必須包含：來源名稱、版本、期間、含稅口徑、ID、owner、覆核人、期限、依賴、原始狀態。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
 本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
 </code></pre>
-<p>亦可開啟 <a href="prompts/S01.txt">本步提示文字檔</a>。</p>
-<h3>D. 開啟成果並逐項查證</h3>
-<ol>
-<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F01_月結工作清單.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
-<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
-<li>檢查成果是否有以下欄位或段落：<strong>來源名稱、版本、期間、含稅口徑、ID、owner、覆核人、期限、依賴、原始狀態</strong>。缺欄位先修訂。</li>
-<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
-<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
-</ol>
-<table>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F01_月結工作清單.xlsx</strong>。完整成果應包含：<strong>來源名稱、版本、期間、含稅口徑、ID、owner、覆核人、期限、依賴、原始狀態</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>檢查項</th>
-<th>此時應有的內容／結果</th>
-<th>去哪裡核對</th>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -170,51 +888,53 @@
 <td>與已過帳GL分開</td>
 <td>AP清單</td>
 </tr>
-</tbody></table>
-<h3>E. 不通過時怎麼修</h3>
-<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
-<pre><code class="language-text">請修訂 F01_月結工作清單.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
-</code></pre>
-<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
-
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
 <p>F-2609 月結追蹤表草稿
 範圍為遠景精密 2026/09，TWD 元、未稅。來源分為 GL-09 v1 660,000、BUD-09 核准版 600,000，以及未入帳的 AP 待審清單。
 C1 費用截止檢查由陳佳穎準備，期限 10/06 12:00，現為待覆核。C2 差異分析由陳佳穎準備，依賴 C1，期限 10/07 12:00。C3 管理報告依賴 C2，由何佩珊覆核，期限 10/07 16:00；C3 準備人未明載，待確認。各項以相應底稿、覆核人及時間為完成證據。</p>
-<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
-</details>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 F01_月結工作清單.xlsx，本步必須滿足下列條件：
+- GL範圍：遠景精密2026/09，TWD未稅，660000。引用：GL-09總帳42列。
+- C3準備人：空白待確認。引用：原始追蹤表。
+- 待審AP：與已過帳GL分開。引用：AP清單。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 F01_月結工作清單_v2.xlsx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>F01_月結工作清單.xlsx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="finance-s3">S02｜疑似重複不能直接扣總帳</h2>
+<p>現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D02_應付登記及發票副本.docx｜完整原文</strong></p>
+<blockquote>
+<h4>日昇服務請款登記</h4>
+<p>文件ID：AP-101</p>
+<p>時間（台北）：2026/10/02 10:15</p>
+<p>文件類型：應付登記</p>
+<p>建立／寄件人：應付窗口</p>
+<p>收件／參與人：陳佳穎</p>
+<p>供應商：日昇。發票號碼 AB-1001。未稅金額 18,000 元，幣別 TWD。收到方式：供應商郵件附件。登記時間 10/02 10:15，狀態待審，入帳憑證空白，付款日期空白。
+供應商附言：九月服務費，請協助審閱。承辦尚未確認驗收與付款條件，也沒有核准付款。此筆保留在 AP 待審工作清單，沒有出現在 GL-09 已入帳明細中。</p>
+<h4>日昇服務請款再次匯入</h4>
+<p>文件ID：AP-108</p>
+<p>時間（台北）：2026/10/03 09:20</p>
+<p>文件類型：應付登記</p>
+<p>建立／寄件人：應付窗口</p>
+<p>收件／參與人：陳佳穎</p>
+<p>供應商：日昇。發票號碼 AB-1001。未稅金額 18,000 元，幣別 TWD。收到方式：附件批次匯入。匯入時間 10/03 09:20，狀態待審，入帳憑證空白，付款日期空白。
+附檔內容也記載九月服務費。這份登記是系統收到的另一列，尚未決定是否與既有登記相同；原始列號及匯入時間應保留，方便應付窗口查核。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
 
-<h3>F. 保存並交接到下一步</h3>
-<p>保存 <strong>F01_月結工作清單.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>5</strong> 頁；到了該步才加入新附件。</p>
-<h2 id="sec5">S02｜疑似重複不能直接扣總帳（簡報第 5 頁）</h2>
-<p><strong>工作方法：invoice-expense-review。</strong> 現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
-
-
-<h3>A. 先準備這一步的來源</h3>
-<ul>
-<li><a href="data/S02/D02_%E6%87%89%E4%BB%98%E7%99%BB%E8%A8%98%E5%8F%8A%E7%99%BC%E7%A5%A8%E5%89%AF%E6%9C%AC.md">D02_應付登記及發票副本.docx</a></li>
-</ul>
-<details><summary>查看此時可沿用的前階段來源</summary>
-
-<ul>
-<li><a href="data/S01/D01_%E6%9C%88%E7%B5%90%E9%80%9A%E7%9F%A5%E8%88%87%E5%B8%B3%E8%A1%A8%E7%AF%84%E5%9C%8D.md">D01_月結通知與帳表範圍.docx</a></li>
-<li><a href="data/S01/GL-09_%E7%B8%BD%E5%B8%B3%E9%80%90%E7%AD%86%E6%98%8E%E7%B4%B0.csv">GL-09_總帳逐筆明細.csv</a></li>
-<li><a href="data/S01/BUD-09_%E6%A0%B8%E5%87%86%E9%A0%90%E7%AE%97.csv">BUD-09_核准預算.csv</a></li>
-<li><a href="data/S01/AP_%E5%BE%85%E5%AF%A9%E5%8C%AF%E5%85%A5%E6%B8%85%E5%96%AE.csv">AP_待審匯入清單.csv</a></li>
-<li><a href="data/S01/F-2609_%E5%8E%9F%E5%A7%8B%E6%9C%88%E7%B5%90%E8%BF%BD%E8%B9%A4%E8%A1%A8.csv">F-2609_原始月結追蹤表.csv</a></li>
-</ul>
-</details>
-
-<h3>B. 照畫面完成委派</h3>
 <ol>
-<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>F01_月結工作清單.xlsx</strong> 已保留。</li>
-<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
-<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
-<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+<li>留在目前任務；前一步成果 <strong>F01_月結工作清單.xlsx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S02</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D02_應付登記及發票副本.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
 </ol>
-<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S02-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S02-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>C. 可直接貼上的完整提示</h3>
+<h3>委派內容｜invoice-expense-review</h3>
 <pre><code class="language-text">案例：Finance Cowork 月結差異如何查到可審閱的結果；操作 S02。使用 invoice-expense-review 的工作方法。
 現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
 核對兩筆應付列，產出重複審查表與待確認問題。說明哪些證據支持疑似重複、還需誰確認，以及是否已入帳。不要刪列、付款或調整總帳。
@@ -223,21 +943,14 @@ C1 費用截止檢查由陳佳穎準備，期限 10/06 12:00，現為待覆核�
 建立可下載的 F02_AP疑似重複覆核.xlsx，內容必須包含：兩個AP_ID、供應商、發票號碼、金額、匯入批號、入帳付款狀態、需確認證據。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
 本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
 </code></pre>
-<p>亦可開啟 <a href="prompts/S02.txt">本步提示文字檔</a>。</p>
-<h3>D. 開啟成果並逐項查證</h3>
-<ol>
-<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F02_AP疑似重複覆核.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
-<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
-<li>檢查成果是否有以下欄位或段落：<strong>兩個AP_ID、供應商、發票號碼、金額、匯入批號、入帳付款狀態、需確認證據</strong>。缺欄位先修訂。</li>
-<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
-<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
-</ol>
-<table>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F02_AP疑似重複覆核.xlsx</strong>。完整成果應包含：<strong>兩個AP_ID、供應商、發票號碼、金額、匯入批號、入帳付款狀態、需確認證據</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>檢查項</th>
-<th>此時應有的內容／結果</th>
-<th>去哪裡核對</th>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -255,52 +968,46 @@ C1 費用截止檢查由陳佳穎準備，期限 10/06 12:00，現為待覆核�
 <td>不扣18000或36000</td>
 <td>兩列未入帳</td>
 </tr>
-</tbody></table>
-<h3>E. 不通過時怎麼修</h3>
-<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
-<pre><code class="language-text">請修訂 F02_AP疑似重複覆核.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
-</code></pre>
-<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
-
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
 <p>AP 重複審查表
 AP-101 與 AP-108 均為日昇、發票 AB-1001、TWD 18,000。三個相同欄位支持疑似重複，尚須應付窗口確認是否為同一來源單據或有合法分拆原因。兩列均待審、未入帳，不包含於 660,000 的 GL 金額。保留兩個 ID 及追溯關係，不刪列、不付款、不從 GL 扣除。
 補問：請確認原發票、匯入來源及付款狀態，並提供重複與保留處理的覆核紀錄。</p>
-<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
-</details>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 F02_AP疑似重複覆核.xlsx，本步必須滿足下列條件：
+- 比對鍵：日昇＋AB-1001＋18000。引用：AP-101／108。
+- 匯入：兩個批次，同一發票影本。引用：AP清單、D02。
+- GL：不扣18000或36000。引用：兩列未入帳。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 F02_AP疑似重複覆核_v2.xlsx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>F02_AP疑似重複覆核.xlsx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="finance-s4">S03｜把差異算清楚再問原因</h2>
+<p>現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D03_預算核准及營運詢問.docx｜完整原文</strong></p>
+<blockquote>
+<h4>九月營運費用預算版本一</h4>
+<p>文件ID：BUD-09</p>
+<p>時間（台北）：2026/09/01 09:00</p>
+<p>文件類型：預算核准</p>
+<p>建立／寄件人：何佩珊</p>
+<p>收件／參與人：李志遠；陳佳穎</p>
+<p>九月營運費用核准總額 600,000 元，範圍與科目對照見 BUD-09_核准預算.csv。預算以正常服務量及原維護排程編列，費用均以 TWD 未稅金額表達。
+管理報告應比較同一 Entity、期間與科目範圍。請保留核准預算作為比較基準，不因實際數字不同就改寫預算。差異率使用預算作分母；若科目預算為零，另說明而不要強行除零。
+額外工作與提前執行保養應由營運窗口提供資料，核對發生時間、服務數量與驗收。此文件沒有提供全年預測或費用重要性門檻。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
 
-<h3>F. 保存並交接到下一步</h3>
-<p>保存 <strong>F02_AP疑似重複覆核.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>6</strong> 頁；到了該步才加入新附件。</p>
-<h2 id="sec6">S03｜把差異算清楚再問原因（簡報第 6 頁）</h2>
-<p><strong>工作方法：variance-analysis。</strong> 現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
-
-
-<h3>A. 先準備這一步的來源</h3>
-<ul>
-<li><a href="data/S03/D03_%E9%A0%90%E7%AE%97%E6%A0%B8%E5%87%86%E5%8F%8A%E7%87%9F%E9%81%8B%E8%A9%A2%E5%95%8F.md">D03_預算核准及營運詢問.docx</a></li>
-</ul>
-<details><summary>查看此時可沿用的前階段來源</summary>
-
-<ul>
-<li><a href="data/S01/D01_%E6%9C%88%E7%B5%90%E9%80%9A%E7%9F%A5%E8%88%87%E5%B8%B3%E8%A1%A8%E7%AF%84%E5%9C%8D.md">D01_月結通知與帳表範圍.docx</a></li>
-<li><a href="data/S01/GL-09_%E7%B8%BD%E5%B8%B3%E9%80%90%E7%AD%86%E6%98%8E%E7%B4%B0.csv">GL-09_總帳逐筆明細.csv</a></li>
-<li><a href="data/S01/BUD-09_%E6%A0%B8%E5%87%86%E9%A0%90%E7%AE%97.csv">BUD-09_核准預算.csv</a></li>
-<li><a href="data/S01/AP_%E5%BE%85%E5%AF%A9%E5%8C%AF%E5%85%A5%E6%B8%85%E5%96%AE.csv">AP_待審匯入清單.csv</a></li>
-<li><a href="data/S01/F-2609_%E5%8E%9F%E5%A7%8B%E6%9C%88%E7%B5%90%E8%BF%BD%E8%B9%A4%E8%A1%A8.csv">F-2609_原始月結追蹤表.csv</a></li>
-<li><a href="data/S02/D02_%E6%87%89%E4%BB%98%E7%99%BB%E8%A8%98%E5%8F%8A%E7%99%BC%E7%A5%A8%E5%89%AF%E6%9C%AC.md">D02_應付登記及發票副本.docx</a></li>
-</ul>
-</details>
-
-<h3>B. 照畫面完成委派</h3>
 <ol>
-<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>F02_AP疑似重複覆核.xlsx</strong> 已保留。</li>
-<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
-<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
-<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+<li>留在目前任務；前一步成果 <strong>F02_AP疑似重複覆核.xlsx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S03</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D03_預算核准及營運詢問.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
 </ol>
-<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S03-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S03-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>C. 可直接貼上的完整提示</h3>
+<h3>委派內容｜variance-analysis</h3>
 <pre><code class="language-text">案例：Finance Cowork 月結差異如何查到可審閱的結果；操作 S03。使用 variance-analysis 的工作方法。
 現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
 比較 GL-09 與 BUD-09，列實際、預算、差額與差異率的公式。將尚未驗證的原因列為待補件，寫給營運主管的詢問草稿。
@@ -309,21 +1016,14 @@ AP-101 與 AP-108 均為日昇、發票 AB-1001、TWD 18,000。三個相同欄�
 建立可下載的 F03_預算實際差異.xlsx，內容必須包含：科目、實際公式、預算、差額、差異率公式、原因待補、支持文件ID。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
 本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
 </code></pre>
-<p>亦可開啟 <a href="prompts/S03.txt">本步提示文字檔</a>。</p>
-<h3>D. 開啟成果並逐項查證</h3>
-<ol>
-<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F03_預算實際差異.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
-<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
-<li>檢查成果是否有以下欄位或段落：<strong>科目、實際公式、預算、差額、差異率公式、原因待補、支持文件ID</strong>。缺欄位先修訂。</li>
-<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
-<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
-</ol>
-<table>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F03_預算實際差異.xlsx</strong>。完整成果應包含：<strong>科目、實際公式、預算、差額、差異率公式、原因待補、支持文件ID</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>檢查項</th>
-<th>此時應有的內容／結果</th>
-<th>去哪裡核對</th>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -346,53 +1046,64 @@ AP-101 與 AP-108 均為日昇、發票 AB-1001、TWD 18,000。三個相同欄�
 <td>此刻未收到原因支持文件</td>
 <td>留待補</td>
 </tr>
-</tbody></table>
-<h3>E. 不通過時怎麼修</h3>
-<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
-<pre><code class="language-text">請修訂 F03_預算實際差異.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
-</code></pre>
-<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
-
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
 <p>費用差異分析初稿
 實際 660,000；預算 600,000。差額 = 660,000 − 600,000 = 60,000。以預算為分母的差異率 = 60,000 ÷ 600,000 × 100% = 10.0%，表示費用高於預算。目前尚無原因支持文件，不能把差額歸因於某一單據。
 詢問草稿：李志遠您好，九月同範圍營運費用高於預算 60,000 元，請協助提供主要項目的工作量、單價或認列時點說明及支持單據，以便完成覆核。</p>
-<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
-</details>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 F03_預算實際差異.xlsx，本步必須滿足下列條件：
+- 外包費：340000−300000=40000。引用：GL科目彙總。
+- 保養費：320000−300000=20000。引用：GL科目彙總。
+- 合計差異：660000−600000=60000／10.0%。引用：以預算為分母。
+- 原因：此刻未收到原因支持文件。引用：留待補。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 F03_預算實際差異_v2.xlsx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>F03_預算實際差異.xlsx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="finance-s5">S04｜取得補件後修正說明</h2>
+<p>現在情境時間是 2026/10/06 12:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D04_採購驗收補件與重複確認.docx｜完整原文</strong></p>
+<blockquote>
+<h4>AP108 匯入重複確認</h4>
+<p>文件ID：F-M006</p>
+<p>時間（台北）：2026/10/06 10:00</p>
+<p>文件類型：郵件</p>
+<p>建立／寄件人：應付窗口</p>
+<p>收件／參與人：陳佳穎</p>
+<p>已比對 AP-101 與 AP-108 的供應商、發票附件及匯入紀錄，確認 AP-108 是 AP-101 再次匯入。兩筆目前都未入帳、未付款，沒有過帳或付款憑證。
+請保留原列與 AP-108 對 AP-101 的關聯，標記供覆核，不要直接刪掉舊列。後續清理仍按應付審核流程處理；本信只確認登記重複及目前帳務狀態。</p>
+<h4>外包作業數量增加</h4>
+<p>文件ID：PO-0923</p>
+<p>時間（台北）：2026/09/23 11:00</p>
+<p>文件類型：採購補充單</p>
+<p>建立／寄件人：李志遠</p>
+<p>收件／參與人：採購及財務</p>
+<p>服務：九月外包作業。原核准服務量按預算安排，九月因增加檢查批次追加 20 單位，每單位未稅 2,000 元，追加總額 40,000 元。
+執行期間 09/23–09/28，九月驗收確認 20 單位已完成，無剩餘未交付數量。此追加與原服務量分開記錄，支持本期工作量增加。
+關聯驗收 REC-0928，已入帳支持明細 GL09-041。此單不涉及 AP-101 或 AP-108 的 18,000 元請款。</p>
+<h4>設備保養提前完成</h4>
+<p>文件ID：SV-0930</p>
+<p>時間（台北）：2026/09/30 17:00</p>
+<p>文件類型：驗收單</p>
+<p>建立／寄件人：李志遠</p>
+<p>收件／參與人：陳佳穎</p>
+<p>服務內容：原排十月的設備例行保養，因現场排程空檔提前於 09/30 完成。驗收時間 09/30 17:00，項目與約定範圍相符，未稅金額 20,000 元。
+九月帳務已將這次完成的服務列入費用，關聯明細 GL09-042。這筆屬執行時點移動，沒有改變供應商單價，也不是永久性節省。
+李志遠提供上述營運說明及驗收資訊。財務覆核尚待何佩珊完成；此單沒有授權任何額外調整分錄。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
 
-<h3>F. 保存並交接到下一步</h3>
-<p>保存 <strong>F03_預算實際差異.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>7</strong> 頁；到了該步才加入新附件。</p>
-<h2 id="sec7">S04｜取得補件後修正說明（簡報第 7 頁）</h2>
-<p><strong>工作方法：variance-analysis。</strong> 現在情境時間是 2026/10/06 12:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
-
-
-<h3>A. 先準備這一步的來源</h3>
-<ul>
-<li><a href="data/S04/D04_%E6%8E%A1%E8%B3%BC%E9%A9%97%E6%94%B6%E8%A3%9C%E4%BB%B6%E8%88%87%E9%87%8D%E8%A4%87%E7%A2%BA%E8%AA%8D.md">D04_採購驗收補件與重複確認.docx</a></li>
-</ul>
-<details><summary>查看此時可沿用的前階段來源</summary>
-
-<ul>
-<li><a href="data/S01/D01_%E6%9C%88%E7%B5%90%E9%80%9A%E7%9F%A5%E8%88%87%E5%B8%B3%E8%A1%A8%E7%AF%84%E5%9C%8D.md">D01_月結通知與帳表範圍.docx</a></li>
-<li><a href="data/S01/GL-09_%E7%B8%BD%E5%B8%B3%E9%80%90%E7%AD%86%E6%98%8E%E7%B4%B0.csv">GL-09_總帳逐筆明細.csv</a></li>
-<li><a href="data/S01/BUD-09_%E6%A0%B8%E5%87%86%E9%A0%90%E7%AE%97.csv">BUD-09_核准預算.csv</a></li>
-<li><a href="data/S01/AP_%E5%BE%85%E5%AF%A9%E5%8C%AF%E5%85%A5%E6%B8%85%E5%96%AE.csv">AP_待審匯入清單.csv</a></li>
-<li><a href="data/S01/F-2609_%E5%8E%9F%E5%A7%8B%E6%9C%88%E7%B5%90%E8%BF%BD%E8%B9%A4%E8%A1%A8.csv">F-2609_原始月結追蹤表.csv</a></li>
-<li><a href="data/S02/D02_%E6%87%89%E4%BB%98%E7%99%BB%E8%A8%98%E5%8F%8A%E7%99%BC%E7%A5%A8%E5%89%AF%E6%9C%AC.md">D02_應付登記及發票副本.docx</a></li>
-<li><a href="data/S03/D03_%E9%A0%90%E7%AE%97%E6%A0%B8%E5%87%86%E5%8F%8A%E7%87%9F%E9%81%8B%E8%A9%A2%E5%95%8F.md">D03_預算核准及營運詢問.docx</a></li>
-</ul>
-</details>
-
-<h3>B. 照畫面完成委派</h3>
 <ol>
-<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>F03_預算實際差異.xlsx</strong> 已保留。</li>
-<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
-<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
-<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+<li>留在目前任務；前一步成果 <strong>F03_預算實際差異.xlsx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S04</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D04_採購驗收補件與重複確認.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
 </ol>
-<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S04-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S04-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>C. 可直接貼上的完整提示</h3>
+<h3>委派內容｜variance-analysis</h3>
 <pre><code class="language-text">案例：Finance Cowork 月結差異如何查到可審閱的結果；操作 S04。使用 variance-analysis 的工作方法。
 現在情境時間是 2026/10/06 12:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
 依 PO-0923 與 SV-0930 把 60,000 差異拆成工作量與時點，附支持文件及覆核狀態。對 AP-108 保留重複關係。產出完整差異說明，不提出沒有依據的調整分錄。
@@ -401,21 +1112,14 @@ AP-101 與 AP-108 均為日昇、發票 AB-1001、TWD 18,000。三個相同欄�
 建立可下載的 F04_差異原因送審表.xlsx，內容必須包含：差異項目、支持文件、數量單價、服務及驗收期間、金額、覆核狀態。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
 本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
 </code></pre>
-<p>亦可開啟 <a href="prompts/S04.txt">本步提示文字檔</a>。</p>
-<h3>D. 開啟成果並逐項查證</h3>
-<ol>
-<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F04_差異原因送審表.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
-<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
-<li>檢查成果是否有以下欄位或段落：<strong>差異項目、支持文件、數量單價、服務及驗收期間、金額、覆核狀態</strong>。缺欄位先修訂。</li>
-<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
-<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
-</ol>
-<table>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F04_差異原因送審表.xlsx</strong>。完整成果應包含：<strong>差異項目、支持文件、數量單價、服務及驗收期間、金額、覆核狀態</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>檢查項</th>
-<th>此時應有的內容／結果</th>
-<th>去哪裡核對</th>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -438,54 +1142,55 @@ AP-101 與 AP-108 均為日昇、發票 AB-1001、TWD 18,000。三個相同欄�
 <td>待何佩珊覆核</td>
 <td>截至10/06 12:00</td>
 </tr>
-</tbody></table>
-<h3>E. 不通過時怎麼修</h3>
-<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
-<pre><code class="language-text">請修訂 F04_差異原因送審表.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
-</code></pre>
-<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
-
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
 <p>九月費用差異說明送審稿
 總差額 60,000 已拆為兩項：新增工作量增加外包費 40,000，依 PO-0923 及九月驗收單；原排十月保養提前於九月完成 20,000，依 SV-0930。合計 40,000 + 20,000 = 60,000，皆已包含於 GL-09，尚待何佩珊覆核。
 應付窗口已於 10/06 確認 AP-108 是 AP-101 重複匯入，兩筆尚未付款及入帳，保留原列與重複映射。這項待審清單問題沒有改變本版 GL 差額，不據此製作調整分錄。</p>
-<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
-</details>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 F04_差異原因送審表.xlsx，本步必須滿足下列條件：
+- 工作量：20×2000=40000。引用：PO-0923。
+- 認列時點：原排10月，9月已完成20000。引用：SV-0930。
+- 重複匯入：AP-108對應AP-101，保留兩列。引用：F-M006。
+- 覆核：待何佩珊覆核。引用：截至10/06 12:00。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 F04_差異原因送審表_v2.xlsx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>F04_差異原因送審表.xlsx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="finance-s6">S05｜狀態必須跟著覆核證據走</h2>
+<p>現在情境時間是 2026/10/07 15:10 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D05_覆核紀錄與報告審閱狀態.docx｜完整原文</strong></p>
+<blockquote>
+<h4>F2609 C1及C2覆核</h4>
+<p>文件ID：F-REV007</p>
+<p>時間（台北）：2026/10/07 14:00</p>
+<p>文件類型：覆核紀錄</p>
+<p>建立／寄件人：何佩珊</p>
+<p>收件／參與人：陳佳穎</p>
+<p>11:20 完成 C1 費用截止與明細檢查，GL-09 v1 與支持文件一致，營運費用合計 660,000。覆核資料包括總帳明細、PO-0923 與 SV-0930，AP 待審登記另列。
+14:00 完成 C2 差異分析覆核。預算 600,000 與實際 660,000 的 60,000 差異，由追加工作量 40,000 及保養提前 20,000 支持。
+C3 請接續準備管理報告，說明兩類差異、待審重複單據與需要追蹤的工作。報告完成後仍要給我看才寄出。此覆核不代表 ERP 期間已鎖定。</p>
+<h4>F2609 R1 報告草稿登記</h4>
+<p>文件ID：F-DRAFT007</p>
+<p>時間（台北）：2026/10/07 15:10</p>
+<p>文件類型：工作登記</p>
+<p>建立／寄件人：陳佳穎</p>
+<p>收件／參與人：何佩珊</p>
+<p>報告草稿 F-2609-R1 已備妥待審。內容範圍為九月營運費用實際與預算比較，附差異支持單據與待審 AP 重複關聯。
+寄送清單及寄送動作尚未批准。ERP 期間鎖定狀態沒有提供，我未在草稿中寫成已鎖帳。請覆核報告正文與金額勾稽後再決定發送。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
 
-<h3>F. 保存並交接到下一步</h3>
-<p>保存 <strong>F04_差異原因送審表.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>9</strong> 頁；到了該步才加入新附件。</p>
-<h2 id="sec8">S05｜狀態必須跟著覆核證據走（簡報第 9 頁）</h2>
-<p><strong>工作方法：close-management。</strong> 現在情境時間是 2026/10/07 15:10 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
-
-
-<h3>A. 先準備這一步的來源</h3>
-<ul>
-<li><a href="data/S05/D05_%E8%A6%86%E6%A0%B8%E7%B4%80%E9%8C%84%E8%88%87%E5%A0%B1%E5%91%8A%E5%AF%A9%E9%96%B1%E7%8B%80%E6%85%8B.md">D05_覆核紀錄與報告審閱狀態.docx</a></li>
-</ul>
-<details><summary>查看此時可沿用的前階段來源</summary>
-
-<ul>
-<li><a href="data/S01/D01_%E6%9C%88%E7%B5%90%E9%80%9A%E7%9F%A5%E8%88%87%E5%B8%B3%E8%A1%A8%E7%AF%84%E5%9C%8D.md">D01_月結通知與帳表範圍.docx</a></li>
-<li><a href="data/S01/GL-09_%E7%B8%BD%E5%B8%B3%E9%80%90%E7%AD%86%E6%98%8E%E7%B4%B0.csv">GL-09_總帳逐筆明細.csv</a></li>
-<li><a href="data/S01/BUD-09_%E6%A0%B8%E5%87%86%E9%A0%90%E7%AE%97.csv">BUD-09_核准預算.csv</a></li>
-<li><a href="data/S01/AP_%E5%BE%85%E5%AF%A9%E5%8C%AF%E5%85%A5%E6%B8%85%E5%96%AE.csv">AP_待審匯入清單.csv</a></li>
-<li><a href="data/S01/F-2609_%E5%8E%9F%E5%A7%8B%E6%9C%88%E7%B5%90%E8%BF%BD%E8%B9%A4%E8%A1%A8.csv">F-2609_原始月結追蹤表.csv</a></li>
-<li><a href="data/S02/D02_%E6%87%89%E4%BB%98%E7%99%BB%E8%A8%98%E5%8F%8A%E7%99%BC%E7%A5%A8%E5%89%AF%E6%9C%AC.md">D02_應付登記及發票副本.docx</a></li>
-<li><a href="data/S03/D03_%E9%A0%90%E7%AE%97%E6%A0%B8%E5%87%86%E5%8F%8A%E7%87%9F%E9%81%8B%E8%A9%A2%E5%95%8F.md">D03_預算核准及營運詢問.docx</a></li>
-<li><a href="data/S04/D04_%E6%8E%A1%E8%B3%BC%E9%A9%97%E6%94%B6%E8%A3%9C%E4%BB%B6%E8%88%87%E9%87%8D%E8%A4%87%E7%A2%BA%E8%AA%8D.md">D04_採購驗收補件與重複確認.docx</a></li>
-</ul>
-</details>
-
-<h3>B. 照畫面完成委派</h3>
 <ol>
-<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>F04_差異原因送審表.xlsx</strong> 已保留。</li>
-<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
-<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
-<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+<li>留在目前任務；前一步成果 <strong>F04_差異原因送審表.xlsx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S05</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D05_覆核紀錄與報告審閱狀態.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
 </ol>
-<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S05-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S05-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>C. 可直接貼上的完整提示</h3>
+<h3>委派內容｜close-management</h3>
 <pre><code class="language-text">案例：Finance Cowork 月結差異如何查到可審閱的結果；操作 S05。使用 close-management 的工作方法。
 現在情境時間是 2026/10/07 15:10 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
 依覆核紀錄更新月結追蹤表的草稿。分開 C1 完成、C2 已覆核、C3 報告待核准；列原狀態、新判斷與依據。沒有 ERP 鎖定證據，不宣稱月結已鎖帳。
@@ -494,21 +1199,18 @@ AP-101 與 AP-108 均為日昇、發票 AB-1001、TWD 18,000。三個相同欄�
 建立可下載的 F05_月結狀態變更提案.xlsx，內容必須包含：ID、原始tracker值、覆核證據、證據時間、建議新值、系統寫入狀態。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
 本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
 </code></pre>
-<p>亦可開啟 <a href="prompts/S05.txt">本步提示文字檔</a>。</p>
-<h3>D. 開啟成果並逐項查證</h3>
-<ol>
-<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F05_月結狀態變更提案.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
-<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
-<li>檢查成果是否有以下欄位或段落：<strong>ID、原始tracker值、覆核證據、證據時間、建議新值、系統寫入狀態</strong>。缺欄位先修訂。</li>
-<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
-<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
-</ol>
-<table>
+<h3>若出現原檔修改提案，就在這裡決定</h3>
+<figure><img src="../common/approve.png" alt="操作圖：檢查檔名與 proposed changes，正確時 Approve once，有誤時 Cancel" loading="lazy"><figcaption>操作圖：檢查檔名與 proposed changes，正確時 Approve once，有誤時 Cancel。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
+
+<p>若畫面顯示 <strong>Edit file?</strong>，先確認對象是本步要產出的 <strong>F05_月結狀態變更提案.xlsx</strong> 或你指定的修訂檔，再讀 proposed changes。變更符合本步原文及範圍，選 <strong>Approve once</strong>；檔名或內容不對，選 <strong>Cancel</strong>，用下方修訂提示說明。未出現此視窗時，直接檢查輸出檔案。</p>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F05_月結狀態變更提案.xlsx</strong>。完整成果應包含：<strong>ID、原始tracker值、覆核證據、證據時間、建議新值、系統寫入狀態</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>檢查項</th>
-<th>此時應有的內容／結果</th>
-<th>去哪裡核對</th>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -531,53 +1233,93 @@ AP-101 與 AP-108 均為日昇、發票 AB-1001、TWD 18,000。三個相同欄�
 <td>未知，不推論</td>
 <td>未提供ERP紀錄</td>
 </tr>
-</tbody></table>
-<h3>E. 不通過時怎麼修</h3>
-<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
-<pre><code class="language-text">請修訂 F05_月結狀態變更提案.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
-</code></pre>
-<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
-
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
 <p>10/07 15:10 追蹤表修訂草稿
 C1 原「待覆核」，依 11:20 何佩珊紀錄可判為覆核完成，GL-09 v1 與支持明細相符。C2 依 14:00 紀錄可判為差異分析覆核完成。C3 有 F-2609-R1 草稿，狀態為已準備、發送待核准，不能標為已核准發送。
 原始 tracker 值、證據判斷及提案新值分欄；本課只交付草稿。ERP 鎖定狀態為未知，不能由 C1/C2 覆核推論已鎖帳。</p>
-<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
-</details>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 F05_月結狀態變更提案.xlsx，本步必須滿足下列條件：
+- C1：11:20覆核完成。引用：F-REV007。
+- C2：14:00覆核完成。引用：F-REV007。
+- C3：已準備／發送待核准。引用：F-DRAFT007。
+- ERP鎖帳：未知，不推論。引用：未提供ERP紀錄。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 F05_月結狀態變更提案_v2.xlsx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>F05_月結狀態變更提案.xlsx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="finance-s7">S06｜交付主管可審閱的管理報告</h2>
+<p>現在情境時間是 2026/10/07 15:10 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>這一步沒有新來信或附件。接續剛才的工作，用目前已知資訊完成 <strong>F06_F-2609-R1送審稿.docx</strong>。</p>
+<h3>這一步沿用的原始工作紀錄</h3>
+<p><strong>F-M001｜2026/10/05 08:30｜何佩珊 → 陳佳穎｜九月營運費用月結審閱</strong></p>
+<blockquote>
+<p>佳穎，
+請準備遠景精密 2026 年九月營運費用月結追蹤及管理報告，10/07 16:00 前交我看。本期管理報告只涵蓋附表的營運費用範圍，幣別 TWD，金額單位元，均未稅。
+先完成費用截止檢查，再做實際對預算差異，最後形成報告。C1 的承辦是你、覆核是我，期限 10/06 12:00；C2 依賴 C1，期限 10/07 12:00；C3 依賴 C2，期限 10/07 16:00。
+帳務同事另外給的應付待審清單是作業中資料，不要直接併到總帳。請保留帳表版本與資料截止時間，原因說明要有單據或驗收資料支持，不要只憑聊天說法寫進管理報告。</p>
+</blockquote>
+<p><strong>GL-09-EXPORT｜2026/10/05 08:45｜帳務作業 → 陳佳穎｜GL09 v1 匯出條件</strong></p>
+<blockquote>
+<p>Entity：遠景精密。Ledger：管理帳。科目範圍：營運費用。期間從 2026/09/01 至 2026/09/30，狀態篩選 Posted。幣別 TWD，單位元，未稅。
+明細另見 GL-09_總帳逐筆明細.csv；每列是已入帳費用，包含憑證號、科目、部門、入帳日、支持文件編號及金額。AP 待審清單不在此匯出範圍。該檔為 GL-09 v1，不含 10/05 後收到的單據。
+請按明細自行合計，不依這頁推定帳務已覆核或期間已鎖定。原帳表的存取與修改由帳務角色負責，提供匯出不代表授權新增或沖銷分錄。</p>
+</blockquote>
+<p><strong>AP-101｜2026/10/02 10:15｜應付窗口 → 陳佳穎｜日昇服務請款登記</strong></p>
+<blockquote>
+<p>供應商：日昇。發票號碼 AB-1001。未稅金額 18,000 元，幣別 TWD。收到方式：供應商郵件附件。登記時間 10/02 10:15，狀態待審，入帳憑證空白，付款日期空白。
+供應商附言：九月服務費，請協助審閱。承辦尚未確認驗收與付款條件，也沒有核准付款。此筆保留在 AP 待審工作清單，沒有出現在 GL-09 已入帳明細中。</p>
+</blockquote>
+<p><strong>AP-108｜2026/10/03 09:20｜應付窗口 → 陳佳穎｜日昇服務請款再次匯入</strong></p>
+<blockquote>
+<p>供應商：日昇。發票號碼 AB-1001。未稅金額 18,000 元，幣別 TWD。收到方式：附件批次匯入。匯入時間 10/03 09:20，狀態待審，入帳憑證空白，付款日期空白。
+附檔內容也記載九月服務費。這份登記是系統收到的另一列，尚未決定是否與既有登記相同；原始列號及匯入時間應保留，方便應付窗口查核。</p>
+</blockquote>
+<p><strong>BUD-09｜2026/09/01 09:00｜何佩珊 → 李志遠；陳佳穎｜九月營運費用預算版本一</strong></p>
+<blockquote>
+<p>九月營運費用核准總額 600,000 元，範圍與科目對照見 BUD-09_核准預算.csv。預算以正常服務量及原維護排程編列，費用均以 TWD 未稅金額表達。
+管理報告應比較同一 Entity、期間與科目範圍。請保留核准預算作為比較基準，不因實際數字不同就改寫預算。差異率使用預算作分母；若科目預算為零，另說明而不要強行除零。
+額外工作與提前執行保養應由營運窗口提供資料，核對發生時間、服務數量與驗收。此文件沒有提供全年預測或費用重要性門檻。</p>
+</blockquote>
+<p><strong>F-M006｜2026/10/06 10:00｜應付窗口 → 陳佳穎｜AP108 匯入重複確認</strong></p>
+<blockquote>
+<p>已比對 AP-101 與 AP-108 的供應商、發票附件及匯入紀錄，確認 AP-108 是 AP-101 再次匯入。兩筆目前都未入帳、未付款，沒有過帳或付款憑證。
+請保留原列與 AP-108 對 AP-101 的關聯，標記供覆核，不要直接刪掉舊列。後續清理仍按應付審核流程處理；本信只確認登記重複及目前帳務狀態。</p>
+</blockquote>
+<p><strong>PO-0923｜2026/09/23 11:00｜李志遠 → 採購及財務｜外包作業數量增加</strong></p>
+<blockquote>
+<p>服務：九月外包作業。原核准服務量按預算安排，九月因增加檢查批次追加 20 單位，每單位未稅 2,000 元，追加總額 40,000 元。
+執行期間 09/23–09/28，九月驗收確認 20 單位已完成，無剩餘未交付數量。此追加與原服務量分開記錄，支持本期工作量增加。
+關聯驗收 REC-0928，已入帳支持明細 GL09-041。此單不涉及 AP-101 或 AP-108 的 18,000 元請款。</p>
+</blockquote>
+<p><strong>SV-0930｜2026/09/30 17:00｜李志遠 → 陳佳穎｜設備保養提前完成</strong></p>
+<blockquote>
+<p>服務內容：原排十月的設備例行保養，因現场排程空檔提前於 09/30 完成。驗收時間 09/30 17:00，項目與約定範圍相符，未稅金額 20,000 元。
+九月帳務已將這次完成的服務列入費用，關聯明細 GL09-042。這筆屬執行時點移動，沒有改變供應商單價，也不是永久性節省。
+李志遠提供上述營運說明及驗收資訊。財務覆核尚待何佩珊完成；此單沒有授權任何額外調整分錄。</p>
+</blockquote>
+<p><strong>F-REV007｜2026/10/07 14:00｜何佩珊 → 陳佳穎｜F2609 C1及C2覆核</strong></p>
+<blockquote>
+<p>11:20 完成 C1 費用截止與明細檢查，GL-09 v1 與支持文件一致，營運費用合計 660,000。覆核資料包括總帳明細、PO-0923 與 SV-0930，AP 待審登記另列。
+14:00 完成 C2 差異分析覆核。預算 600,000 與實際 660,000 的 60,000 差異，由追加工作量 40,000 及保養提前 20,000 支持。
+C3 請接續準備管理報告，說明兩類差異、待審重複單據與需要追蹤的工作。報告完成後仍要給我看才寄出。此覆核不代表 ERP 期間已鎖定。</p>
+</blockquote>
+<p><strong>F-DRAFT007｜2026/10/07 15:10｜陳佳穎 → 何佩珊｜F2609 R1 報告草稿登記</strong></p>
+<blockquote>
+<p>報告草稿 F-2609-R1 已備妥待審。內容範圍為九月營運費用實際與預算比較，附差異支持單據與待審 AP 重複關聯。
+寄送清單及寄送動作尚未批准。ERP 期間鎖定狀態沒有提供，我未在草稿中寫成已鎖帳。請覆核報告正文與金額勾稽後再決定發送。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
 
-<h3>F. 保存並交接到下一步</h3>
-<p>保存 <strong>F05_月結狀態變更提案.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>10</strong> 頁；到了該步才加入新附件。</p>
-<h2 id="sec9">S06｜交付主管可審閱的管理報告（簡報第 10 頁）</h2>
-<p><strong>工作方法：management-reporting。</strong> 現在情境時間是 2026/10/07 15:10 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
-
-
-<h3>A. 先準備這一步的來源</h3>
-<p>本步沒有新附件；沿用同一任務中已加入的來源。</p>
-<details><summary>查看此時可沿用的前階段來源</summary>
-
-<ul>
-<li><a href="data/S01/D01_%E6%9C%88%E7%B5%90%E9%80%9A%E7%9F%A5%E8%88%87%E5%B8%B3%E8%A1%A8%E7%AF%84%E5%9C%8D.md">D01_月結通知與帳表範圍.docx</a></li>
-<li><a href="data/S01/GL-09_%E7%B8%BD%E5%B8%B3%E9%80%90%E7%AD%86%E6%98%8E%E7%B4%B0.csv">GL-09_總帳逐筆明細.csv</a></li>
-<li><a href="data/S01/BUD-09_%E6%A0%B8%E5%87%86%E9%A0%90%E7%AE%97.csv">BUD-09_核准預算.csv</a></li>
-<li><a href="data/S01/AP_%E5%BE%85%E5%AF%A9%E5%8C%AF%E5%85%A5%E6%B8%85%E5%96%AE.csv">AP_待審匯入清單.csv</a></li>
-<li><a href="data/S01/F-2609_%E5%8E%9F%E5%A7%8B%E6%9C%88%E7%B5%90%E8%BF%BD%E8%B9%A4%E8%A1%A8.csv">F-2609_原始月結追蹤表.csv</a></li>
-<li><a href="data/S02/D02_%E6%87%89%E4%BB%98%E7%99%BB%E8%A8%98%E5%8F%8A%E7%99%BC%E7%A5%A8%E5%89%AF%E6%9C%AC.md">D02_應付登記及發票副本.docx</a></li>
-<li><a href="data/S03/D03_%E9%A0%90%E7%AE%97%E6%A0%B8%E5%87%86%E5%8F%8A%E7%87%9F%E9%81%8B%E8%A9%A2%E5%95%8F.md">D03_預算核准及營運詢問.docx</a></li>
-<li><a href="data/S04/D04_%E6%8E%A1%E8%B3%BC%E9%A9%97%E6%94%B6%E8%A3%9C%E4%BB%B6%E8%88%87%E9%87%8D%E8%A4%87%E7%A2%BA%E8%AA%8D.md">D04_採購驗收補件與重複確認.docx</a></li>
-<li><a href="data/S05/D05_%E8%A6%86%E6%A0%B8%E7%B4%80%E9%8C%84%E8%88%87%E5%A0%B1%E5%91%8A%E5%AF%A9%E9%96%B1%E7%8B%80%E6%85%8B.md">D05_覆核紀錄與報告審閱狀態.docx</a></li>
-</ul>
-</details>
-
-<h3>B. 照畫面完成委派</h3>
 <ol>
-<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>F05_月結狀態變更提案.xlsx</strong> 已保留。</li>
-<li>在 <strong>Follow up</strong> 貼上以下提示並送出；本步不重傳相同附件。</li>
-<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
-<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+<li>留在目前任務；前一步成果 <strong>F05_月結狀態變更提案.xlsx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>本步直接沿用任務中已提供的附件，無需重新上傳。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
 </ol>
-<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S06-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S06-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>C. 可直接貼上的完整提示</h3>
+<h3>委派內容｜management-reporting</h3>
 <pre><code class="language-text">案例：Finance Cowork 月結差異如何查到可審閱的結果；操作 S06。使用 management-reporting 的工作方法。
 現在情境時間是 2026/10/07 15:10 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
 依已覆核差異，寫管理報告：本期費用、差異來源、時點因素、待審重複單據及下一步。附金額核對表。不要把 20,000 時點差異說成永久節省，也不推算全年數字。
@@ -586,21 +1328,14 @@ C1 原「待覆核」，依 11:20 何佩珊紀錄可判為覆核完成，GL-09 v
 建立可下載的 F06_F-2609-R1送審稿.docx，內容必須包含：報告期間及口徑、費用表、差異說明、支持來源、AP例外、審查與發送狀態。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
 本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
 </code></pre>
-<p>亦可開啟 <a href="prompts/S06.txt">本步提示文字檔</a>。</p>
-<h3>D. 開啟成果並逐項查證</h3>
-<ol>
-<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F06_F-2609-R1送審稿.docx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
-<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
-<li>檢查成果是否有以下欄位或段落：<strong>報告期間及口徑、費用表、差異說明、支持來源、AP例外、審查與發送狀態</strong>。缺欄位先修訂。</li>
-<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
-<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
-</ol>
-<table>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F06_F-2609-R1送審稿.docx</strong>。完整成果應包含：<strong>報告期間及口徑、費用表、差異說明、支持來源、AP例外、審查與發送狀態</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>檢查項</th>
-<th>此時應有的內容／結果</th>
-<th>去哪裡核對</th>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -618,55 +1353,47 @@ C1 原「待覆核」，依 11:20 何佩珊紀錄可判為覆核完成，GL-09 v
 <td>尚待核准</td>
 <td>F-DRAFT007</td>
 </tr>
-</tbody></table>
-<h3>E. 不通過時怎麼修</h3>
-<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
-<pre><code class="language-text">請修訂 F06_F-2609-R1送審稿.docx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
-</code></pre>
-<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
-
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
 <p>F-2609-R1 管理報告送審稿
 九月營運費用為 TWD 660,000 未稅，較核准預算 600,000 高 60,000，差異率 10.0%。40,000 來自工作量增加，20,000 來自保養提前完成；支持文件與差異說明已由何佩珊於 10/07 覆核。時點因素僅改變本期費用，不表示永久節省或全年費用變化。
 AP-108 的重複匯入已確認，兩筆仍屬未入帳待審資料，應保留追溯並由應付流程處理。請何佩珊審查本報告與發送範圍；本稿尚未取得發送核准。</p>
-<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
-</details>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 F06_F-2609-R1送審稿.docx，本步必須滿足下列條件：
+- 差異：60000=40000+20000。引用：F04。
+- 支持覆核：引用10/07兩次覆核。引用：F-REV007。
+- 發送：尚待核准。引用：F-DRAFT007。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 F06_F-2609-R1送審稿_v2.docx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>F06_F-2609-R1送審稿.docx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="finance-s8">S07｜期後新單據要重開哪一步</h2>
+<p>現在情境時間是 2026/10/08 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D06_期後服務請款.docx｜完整原文</strong></p>
+<blockquote>
+<h4>補送服務單請確認月份</h4>
+<p>文件ID：SV-1008</p>
+<p>時間（台北）：2026/10/08 09:00</p>
+<p>文件類型：供應商郵件</p>
+<p>建立／寄件人：供應商窗口</p>
+<p>收件／參與人：陳佳穎</p>
+<p>您好，
+補送一張服務單，未稅金額 12,000 元。現場同事說可能是九月的支援工作，但目前附件只有工作說明，尚未補驗收日期。我還在請服務人員確認哪一天完成。
+請先協助登記收到這份資料，若需要服務期間、驗收窗口或採購單編號，請列出我再補。現在沒有可提供的正式驗收回覆。
+附件 SV-1008 沒有入帳憑證，也未提供付款核准。請勿將我的「可能是九月」當成已確認的認列月份。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
 
-<h3>F. 保存並交接到下一步</h3>
-<p>保存 <strong>F06_F-2609-R1送審稿.docx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>11</strong> 頁；到了該步才加入新附件。</p>
-<h2 id="sec10">S07｜期後新單據要重開哪一步（簡報第 11 頁）</h2>
-<p><strong>工作方法：journal-entry-preparation。</strong> 現在情境時間是 2026/10/08 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
-
-
-<h3>A. 先準備這一步的來源</h3>
-<ul>
-<li><a href="data/S07/D06_%E6%9C%9F%E5%BE%8C%E6%9C%8D%E5%8B%99%E8%AB%8B%E6%AC%BE.md">D06_期後服務請款.docx</a></li>
-</ul>
-<details><summary>查看此時可沿用的前階段來源</summary>
-
-<ul>
-<li><a href="data/S01/D01_%E6%9C%88%E7%B5%90%E9%80%9A%E7%9F%A5%E8%88%87%E5%B8%B3%E8%A1%A8%E7%AF%84%E5%9C%8D.md">D01_月結通知與帳表範圍.docx</a></li>
-<li><a href="data/S01/GL-09_%E7%B8%BD%E5%B8%B3%E9%80%90%E7%AD%86%E6%98%8E%E7%B4%B0.csv">GL-09_總帳逐筆明細.csv</a></li>
-<li><a href="data/S01/BUD-09_%E6%A0%B8%E5%87%86%E9%A0%90%E7%AE%97.csv">BUD-09_核准預算.csv</a></li>
-<li><a href="data/S01/AP_%E5%BE%85%E5%AF%A9%E5%8C%AF%E5%85%A5%E6%B8%85%E5%96%AE.csv">AP_待審匯入清單.csv</a></li>
-<li><a href="data/S01/F-2609_%E5%8E%9F%E5%A7%8B%E6%9C%88%E7%B5%90%E8%BF%BD%E8%B9%A4%E8%A1%A8.csv">F-2609_原始月結追蹤表.csv</a></li>
-<li><a href="data/S02/D02_%E6%87%89%E4%BB%98%E7%99%BB%E8%A8%98%E5%8F%8A%E7%99%BC%E7%A5%A8%E5%89%AF%E6%9C%AC.md">D02_應付登記及發票副本.docx</a></li>
-<li><a href="data/S03/D03_%E9%A0%90%E7%AE%97%E6%A0%B8%E5%87%86%E5%8F%8A%E7%87%9F%E9%81%8B%E8%A9%A2%E5%95%8F.md">D03_預算核准及營運詢問.docx</a></li>
-<li><a href="data/S04/D04_%E6%8E%A1%E8%B3%BC%E9%A9%97%E6%94%B6%E8%A3%9C%E4%BB%B6%E8%88%87%E9%87%8D%E8%A4%87%E7%A2%BA%E8%AA%8D.md">D04_採購驗收補件與重複確認.docx</a></li>
-<li><a href="data/S05/D05_%E8%A6%86%E6%A0%B8%E7%B4%80%E9%8C%84%E8%88%87%E5%A0%B1%E5%91%8A%E5%AF%A9%E9%96%B1%E7%8B%80%E6%85%8B.md">D05_覆核紀錄與報告審閱狀態.docx</a></li>
-</ul>
-</details>
-
-<h3>B. 照畫面完成委派</h3>
 <ol>
-<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>F06_F-2609-R1送審稿.docx</strong> 已保留。</li>
-<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
-<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
-<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+<li>留在目前任務；前一步成果 <strong>F06_F-2609-R1送審稿.docx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S07</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D06_期後服務請款.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
 </ol>
-<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S07-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S07-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>C. 可直接貼上的完整提示</h3>
+<h3>委派內容｜journal-entry-preparation</h3>
 <pre><code class="language-text">案例：Finance Cowork 月結差異如何查到可審閱的結果；操作 S07。使用 journal-entry-preparation 的工作方法。
 現在情境時間是 2026/10/08 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
 針對 SV-1008 建立期後事項調查單，保留原差異說明已覆核版本，列驗收日期、服務期間及核准缺口。說明哪些結論可能受影響，待資料確認再準備調整分錄草稿。
@@ -675,21 +1402,14 @@ AP-108 的重複匯入已確認，兩筆仍屬未入帳待審資料，應保留�
 建立可下載的 F07_期後單據調查單.docx，內容必須包含：新單據ID、金額、聲稱期間、缺失證據、受影響工作、待確認人、修訂觸發條件。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
 本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
 </code></pre>
-<p>亦可開啟 <a href="prompts/S07.txt">本步提示文字檔</a>。</p>
-<h3>D. 開啟成果並逐項查證</h3>
-<ol>
-<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F07_期後單據調查單.docx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
-<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
-<li>檢查成果是否有以下欄位或段落：<strong>新單據ID、金額、聲稱期間、缺失證據、受影響工作、待確認人、修訂觸發條件</strong>。缺欄位先修訂。</li>
-<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
-<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
-</ol>
-<table>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F07_期後單據調查單.docx</strong>。完整成果應包含：<strong>新單據ID、金額、聲稱期間、缺失證據、受影響工作、待確認人、修訂觸發條件</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>檢查項</th>
-<th>此時應有的內容／結果</th>
-<th>去哪裡核對</th>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -707,56 +1427,53 @@ AP-108 的重複匯入已確認，兩筆仍屬未入帳待審資料，應保留�
 <td>確認期間與核准後評估C1/C2/C3</td>
 <td>不直接改帳</td>
 </tr>
-</tbody></table>
-<h3>E. 不通過時怎麼修</h3>
-<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
-<pre><code class="language-text">請修訂 F07_期後單據調查單.docx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
-</code></pre>
-<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
-
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
 <p>SV-1008 期後事項調查單
 10/08 收到 TWD 12,000 服務單，供應商表示可能屬九月，但尚無驗收日期。需確認實際服務期間、驗收證據、適用會計處理與有權人的調整核准。未取得資料前維持原 GL 660,000 與原差異說明版本，保留 F-2609-R1 為尚未核准發送的草稿。
 可能受影響項目為 C1 截止檢查、C2 費用差異與 C3 報告；需依確認結果重檢，不直接加成 672,000，也不宣稱已重開或已鎖定 ERP 期間。</p>
-<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
-</details>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 F07_期後單據調查單.docx，本步必須滿足下列條件：
+- SV-1008：12000，驗收日期未知。引用：SV-1008。
+- 目前GL：維持660000，非672000。引用：GL-09 v1。
+- 重檢：確認期間與核准後評估C1/C2/C3。引用：不直接改帳。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 F07_期後單據調查單_v2.docx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>F07_期後單據調查單.docx</strong>（若有修訂，保存 v2）。接著往下進入下一個工作事件，繼續使用這個 Cowork 任務。</p>
+<h2 id="finance-s9">S08｜結業：主管要今日直接付款</h2>
+<p>現在情境時間是 2026/10/08 10:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+<p>你現在收到下列工作資料，先讀事件與原文，再按圖委派這一步。</p>
+<p><strong>D07_待付款例外要求.docx｜完整原文</strong></p>
+<blockquote>
+<h4>日昇請款能否今天先付</h4>
+<p>文件ID：F-M009</p>
+<p>時間（台北）：2026/10/08 10:00</p>
+<p>文件類型：內部訊息</p>
+<p>建立／寄件人：營運窗口</p>
+<p>收件／參與人：陳佳穎</p>
+<p>供應商在追日昇的兩列請款，我看到 AP-101 與 AP-108 都是 18,000，希望今天就先安排，重複問題之後再說。
+我沒有附付款審批，也沒有新的驗收文件。請財務回覆這兩列目前可以處理到哪裡、還缺哪些核准，讓我與供應商說明。
+我手上的月結報告只是營運費用說明，並非付款指示。</p>
+</blockquote>
+<h3>此刻仍有效的既有依據</h3>
+<p>以下原文在這一步仍會影響判斷，直接列在此處。</p>
+<p><strong>F-M006｜2026/10/06 10:00｜應付窗口 → 陳佳穎｜AP108 匯入重複確認</strong></p>
+<blockquote>
+<p>已比對 AP-101 與 AP-108 的供應商、發票附件及匯入紀錄，確認 AP-108 是 AP-101 再次匯入。兩筆目前都未入帳、未付款，沒有過帳或付款憑證。
+請保留原列與 AP-108 對 AP-101 的關聯，標記供覆核，不要直接刪掉舊列。後續清理仍按應付審核流程處理；本信只確認登記重複及目前帳務狀態。</p>
+</blockquote>
+<h3>現在照圖操作</h3>
+<figure><img src="../common/workspace.png" alt="操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案" loading="lazy"><figcaption>操作圖：在目前任務輸入後續指示，完成後開啟輸出檔案。Microsoft 官方實際畫面加註；圖中檔名為官方示例，實作請選本步指定檔名。</figcaption></figure>
 
-<h3>F. 保存並交接到下一步</h3>
-<p>保存 <strong>F07_期後單據調查單.docx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>12</strong> 頁；到了該步才加入新附件。</p>
-<h2 id="sec11">S08｜結業：主管要今日直接付款（簡報第 12 頁）</h2>
-<p><strong>工作方法：invoice-expense-review。</strong> 現在情境時間是 2026/10/08 10:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
-
-
-<h3>A. 先準備這一步的來源</h3>
-<ul>
-<li><a href="data/S08/D07_%E5%BE%85%E4%BB%98%E6%AC%BE%E4%BE%8B%E5%A4%96%E8%A6%81%E6%B1%82.md">D07_待付款例外要求.docx</a></li>
-</ul>
-<details><summary>查看此時可沿用的前階段來源</summary>
-
-<ul>
-<li><a href="data/S01/D01_%E6%9C%88%E7%B5%90%E9%80%9A%E7%9F%A5%E8%88%87%E5%B8%B3%E8%A1%A8%E7%AF%84%E5%9C%8D.md">D01_月結通知與帳表範圍.docx</a></li>
-<li><a href="data/S01/GL-09_%E7%B8%BD%E5%B8%B3%E9%80%90%E7%AD%86%E6%98%8E%E7%B4%B0.csv">GL-09_總帳逐筆明細.csv</a></li>
-<li><a href="data/S01/BUD-09_%E6%A0%B8%E5%87%86%E9%A0%90%E7%AE%97.csv">BUD-09_核准預算.csv</a></li>
-<li><a href="data/S01/AP_%E5%BE%85%E5%AF%A9%E5%8C%AF%E5%85%A5%E6%B8%85%E5%96%AE.csv">AP_待審匯入清單.csv</a></li>
-<li><a href="data/S01/F-2609_%E5%8E%9F%E5%A7%8B%E6%9C%88%E7%B5%90%E8%BF%BD%E8%B9%A4%E8%A1%A8.csv">F-2609_原始月結追蹤表.csv</a></li>
-<li><a href="data/S02/D02_%E6%87%89%E4%BB%98%E7%99%BB%E8%A8%98%E5%8F%8A%E7%99%BC%E7%A5%A8%E5%89%AF%E6%9C%AC.md">D02_應付登記及發票副本.docx</a></li>
-<li><a href="data/S03/D03_%E9%A0%90%E7%AE%97%E6%A0%B8%E5%87%86%E5%8F%8A%E7%87%9F%E9%81%8B%E8%A9%A2%E5%95%8F.md">D03_預算核准及營運詢問.docx</a></li>
-<li><a href="data/S04/D04_%E6%8E%A1%E8%B3%BC%E9%A9%97%E6%94%B6%E8%A3%9C%E4%BB%B6%E8%88%87%E9%87%8D%E8%A4%87%E7%A2%BA%E8%AA%8D.md">D04_採購驗收補件與重複確認.docx</a></li>
-<li><a href="data/S05/D05_%E8%A6%86%E6%A0%B8%E7%B4%80%E9%8C%84%E8%88%87%E5%A0%B1%E5%91%8A%E5%AF%A9%E9%96%B1%E7%8B%80%E6%85%8B.md">D05_覆核紀錄與報告審閱狀態.docx</a></li>
-<li><a href="data/S07/D06_%E6%9C%9F%E5%BE%8C%E6%9C%8D%E5%8B%99%E8%AB%8B%E6%AC%BE.md">D06_期後服務請款.docx</a></li>
-</ul>
-</details>
-
-<h3>B. 照畫面完成委派</h3>
 <ol>
-<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>F07_期後單據調查單.docx</strong> 已保留。</li>
-<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
-<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
-<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+<li>留在目前任務；前一步成果 <strong>F07_期後單據調查單.docx</strong> 已在這段任務中，繼續使用 <strong>Follow up</strong> 輸入區。</li>
+<li>在加號的上傳選項中選擇本課 <strong>data/S08</strong> 的下列檔案，等所有附件名稱出現、上傳完成：<strong>D07_待付款例外要求.docx</strong>。</li>
+<li>複製下方完整提示，貼入輸入區並送出。</li>
+<li>若 Cowork 問到來源沒有的資料，直接回覆「這個欄位尚無來源，請標為待確認，先完成其餘有依據的內容」。</li>
 </ol>
-<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S08-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S08-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
-
-
-<h3>C. 可直接貼上的完整提示</h3>
+<h3>委派內容｜invoice-expense-review</h3>
 <pre><code class="language-text">案例：Finance Cowork 月結差異如何查到可審閱的結果；操作 S08。使用 invoice-expense-review 的工作方法。
 現在情境時間是 2026/10/08 10:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
 交付待付款例外清單與回覆草稿，指出重複確認、未入帳狀態及必要處理。不要以本課的差異報告作為付款授權；保留 AP-101、AP-108 的追溯關係。
@@ -765,21 +1482,14 @@ AP-108 的重複匯入已確認，兩筆仍屬未入帳待審資料，應保留�
 建立可下載的 F08_付款例外與回覆.docx，內容必須包含：付款請求、原單據及重複映射、未具備條件、處理owner、回覆全文。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
 本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
 </code></pre>
-<p>亦可開啟 <a href="prompts/S08.txt">本步提示文字檔</a>。</p>
-<h3>D. 開啟成果並逐項查證</h3>
-<ol>
-<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F08_付款例外與回覆.docx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
-<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
-<li>檢查成果是否有以下欄位或段落：<strong>付款請求、原單據及重複映射、未具備條件、處理owner、回覆全文</strong>。缺欄位先修訂。</li>
-<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
-<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
-</ol>
-<table>
+<h3>打開成果，直接用下表檢查</h3>
+<p>在 Cowork 的 <strong>Outputs／輸出檔案區</strong> 點開 <strong>F08_付款例外與回覆.docx</strong>。完整成果應包含：<strong>付款請求、原單據及重複映射、未具備條件、處理owner、回覆全文</strong>。表內已列本步應出現的數值、狀態與判斷；引用標記供成果保留來源，檢查時直接使用下表已列的內容。</p>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>檢查項</th>
-<th>此時應有的內容／結果</th>
-<th>去哪裡核對</th>
+<th>檢查項目</th>
+<th>成果現在應呈現的內容</th>
+<th>引用標記</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -797,122 +1507,77 @@ AP-108 的重複匯入已確認，兩筆仍屬未入帳待審資料，應保留�
 <td>沒有付款核准或實際付款證據</td>
 <td>F-M009</td>
 </tr>
-</tbody></table>
-<h3>E. 不通過時怎麼修</h3>
-<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
-<pre><code class="language-text">請修訂 F08_付款例外與回覆.docx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
-</code></pre>
-<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
-
+</tbody></table></div>
+<h3>完成後應能看到的內容</h3>
 <p>付款例外清單與回覆草稿
 AP-101／AP-108 對應同一發票 AB-1001、18,000 元，AP-108 已確認重複匯入。兩列未入帳且尚未付款，需應付承辦依正式流程保留追溯、處理重複及取得付款所需審核。
 回覆：目前資料支持重複例外，不能依費用差異報告直接支付兩筆。已整理原單據與重複關係供應付覆核；完成必要處理與付款核准後，再由授權人執行。</p>
-<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
-</details>
-
-<h3>F. 保存並交接到下一步</h3>
-<p>提交 <strong>F08_付款例外與回覆.docx</strong> 與前七步成果；用下方驗收表說明哪些工作已完成、哪些仍須人員決定。</p>
-<h2 id="sec12">05｜結業驗收與補做方法</h2>
-<table>
+<p>參考措辭可以不同；請保留完整段落、必要欄位及逐筆資料。若只有幾句聊天回覆，請補送「請依指定檔名建立完整的可下載檔案，包含本步全部欄位、正文及明細」。</p>
+<h3>有錯就在同一任務修訂</h3>
+<p>以下修訂提示已帶入本步的實際檢查條件；需要修正時，直接貼入 Follow up。</p>
+<pre><code class="language-text">請修訂 F08_付款例外與回覆.docx，本步必須滿足下列條件：
+- 重複：AP-108是AP-101重複。引用：F-M006。
+- 金額：同一發票18000，不是兩筆可付。引用：AP清單。
+- 執行：沒有付款核准或實際付款證據。引用：F-M009。
+請重新檢查上述條件及相關段落、數值與狀態。有誤的欄位保留原值、新值與來源時間；已正確部分保留。只使用本步截止時間以前、已在任務中提供的資料。輸出 F08_付款例外與回覆_v2.docx，並列出實際修改內容。
+</code></pre>
+<p>成果通過本步檢查後，在檔案預覽中使用 <strong>Download／下載</strong> 保存 <strong>F08_付款例外與回覆.docx</strong>（若有修訂，保存 v2）。本案例完成。保留這八步成果及修訂版，作為交接與課堂實作成果。</p>
+<h2 id="finance-s10">做完這個案件，你交付什麼</h2>
+<div class="table-scroll"><table>
 <thead>
 <tr>
-<th>驗收</th>
-<th>學員需展示的證據</th>
-<th>不通過時補做</th>
+<th>步驟</th>
+<th>交付檔案</th>
+<th>內容要完整到什麼程度</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>來源</td>
-<td>指出每個重大數值或狀態的文件ID及時間</td>
-<td>補上缺失引用；不能以AI回答當原始證據</td>
+<td>S01</td>
+<td>F01_月結工作清單.xlsx</td>
+<td>來源名稱、版本、期間、含稅口徑、ID、owner、覆核人、期限、依賴、原始狀態</td>
 </tr>
 <tr>
-<td>流程</td>
-<td>展示八個步驟如何接續，不重置前面未完成事項</td>
-<td>回到遺漏步驟補來源，再修訂後續成果</td>
+<td>S02</td>
+<td>F02_AP疑似重複覆核.xlsx</td>
+<td>兩個AP_ID、供應商、發票號碼、金額、匯入批號、入帳付款狀態、需確認證據</td>
 </tr>
 <tr>
-<td>例外</td>
-<td>辨認第八步的不當要求，保留正確工作與待決部分</td>
-<td>逐項比對原批准範圍與新要求</td>
+<td>S03</td>
+<td>F03_預算實際差異.xlsx</td>
+<td>科目、實際公式、預算、差額、差異率公式、原因待補、支持文件ID</td>
 </tr>
 <tr>
-<td>成果</td>
-<td>八份可下載完整檔案，有必要欄位及正文</td>
-<td>按指定欄位補齊，不以幾行摘要交件</td>
+<td>S04</td>
+<td>F04_差異原因送審表.xlsx</td>
+<td>差異項目、支持文件、數量單價、服務及驗收期間、金額、覆核狀態</td>
 </tr>
 <tr>
-<td>人工判斷</td>
-<td>分開請求、草稿、核准、執行及使用者驗證</td>
-<td>補具名及時間；沒有證據的狀態退回待確認</td>
-</tr>
-</tbody></table>
-<p>每項 0–2 分：0 為缺失或無法查證；1 為指出問題但成果未改；2 為來源、判斷及修訂後成果一致。至少 8 分且不得把未核准動作或未執行測試標為完成。此表是課堂評量規格，尚不代表已在你的 Cowork 租戶測試通過。</p>
-<h2 id="sec13">06｜常見卡點與處理</h2>
-<table>
-<thead>
-<tr>
-<th>看到的情況</th>
-<th>現在怎麼做</th>
-<th>恢復檢查</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Plugin 找不到</td>
-<td>回 Customize → Plugins，請講師核對帳戶與部署範圍</td>
-<td>以該插件可見及本步工作方法可使用為課前條件</td>
+<td>S05</td>
+<td>F05_月結狀態變更提案.xlsx</td>
+<td>ID、原始tracker值、覆核證據、證據時間、建議新值、系統寫入狀態</td>
 </tr>
 <tr>
-<td>附件未出現</td>
-<td>確認上傳已完成；重新用＋選文件，不貼本機路徑</td>
-<td>比對實際附件檔名</td>
+<td>S06</td>
+<td>F06_F-2609-R1送審稿.docx</td>
+<td>報告期間及口徑、費用表、差異說明、支持來源、AP例外、審查與發送狀態</td>
 </tr>
 <tr>
-<td>引用了未來事件</td>
-<td>列錯誤來源日期，要求依本步截止時間重寫</td>
-<td>結果不再包含未發生的批准或完成紀錄</td>
+<td>S07</td>
+<td>F07_期後單據調查單.docx</td>
+<td>新單據ID、金額、聲稱期間、缺失證據、受影響工作、待確認人、修訂觸發條件</td>
 </tr>
 <tr>
-<td>只有聊天摘要</td>
-<td>要求建立指定檔名的完整Word或Excel成果</td>
-<td>開啟檔案檢查欄位、正文及逐列資料</td>
+<td>S08</td>
+<td>F08_付款例外與回覆.docx</td>
+<td>付款請求、原單據及重複映射、未具備條件、處理owner、回覆全文</td>
 </tr>
-<tr>
-<td>查不到缺件</td>
-<td>保留待確認，具名列出要問誰與缺什麼</td>
-<td>不擅自補金額、權限、日期或根因</td>
-</tr>
-<tr>
-<td>修改原檔錯誤</td>
-<td>依圖3取消並指明錯誤檔名或範圍</td>
-<td>收到新提案後再次逐項檢查</td>
-</tr>
-</tbody></table>
-<h2 id="sec14">07｜本 Plugin 的 Skills 索引</h2>
-<p>本課每步只選用與當下工作相關的方法。其餘 Skills 可依下一個真實工作需要選用：</p>
+</tbody></table></div>
+<p>現場展示八份成果，說明事件如何改變判斷、哪些工作已具備完成證據、哪些仍待決定。完整度、來源與時間、例外處理、狀態判斷及修訂品質各 0–2 分；至少 8 分，且不得把未核准或未執行事項標為完成。此為課堂評量條件，尚不代表已在你的租戶實測。</p>
+<h2 id="finance-s11">產品來源與版本資訊</h2>
+<p>2026-09-14 連續閱讀版。原情境簡報、案例時間與工作先後順序沿用既定課程。所有必要教學內容均已在本課呈現。以下網址僅供教材維護與延伸查閱。</p>
 <ul>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/account-reconciliation/SKILL.md">account-reconciliation</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/audit-evidence-support/SKILL.md">audit-evidence-support</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/budget-forecast-planning/SKILL.md">budget-forecast-planning</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/cash-liquidity-forecast/SKILL.md">cash-liquidity-forecast</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/close-management/SKILL.md">close-management</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/dcf-valuation/SKILL.md">dcf-valuation</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/financial-analysis/SKILL.md">financial-analysis</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/financial-model-building/SKILL.md">financial-model-building</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/financial-statement-preparation/SKILL.md">financial-statement-preparation</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/internal-control-testing/SKILL.md">internal-control-testing</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/invoice-expense-review/SKILL.md">invoice-expense-review</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/journal-entry-preparation/SKILL.md">journal-entry-preparation</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/management-reporting/SKILL.md">management-reporting</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/variance-analysis/SKILL.md">variance-analysis</a></li>
-<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/finance-cowork/skills/working-capital-review/SKILL.md">working-capital-review</a></li>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/use-cowork">Microsoft Cowork 使用指南</a></li>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-customize">Microsoft Customize 指南</a></li>
+<li><a href="https://techcommunity.microsoft.com/blog/microsoft-copilot-blog/cowork-in-progress/4511672">Microsoft Cowork in progress：操作圖原始產品畫面</a></li>
 </ul>
-<h2 id="sec15">08｜介面來源與教材適用範圍</h2>
-<ul>
-<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/use-cowork">Microsoft Cowork 使用指南</a>：新增任務、附件、後續指示、檔案預覽及下載。</li>
-<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-customize">Microsoft Cowork 自訂指南</a>：Skills 與 Plugins 入口及管理。</li>
-<li><a href="https://techcommunity.microsoft.com/blog/microsoft-copilot-blog/cowork-in-progress/4511672">Microsoft 官方 Cowork in progress</a>：本手冊四張操作圖的原始產品畫面，含截至 2026-09-11 的文章更新。</li>
-<li><a href="https://github.com/lwokeray/cowork-plugins">本課 Plugin 原始程式庫</a>：插件工作方法與部署套件。</li>
-</ul>
-<p>介面核對日：2026-09-14。手冊圖為官方畫面加註，原圖範例人名與檔案名稱保持官方示例；案例成果以本課委派產出為準。課程版號與簡報故事、步驟及截止時間一致；本次重建原始資料及操作手冊，沒有宣稱已完成租戶執行。</p>
-<footer>完整圖解教材 · 2026-09-14 · 官方產品畫面加註／合成練習資料</footer></main><script>document.querySelectorAll('pre').forEach(p=>{const b=document.createElement('button');b.className='copy';b.textContent='複製完整提示';b.onclick=async()=>{const t=p.querySelector('code').textContent;try{await navigator.clipboard.writeText(t);b.textContent='已複製'}catch(e){const r=document.createRange();r.selectNodeContents(p.querySelector('code'));const s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent='已選取，請按 Ctrl+C'}};p.prepend(b)});</script></body></html>
+<footer>2026-09-14 連續閱讀版。官方產品畫面加註，業務資料為合成案例。</footer></main><script>document.querySelectorAll('pre').forEach(p=>{const b=document.createElement('button');b.className='copy';b.textContent=p.textContent.startsWith('請修訂')?'複製修訂提示':'複製委派提示';b.onclick=async()=>{const t=p.querySelector('code').textContent;try{await navigator.clipboard.writeText(t);b.textContent='已複製'}catch(e){const r=document.createRange();r.selectNodeContents(p.querySelector('code'));const s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent='已選取，請按 Ctrl+C'}};p.prepend(b)});</script></body></html>
