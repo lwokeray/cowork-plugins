@@ -3,9 +3,17 @@ name: close-management
 description: 依據 Microsoft 365 中的 Close calendar、Checklist、工作底稿、訊息與核准證據，規劃及追蹤月結、季結或年結工作。 適用於建立 Close plan、依賴關係、Critical path、Blocker register、Daily close status 與結帳回顧；不適用於計算個別 Journal Entry、執行 Account Reconciliation、產製正式 Financial Statements，或未經核准直接鎖定會計期間。
 metadata:
   author: lwokeray
-  version: 1.0.1
+  version: "1.0.2"
 license: MIT
 ---
+
+## 執行前提與交付方式
+
+本 Plugin 提供工作方法，不會自行授予資料存取或系統操作能力。下文列出的 Work IQ、MCP 或應用操作，僅在本次工作環境實際提供對應工具、連線與使用者權限時適用；不得依工具名稱猜測路徑、欄位或成功結果。
+
+沒有即時工具時，可用使用者提供或已授權匯出的資料完成本 Skill 的分析與草稿，保留資料日期、版本與無法即時驗證的範圍。政策拒絕或權限不足時停止該操作，不透過其他帳號、工具或瀏覽器繞過；仍交付可完成的部分。
+
+使用者要求可下載的草稿文件時，完成該文件屬於所請交付物；「草稿」或「不要發布」不等於禁止產生供本人審閱的新檔。明確要求只讀或不建立檔案時遵守其限制。修改共用原檔、寫入正式系統、寄送、排程與發布，仍依後文的目標、差異、核准及執行後驗證規則處理；產生草稿不代表完成這些動作。
 
 ## Overview
 
@@ -90,6 +98,8 @@ Skill 只管理結帳工作的順序、證據與狀態。個別分錄、對帳�
 
 ### 階段四：驗證狀態
 
+狀態檢視分開三欄：`recorded_status` 是來源原值，`verified_assessment` 是本次依證據所作判斷，`proposed_status` 是有依據且待核准的變更建議。找不到底稿不能推定其不存在，更不能自動覆寫原狀態。缺乏當期完成證據時，查證判斷為 `Evidence missing`，不據此計入「已驗證完成」；若計算來源紀錄完成率，須明確標示其口徑。
+
 依下列證據更新：
 
 - `Complete`：交付物存在、內容可讀、期間與 Entity 正確，且指定 Reviewer／Approval 已完成。
@@ -158,8 +168,8 @@ Close：<Entity / Ledger / Period>
 需要決策：<具體事項或無>
 ```
 
-| Task | Owner | Due | Status | Dependency | Evidence | Blocker / Impact | Next action |
-|---|---|---|---|---|---|---|---|
+| Task | Owner | Due | recorded_status | verified_assessment | proposed_status | Dependency | Evidence | Blocker / Impact | Next action |
+|---|---|---|---|---|---|---|---|---|---|
 
 | Critical blocker | Scope / Amount | Age | Owner | Decision needed | Hard-close impact |
 |---|---|---:|---|---|---|
@@ -191,7 +201,7 @@ Close：<Entity / Ledger / Period>
 
 **輸入：**「幫我整理八月月結進度，找出會影響 T+5 的項目並更新 Planner。」
 
-**正確行為：**先鎖定八月 Close ID 與核准 calendar，驗證 Planner、工作底稿與 Approval evidence；建立 Critical path、逾期與 Blocker 清單。更新前顯示每一筆 Planner 差異與重複檢查，核准後執行並重新讀取結果。沒有 Reviewer evidence 的工作保留 `Prepared`，不標示 Complete。
+**正確行為：**先鎖定八月 Close ID 與核准 calendar，驗證 Planner、工作底稿與 Approval evidence；建立 Critical path、逾期與 Blocker 清單。更新前顯示每一筆 Planner 差異與重複檢查，核准後執行並重新讀取結果。有底稿而尚未覆核的工作，其查證判斷為 `Prepared`；來源原狀態另欄保留，缺證據不自動改寫紀錄或宣稱已驗證完成。
 
 ## Guardrails
 
@@ -208,8 +218,27 @@ Close：<Entity / Ledger / Period>
 | 問題 | 處理方式 |
 |---|---|
 | 找到多份 Close tracker | 依 Entity、Period、Owner、版本與位置列出，停止合併並要求確認基準。 |
-| Task 顯示 Complete 但沒有工作底稿 | 降為 `Prepared` 或 `Evidence missing`，列出缺少證據。 |
+| Task 顯示 Complete 但沒有工作底稿 | 保留 `recorded_status: Complete`；`verified_assessment: Evidence missing`，列出缺少證據與補件責任人。不得自動降級原紀錄；需變更時另列 `proposed_status` 並經核准與讀回。 |
 | 上游延期 | 重算受影響任務與 Hard-close forecast，不只改該 Task Due。 |
 | Planner 與 Excel 狀態不同 | 比較更新時間、Owner、Artifact 與 Approval；衝突保留並要求決策。 |
 | Policy 阻擋更新 | 標示 `Policy denied`，保留 Preview，不重試或改用其他工具。 |
 | Hard close 已到期但 Statement 未 tie | 狀態維持 `Blocked`，列出 Tie-out exception 與 Owner。 |
+
+## 跨階段交接與接續執行
+
+依案件目前進度，從第一個尚未完成且影響下游的工作開始。保留同一案件、任務與文件版本；只在需要該獨立產出時使用相鄰 Skill，不要求一次執行整個 Plugin。
+
+| 工作階段 | 帶入的證據 | 交付與承接條件 |
+|---|---|---|
+| 月結範圍 | Entity、Period、幣別、截止時間與核准清單 | 任務、承辦、覆核、前置依賴及證據；總帳與未入帳單據分開 |
+| 單據與差異 | GL、Budget、待審單據及支持文件 | 重複審查、數值差異與待補原因；未入帳疑似重複款不得直接扣總帳 |
+| 覆核與報告 | 補件、覆核及報告批准紀錄 | 區分原狀態、查證判斷與建議狀態；附金額勾稽與來源 |
+| 期後新資訊 | 新單據的收件日、服務期間與原報告版本 | 期後事項表及受影響任務；保留舊版，不因新單據自行更動已覆核結論 |
+
+交接給分錄、對帳或管理報告工作時帶入期間、金額單位、資料版本、未解事項及覆核要求；報告完成、批准寄送、已過帳、已鎖帳是不同證據，不能互相替代。
+
+交接時保留案件 ID、輸入版本、資料截至時間、已完成成品位置、原決策與批准範圍、仍缺的資料、接收者及下一檢查點。接收者沒有明確接受時標示待承接，不把「已寄出」當成責任已轉移。
+
+執行中收到新資料，先比較原值、新值、來源時間、受影響產出與依賴。已核准基準保留原版；只修訂受影響事項，超出原批准的動作重新提出具體預覽。無關且已完成的事項不重做。
+
+中斷後接續前，讀取目前成果與目標狀態，分別列已驗證成功、失敗、結果未知及尚未執行。已成功項目不重送；結果未知先核對再重試；依賴失敗步驟的後續動作保持等待。若本次只有來源文件，僅更新草稿與待辦，不聲稱已更新正式系統。

@@ -3,9 +3,17 @@ name: competitive-positioning-brief
 description: 研究具名競爭者、替代方案或市場類別，建立以來源為基礎的 Positioning、Messaging、Audience、Proof、Content gap 與 Marketing battlecard。 適用於競爭簡報、Launch messaging、Category positioning 與 Campaign differentiation；不適用於不當競爭情報、Sales account plan、無來源攻擊或宣稱未公開 roadmap。
 metadata:
   author: lwokeray
-  version: 1.0.1
+  version: "1.0.2"
 license: MIT
 ---
+
+## 執行前提與交付方式
+
+本 Plugin 提供工作方法，不會自行授予資料存取或系統操作能力。下文列出的 Work IQ、MCP 或應用操作，僅在本次工作環境實際提供對應工具、連線與使用者權限時適用；不得依工具名稱猜測路徑、欄位或成功結果。
+
+沒有即時工具時，可用使用者提供或已授權匯出的資料完成本 Skill 的分析與草稿，保留資料日期、版本與無法即時驗證的範圍。政策拒絕或權限不足時停止該操作，不透過其他帳號、工具或瀏覽器繞過；仍交付可完成的部分。
+
+使用者要求可下載的草稿文件時，完成該文件屬於所請交付物；「草稿」或「不要發布」不等於禁止產生供本人審閱的新檔。明確要求只讀或不建立檔案時遵守其限制。修改共用原檔、寫入正式系統、寄送、排程與發布，仍依後文的目標、差異、核准及執行後驗證規則處理；產生草稿不代表完成這些動作。
 
 # Competitive Positioning Brief
 

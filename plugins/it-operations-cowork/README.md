@@ -120,3 +120,7 @@ This sample plugin is provided as-is for tenant-controlled evaluation. Validate 
 
 - [Build plugins for Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugin-development)
 - [Manage plugins for Copilot Cowork](https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-manage-plugins)
+
+## 完整情境實作
+
+[逐步操作手冊、提示詞與參考成品](../../training/it-operations-cowork/完整實作手冊.md)。練習用 A／B／C 文件與 CSV 位於同一資料夾，按步驟時間發放。

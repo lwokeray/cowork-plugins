@@ -72,3 +72,7 @@ python scripts/build_plugin.py sales-cowork
 ## Terms
 
 此 Sample 僅供受 Tenant 管理的評估與測試。Production deployment 前必須驗證 Licensing、Permission、Data handling 與可用的 Work IQ operations。
+
+## 完整情境實作
+
+[逐步操作手冊、提示詞與參考成品](../../training/sales-cowork/完整實作手冊.md)。練習用 A／B／C 文件與 CSV 位於同一資料夾，按步驟時間發放。

@@ -1,5 +1,5 @@
 {
-  "suite": "finance-cowork-1.0.1-behavior",
+  "suite": "finance-cowork-1.0.2-behavior",
   "cases": [
     {
       "id": "unbalanced-entry",
@@ -79,6 +79,26 @@
         "辨識版本衝突",
         "停止誤導性比較",
         "要求確認 source of truth"
+      ]
+    },
+    {
+      "id": "preserve-recorded-close-status",
+      "skill": "close-management",
+      "input": "月結表 C1 顯示 Complete，但此帳號看不到工作底稿，覆核證據也未附。請先做進度報告，不修改來源。",
+      "expected": [
+        "保留 recorded_status Complete",
+        "verified_assessment Evidence missing，列補件與影響",
+        "不降級原紀錄，不把該項計入已驗證完成"
+      ]
+    },
+    {
+      "id": "unposted-duplicate-vs-gl",
+      "skill": "variance-analysis",
+      "input": "總帳 GL09 為 660000，預算 600000。AP101 與 AP108 各 18000，疑似重複，均未入帳。請交付預算差異說明。",
+      "expected": [
+        "差異 60000、以預算為分母 10%",
+        "不從總帳扣除未入帳的 18000",
+        "疑似重複單據另交審查；原因資料不足列待補"
       ]
     }
   ]

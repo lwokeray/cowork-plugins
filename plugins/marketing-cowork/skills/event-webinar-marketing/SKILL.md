@@ -3,9 +3,17 @@ name: event-webinar-marketing
 description: 規劃企業 Event、Webinar、Workshop、Conference 或 Roundtable 的 Audience、Value proposition、Registration、Promotion、Speaker／Content、Calendar、Reminder、Live engagement、Follow-up、Lead treatment 與 Measurement。 適用於完整 Event marketing lifecycle；不適用於未核准大規模邀請、直接建立公開活動頁、猜測與會者或自動將出席者視為 Sales lead。
 metadata:
   author: lwokeray
-  version: 1.0.1
+  version: "1.0.2"
 license: MIT
 ---
+
+## 執行前提與交付方式
+
+本 Plugin 提供工作方法，不會自行授予資料存取或系統操作能力。下文列出的 Work IQ、MCP 或應用操作，僅在本次工作環境實際提供對應工具、連線與使用者權限時適用；不得依工具名稱猜測路徑、欄位或成功結果。
+
+沒有即時工具時，可用使用者提供或已授權匯出的資料完成本 Skill 的分析與草稿，保留資料日期、版本與無法即時驗證的範圍。政策拒絕或權限不足時停止該操作，不透過其他帳號、工具或瀏覽器繞過；仍交付可完成的部分。
+
+使用者要求可下載的草稿文件時，完成該文件屬於所請交付物；「草稿」或「不要發布」不等於禁止產生供本人審閱的新檔。明確要求只讀或不建立檔案時遵守其限制。修改共用原檔、寫入正式系統、寄送、排程與發布，仍依後文的目標、差異、核准及執行後驗證規則處理；產生草稿不代表完成這些動作。
 
 # Event and Webinar Marketing
 
@@ -151,3 +159,22 @@ Attendance 或 calendar acceptance 不等於觀看全程；Event-influenced pipe
 | Follow-up 全部一樣 | 未依 attendance／engagement 分支 | 建 state-based follow-up。 |
 | Attendee 直接進 Sales | 無 qualification／consent | 使用 `lead-lifecycle-handoff` gate。 |
 | Calendar 洩露資料 | 大量外部 recipient／private fields | 使用正式 Event platform 與最小資料。 |
+
+## 跨階段交接與接續執行
+
+依案件目前進度，從第一個尚未完成且影響下游的工作開始。保留同一案件、任務與文件版本；只在需要該獨立產出時使用相鄰 Skill，不要求一次執行整個 Plugin。
+
+| 工作階段 | 帶入的證據 | 交付與承接條件 |
+|---|---|---|
+| 活動立案 | 目的、受眾、預算、日期及核准狀態 | 活動執行稿、角色與檢查點；報名、活動通知及後續行銷用途分開 |
+| 邀請與內容 | 活動承諾、品牌規則、講者與素材 | 完整報名頁、邀請及提醒文案；聲明與素材均有批准依據 |
+| 異動與上場 | 講者或格式變更、最新素材審閱狀態 | 同步議程、主持流程、提醒與備援；未批准備援只列選項 |
+| 成效與承接 | 去重名單、出席、諮詢、聯繫授權與業務接受 | 列清每個分母與可承接名單；無營收證據不推算成交或投資報酬 |
+
+講者改錄製示範時保留原活動日期，逐項更新受影響素材、權利及期限。名單交接記錄允許用途、接收者、接受時間與未決問題，不把所有出席者自動變成商機。
+
+交接時保留案件 ID、輸入版本、資料截至時間、已完成成品位置、原決策與批准範圍、仍缺的資料、接收者及下一檢查點。接收者沒有明確接受時標示待承接，不把「已寄出」當成責任已轉移。
+
+執行中收到新資料，先比較原值、新值、來源時間、受影響產出與依賴。已核准基準保留原版；只修訂受影響事項，超出原批准的動作重新提出具體預覽。無關且已完成的事項不重做。
+
+中斷後接續前，讀取目前成果與目標狀態，分別列已驗證成功、失敗、結果未知及尚未執行。已成功項目不重送；結果未知先核對再重試；依賴失敗步驟的後續動作保持等待。若本次只有來源文件，僅更新草稿與待辦，不聲稱已更新正式系統。

@@ -2,7 +2,7 @@
 
 Marketing Cowork 是提供企業 Marketing 團隊使用的 Microsoft 365 Copilot Cowork Skills Plugin。套件只包含 Agent Skills，透過 Cowork 內建 Unified Work IQ MCP，在登入使用者既有權限與 Tenant policy 下協調 Outlook、Teams、Calendar、SharePoint、OneDrive、Word、Excel、PowerPoint、Forms 與 Planner；不另附外部 MCP Server、Credential 或 Marketing platform connector。
 
-版本 1.0.1 採單檔平鋪 Monolithic Prompt Packing。每個 `SKILL.md` 都自含啟用邊界、證據層級、完整工作流程、輸出契約、核准關卡、停止條件、錯誤處理與完成檢查。Agent 能在未讀取外部 references 的情況下完成核心工作，使用者取得的是可直接審閱或使用的 Marketing artifact，不會看到製作摘要、隱藏思考或內部 tool payload。
+版本 1.0.2 採單檔平鋪 Monolithic Prompt Packing。每個 `SKILL.md` 都自含啟用邊界、證據層級、完整工作流程、輸出契約、核准關卡、停止條件、錯誤處理與完成檢查。Agent 能在未讀取外部 references 的情況下完成核心工作，使用者取得的是可直接審閱或使用的 Marketing artifact，不會看到製作摘要、隱藏思考或內部 tool payload。
 
 ## Skills
 
@@ -68,3 +68,7 @@ python scripts/build_plugin.py marketing-cowork
 ## Terms
 
 此 Sample 供受 Tenant 管理的評估與測試。Production deployment 前須由組織確認 Licensing、Permission、Brand、Legal、Privacy、Consent、Advertising policy、Data handling 及可用的 Work IQ operations。
+
+## 完整情境實作
+
+[逐步操作手冊、提示詞與參考成品](../../training/marketing-cowork/完整實作手冊.md)。練習用 A／B／C 文件與 CSV 位於同一資料夾，按步驟時間發放。

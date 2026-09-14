@@ -2,7 +2,7 @@
 
 Finance Cowork 是供 Enterprise Finance、Accounting、FP&A、Treasury、Controllership 與 Internal Audit 使用的 Microsoft 365 Copilot Cowork Plugin。套件採 Skills-only 架構，由多個獨立 Agent Skills 協調 Cowork 內建 Unified Work IQ MCP；不封裝 Remote MCP Server、OAuth、Credential 或 workload-specific connector。
 
-版本 1.0.1 使用單檔平鋪 Monolithic Prompt Packing。每個 `skills/<skill-name>/SKILL.md` 都能獨立完成核心工作，內含適用／排除條件、工作流程、來源與證據規則、計算與Tie-out、產出契約、停止條件、核准邊界、例外處理、Work IQ工具規則、範例與常見問題，不依賴外部Reference才可運作。使用者收到完整Finance artifact，不會收到Agent思考過程或製作摘要。
+版本 1.0.2 使用單檔平鋪 Monolithic Prompt Packing。每個 `skills/<skill-name>/SKILL.md` 都能獨立完成核心工作，內含適用／排除條件、工作流程、來源與證據規則、計算與Tie-out、產出契約、停止條件、核准邊界、例外處理、Work IQ工具規則、範例與常見問題，不依賴外部Reference才可運作。使用者收到完整Finance artifact，不會收到Agent思考過程或製作摘要。
 
 ## Skills
 
@@ -64,3 +64,7 @@ python scripts/build_plugin.py finance-cowork
 ## Terms
 
 此Sample僅供受Tenant管理的評估與測試。Production deployment前必須驗證Licensing、Permission、Data handling、Financial／Audit methodology、Segregation of duties、Approval matrix與Tenant實際提供的Work IQ operations。套件不構成Accounting、Audit、Tax、Legal、Investment或Valuation的正式專業意見。
+
+## 完整情境實作
+
+[逐步操作手冊、提示詞與參考成品](../../training/finance-cowork/完整實作手冊.md)。練習用 A／B／C 文件與 CSV 位於同一資料夾，按步驟時間發放。

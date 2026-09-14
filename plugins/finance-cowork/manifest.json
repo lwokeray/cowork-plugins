@@ -1,7 +1,7 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/teams/v1.28/MicrosoftTeams.schema.json",
   "manifestVersion": "1.28",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "id": "0ed8d723-8ac8-4479-bd18-ffc8fc2c2e28",
   "developer": {
     "name": "lwokeray",
