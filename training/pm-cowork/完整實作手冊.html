@@ -1,9 +1,897 @@
-<!doctype html><html lang="zh-Hant"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>PM Cowork 需求變更下如何守住交付基準</title><style>body{font-family:system-ui,"Microsoft JhengHei",sans-serif;max-width:1040px;margin:36px auto;padding:0 24px;color:#172b45;line-height:1.8}h1,h2{color:#005bbb}h2{margin-top:42px;border-bottom:2px solid #8bdccc;padding-bottom:8px}h3{margin-top:32px}pre{white-space:pre-wrap;background:#edf7ff;padding:20px;border-radius:8px;font-family:inherit;color:#10243d}table{border-collapse:collapse;width:100%;margin:18px 0}td,th{border:1px solid #cbd7e4;padding:10px;text-align:left;vertical-align:top}th{background:#e8f7f3}section{break-inside:avoid}a{color:#005bbb}.note{background:#e8f7f3;padding:14px}details{padding:14px;border:1px solid #a8cdde;margin:15px 0}summary{cursor:pointer;font-weight:600}nav a{display:inline-block;margin:0 10px 8px 0}</style><body><h1>PM Cowork 需求變更下如何守住交付基準</h1><p>這是一堂約 150 分鐘的部門實作課。用同一案件完成八個步驟，每步保留前一份成品並處理新資訊。先熟悉 Cowork 任務、附件與成果檔操作即可。案例公司、人員、案件及日期均為教學合成資料，未代表真實企業交易或租戶執行。</p><h2>案件與工作角色</h2><p>你的角色：遠景精密專案負責人林冠宇。</p><p>採購同仁每天透過郵件追問申請進度，主管希望做一個內部申請查詢入口。你要把抱怨轉成明確需求，安排有限容量內可完成的第一版。開發中途主管又要求匯出 Excel，你要說清楚代價，再用試行結果判斷是否達到改善目標。</p><h2>課前準備與操作</h2><ol><li>使用工作／學校帳戶進入可使用 Cowork 的環境。由講師確認帳戶、用量政策及所需能力；本套件沒有內附外部 Connector。</li><li>依簡報第 2 頁的實際畫面開啟 Customize，在 Plugins 中確認本課 PM Cowork 及發行者 lwokeray；必要時由管理員部署。檢查本次對話的 Sources and skills 是否允許該 Plugin。</li><li>新建本課的一個 Task，先透過輸入框附件按鈕加入資料 A。依每一步情境才加入 B 或 C；資料 A/B/C 內的後續事件仍須遵守提示詞指定時間，避免提前使用未發生的決定。</li><li>每次貼上本手冊的完整提示詞，包含情境時間。回覆後開啟原來源，比對 ID、日期、數字與狀態，保留產出的正文與檔案。</li><li>輸出若缺欄位，指出具體欄位及來源要求修訂；若用了未來事件，要求退回本步時點重寫。不要只回覆「再詳細一點」。</li><li>共用原檔修改請依簡報核准示範先看差異及目標版本。課堂主要完成草稿，正式寄送、建案、付款或 IT 動作須由已授權環境及角色執行，不能以草稿聲稱已完成。</li></ol><p>建議課時 150 分鐘：環境與故事 15 分鐘、前四步各 15 分鐘、休息 10 分鐘、後三步各 15 分鐘、結業 20 分鐘。</p><nav><a href="#step1">步驟 1</a><a href="#step2">步驟 2</a><a href="#step3">步驟 3</a><a href="#step4">步驟 4</a><a href="#step5">步驟 5</a><a href="#step6">步驟 6</a><a href="#step7">步驟 7</a><a href="#step8">步驟 8</a></nav><h2>工作流程的承接</h2><table><tr><th>步驟</th><th>工作</th><th>Skill</th><th>進入時的資料</th><th>达標後才能承接</th></tr><tr><td>1</td><td>把抱怨轉成可驗收需求</td><td>product-spec-writer</td><td>只加入資料 A。</td><td>角色權限清楚；目標未被寫成已實現效果。</td></tr><tr><td>2</td><td>把旅程拆成完整的第一版</td><td>story-map-builder</td><td>仍使用資料 A。</td><td>首版包含資料可見性、更新成功與失敗、未授權狀態。</td></tr><tr><td>3</td><td>容量只有六人日，如何安排</td><td>cycle-planning</td><td>加入資料 B。</td><td>三項合計 8 人日超出容量；不可全部列入承諾。</td></tr><tr><td>4</td><td>新增匯出要求，先說清楚代價</td><td>project-ops</td><td>先閱讀到 10/08 的新增要求。</td><td>範圍取捨與測試阻塞分開；無批准不改基準。</td></tr><tr><td>5</td><td>決定已下來，更新工作基準</td><td>issue-shaping</td><td>繼續閱讀 10/09 決議。</td><td>保留穩定工作 ID；只更新受決議影響的欄位。</td></tr><tr><td>6</td><td>試行前要看到哪些證據</td><td>pm-reviewer</td><td>加入資料 C，先閱讀到 10/20。</td><td>上線準備度與業務成效是不同檢查。</td></tr><tr><td>7</td><td>完成開發，不代表目標達成</td><td>outcome-review</td><td>繼續閱讀 10/27 結果。</td><td>仍差 3 小時達標；兩次更新的新流程尚未驗證。</td></tr><tr><td>8</td><td>結業：主管說所有需求都完成</td><td>project-update</td><td>主管要週報寫「全面完成」。</td><td>交付範圍、成效與待辦分開，日期與決議有依據。</td></tr></table><h2 id="step1">步驟 1 把抱怨轉成可驗收需求</h2><p>先確認目前停在簡報第 4 頁，只加入資料 A。保留同一任務，在原結果後貼上以下完整指令。</p><pre>現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
-依三次訪談建立 P-2603 的需求規格：使用者、現況、首版範圍、排除項目、角色權限與驗收。把 18 小時基準與 8 小時目標分開，不加入供應商入口或付款功能。</pre><h3>預期成果與檢查</h3><p>角色權限清楚；目標未被寫成已實現效果。</p><details><summary>展開可對照的參考成品</summary><p>P-2603 首版規格草稿</p><p>問題是採購同仁以郵件追問進度，首次完整回覆平均 18 小時。首版目標為改善至 8 小時，需沿用從收到查詢至首次完整回覆的口徑驗證。</p><p>角色與範圍：申請人只查本人資料；承辦更新狀態；主管僅查授權範圍。驗收包含角色可見性與未授權操作阻擋，使用合成測試資料。採購下單、付款及供應商自助排除。目標、規格提案與已批准事項分開保留。</p></details><p>如果成果未達驗收，使用這段修訂指令：</p><p>「請保留本案已確認且仍有效的內容，依本步情境時間修訂。錯誤欄位是〔填入〕，正確依據是〔來源、日期、原文〕。請交付修正後完整成品及仍待確認項目，不只說明如何修正。」</p><h2 id="step2">步驟 2 把旅程拆成完整的第一版</h2><p>先確認目前停在簡報第 5 頁，仍使用資料 A。保留同一任務，在原結果後貼上以下完整指令。</p><pre>現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
-畫出申請人查詢與承辦更新的操作順序，列每一步的輸入、畫面狀態、結果與例外。將首版切成可端到端驗證的一組工作，不能只有單一畫面或按鈕。</pre><h3>預期成果與檢查</h3><p>首版包含資料可見性、更新成功與失敗、未授權狀態。</p><details><summary>展開可對照的參考成品</summary><p>首版使用流程</p><p>申請人以授權身分進入入口，取得本人的申請清單，選擇案件查看狀態與更新資訊；無資料顯示空狀態；不存在或未授權案件不可返回他人資料。承辦開啟允許處理案件，輸入有效狀態並保存，顯示結果且保留原紀錄；非承辦更新應遭阻擋。</p><p>端到端驗收從承辦更新開始，再以申請人身分確認可見的新狀態，最後測試直接 URL 越權。首版切片同時涵蓋本人查詢、承辦更新及權限驗證，不能只交付入口畫面。</p></details><p>如果成果未達驗收，使用這段修訂指令：</p><p>「請保留本案已確認且仍有效的內容，依本步情境時間修訂。錯誤欄位是〔填入〕，正確依據是〔來源、日期、原文〕。請交付修正後完整成品及仍待確認項目，不只說明如何修正。」</p><h2 id="step3">步驟 3 容量只有六人日，如何安排</h2><p>先確認目前停在簡報第 6 頁，加入資料 B。保留同一任務，在原結果後貼上以下完整指令。</p><pre>現在情境時間是 2026/10/08 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
-依 P-01、P-02、P-03 的估算與 6 人日容量，產出本期工作選擇草案，保留測試與修正空間。列納入、延後及取捨；估算不等於交付承諾。</pre><h3>預期成果與檢查</h3><p>三項合計 8 人日超出容量；不可全部列入承諾。</p><details><summary>展開可對照的參考成品</summary><p>本期工作選擇草案</p><p>P-01 3 人日 + P-02 2 人日 = 5 人日，在 6 人日容量中暫留 1 人日給驗證及修正。P-03 另需 3 人日，三項共 8 人日，尚未含額外測試，不可承諾全部納入。</p><p>提案為先做 P-01／P-02，P-03 延後。1 人日是否足夠仍須工程師確認；測試帳號是必要依賴，估算和選擇均不能直接轉成已承諾日期。</p></details><p>如果成果未達驗收，使用這段修訂指令：</p><p>「請保留本案已確認且仍有效的內容，依本步情境時間修訂。錯誤欄位是〔填入〕，正確依據是〔來源、日期、原文〕。請交付修正後完整成品及仍待確認項目，不只說明如何修正。」</p><h2 id="step4">步驟 4 新增匯出要求，先說清楚代價</h2><p>先確認目前停在簡報第 7 頁，先閱讀到 10/08 的新增要求。保留同一任務，在原結果後貼上以下完整指令。</p><pre>現在情境時間是 2026/10/08 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
-為 P-03 製作變更申請，比較保留原範圍、替換既有工作及增加容量等選項。另列測試帳號阻塞、責任及影響。請主管決定，不直接改首版承諾。</pre><h3>預期成果與檢查</h3><p>範圍取捨與測試阻塞分開；無批准不改基準。</p><details><summary>展開可對照的參考成品</summary><p>P-03 變更申請</p><p>方案一保留本人查詢與承辦更新，匯出延後；方案二以匯出替換部分原工作，但將影響端到端可用性，需重新驗收範圍；方案三增加容量或延長安排，須有資源證據及主管批准。全做估算 8 人日，超過目前 6 人日且需保留驗證。</p><p>另列測試帳號尚未備妥，阻塞權限測試。當下未有具名承諾，先請 IT 確認責任與可用時間。10/09 的決定尚未發生，不能提前寫入本步。</p></details><p>如果成果未達驗收，使用這段修訂指令：</p><p>「請保留本案已確認且仍有效的內容，依本步情境時間修訂。錯誤欄位是〔填入〕，正確依據是〔來源、日期、原文〕。請交付修正後完整成品及仍待確認項目，不只說明如何修正。」</p><h2 id="step5">步驟 5 決定已下來，更新工作基準</h2><p>先確認目前停在簡報第 9 頁，繼續閱讀 10/09 決議。保留同一任務，在原結果後貼上以下完整指令。</p><pre>現在情境時間是 2026/10/09 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
-依主管決定更新首版工作清單草稿。保留 P-01、P-02，將 P-03 標示延後；引用王明哲 10/12 測試帳號承諾。列原值、新值與相關依賴，先不寫入管理系統。</pre><h3>預期成果與檢查</h3><p>保留穩定工作 ID；只更新受決議影響的欄位。</p><details><summary>展開可對照的參考成品</summary><p>首版基準更新草稿</p><p>依 10/09 決定，P-01／P-02 納入首版，P-03 延後。原新增要求不再列本期承諾。測試帳號依王明哲 10/12 承諾建立依賴，承諾不是已交付證據。</p><p>逐項保留原值、新值、決策日期與影響的規格及測試。只製作工作清單草稿，尚未更新正式管理系統。</p></details><p>如果成果未達驗收，使用這段修訂指令：</p><p>「請保留本案已確認且仍有效的內容，依本步情境時間修訂。錯誤欄位是〔填入〕，正確依據是〔來源、日期、原文〕。請交付修正後完整成品及仍待確認項目，不只說明如何修正。」</p><h2 id="step6">步驟 6 試行前要看到哪些證據</h2><p>先確認目前停在簡報第 10 頁，加入資料 C，先閱讀到 10/20。保留同一任務，在原結果後貼上以下完整指令。</p><pre>現在情境時間是 2026/10/20 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
-製作試行驗收單，分開功能測試、權限測試與主管批准。每項連結記錄與適用範圍；指出測試通過仍不能證明平均回覆時間已達 8 小時。</pre><h3>預期成果與檢查</h3><p>上線準備度與業務成效是不同檢查。</p><details><summary>展開可對照的參考成品</summary><p>試行驗收單</p><p>10/16 P-01／P-02 功能測試通過；10/19 本次角色權限測試通過；主管批准 10/20 採購部試行。三者各自保留來源、日期與適用範圍。</p><p>這些證據支持在已測試範圍內進入試行，尚不能宣稱回覆平均 8 小時。試行需記錄同口徑查詢樣本及實際首次完整回覆時間，P-03 未納入驗收。</p></details><p>如果成果未達驗收，使用這段修訂指令：</p><p>「請保留本案已確認且仍有效的內容，依本步情境時間修訂。錯誤欄位是〔填入〕，正確依據是〔來源、日期、原文〕。請交付修正後完整成品及仍待確認項目，不只說明如何修正。」</p><h2 id="step7">步驟 7 完成開發，不代表目標達成</h2><p>先確認目前停在簡報第 11 頁，繼續閱讀 10/27 結果。保留同一任務，在原結果後貼上以下完整指令。</p><pre>現在情境時間是 2026/10/27 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
-比較 18 小時基準、8 小時目標與 11 小時觀察值。說明已改善及尚未達標的部分，列承辦更新頻率的證據與後續觀察計畫，不把單次試行當因果證明。</pre><h3>預期成果與檢查</h3><p>仍差 3 小時達標；兩次更新的新流程尚未驗證。</p><details><summary>展開可對照的參考成品</summary><p>試行成果檢視</p><p>相同定義下，基準 18 小時，目標 8 小時，試行 20 件平均 11 小時。觀察到比基準少 7 小時，降幅約 38.9%；距目標仍多 3 小時。這是本次樣本比較，未證明系統造成全部改善。</p><p>其中 5 件受每日一次更新限制。10/27 主管要求改為當日兩次，後續應保留同口徑樣本、更新時間與回覆時間再評估，目前無新成效數據。</p></details><p>如果成果未達驗收，使用這段修訂指令：</p><p>「請保留本案已確認且仍有效的內容，依本步情境時間修訂。錯誤欄位是〔填入〕，正確依據是〔來源、日期、原文〕。請交付修正後完整成品及仍待確認項目，不只說明如何修正。」</p><h2 id="step8">步驟 8 結業：主管說所有需求都完成</h2><p>先確認目前停在簡報第 12 頁，主管要週報寫「全面完成」。保留同一任務，在原結果後貼上以下完整指令。</p><pre>現在情境時間是 2026/10/28 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
-撰寫可直接送審的專案週報，說明首版交付、試行結果、未達標事項與 P-03 延後狀態。將需主管決定的下一步列清楚，不用「全面完成」掩蓋剩餘工作。</pre><h3>預期成果與檢查</h3><p>交付範圍、成效與待辦分開，日期與決議有依據。</p><details><summary>展開可對照的參考成品</summary><p>P-2603 專案週報送審稿</p><p>首版本人查詢、承辦更新及本次權限驗證完成，採購部已開始試行。20 件查詢平均首次完整回覆為 11 小時，較原 18 小時改善，但未達 8 小時目標。P-03 匯出延後，尚未排入承諾版本。</p><p>下一步依主管要求觀察每日兩次更新的效果，待取得新資料後再檢視。若需安排 P-03，請決定優先順序與容量。不可對外稱全部需求完成。</p></details><p>如果成果未達驗收，使用這段修訂指令：</p><p>「請保留本案已確認且仍有效的內容，依本步情境時間修訂。錯誤欄位是〔填入〕，正確依據是〔來源、日期、原文〕。請交付修正後完整成品及仍待確認項目，不只說明如何修正。」</p><h2>課程資料</h2><p>分階段上傳 A、B、C，只採用當前時點已發生事件；不要把整份手冊或參考答案當成任務輸入。</p><details><summary>A_需求訪談與工作基準</summary><p>專案 P-2603：採購申請查詢入口。申請人需要查自己的申請狀態；採購承辦需要更新狀態；主管只看授權範圍。三次訪談都提到查詢耗時，但沒有批准全公司公開查詢。</p><p>採購主管趙明誠批准首版目標：把進度回覆平均時間從 18 小時改善至 8 小時。基準為九月同類 20 件請求，計時從收到查詢至首次完整回覆。目標不是既有成果。</p><p>首版範圍：本人查詢、承辦更新、權限驗證。不含採購下單、付款或供應商自助。測試採合成資料。</p></details><details><summary>B_容量、規格與新增要求</summary><p>工程師評估三項就緒工作：P-01 本人查詢 3 人日；P-02 承辦更新 2 人日；P-03 Excel 匯出 3 人日。當期可用容量 6 人日，另需保留權限驗證與修正，主管尚未承諾三項全做。</p><p>P-01 驗收：申請人只看到自己的測試資料；不能經直接 URL 看到別人的申請。P-02 驗收：承辦可改狀態，非承辦不可改，原紀錄可追溯。</p><p>10/08 主管要求把 P-03 也放首版，但尚未批准延後其他工作或增加容量。工程師另指出測試帳號尚未備妥，會阻塞權限驗證。</p><p>10/09 主管決定首版只做 P-01、P-02，P-03 延後；IT 王明哲承諾 10/12 提供測試帳號。</p></details><details><summary>C_試行驗收與結果</summary><p>10/16 P-01、P-02 功能測試通過；10/19 權限測試完成，所有本次測試案例通過，仍僅代表測試範圍。主管批准 10/20 開始採購部試行。</p><p>試行使用相同定義的 20 件查詢：首次完整回覆平均 11 小時；目標 8 小時尚未達成。5 件卡在承辦每日只更新一次，不能把全部延遲歸因於系統。</p><p>10/27 採購主管要求將狀態更新改成當日兩次；尚未觀察新流程效果。P-03 仍未排入已承諾版本。</p></details><h2>完整 Skills 選用索引</h2><p>主線按需求使用 Skill；延伸工作需另準備相應來源，不將全部 Skills 塞入同一任務。</p><h3>需求與基準</h3><ul><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/customer-signal">customer-signal</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/issue-triage">issue-triage</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/issue-shaping">issue-shaping</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/product-spec-writer">product-spec-writer</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/story-map-builder">story-map-builder</a></li></ul><h3>規劃與取捨</h3><ul><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/project-sizing-guide">project-sizing-guide</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/weighted-scorer">weighted-scorer</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/cycle-planning">cycle-planning</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/initiative-roadmap">initiative-roadmap</a></li></ul><h3>執行與變更</h3><ul><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/pm-operating-system">pm-operating-system</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/project-ops">project-ops</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/risk-heatmap">risk-heatmap</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/governance">governance</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/pm-reviewer">pm-reviewer</a></li></ul><h3>報告與成效</h3><ul><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/project-update">project-update</a></li><li><a href="https://github.com/lwokeray/cowork-plugins/tree/main/plugins/pm-cowork/skills/outcome-review">outcome-review</a></li></ul><h2>結業與評量</h2><p>成果驗收採五項各 0–4 分：來源及時點正確、交付正文完整、工作狀態正確、變更與承接可追溯、例外情況處理。4 分為完整且可直接審閱，3 分為少量修訂，2 分為缺一項重要資訊，1 分為需要重做，0 分為未交付。建議 16 分及格；若捏造核准、越權執行、把未執行工作標成功或洩露非必要個資，先修訂該項再驗收。講師實際評分，不預填學員成績。</p><h2>適用範圍與來源</h2><p>以 2026/09/13 官方文件及 repo 基準 85288fd 查核。簡報英文介面取自官方公開原圖，中文說明為教學加工；合成案例未在真實租戶執行。</p><p><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/use-cowork">官方使用指南</a> · <a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-plugins">官方 Plugins 指南</a> · <a href="https://techcommunity.microsoft.com/blog/microsoft-copilot-blog/cowork-in-progress/4511672">官方畫面來源</a></p><h2>本課練習檔案</h2><ul><li><a href="A_需求訪談與工作基準.docx">A_需求訪談與工作基準.docx</a></li><li><a href="B_容量、規格與新增要求.docx">B_容量、規格與新增要求.docx</a></li><li><a href="C_試行驗收與結果.docx">C_試行驗收與結果.docx</a></li><li><a href="C_基準與試行觀察明細.csv">C_基準與試行觀察明細.csv</a></li></ul></body></html>
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>pm Cowork 圖解手冊</title><style>*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:#162a40;background:#f4f7fb;font:17px/1.8 'Noto Sans CJK TC','Microsoft JhengHei',sans-serif}main{max-width:1100px;margin:28px auto;background:white;padding:42px 56px;box-shadow:0 4px 30px #183b6312}h1{font-size:32px;line-height:1.4;color:#075ac5;margin:0 0 24px}h2{font-size:25px;line-height:1.5;color:#075ac5;border-top:5px solid #adf0d7;padding-top:26px;margin-top:60px;scroll-margin:20px}h3{font-size:20px;color:#124c8c;margin-top:30px}p{margin:15px 0}a{color:#075bc8;text-underline-offset:3px;overflow-wrap:anywhere}img{max-width:100%;height:auto;display:block;margin:14px auto}figure{margin:24px 0;border:1px solid #d3dfee;border-radius:12px;padding:12px;break-inside:avoid}figcaption{color:#546579;font-size:14px}pre{background:#eff6ff;border-left:5px solid #0c6ddc;padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;font:16px/1.9 'Noto Sans CJK TC',sans-serif;position:relative}code{font-family:inherit}table{border-collapse:collapse;width:100%;font-size:15px;margin:22px 0;table-layout:auto}th{background:#e8f2ff;color:#134a88;text-align:left}th,td{padding:12px;border:1px solid #d4dfec;vertical-align:top;overflow-wrap:anywhere}tr:nth-child(even){background:#f7fafc}li{margin:8px 0}details{padding:16px 20px;margin:20px 0;background:#f3f9ff;border:1px solid #cfdef0;border-radius:8px}summary{font-weight:600;color:#075ac5;cursor:pointer}.answer{background:#effbf5;border-color:#a9ddc5}nav{padding:15px 20px;background:#e8f2ff;display:flex;gap:14px;flex-wrap:wrap;border-radius:10px}nav a{font-size:15px}.copy{display:block;margin-bottom:10px;padding:6px 15px;border:0;background:#075ac5;color:white;border-radius:5px;cursor:pointer}footer{margin-top:50px;color:#50657e;font-size:13px} @media(max-width:720px){body{font-size:16px}main{padding:25px 18px;margin:0}h1{font-size:27px}h2{font-size:23px}table{font-size:13px}th,td{padding:8px}figure{padding:3px}pre{font-size:15px;padding:16px}nav{gap:10px}} @media print{@page{size:A4;margin:17mm 15mm}body{background:white;font-size:10pt;line-height:1.65}main{max-width:none;padding:0;margin:0;box-shadow:none}nav,.copy{display:none}h1{font-size:24pt}h2{font-size:17pt;break-before:page;margin-top:0;padding-top:10px}h3{font-size:12pt;break-after:avoid}table{font-size:8.3pt}th,td{padding:6px}tr{break-inside:avoid}thead{display:table-header-group}pre{font-size:9.5pt;padding:12px}figure{break-inside:avoid;margin:12px 0}figure img{max-height:105mm;width:auto}figcaption{font-size:8pt}.slide{display:none}details{padding:10px;margin:12px 0}summary{font-size:10pt}a{color:#075ac5;text-decoration:none}footer{font-size:8pt}}</style></head><body><main><p>GitHub 版來源連結提供完整原文預覽；Word 與 CSV 請下載練習資料.zip。離線教材主包另含原簡報逐頁圖。</p><nav><a href="#sec4">S01</a><a href="#sec5">S02</a><a href="#sec6">S03</a><a href="#sec7">S04</a><a href="#sec8">S05</a><a href="#sec9">S06</a><a href="#sec10">S07</a><a href="#sec11">S08</a></nav><h1>PM Cowork 需求變更下如何守住交付基準｜逐步圖解操作手冊</h1>
+<p>版本：2026-09-14 修訂版。適用：本套 <strong>12 頁情境簡報</strong>。建議課時 150 分鐘：環境與案例 15 分、八步實作各 15 分、核對及回饋 15 分。</p>
+<p>案例公司、人員、郵件、履歷、交易、設備與工單均為合成教學資料。產品操作圖取自 Microsoft 公開實際畫面並加註；畫面中的示例任務不是本案例的租戶執行成果。</p>
+<h2 id="sec0">01｜先接下這個工作</h2>
+<p>你的角色：遠景精密專案負責人林冠宇。</p>
+<p>採購同仁每天透過郵件追問申請進度，主管希望做一個內部申請查詢入口。你要把抱怨轉成明確需求，安排有限容量內可完成的第一版。開發中途主管又要求匯出 Excel，你要說清楚代價，再用試行結果判斷是否達到改善目標。</p>
+<p>你要沿用一個 Cowork 任務，保存每一步的成果，再根據新收到的資料修訂。角色的批准與使用者驗證都有獨立原始紀錄；任何還未收到的文件、回覆或批准，保持待確認。</p>
+<h2 id="sec1">02｜課前準備與插件入口（簡報第 2 頁）</h2>
+<ol>
+<li>解壓縮整份教材包，開啟本課資料夾。先開 <strong>完整實作手冊.html</strong>，另開同資料夾的簡報。</li>
+<li>登入講師指定、已開放 Cowork 的工作／學校帳戶，進入 Cowork。點左側 <strong>Customize</strong>，再點 <strong>Plugins</strong>。</li>
+<li>在 Plugins 中確認講師已部署的 <strong>pm-cowork</strong> 及發行者資訊。若找不到，交由講師核對部署範圍與帳戶；Skills 頁籤與 Plugins 頁籤是不同入口。</li>
+<li>本課採附件與成果草稿流程。沒有提供郵件收件帳號、ERP、資產管理或工單連線時，只交付可審閱檔案。</li>
+</ol>
+<figure><a href="../common/plugins.png"><img src="../common/plugins.png" alt="圖 1：Customize → Plugins。原圖停在 Skills，藍色標註指出要切換的 Plugins 頁籤" loading="lazy"></a><figcaption>圖 1：Customize → Plugins。原圖停在 Skills，藍色標註指出要切換的 Plugins 頁籤。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h2 id="sec2">03｜建立任務與加入來源（簡報第 3 頁）</h2>
+<ol>
+<li>點 <strong>New task</strong>，用第一步的完整提示建立本課任務。第一句保留案例名稱，方便之後在 My tasks 找回。</li>
+<li>點輸入框旁的 <strong>＋</strong>，選 <strong>Upload images and files</strong>（依介面語言顯示上傳圖片與檔案），選擇下表「步驟 1」列出的 DOCX／CSV。</li>
+<li>等附件名稱出現在輸入框且上傳完成，再貼第一步提示；按 <strong>Enter／Send</strong>。核對不是只貼出本機路徑文字。</li>
+<li>後續步驟用同一任務的 <strong>Follow up</strong> 加新附件。不要一次上傳整個 data 資料夾；不要把本手冊、instructor 答案或簡報當作來源輸入。</li>
+<li>要看原文件，從 References／輸入檔案區開啟；要看成果，從 Outputs／輸出檔案區開啟。介面可能使用 Workspace 或檔案側欄名稱，請以實際顯示為準。</li>
+</ol>
+<figure><a href="../common/home.png"><img src="../common/home.png" alt="圖 2：New task、附件加號、Start a task 輸入區" loading="lazy"></a><figcaption>圖 2：New task、附件加號、Start a task 輸入區。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>分階段發放表：簡報、附件、成果逐步對應</h3>
+<p>簡報沿用 A／B／C 的故事分段；本版把每段拆為單獨事件文件。下表的實際檔名與 S01–S08 資料夾是上課發放依據，同一段內的後續批准不會混入較早步驟。</p>
+<table>
+<thead>
+<tr>
+<th>操作</th>
+<th>簡報頁</th>
+<th>故事段</th>
+<th>本步新增附件</th>
+<th>要保存的成果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>S01</td>
+<td>4</td>
+<td>A</td>
+<td>D01_三次需求訪談及首版範圍.docx<br>P-2603_baseline_查詢與首次完整回覆.csv</td>
+<td>P01_可驗收需求規格.docx</td>
+</tr>
+<tr>
+<td>S02</td>
+<td>5</td>
+<td>A</td>
+<td>沿用已提供來源</td>
+<td>P02_使用流程與驗收案例.xlsx</td>
+</tr>
+<tr>
+<td>S03</td>
+<td>6</td>
+<td>B</td>
+<td>D02_工程估算與容量.docx<br>P-2603_工程估算原稿.csv</td>
+<td>P03_容量與首版選擇.xlsx</td>
+</tr>
+<tr>
+<td>S04</td>
+<td>7</td>
+<td>B</td>
+<td>D03_新增要求與阻塞.docx</td>
+<td>P04_變更與阻塞決策包.docx</td>
+</tr>
+<tr>
+<td>S05</td>
+<td>9</td>
+<td>B</td>
+<td>D04_範圍決議與帳號承諾.docx</td>
+<td>P05_首版基準變更表.xlsx</td>
+</tr>
+<tr>
+<td>S06</td>
+<td>10</td>
+<td>C</td>
+<td>D05_功能與權限驗收及試行批准.docx<br>P-2603_逐筆測試結果.csv</td>
+<td>P06_採購部試行驗收.docx</td>
+</tr>
+<tr>
+<td>S07</td>
+<td>11</td>
+<td>C</td>
+<td>D06_試行觀察與後續要求.docx<br>P-2603_pilot_查詢與首次完整回覆.csv</td>
+<td>P07_試行逐筆與成效.xlsx</td>
+</tr>
+<tr>
+<td>S08</td>
+<td>12</td>
+<td>C</td>
+<td>D07_主管週報用語要求.docx</td>
+<td>P08_專案週報送審稿.docx</td>
+</tr>
+</tbody></table>
+<h3>來源文件怎麼讀</h3>
+<p>每份 DOCX 均列文件 ID、時間、原始文件類型、寄件／建立人、收件／參與人與完整正文。CSV 保留逐筆識別碼，沒有用一行答案代替明細。以這些欄位確認「誰在什麼時間提供了什麼」，再判斷能否改變工作狀態。</p>
+<p>資料下載：本課 <a href="%E7%B7%B4%E7%BF%92%E8%B3%87%E6%96%99.zip">練習資料.zip</a>。解壓後依 data/S01…S08 發放；所有新附件也能在各步直接下載。</p>
+<h2 id="sec3">04｜修改原檔時的核准（簡報第 8 頁）</h2>
+<ol>
+<li>Cowork 若提出 <strong>Edit file?</strong>，先看檔名是否為本次要修改的版本。</li>
+<li>逐項閱讀 proposed changes，對照你的要求與來源批准範圍。</li>
+<li>正確時選 <strong>Approve once</strong>，只核准此一次動作；若畫面顯示其他動作名稱，核對對象及動作後再決定。</li>
+<li>有誤時選 <strong>Cancel</strong>，回到輸入框指出要修正的項目，收到新提案再檢查。沒有出現核准視窗時，繼續檢查輸出，勿假設已修改共享原檔。</li>
+</ol>
+<figure><a href="../common/approve.png"><img src="../common/approve.png" alt="圖 3：正確檔案 → 逐項變更 → Approve once；錯誤則 Cancel" loading="lazy"></a><figcaption>圖 3：正確檔案 → 逐項變更 → Approve once；錯誤則 Cancel。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h2 id="sec4">S01｜把抱怨轉成可驗收需求（簡報第 4 頁）</h2>
+<p><strong>工作方法：product-spec-writer。</strong> 現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+
+
+<h3>A. 先準備這一步的來源</h3>
+<ul>
+<li><a href="data/S01/D01_%E4%B8%89%E6%AC%A1%E9%9C%80%E6%B1%82%E8%A8%AA%E8%AB%87%E5%8F%8A%E9%A6%96%E7%89%88%E7%AF%84%E5%9C%8D.md">D01_三次需求訪談及首版範圍.docx</a></li>
+<li><a href="data/S01/P-2603_baseline_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_baseline_查詢與首次完整回覆.csv</a></li>
+</ul>
+<h3>B. 照畫面完成委派</h3>
+<ol>
+<li>點 <strong>New task</strong>，按加號加入上列附件，確認上傳完成。</li>
+<li>在 <strong>Start a task</strong> 貼上以下完整提示，確認情境時間後按 Enter／Send。</li>
+<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
+<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+</ol>
+<figure><a href="../common/home.png"><img src="../common/home.png" alt="圖 S01-A：建立任務並加入本階段來源" loading="lazy"></a><figcaption>圖 S01-A：建立任務並加入本階段來源。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>C. 可直接貼上的完整提示</h3>
+<pre><code class="language-text">案例：PM Cowork 需求變更下如何守住交付基準；操作 S01。使用 product-spec-writer 的工作方法。
+現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+依三次訪談建立 P-2603 的需求規格：使用者、現況、首版範圍、排除項目、角色權限與驗收。把 18 小時基準與 8 小時目標分開，不加入供應商入口或付款功能。
+這一步新收到的附件：D01_三次需求訪談及首版範圍.docx；P-2603_baseline_查詢與首次完整回覆.csv。
+建立可下載的 P01_可驗收需求規格.docx，內容必須包含：業務問題、目標與口徑、角色、範圍、排除項、可觀察驗收條件、來源ID。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<p>亦可開啟 <a href="prompts/S01.txt">本步提示文字檔</a>。</p>
+<h3>D. 開啟成果並逐項查證</h3>
+<ol>
+<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>P01_可驗收需求規格.docx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
+<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
+<li>檢查成果是否有以下欄位或段落：<strong>業務問題、目標與口徑、角色、範圍、排除項、可觀察驗收條件、來源ID</strong>。缺欄位先修訂。</li>
+<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
+<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>檢查項</th>
+<th>此時應有的內容／結果</th>
+<th>去哪裡核對</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基準</td>
+<td>20件平均18小時</td>
+<td>baseline逐筆時間</td>
+</tr>
+<tr>
+<td>目標</td>
+<td>8小時，尚未達成</td>
+<td>PM-I03</td>
+</tr>
+<tr>
+<td>可見性</td>
+<td>本人／承辦／授權主管分開</td>
+<td>PM-I02／I03</td>
+</tr>
+</tbody></table>
+<h3>E. 不通過時怎麼修</h3>
+<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
+<pre><code class="language-text">請修訂 P01_可驗收需求規格.docx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
+</code></pre>
+<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
+
+<p>P-2603 首版規格草稿
+問題是採購同仁以郵件追問進度，首次完整回覆平均 18 小時。首版目標為改善至 8 小時，需沿用從收到查詢至首次完整回覆的口徑驗證。
+角色與範圍：申請人只查本人資料；承辦更新狀態；主管僅查授權範圍。驗收包含角色可見性與未授權操作阻擋，使用合成測試資料。採購下單、付款及供應商自助排除。目標、規格提案與已批准事項分開保留。</p>
+<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
+</details>
+
+<h3>F. 保存並交接到下一步</h3>
+<p>保存 <strong>P01_可驗收需求規格.docx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>5</strong> 頁；到了該步才加入新附件。</p>
+<h2 id="sec5">S02｜把旅程拆成完整的第一版（簡報第 5 頁）</h2>
+<p><strong>工作方法：story-map-builder。</strong> 現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+
+
+<h3>A. 先準備這一步的來源</h3>
+<p>本步沒有新附件；沿用同一任務中已加入的來源。</p>
+<details><summary>查看此時可沿用的前階段來源</summary>
+
+<ul>
+<li><a href="data/S01/D01_%E4%B8%89%E6%AC%A1%E9%9C%80%E6%B1%82%E8%A8%AA%E8%AB%87%E5%8F%8A%E9%A6%96%E7%89%88%E7%AF%84%E5%9C%8D.md">D01_三次需求訪談及首版範圍.docx</a></li>
+<li><a href="data/S01/P-2603_baseline_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_baseline_查詢與首次完整回覆.csv</a></li>
+</ul>
+</details>
+
+<h3>B. 照畫面完成委派</h3>
+<ol>
+<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>P01_可驗收需求規格.docx</strong> 已保留。</li>
+<li>在 <strong>Follow up</strong> 貼上以下提示並送出；本步不重傳相同附件。</li>
+<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
+<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+</ol>
+<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S02-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S02-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>C. 可直接貼上的完整提示</h3>
+<pre><code class="language-text">案例：PM Cowork 需求變更下如何守住交付基準；操作 S02。使用 story-map-builder 的工作方法。
+現在情境時間是 2026/10/05 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+畫出申請人查詢與承辦更新的操作順序，列每一步的輸入、畫面狀態、結果與例外。將首版切成可端到端驗證的一組工作，不能只有單一畫面或按鈕。
+這一步沒有新附件，請沿用前面已提供的來源。
+以先前的 P01_可驗收需求規格.docx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 P02_使用流程與驗收案例.xlsx，內容必須包含：角色、進入條件、操作、輸入、成功結果、空值或失敗、權限拒絕、驗收。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<p>亦可開啟 <a href="prompts/S02.txt">本步提示文字檔</a>。</p>
+<h3>D. 開啟成果並逐項查證</h3>
+<ol>
+<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>P02_使用流程與驗收案例.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
+<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
+<li>檢查成果是否有以下欄位或段落：<strong>角色、進入條件、操作、輸入、成功結果、空值或失敗、權限拒絕、驗收</strong>。缺欄位先修訂。</li>
+<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
+<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>檢查項</th>
+<th>此時應有的內容／結果</th>
+<th>去哪裡核對</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>本人查詢</td>
+<td>不能看到他人資料</td>
+<td>PM-I02</td>
+</tr>
+<tr>
+<td>承辦更新</td>
+<td>有效狀態保存後申請人可見</td>
+<td>PM-I03</td>
+</tr>
+<tr>
+<td>邊界</td>
+<td>空清單、不存在及直接URL越權</td>
+<td>需求衍生測試提案</td>
+</tr>
+</tbody></table>
+<h3>E. 不通過時怎麼修</h3>
+<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
+<pre><code class="language-text">請修訂 P02_使用流程與驗收案例.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
+</code></pre>
+<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
+
+<p>首版使用流程
+申請人以授權身分進入入口，取得本人的申請清單，選擇案件查看狀態與更新資訊；無資料顯示空狀態；不存在或未授權案件不可返回他人資料。承辦開啟允許處理案件，輸入有效狀態並保存，顯示結果且保留原紀錄；非承辦更新應遭阻擋。
+端到端驗收從承辦更新開始，再以申請人身分確認可見的新狀態，最後測試直接 URL 越權。首版切片同時涵蓋本人查詢、承辦更新及權限驗證，不能只交付入口畫面。</p>
+<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
+</details>
+
+<h3>F. 保存並交接到下一步</h3>
+<p>保存 <strong>P02_使用流程與驗收案例.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>6</strong> 頁；到了該步才加入新附件。</p>
+<h2 id="sec6">S03｜容量只有六人日，如何安排（簡報第 6 頁）</h2>
+<p><strong>工作方法：cycle-planning。</strong> 現在情境時間是 2026/10/08 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+
+
+<h3>A. 先準備這一步的來源</h3>
+<ul>
+<li><a href="data/S03/D02_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E8%88%87%E5%AE%B9%E9%87%8F.md">D02_工程估算與容量.docx</a></li>
+<li><a href="data/S03/P-2603_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E5%8E%9F%E7%A8%BF.csv">P-2603_工程估算原稿.csv</a></li>
+</ul>
+<details><summary>查看此時可沿用的前階段來源</summary>
+
+<ul>
+<li><a href="data/S01/D01_%E4%B8%89%E6%AC%A1%E9%9C%80%E6%B1%82%E8%A8%AA%E8%AB%87%E5%8F%8A%E9%A6%96%E7%89%88%E7%AF%84%E5%9C%8D.md">D01_三次需求訪談及首版範圍.docx</a></li>
+<li><a href="data/S01/P-2603_baseline_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_baseline_查詢與首次完整回覆.csv</a></li>
+</ul>
+</details>
+
+<h3>B. 照畫面完成委派</h3>
+<ol>
+<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>P02_使用流程與驗收案例.xlsx</strong> 已保留。</li>
+<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
+<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
+<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+</ol>
+<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S03-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S03-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>C. 可直接貼上的完整提示</h3>
+<pre><code class="language-text">案例：PM Cowork 需求變更下如何守住交付基準；操作 S03。使用 cycle-planning 的工作方法。
+現在情境時間是 2026/10/08 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+依 P-01、P-02、P-03 的估算與 6 人日容量，產出本期工作選擇草案，保留測試與修正空間。列納入、延後及取捨；估算不等於交付承諾。
+這一步新收到的附件：D02_工程估算與容量.docx；P-2603_工程估算原稿.csv。
+以先前的 P02_使用流程與驗收案例.xlsx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 P03_容量與首版選擇.xlsx，內容必須包含：工作ID、人日、依賴、候選組合、驗證餘額、未批准事項。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<p>亦可開啟 <a href="prompts/S03.txt">本步提示文字檔</a>。</p>
+<h3>D. 開啟成果並逐項查證</h3>
+<ol>
+<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>P03_容量與首版選擇.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
+<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
+<li>檢查成果是否有以下欄位或段落：<strong>工作ID、人日、依賴、候選組合、驗證餘額、未批准事項</strong>。缺欄位先修訂。</li>
+<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
+<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>檢查項</th>
+<th>此時應有的內容／結果</th>
+<th>去哪裡核對</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P-01＋P-02</td>
+<td>3+2=5人日</td>
+<td>工程估算</td>
+</tr>
+<tr>
+<td>三項全做</td>
+<td>8人日&gt;6容量</td>
+<td>PM-EST01</td>
+</tr>
+<tr>
+<td>餘額</td>
+<td>1人日測試修正仍需工程確認</td>
+<td>提案非承諾</td>
+</tr>
+</tbody></table>
+<h3>E. 不通過時怎麼修</h3>
+<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
+<pre><code class="language-text">請修訂 P03_容量與首版選擇.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
+</code></pre>
+<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
+
+<p>本期工作選擇草案
+P-01 3 人日 + P-02 2 人日 = 5 人日，在 6 人日容量中暫留 1 人日給驗證及修正。P-03 另需 3 人日，三項共 8 人日，尚未含額外測試，不可承諾全部納入。
+提案為先做 P-01／P-02，P-03 延後。1 人日是否足夠仍須工程師確認；測試帳號是必要依賴，估算和選擇均不能直接轉成已承諾日期。</p>
+<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
+</details>
+
+<h3>F. 保存並交接到下一步</h3>
+<p>保存 <strong>P03_容量與首版選擇.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>7</strong> 頁；到了該步才加入新附件。</p>
+<h2 id="sec7">S04｜新增匯出要求，先說清楚代價（簡報第 7 頁）</h2>
+<p><strong>工作方法：project-ops。</strong> 現在情境時間是 2026/10/08 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+
+
+<h3>A. 先準備這一步的來源</h3>
+<ul>
+<li><a href="data/S04/D03_%E6%96%B0%E5%A2%9E%E8%A6%81%E6%B1%82%E8%88%87%E9%98%BB%E5%A1%9E.md">D03_新增要求與阻塞.docx</a></li>
+</ul>
+<details><summary>查看此時可沿用的前階段來源</summary>
+
+<ul>
+<li><a href="data/S01/D01_%E4%B8%89%E6%AC%A1%E9%9C%80%E6%B1%82%E8%A8%AA%E8%AB%87%E5%8F%8A%E9%A6%96%E7%89%88%E7%AF%84%E5%9C%8D.md">D01_三次需求訪談及首版範圍.docx</a></li>
+<li><a href="data/S01/P-2603_baseline_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_baseline_查詢與首次完整回覆.csv</a></li>
+<li><a href="data/S03/D02_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E8%88%87%E5%AE%B9%E9%87%8F.md">D02_工程估算與容量.docx</a></li>
+<li><a href="data/S03/P-2603_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E5%8E%9F%E7%A8%BF.csv">P-2603_工程估算原稿.csv</a></li>
+</ul>
+</details>
+
+<h3>B. 照畫面完成委派</h3>
+<ol>
+<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>P03_容量與首版選擇.xlsx</strong> 已保留。</li>
+<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
+<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
+<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+</ol>
+<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S04-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S04-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>C. 可直接貼上的完整提示</h3>
+<pre><code class="language-text">案例：PM Cowork 需求變更下如何守住交付基準；操作 S04。使用 project-ops 的工作方法。
+現在情境時間是 2026/10/08 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+為 P-03 製作變更申請，比較保留原範圍、替換既有工作及增加容量等選項。另列測試帳號阻塞、責任及影響。請主管決定，不直接改首版承諾。
+這一步新收到的附件：D03_新增要求與阻塞.docx。
+以先前的 P03_容量與首版選擇.xlsx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 P04_變更與阻塞決策包.docx，內容必須包含：新增需求、原範圍、保留替換加資源三方案、影響、待決策人、依賴。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<p>亦可開啟 <a href="prompts/S04.txt">本步提示文字檔</a>。</p>
+<h3>D. 開啟成果並逐項查證</h3>
+<ol>
+<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>P04_變更與阻塞決策包.docx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
+<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
+<li>檢查成果是否有以下欄位或段落：<strong>新增需求、原範圍、保留替換加資源三方案、影響、待決策人、依賴</strong>。缺欄位先修訂。</li>
+<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
+<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>檢查項</th>
+<th>此時應有的內容／結果</th>
+<th>去哪裡核對</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>P-03</td>
+<td>需要3人日</td>
+<td>PM-CH008</td>
+</tr>
+<tr>
+<td>帳號</td>
+<td>尚未備妥、沒有具名承諾</td>
+<td>PM-BLOCK008</td>
+</tr>
+<tr>
+<td>日期</td>
+<td>不可提前使用10/09決定</td>
+<td>本階段截止時間</td>
+</tr>
+</tbody></table>
+<h3>E. 不通過時怎麼修</h3>
+<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
+<pre><code class="language-text">請修訂 P04_變更與阻塞決策包.docx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
+</code></pre>
+<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
+
+<p>P-03 變更申請
+方案一保留本人查詢與承辦更新，匯出延後；方案二以匯出替換部分原工作，但將影響端到端可用性，需重新驗收範圍；方案三增加容量或延長安排，須有資源證據及主管批准。全做估算 8 人日，超過目前 6 人日且需保留驗證。
+另列測試帳號尚未備妥，阻塞權限測試。當下未有具名承諾，先請 IT 確認責任與可用時間。10/09 的決定尚未發生，不能提前寫入本步。</p>
+<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
+</details>
+
+<h3>F. 保存並交接到下一步</h3>
+<p>保存 <strong>P04_變更與阻塞決策包.docx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>9</strong> 頁；到了該步才加入新附件。</p>
+<h2 id="sec8">S05｜決定已下來，更新工作基準（簡報第 9 頁）</h2>
+<p><strong>工作方法：issue-shaping。</strong> 現在情境時間是 2026/10/09 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+
+
+<h3>A. 先準備這一步的來源</h3>
+<ul>
+<li><a href="data/S05/D04_%E7%AF%84%E5%9C%8D%E6%B1%BA%E8%AD%B0%E8%88%87%E5%B8%B3%E8%99%9F%E6%89%BF%E8%AB%BE.md">D04_範圍決議與帳號承諾.docx</a></li>
+</ul>
+<details><summary>查看此時可沿用的前階段來源</summary>
+
+<ul>
+<li><a href="data/S01/D01_%E4%B8%89%E6%AC%A1%E9%9C%80%E6%B1%82%E8%A8%AA%E8%AB%87%E5%8F%8A%E9%A6%96%E7%89%88%E7%AF%84%E5%9C%8D.md">D01_三次需求訪談及首版範圍.docx</a></li>
+<li><a href="data/S01/P-2603_baseline_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_baseline_查詢與首次完整回覆.csv</a></li>
+<li><a href="data/S03/D02_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E8%88%87%E5%AE%B9%E9%87%8F.md">D02_工程估算與容量.docx</a></li>
+<li><a href="data/S03/P-2603_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E5%8E%9F%E7%A8%BF.csv">P-2603_工程估算原稿.csv</a></li>
+<li><a href="data/S04/D03_%E6%96%B0%E5%A2%9E%E8%A6%81%E6%B1%82%E8%88%87%E9%98%BB%E5%A1%9E.md">D03_新增要求與阻塞.docx</a></li>
+</ul>
+</details>
+
+<h3>B. 照畫面完成委派</h3>
+<ol>
+<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>P04_變更與阻塞決策包.docx</strong> 已保留。</li>
+<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
+<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
+<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+</ol>
+<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S05-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S05-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>C. 可直接貼上的完整提示</h3>
+<pre><code class="language-text">案例：PM Cowork 需求變更下如何守住交付基準；操作 S05。使用 issue-shaping 的工作方法。
+現在情境時間是 2026/10/09 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+依主管決定更新首版工作清單草稿。保留 P-01、P-02，將 P-03 標示延後；引用王明哲 10/12 測試帳號承諾。列原值、新值與相關依賴，先不寫入管理系統。
+這一步新收到的附件：D04_範圍決議與帳號承諾.docx。
+以先前的 P04_變更與阻塞決策包.docx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 P05_首版基準變更表.xlsx，內容必須包含：項目、原提案、新決定、決策人時間、文件影響、測試依賴、實際完成證據。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<p>亦可開啟 <a href="prompts/S05.txt">本步提示文字檔</a>。</p>
+<h3>D. 開啟成果並逐項查證</h3>
+<ol>
+<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>P05_首版基準變更表.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
+<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
+<li>檢查成果是否有以下欄位或段落：<strong>項目、原提案、新決定、決策人時間、文件影響、測試依賴、實際完成證據</strong>。缺欄位先修訂。</li>
+<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
+<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>檢查項</th>
+<th>此時應有的內容／結果</th>
+<th>去哪裡核對</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>首版</td>
+<td>P-01／P-02納入，P-03延後</td>
+<td>PM-DEC009</td>
+</tr>
+<tr>
+<td>測試帳號</td>
+<td>王明哲承諾10/12，不等於完成</td>
+<td>PM-IT009</td>
+</tr>
+<tr>
+<td>系統</td>
+<td>工作表草稿，未更新正式工具</td>
+<td>本課委派範圍</td>
+</tr>
+</tbody></table>
+<h3>E. 不通過時怎麼修</h3>
+<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
+<pre><code class="language-text">請修訂 P05_首版基準變更表.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
+</code></pre>
+<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
+
+<p>首版基準更新草稿
+依 10/09 決定，P-01／P-02 納入首版，P-03 延後。原新增要求不再列本期承諾。測試帳號依王明哲 10/12 承諾建立依賴，承諾不是已交付證據。
+逐項保留原值、新值、決策日期與影響的規格及測試。只製作工作清單草稿，尚未更新正式管理系統。</p>
+<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
+</details>
+
+<h3>F. 保存並交接到下一步</h3>
+<p>保存 <strong>P05_首版基準變更表.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>10</strong> 頁；到了該步才加入新附件。</p>
+<h2 id="sec9">S06｜試行前要看到哪些證據（簡報第 10 頁）</h2>
+<p><strong>工作方法：pm-reviewer。</strong> 現在情境時間是 2026/10/20 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+
+
+<h3>A. 先準備這一步的來源</h3>
+<ul>
+<li><a href="data/S06/D05_%E5%8A%9F%E8%83%BD%E8%88%87%E6%AC%8A%E9%99%90%E9%A9%97%E6%94%B6%E5%8F%8A%E8%A9%A6%E8%A1%8C%E6%89%B9%E5%87%86.md">D05_功能與權限驗收及試行批准.docx</a></li>
+<li><a href="data/S06/P-2603_%E9%80%90%E7%AD%86%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C.csv">P-2603_逐筆測試結果.csv</a></li>
+</ul>
+<details><summary>查看此時可沿用的前階段來源</summary>
+
+<ul>
+<li><a href="data/S01/D01_%E4%B8%89%E6%AC%A1%E9%9C%80%E6%B1%82%E8%A8%AA%E8%AB%87%E5%8F%8A%E9%A6%96%E7%89%88%E7%AF%84%E5%9C%8D.md">D01_三次需求訪談及首版範圍.docx</a></li>
+<li><a href="data/S01/P-2603_baseline_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_baseline_查詢與首次完整回覆.csv</a></li>
+<li><a href="data/S03/D02_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E8%88%87%E5%AE%B9%E9%87%8F.md">D02_工程估算與容量.docx</a></li>
+<li><a href="data/S03/P-2603_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E5%8E%9F%E7%A8%BF.csv">P-2603_工程估算原稿.csv</a></li>
+<li><a href="data/S04/D03_%E6%96%B0%E5%A2%9E%E8%A6%81%E6%B1%82%E8%88%87%E9%98%BB%E5%A1%9E.md">D03_新增要求與阻塞.docx</a></li>
+<li><a href="data/S05/D04_%E7%AF%84%E5%9C%8D%E6%B1%BA%E8%AD%B0%E8%88%87%E5%B8%B3%E8%99%9F%E6%89%BF%E8%AB%BE.md">D04_範圍決議與帳號承諾.docx</a></li>
+</ul>
+</details>
+
+<h3>B. 照畫面完成委派</h3>
+<ol>
+<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>P05_首版基準變更表.xlsx</strong> 已保留。</li>
+<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
+<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
+<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+</ol>
+<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S06-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S06-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>C. 可直接貼上的完整提示</h3>
+<pre><code class="language-text">案例：PM Cowork 需求變更下如何守住交付基準；操作 S06。使用 pm-reviewer 的工作方法。
+現在情境時間是 2026/10/20 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+製作試行驗收單，分開功能測試、權限測試與主管批准。每項連結記錄與適用範圍；指出測試通過仍不能證明平均回覆時間已達 8 小時。
+這一步新收到的附件：D05_功能與權限驗收及試行批准.docx；P-2603_逐筆測試結果.csv。
+以先前的 P05_首版基準變更表.xlsx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 P06_採購部試行驗收.docx，內容必須包含：功能測試、角色測試、逐筆測試ID、試行批准、尚未驗證目標、觀察收集方法。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<p>亦可開啟 <a href="prompts/S06.txt">本步提示文字檔</a>。</p>
+<h3>D. 開啟成果並逐項查證</h3>
+<ol>
+<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>P06_採購部試行驗收.docx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
+<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
+<li>檢查成果是否有以下欄位或段落：<strong>功能測試、角色測試、逐筆測試ID、試行批准、尚未驗證目標、觀察收集方法</strong>。缺欄位先修訂。</li>
+<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
+<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>檢查項</th>
+<th>此時應有的內容／結果</th>
+<th>去哪裡核對</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>功能</td>
+<td>10/16通過P-01／P-02</td>
+<td>測試結果TC01–04</td>
+</tr>
+<tr>
+<td>權限</td>
+<td>10/19通過本次角色測試</td>
+<td>TC05–08</td>
+</tr>
+<tr>
+<td>試行</td>
+<td>10/20採購部；目標尚待觀察</td>
+<td>D05批准紀錄</td>
+</tr>
+</tbody></table>
+<h3>E. 不通過時怎麼修</h3>
+<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
+<pre><code class="language-text">請修訂 P06_採購部試行驗收.docx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
+</code></pre>
+<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
+
+<p>試行驗收單
+10/16 P-01／P-02 功能測試通過；10/19 本次角色權限測試通過；主管批准 10/20 採購部試行。三者各自保留來源、日期與適用範圍。
+這些證據支持在已測試範圍內進入試行，尚不能宣稱回覆平均 8 小時。試行需記錄同口徑查詢樣本及實際首次完整回覆時間，P-03 未納入驗收。</p>
+<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
+</details>
+
+<h3>F. 保存並交接到下一步</h3>
+<p>保存 <strong>P06_採購部試行驗收.docx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>11</strong> 頁；到了該步才加入新附件。</p>
+<h2 id="sec10">S07｜完成開發，不代表目標達成（簡報第 11 頁）</h2>
+<p><strong>工作方法：outcome-review。</strong> 現在情境時間是 2026/10/27 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+
+
+<h3>A. 先準備這一步的來源</h3>
+<ul>
+<li><a href="data/S07/D06_%E8%A9%A6%E8%A1%8C%E8%A7%80%E5%AF%9F%E8%88%87%E5%BE%8C%E7%BA%8C%E8%A6%81%E6%B1%82.md">D06_試行觀察與後續要求.docx</a></li>
+<li><a href="data/S07/P-2603_pilot_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_pilot_查詢與首次完整回覆.csv</a></li>
+</ul>
+<details><summary>查看此時可沿用的前階段來源</summary>
+
+<ul>
+<li><a href="data/S01/D01_%E4%B8%89%E6%AC%A1%E9%9C%80%E6%B1%82%E8%A8%AA%E8%AB%87%E5%8F%8A%E9%A6%96%E7%89%88%E7%AF%84%E5%9C%8D.md">D01_三次需求訪談及首版範圍.docx</a></li>
+<li><a href="data/S01/P-2603_baseline_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_baseline_查詢與首次完整回覆.csv</a></li>
+<li><a href="data/S03/D02_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E8%88%87%E5%AE%B9%E9%87%8F.md">D02_工程估算與容量.docx</a></li>
+<li><a href="data/S03/P-2603_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E5%8E%9F%E7%A8%BF.csv">P-2603_工程估算原稿.csv</a></li>
+<li><a href="data/S04/D03_%E6%96%B0%E5%A2%9E%E8%A6%81%E6%B1%82%E8%88%87%E9%98%BB%E5%A1%9E.md">D03_新增要求與阻塞.docx</a></li>
+<li><a href="data/S05/D04_%E7%AF%84%E5%9C%8D%E6%B1%BA%E8%AD%B0%E8%88%87%E5%B8%B3%E8%99%9F%E6%89%BF%E8%AB%BE.md">D04_範圍決議與帳號承諾.docx</a></li>
+<li><a href="data/S06/D05_%E5%8A%9F%E8%83%BD%E8%88%87%E6%AC%8A%E9%99%90%E9%A9%97%E6%94%B6%E5%8F%8A%E8%A9%A6%E8%A1%8C%E6%89%B9%E5%87%86.md">D05_功能與權限驗收及試行批准.docx</a></li>
+<li><a href="data/S06/P-2603_%E9%80%90%E7%AD%86%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C.csv">P-2603_逐筆測試結果.csv</a></li>
+</ul>
+</details>
+
+<h3>B. 照畫面完成委派</h3>
+<ol>
+<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>P06_採購部試行驗收.docx</strong> 已保留。</li>
+<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
+<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
+<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+</ol>
+<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S07-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S07-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>C. 可直接貼上的完整提示</h3>
+<pre><code class="language-text">案例：PM Cowork 需求變更下如何守住交付基準；操作 S07。使用 outcome-review 的工作方法。
+現在情境時間是 2026/10/27 17:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+比較 18 小時基準、8 小時目標與 11 小時觀察值。說明已改善及尚未達標的部分，列承辦更新頻率的證據與後續觀察計畫，不把單次試行當因果證明。
+這一步新收到的附件：D06_試行觀察與後續要求.docx；P-2603_pilot_查詢與首次完整回覆.csv。
+以先前的 P06_採購部試行驗收.docx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 P07_試行逐筆與成效.xlsx，內容必須包含：兩批樣本ID、起訖時間、每件耗時公式、樣本數、平均、目標差距、等待理由。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。試算表請保留原始明細、分析或狀態提案分表；數值分析用可重算公式，不把結論貼成圖片。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<p>亦可開啟 <a href="prompts/S07.txt">本步提示文字檔</a>。</p>
+<h3>D. 開啟成果並逐項查證</h3>
+<ol>
+<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>P07_試行逐筆與成效.xlsx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
+<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
+<li>檢查成果是否有以下欄位或段落：<strong>兩批樣本ID、起訖時間、每件耗時公式、樣本數、平均、目標差距、等待理由</strong>。缺欄位先修訂。</li>
+<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
+<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>檢查項</th>
+<th>此時應有的內容／結果</th>
+<th>去哪裡核對</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>基準</td>
+<td>20件平均18小時</td>
+<td>baseline</td>
+</tr>
+<tr>
+<td>試行</td>
+<td>20件平均11小時</td>
+<td>pilot</td>
+</tr>
+<tr>
+<td>比較</td>
+<td>少7小時、38.9%，距8小時仍3小時</td>
+<td>不同批次非配對</td>
+</tr>
+<tr>
+<td>等待</td>
+<td>5件記為等每日一次更新</td>
+<td>pilot等待紀錄</td>
+</tr>
+</tbody></table>
+<h3>E. 不通過時怎麼修</h3>
+<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
+<pre><code class="language-text">請修訂 P07_試行逐筆與成效.xlsx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
+</code></pre>
+<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
+
+<p>試行成果檢視
+相同定義下，基準 18 小時，目標 8 小時，試行 20 件平均 11 小時。觀察到比基準少 7 小時，降幅約 38.9%；距目標仍多 3 小時。這是本次樣本比較，未證明系統造成全部改善。
+其中 5 件受每日一次更新限制。10/27 主管要求改為當日兩次，後續應保留同口徑樣本、更新時間與回覆時間再評估，目前無新成效數據。</p>
+<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
+</details>
+
+<h3>F. 保存並交接到下一步</h3>
+<p>保存 <strong>P07_試行逐筆與成效.xlsx</strong>，記下使用來源、修訂次數與未解項目。下一步進入簡報第 <strong>12</strong> 頁；到了該步才加入新附件。</p>
+<h2 id="sec11">S08｜結業：主管說所有需求都完成（簡報第 12 頁）</h2>
+<p><strong>工作方法：project-update。</strong> 現在情境時間是 2026/10/28 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。</p>
+
+
+<h3>A. 先準備這一步的來源</h3>
+<ul>
+<li><a href="data/S08/D07_%E4%B8%BB%E7%AE%A1%E9%80%B1%E5%A0%B1%E7%94%A8%E8%AA%9E%E8%A6%81%E6%B1%82.md">D07_主管週報用語要求.docx</a></li>
+</ul>
+<details><summary>查看此時可沿用的前階段來源</summary>
+
+<ul>
+<li><a href="data/S01/D01_%E4%B8%89%E6%AC%A1%E9%9C%80%E6%B1%82%E8%A8%AA%E8%AB%87%E5%8F%8A%E9%A6%96%E7%89%88%E7%AF%84%E5%9C%8D.md">D01_三次需求訪談及首版範圍.docx</a></li>
+<li><a href="data/S01/P-2603_baseline_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_baseline_查詢與首次完整回覆.csv</a></li>
+<li><a href="data/S03/D02_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E8%88%87%E5%AE%B9%E9%87%8F.md">D02_工程估算與容量.docx</a></li>
+<li><a href="data/S03/P-2603_%E5%B7%A5%E7%A8%8B%E4%BC%B0%E7%AE%97%E5%8E%9F%E7%A8%BF.csv">P-2603_工程估算原稿.csv</a></li>
+<li><a href="data/S04/D03_%E6%96%B0%E5%A2%9E%E8%A6%81%E6%B1%82%E8%88%87%E9%98%BB%E5%A1%9E.md">D03_新增要求與阻塞.docx</a></li>
+<li><a href="data/S05/D04_%E7%AF%84%E5%9C%8D%E6%B1%BA%E8%AD%B0%E8%88%87%E5%B8%B3%E8%99%9F%E6%89%BF%E8%AB%BE.md">D04_範圍決議與帳號承諾.docx</a></li>
+<li><a href="data/S06/D05_%E5%8A%9F%E8%83%BD%E8%88%87%E6%AC%8A%E9%99%90%E9%A9%97%E6%94%B6%E5%8F%8A%E8%A9%A6%E8%A1%8C%E6%89%B9%E5%87%86.md">D05_功能與權限驗收及試行批准.docx</a></li>
+<li><a href="data/S06/P-2603_%E9%80%90%E7%AD%86%E6%B8%AC%E8%A9%A6%E7%B5%90%E6%9E%9C.csv">P-2603_逐筆測試結果.csv</a></li>
+<li><a href="data/S07/D06_%E8%A9%A6%E8%A1%8C%E8%A7%80%E5%AF%9F%E8%88%87%E5%BE%8C%E7%BA%8C%E8%A6%81%E6%B1%82.md">D06_試行觀察與後續要求.docx</a></li>
+<li><a href="data/S07/P-2603_pilot_%E6%9F%A5%E8%A9%A2%E8%88%87%E9%A6%96%E6%AC%A1%E5%AE%8C%E6%95%B4%E5%9B%9E%E8%A6%86.csv">P-2603_pilot_查詢與首次完整回覆.csv</a></li>
+</ul>
+</details>
+
+<h3>B. 照畫面完成委派</h3>
+<ol>
+<li>從 <strong>My tasks</strong> 回到本案例，先確認前一步成果 <strong>P07_試行逐筆與成效.xlsx</strong> 已保留。</li>
+<li>在 <strong>Follow up</strong> 左側按加號，上傳本步新增附件。等附件名稱出現後，貼上以下提示並送出。</li>
+<li>若 Cowork 詢問缺失欄位，回到原文件查找；來源確實沒有的值，回覆「保留待確認，先完成可支持部分」。</li>
+<li>若執行中需要改要求，在同一輸入框補充；如介面顯示待處理訊息，等目前工作接續後再檢查結果。</li>
+</ol>
+<figure><a href="../common/workspace.png"><img src="../common/workspace.png" alt="圖 S08-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果" loading="lazy"></a><figcaption>圖 S08-A：在原任務補上本步事件，再從 References 與 Outputs 核對來源及成果。點圖可開啟原尺寸。</figcaption></figure>
+
+
+<h3>C. 可直接貼上的完整提示</h3>
+<pre><code class="language-text">案例：PM Cowork 需求變更下如何守住交付基準；操作 S08。使用 project-update 的工作方法。
+現在情境時間是 2026/10/28 09:00 台北時間。僅使用此時點已發生的來源；較晚事件暫不採用。
+撰寫可直接送審的專案週報，說明首版交付、試行結果、未達標事項與 P-03 延後狀態。將需主管決定的下一步列清楚，不用「全面完成」掩蓋剩餘工作。
+這一步新收到的附件：D07_主管週報用語要求.docx。
+以先前的 P07_試行逐筆與成效.xlsx 接續工作，保留原資料與修訂痕跡。
+建立可下載的 P08_專案週報送審稿.docx，內容必須包含：已完成範圍、排除或延期、成效口徑、未達目標、下一步、主管回覆。請提供完整正文或逐列資料，引用文件 ID 與時間。數值保留計算過程，資料不明列待確認。
+本次只製作供人員審閱的成果草稿。若還缺資料，列出具體缺件及負責窗口，先完成可由現有證據支持的部分。
+</code></pre>
+<p>亦可開啟 <a href="prompts/S08.txt">本步提示文字檔</a>。</p>
+<h3>D. 開啟成果並逐項查證</h3>
+<ol>
+<li>在 <strong>Outputs／輸出檔案區</strong> 點開 <strong>P08_專案週報送審稿.docx</strong>。若僅有聊天回覆，補充「請依指定檔名建立可下載檔案，保留完整內容」。</li>
+<li>在 <strong>References／輸入檔案區</strong> 開來源，搜尋下表的文件 ID、列 ID 或原文關鍵詞，與成果並排核對。</li>
+<li>檢查成果是否有以下欄位或段落：<strong>已完成範圍、排除或延期、成效口徑、未達目標、下一步、主管回覆</strong>。缺欄位先修訂。</li>
+<li>逐列檢查下表；涉及數值時，在來源明細自行重算，涉及狀態時核對誰在什麼時間確認。</li>
+<li>檢查通過後使用成果的 <strong>Download</strong> 保存。若看不到下載控制，先點成果預覽，再用該檔案提供的下載選項；保留版本而非覆蓋前一步。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>檢查項</th>
+<th>此時應有的內容／結果</th>
+<th>去哪裡核對</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>完成</td>
+<td>首版本人查詢／承辦更新／權限驗證</td>
+<td>P06</td>
+</tr>
+<tr>
+<td>未達</td>
+<td>11小時&gt;8小時</td>
+<td>P07</td>
+</tr>
+<tr>
+<td>延期</td>
+<td>P-03未完成</td>
+<td>PM-DEC009</td>
+</tr>
+<tr>
+<td>新措施</td>
+<td>每日兩次更新尚無後續成效</td>
+<td>PM-OBS027</td>
+</tr>
+</tbody></table>
+<h3>E. 不通過時怎麼修</h3>
+<p>先指出「目前錯誤值、要核對的來源、需要改的欄位」，然後送出以下格式；不要只說再詳細一點。</p>
+<pre><code class="language-text">請修訂 P08_專案週報送審稿.docx。我核對後發現「〔貼出錯誤內容〕」與「〔文件ID／列ID及原文〕」不符。請更正對應欄位，保留原值、新值與來源時間；重新計算受影響數值或重判狀態，其他有依據的內容保留。依本步情境時間重新檢查，不使用後續事件。輸出同名_v2 檔案供我比對。
+</code></pre>
+<details class="answer"><summary>完成實作後，展開核對參考成果與判斷</summary>
+
+<p>P-2603 專案週報送審稿
+首版本人查詢、承辦更新及本次權限驗證完成，採購部已開始試行。20 件查詢平均首次完整回覆為 11 小時，較原 18 小時改善，但未達 8 小時目標。P-03 匯出延後，尚未排入承諾版本。
+下一步依主管要求觀察每日兩次更新的效果，待取得新資料後再檢視。若需安排 P-03，請決定優先順序與容量。不可對外稱全部需求完成。</p>
+<p>參考成果用來檢查證據與狀態；實際句子與版面可不同。不能用本段取代來源附件。</p>
+</details>
+
+<h3>F. 保存並交接到下一步</h3>
+<p>提交 <strong>P08_專案週報送審稿.docx</strong> 與前七步成果；用下方驗收表說明哪些工作已完成、哪些仍須人員決定。</p>
+<h2 id="sec12">05｜結業驗收與補做方法</h2>
+<table>
+<thead>
+<tr>
+<th>驗收</th>
+<th>學員需展示的證據</th>
+<th>不通過時補做</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>來源</td>
+<td>指出每個重大數值或狀態的文件ID及時間</td>
+<td>補上缺失引用；不能以AI回答當原始證據</td>
+</tr>
+<tr>
+<td>流程</td>
+<td>展示八個步驟如何接續，不重置前面未完成事項</td>
+<td>回到遺漏步驟補來源，再修訂後續成果</td>
+</tr>
+<tr>
+<td>例外</td>
+<td>辨認第八步的不當要求，保留正確工作與待決部分</td>
+<td>逐項比對原批准範圍與新要求</td>
+</tr>
+<tr>
+<td>成果</td>
+<td>八份可下載完整檔案，有必要欄位及正文</td>
+<td>按指定欄位補齊，不以幾行摘要交件</td>
+</tr>
+<tr>
+<td>人工判斷</td>
+<td>分開請求、草稿、核准、執行及使用者驗證</td>
+<td>補具名及時間；沒有證據的狀態退回待確認</td>
+</tr>
+</tbody></table>
+<p>每項 0–2 分：0 為缺失或無法查證；1 為指出問題但成果未改；2 為來源、判斷及修訂後成果一致。至少 8 分且不得把未核准動作或未執行測試標為完成。此表是課堂評量規格，尚不代表已在你的 Cowork 租戶測試通過。</p>
+<h2 id="sec13">06｜常見卡點與處理</h2>
+<table>
+<thead>
+<tr>
+<th>看到的情況</th>
+<th>現在怎麼做</th>
+<th>恢復檢查</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Plugin 找不到</td>
+<td>回 Customize → Plugins，請講師核對帳戶與部署範圍</td>
+<td>以該插件可見及本步工作方法可使用為課前條件</td>
+</tr>
+<tr>
+<td>附件未出現</td>
+<td>確認上傳已完成；重新用＋選文件，不貼本機路徑</td>
+<td>比對實際附件檔名</td>
+</tr>
+<tr>
+<td>引用了未來事件</td>
+<td>列錯誤來源日期，要求依本步截止時間重寫</td>
+<td>結果不再包含未發生的批准或完成紀錄</td>
+</tr>
+<tr>
+<td>只有聊天摘要</td>
+<td>要求建立指定檔名的完整Word或Excel成果</td>
+<td>開啟檔案檢查欄位、正文及逐列資料</td>
+</tr>
+<tr>
+<td>查不到缺件</td>
+<td>保留待確認，具名列出要問誰與缺什麼</td>
+<td>不擅自補金額、權限、日期或根因</td>
+</tr>
+<tr>
+<td>修改原檔錯誤</td>
+<td>依圖3取消並指明錯誤檔名或範圍</td>
+<td>收到新提案後再次逐項檢查</td>
+</tr>
+</tbody></table>
+<h2 id="sec14">07｜本 Plugin 的 Skills 索引</h2>
+<p>本課每步只選用與當下工作相關的方法。其餘 Skills 可依下一個真實工作需要選用：</p>
+<ul>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/customer-signal/SKILL.md">customer-signal</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/cycle-planning/SKILL.md">cycle-planning</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/governance/SKILL.md">governance</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/initiative-roadmap/SKILL.md">initiative-roadmap</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/issue-shaping/SKILL.md">issue-shaping</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/issue-triage/SKILL.md">issue-triage</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/outcome-review/SKILL.md">outcome-review</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/pm-operating-system/SKILL.md">pm-operating-system</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/pm-reviewer/SKILL.md">pm-reviewer</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/product-spec-writer/SKILL.md">product-spec-writer</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/project-ops/SKILL.md">project-ops</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/project-sizing-guide/SKILL.md">project-sizing-guide</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/project-update/SKILL.md">project-update</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/risk-heatmap/SKILL.md">risk-heatmap</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/story-map-builder/SKILL.md">story-map-builder</a></li>
+<li><a href="https://github.com/lwokeray/cowork-plugins/blob/teaching/plugin-workflows-20260913/plugins/pm-cowork/skills/weighted-scorer/SKILL.md">weighted-scorer</a></li>
+</ul>
+<h2 id="sec15">08｜介面來源與教材適用範圍</h2>
+<ul>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/use-cowork">Microsoft Cowork 使用指南</a>：新增任務、附件、後續指示、檔案預覽及下載。</li>
+<li><a href="https://learn.microsoft.com/en-us/microsoft-365/copilot/cowork/cowork-customize">Microsoft Cowork 自訂指南</a>：Skills 與 Plugins 入口及管理。</li>
+<li><a href="https://techcommunity.microsoft.com/blog/microsoft-copilot-blog/cowork-in-progress/4511672">Microsoft 官方 Cowork in progress</a>：本手冊四張操作圖的原始產品畫面，含截至 2026-09-11 的文章更新。</li>
+<li><a href="https://github.com/lwokeray/cowork-plugins">本課 Plugin 原始程式庫</a>：插件工作方法與部署套件。</li>
+</ul>
+<p>介面核對日：2026-09-14。手冊圖為官方畫面加註，原圖範例人名與檔案名稱保持官方示例；案例成果以本課委派產出為準。課程版號與簡報故事、步驟及截止時間一致；本次重建原始資料及操作手冊，沒有宣稱已完成租戶執行。</p>
+<footer>完整圖解教材 · 2026-09-14 · 官方產品畫面加註／合成練習資料</footer></main><script>document.querySelectorAll('pre').forEach(p=>{const b=document.createElement('button');b.className='copy';b.textContent='複製完整提示';b.onclick=async()=>{const t=p.querySelector('code').textContent;try{await navigator.clipboard.writeText(t);b.textContent='已複製'}catch(e){const r=document.createRange();r.selectNodeContents(p.querySelector('code'));const s=window.getSelection();s.removeAllRanges();s.addRange(r);b.textContent='已選取，請按 Ctrl+C'}};p.prepend(b)});</script></body></html>

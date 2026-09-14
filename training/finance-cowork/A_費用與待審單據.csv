@@ -1,5 +1,0 @@
-﻿record_id,source,period,currency,unit,amount,posted,invoice,vendor
-GL-09 v1,總帳營運費用,2026-09,TWD,元未稅,660000,yes,,
-BUD-09,核准預算,2026-09,TWD,元未稅,600000,not_applicable,,
-AP-101,應付待審,2026-09,TWD,元未稅,18000,no,AB-1001,日昇
-AP-108,應付待審,2026-09,TWD,元未稅,18000,no,AB-1001,日昇
